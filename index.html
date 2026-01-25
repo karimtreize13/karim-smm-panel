@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim Traz | لوحة الخدمات الشاملة</title>
+    <title>Karim Traz | اللوحة الشاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2563eb; --dark: #0f172a; --gold: #fbbf24; }
@@ -11,171 +11,178 @@
         .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 25px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .container { padding: 15px; max-width: 500px; margin: auto; }
 
-        /* سجل الطلبات */
         .order-log { background: #111827; border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 12px; border: 1px solid #334155; }
         
-        /* أقسام المنصات */
-        .category-btn { background: #1e293b; color: var(--gold); width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; text-align: right; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-        .services-container { display: none; padding-right: 10px; }
+        .category-btn { background: #1e293b; color: var(--gold); width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; text-align: right; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .services-container { display: none; margin-bottom: 20px; }
 
-        /* كرت الخدمة الاحترافي */
-        .service-card { background: #1e293b; border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334155; text-align: center; border-right: 5px solid var(--primary); }
-        .s-id { font-size: 10px; background: #0f172a; padding: 2px 6px; border-radius: 4px; color: var(--gold); }
-        .s-name { display: block; font-size: 14px; margin: 10px 0; color: #f1f5f9; line-height: 1.4; }
-        .s-price { color: #4ade80; font-weight: bold; font-size: 18px; display: block; margin-bottom: 15px; }
-        .order-btn { background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; }
+        .service-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 10px; border: 1px solid #334155; border-right: 4px solid var(--primary); }
+        .s-id { font-size: 11px; color: var(--gold); background: #0f172a; padding: 2px 5px; border-radius: 4px; }
+        .s-name { display: block; font-size: 13px; margin: 8px 0; color: #f1f5f9; line-height: 1.4; }
+        .s-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .s-price { color: #4ade80; font-weight: bold; font-size: 15px; }
+        .order-btn { background: var(--primary); color: white; border: none; padding: 6px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; }
 
-        /* النافذة المنبثقة */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: #1e293b; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; border: 1px solid var(--gold); }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
-        .confirm-btn { background: #10b981; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .modal-content { background: #1e293b; padding: 20px; border-radius: 15px; width: 85%; max-width: 350px; border: 1px solid var(--gold); }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
+        .confirm-btn { background: #10b981; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>KARIM TRAZ - كريم تراز</h1>
-</div>
+<div class="header"><h1>KARIM TRAZ - كريم تراز</h1></div>
 
 <div class="container">
     <div class="order-log" id="logSection">
-        <h3 style="color:var(--gold); margin:0 0 10px;">📊 آخر طلباتك</h3>
+        <h3 style="color:var(--gold); margin:0 0 5px; font-size: 14px;">📊 آخر طلباتك</h3>
         <div id="logItems">لا توجد طلبات</div>
     </div>
 
-    <button class="category-btn" onclick="toggleCat('fb')"><i class="fab fa-facebook" style="color:#1877f2"></i> خدمات فيسبوك</button>
+    <button class="category-btn" onclick="toggleCat('fb')"><span><i class="fab fa-facebook"></i> خدمات فيسبوك</span> <i class="fas fa-chevron-down"></i></button>
     <div id="fb" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#2676</span>
-            <span class="s-name">Facebook Followers | Lifetime Refill♻️⚡</span>
-            <span class="s-price">$0.446 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('2676 - FB Followers', 0.446)">اطلب الآن</button>
-        </div>
-        <div class="service-card">
-            <span class="s-id">#3330</span>
-            <span class="s-name">Facebook Group Members | Real | 365 Days♻️</span>
-            <span class="s-price">$0.92 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('3330 - FB Groups', 0.92)">اطلب الآن</button>
-        </div>
+        <script>
+            const fbServices = [
+                {id: 2676, name: "Followers | Non Drop | Lifetime Refill♻️", price: 0.446},
+                {id: 1974, name: "Followers | Non Drop | 365 Days Refill♻️", price: 0.412},
+                {id: 3859, name: "Followers | Bots | Lifetime Refill♻️", price: 0.1248},
+                {id: 3858, name: "Followers | Bots | No Refill", price: 0.0883},
+                {id: 3324, name: "Group Members | Low Drop | No Refill⚡", price: 0.5524},
+                {id: 3330, name: "Group Members | Real | 365 Days Refill♻️", price: 0.92},
+                {id: 8395, name: "60k Minutes | 10 Mins Video | Lifetime♻️", price: 0.954},
+                {id: 815, name: "100k Reels Views Package | 30 Days Refill♻️", price: 5.5988},
+                {id: 3315, name: "Post Likes 👍 | HQ Real | Instant", price: 0.74},
+                {id: 8755, name: "Reaction | Like 👍 | No Refill", price: 0.3332},
+                {id: 8756, name: "Reaction | Love❤️ | No Refill", price: 0.4332},
+                {id: 7592, name: "Views | Video/Reel | Lifetime Refill⚡", price: 0.0150},
+                {id: 8610, name: "Views | Video/Reel | Lifetime Refill♻️🔥", price: 0.0222}
+            ];
+        </script>
     </div>
 
-    <button class="category-btn" onclick="toggleCat('tk')"><i class="fab fa-tiktok" style="color:#ff0050"></i> خدمات تيك توك</button>
+    <button class="category-btn" onclick="toggleCat('tk')"><span><i class="fab fa-tiktok"></i> خدمات تيك توك</span> <i class="fas fa-chevron-down"></i></button>
     <div id="tk" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#3338</span>
-            <span class="s-name">TikTok Followers | HQ Real | Lifetime♻️</span>
-            <span class="s-price">$1.00 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('3338 - TikTok Followers', 1.00)">اطلب الآن</button>
-        </div>
-        <div class="service-card">
-            <span class="s-id">#8387</span>
-            <span class="s-name">TikTok Views | SuperInstant ⚡</span>
-            <span class="s-price">$0.009 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('8387 - TikTok Views', 0.009)">اطلب الآن</button>
-        </div>
+        <script>
+            const tkServices = [
+                {id: 8120, name: "Followers | Low Quality | No Refill⚡", price: 0.1188},
+                {id: 3338, name: "Followers | HQ Real | Lifetime Refill♻️", price: 1.00},
+                {id: 3340, name: "Followers | Perfect | Lifetime Refill♻️", price: 0.984},
+                {id: 1507, name: "Followers | Low Quality | No Refill", price: 0.326},
+                {id: 3350, name: "Followers | UltraFast | No Refill⚡", price: 0.6725},
+                {id: 3810, name: "Followers | HQ Real | Lifetime Refill⭐", price: 1.8424},
+                {id: 3231, name: "Followers | HQ Real | Lifetime Refill⭐⚡", price: 2.08},
+                {id: 8120, name: "Likes | Low Quality | No Refill⚡", price: 0.888},
+                {id: 3348, name: "Likes | SuperInstant | Lifetime Refill⚡", price: 0.999},
+                {id: 8387, name: "Views | SuperInstant | +200M/Day⚡", price: 0.0090},
+                {id: 6930, name: "Views | Superfast | No Refill⚡", price: 0.0100},
+                {id: 8345, name: "Live Likes | SuperInstant⭐", price: 0.0100},
+                {id: 1521, name: "Monetizable Followers | Real | Lifetime♻️", price: 3.24},
+                {id: 3490, name: "Monetizable Views | Lifetime Refill⭐", price: 0.0925}
+            ];
+        </script>
     </div>
 
-    <button class="category-btn" onclick="toggleCat('ig')"><i class="fab fa-instagram" style="color:#e4405f"></i> خدمات انستقرام</button>
+    <button class="category-btn" onclick="toggleCat('ig')"><span><i class="fab fa-instagram"></i> خدمات انستقرام</span> <i class="fas fa-chevron-down"></i></button>
     <div id="ig" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#7820</span>
-            <span class="s-name">Instagram Followers | Real Old Accounts ♻️</span>
-            <span class="s-price">$1.00 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('7820 - Instagram Follow', 1.00)">اطلب الآن</button>
-        </div>
+        <script>
+            const igServices = [
+                {id: 7820, name: "Followers | Real Old | Lifetime Refill♻️", price: 1.00},
+                {id: 1348, name: "Followers | Real Old | Lifetime Refill⭐", price: 1.567},
+                {id: 3779, name: "Followers | UltraFast | Lifetime Refill♻️", price: 2.056},
+                {id: 8801, name: "Likes | Real Old | No Refill⚡", price: 0.6331},
+                {id: 7869, name: "Likes | Real Old | Instant ⭐", price: 0.222},
+                {id: 7790, name: "Likes | Real Old | Lifetime Refill⭐", price: 1.156},
+                {id: 6441, name: "Views | Ultra Fast | No Refill⚡", price: 0.0099}
+            ];
+        </script>
     </div>
 
-    <button class="category-btn" onclick="toggleCat('yt')"><i class="fab fa-youtube" style="color:#ff0000"></i> خدمات يوتيوب</button>
-    <div id="yt" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#1539</span>
-            <span class="s-name">YouTube Subscribers | Non Drop | Lifetime♻️</span>
-            <span class="s-price">$21.62 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('1539 - YT Subs', 21.62)">اطلب الآن</button>
-        </div>
-    </div>
-
-    <button class="category-btn" onclick="toggleCat('tg')"><i class="fab fa-telegram" style="color:#229ED9"></i> خدمات تليجرام</button>
-    <div id="tg" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#3428</span>
-            <span class="s-name">Telegram Members | HQ Real | Lifetime♻️</span>
-            <span class="s-price">$0.99 <small>/1k</small></span>
-            <button class="order-btn" onclick="openOrder('3428 - TG Members', 0.99)">اطلب الآن</button>
-        </div>
-    </div>
-
-    <button class="category-btn" onclick="toggleCat('apps')"><i class="fas fa-gem" style="color:var(--gold)"></i> اشتراكات وبرامج</button>
-    <div id="apps" class="services-container">
-        <div class="service-card">
-            <span class="s-id">#8607</span>
-            <span class="s-name">Netflix Premium | 1 Month | 4K UHD</span>
-            <span class="s-price">$4.50</span>
-            <button class="order-btn" onclick="openOrder('8607 - Netflix', 4.50)">اطلب الآن</button>
-        </div>
-        <div class="service-card">
-            <span class="s-id">#944</span>
-            <span class="s-name">Canva Premium | 1-3 Years</span>
-            <span class="s-price">$0.40</span>
-            <button class="order-btn" onclick="openOrder('944 - Canva', 0.40)">اطلب الآن</button>
-        </div>
+    <button class="category-btn" onclick="toggleCat('other')"><span><i class="fas fa-box-open"></i> يوتيوب وتليجرام والاشتراكات</span> <i class="fas fa-chevron-down"></i></button>
+    <div id="other" class="services-container">
+        <script>
+            const otherServices = [
+                {id: 1539, name: "YouTube Subscribers | Lifetime Refill♻️", price: 21.62},
+                {id: 3274, name: "YouTube Shorts Subs | Lifetime Refill♻️", price: 18.82},
+                {id: 935, name: "YouTube Likes | Real | SuperFast⚡", price: 0.232},
+                {id: 3544, name: "YouTube Views | 10-30s | Lifetime Refill", price: 1.00},
+                {id: 3428, name: "Telegram Members | HQ Real | Lifetime♻️", price: 0.99},
+                {id: 7102, name: "Telegram Reactions Positive | Non Drop", price: 0.12},
+                {id: 6805, name: "Telegram Post Views | Superfast⚡", price: 0.010},
+                {id: 3407, name: "Gemini Pro | 2048GB | 12 Month", price: 5.23},
+                {id: 944, name: "Canva Premium | 1-3 Years", price: 0.40},
+                {id: 8607, name: "Netflix Premium | 1 Month | 4K UHD", price: 4.50}
+            ];
+        </script>
     </div>
 
 </div>
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--gold); text-align:center;">إتمام الطلب</h3>
+        <h3 id="modalTitle" style="color:var(--gold); text-align:center; margin-top:0;">طلب خدمة</h3>
         <input type="url" id="userLink" placeholder="ضع الرابط هنا">
         <input type="number" id="userQty" placeholder="الكمية" value="1000">
-        <button class="confirm-btn" onclick="sendOrder()">تأكيد وإرسال للواتساب</button>
-        <button class="confirm-btn" style="background:#ef4444; margin-top:10px;" onclick="closeOrder()">إلغاء</button>
+        <button class="confirm-btn" onclick="sendToWA()">تأكيد الطلب</button>
+        <button class="confirm-btn" style="background:#ef4444" onclick="closeM()">إلغاء</button>
     </div>
 </div>
 
 <script>
-    let activeS = ""; let activeP = 0;
-    
+    let activeN = ""; let activeP = 0;
+
+    function renderServices(containerId, services) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = services.map(s => `
+            <div class="service-card">
+                <span class="s-id">ID: ${s.id}</span>
+                <span class="s-name">${s.name}</span>
+                <div class="s-footer">
+                    <span class="s-price">$${s.price} <small style="font-size:10px">/1k</small></span>
+                    <button class="order-btn" onclick="openM('${s.id} - ${s.name}', ${s.price})">اطلب</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderServices('fb', fbServices);
+    renderServices('tk', tkServices);
+    renderServices('ig', igServices);
+    renderServices('other', otherServices);
+
     function toggleCat(id) {
-        let el = document.getElementById(id);
+        const el = document.getElementById(id);
         el.style.display = (el.style.display === 'block') ? 'none' : 'block';
     }
 
-    function openOrder(n, p) { 
-        activeS = n; activeP = p; 
-        document.getElementById('modalTitle').innerText = n;
-        document.getElementById('orderModal').style.display = 'flex'; 
-    }
+    function openM(n, p) { activeN = n; activeP = p; document.getElementById('modalTitle').innerText = n; document.getElementById('orderModal').style.display = 'flex'; }
+    function closeM() { document.getElementById('orderModal').style.display = 'none'; }
 
-    function closeOrder() { document.getElementById('orderModal').style.display = 'none'; }
-
-    function sendOrder() {
+    function sendToWA() {
         const link = document.getElementById('userLink').value;
         const qty = document.getElementById('userQty').value;
-        if(!link || !qty) return alert("أكمل البيانات");
+        if(!link || !qty) return alert("البيانات ناقصة");
 
-        let orders = JSON.parse(localStorage.getItem('kt_final')) || [];
-        orders.push({ n: activeS, q: qty, t: new Date().toLocaleTimeString('ar-EG') });
-        localStorage.setItem('kt_final', JSON.stringify(orders));
+        let logs = JSON.parse(localStorage.getItem('kt_logs')) || [];
+        logs.push({n: activeN, q: qty, t: new Date().toLocaleTimeString('ar-EG')});
+        localStorage.setItem('kt_logs', JSON.stringify(logs));
         
-        const msg = `🚀 طلب كريم تراز:%0Aالخدمة: ${activeS}%0Aالرابط: ${link}%0Aالكمية: ${qty}%0Aالسعر: ${activeP * (qty/1000)}$`;
+        const msg = `🚀 طلب كريم تراز:%0A الخدمة: ${activeN}%0A الرابط: ${link}%0A الكمية: ${qty}%0A السعر: ${activeP * (qty/1000)}$`;
         window.open(`https://wa.me/213000000000?text=${msg}`, '_blank');
-        closeOrder(); renderLog();
+        closeM(); updateLog();
     }
 
-    function renderLog() {
-        let orders = JSON.parse(localStorage.getItem('kt_final')) || [];
-        if(orders.length > 0) {
-            document.getElementById('logItems').innerHTML = orders.reverse().slice(0, 3).map(o => `
-                <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #222;">
-                    <span>${o.n}</span>
-                    <span style="color:var(--gold)">${o.t}</span>
+    function updateLog() {
+        let logs = JSON.parse(localStorage.getItem('kt_logs')) || [];
+        if(logs.length > 0) {
+            document.getElementById('logItems').innerHTML = logs.reverse().slice(0, 3).map(l => `
+                <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #222;">
+                    <span>${l.n.split('-')[0]} (${l.q})</span>
+                    <span style="color:var(--gold)">${l.t}</span>
                 </div>
             `).join('');
         }
     }
-    renderLog();
+    updateLog();
 </script>
 </body>
 </html>
