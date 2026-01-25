@@ -8,74 +8,67 @@
     <style>
         :root { --gold: #d4af37; --dark: #0a0a0a; --gray: #1a1a1a; }
         body { background-color: var(--dark); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        .header { background: linear-gradient(45deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 30px; text-align: center; }
-        .header h1 { color: var(--gold); margin: 0; font-size: 28px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        .container { max-width: 1000px; margin: 20px auto; padding: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .category-title { grid-column: 1 / -1; color: var(--gold); border-right: 4px solid var(--gold); padding-right: 15px; margin-top: 30px; font-size: 22px; background: #111; padding: 10px; border-radius: 5px; }
-        .card { background: var(--gray); border: 1px solid #333; border-radius: 12px; padding: 20px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .header { background: linear-gradient(45deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 40px; text-align: center; }
+        .header h1 { color: var(--gold); margin: 0; font-size: 32px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+        .container { max-width: 1100px; margin: 20px auto; padding: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .category-title { grid-column: 1 / -1; color: var(--gold); border-right: 5px solid var(--gold); padding: 12px 20px; margin-top: 30px; font-size: 24px; background: #111; border-radius: 5px; }
+        .card { background: var(--gray); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
-        .card h3 { margin: 0 0 10px 0; font-size: 16px; color: #eee; line-height: 1.4; height: 50px; overflow: hidden; }
-        .price { font-size: 18px; color: var(--gold); font-weight: bold; margin: 10px 0; display: block; }
-        .btn-order { background: var(--gold); color: #000; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; transition: 0.3s; }
+        .card h3 { margin: 0 0 10px 0; font-size: 15px; color: #eee; line-height: 1.4; height: 45px; overflow: hidden; }
+        .price { font-size: 17px; color: var(--gold); font-weight: bold; margin: 5px 0; }
+        .btn-order { background: var(--gold); color: #000; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 14px; }
         .btn-order:hover { background: #fff; }
-        footer { text-align: center; padding: 40px; color: #555; font-size: 14px; }
+        footer { text-align: center; padding: 50px; color: #555; font-size: 14px; border-top: 1px solid #222; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <h1>🌟 لوحة كريم الدولية SMM 🌟</h1>
-    <p style="color: #888;">الاحترافية في خدمات التواصل الاجتماعي</p>
+    <p style="color: #888;">أكبر قائمة خدمات في الوطن العربي - جودة وضمان</p>
 </div>
 
 <div class="container">
     
-    <div class="category-title">🔵 خدمات فيسبوك</div>
-    <div class="card">
-        <h3>2676 - Facebook Followers | Non Drop | Lifetime ♻️</h3>
-        <span class="price">$0.446 / 1000</span>
-        <a href="https://wa.me/213000000000?text=أريد طلب خدمة فيسبوك رقم 2676" class="btn-order">اطلب عبر واتساب</a>
-    </div>
-    <div class="card">
-        <h3>3330 - Facebook Group Members | Real | 365 Days ♻️</h3>
-        <span class="price">$0.92 / 1000</span>
-        <a href="https://wa.me/213000000000?text=أريد طلب خدمة فيسبوك رقم 3330" class="btn-order">اطلب عبر واتساب</a>
-    </div>
+    <div class="category-title">🔵 خدمات فيسبوك (Facebook)</div>
+    <div class="card"><h3>2676 - Facebook Followers | Non Drop ♻️</h3><span class="price">$0.45 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 2676" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>3330 - Group Members | Real 👥</h3><span class="price">$0.92 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 3330" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>5521 - Page Likes + Followers 🚩</h3><span class="price">$1.20 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 5521" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>1120 - Video Views | 60K Min 📺</h3><span class="price">$5.50</span><a href="https://wa.me/213000000000?text=طلب خدمة 1120" class="btn-order">اطلب الآن</a></div>
 
-    <div class="category-title">⚫ خدمات تيك توك</div>
-    <div class="card">
-        <h3>3338 - TikTok Followers | HQ Real | Lifetime ♻️</h3>
-        <span class="price">$1.00 / 1000</span>
-        <a href="https://wa.me/213000000000?text=أريد طلب خدمة تيك توك رقم 3338" class="btn-order">اطلب عبر واتساب</a>
-    </div>
-    <div class="card">
-        <h3>8387 - TikTok Views | SuperInstant ⚡</h3>
-        <span class="price">$0.009 / 1000</span>
-        <a href="https://wa.me/213000000000?text=أريد طلب خدمة تيك توك رقم 8387" class="btn-order">اطلب عبر واتساب</a>
-    </div>
+    <div class="category-title">⚫ خدمات تيك توك (TikTok)</div>
+    <div class="card"><h3>3338 - TikTok Followers | HQ Real ♻️</h3><span class="price">$1.00 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 3338" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>8387 - TikTok Views | SuperFast ⚡</h3><span class="price">$0.01 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 8387" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>4421 - TikTok Likes | No Drop ❤️</h3><span class="price">$0.35 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 4421" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>2290 - TikTok Shares | Viral 📈</h3><span class="price">$0.05 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 2290" class="btn-order">اطلب الآن</a></div>
 
-    <div class="category-title">📸 خدمات إنستغرام</div>
-    <div class="card">
-        <h3>7820 - Instagram Followers | Old Accounts | Lifetime ♻️</h3>
-        <span class="price">$1.00 / 1000</span>
-        <a href="https://wa.me/213000000000?text=أريد طلب خدمة إنستغرام رقم 7820" class="btn-order">اطلب عبر واتساب</a>
-    </div>
+    <div class="category-title">📸 خدمات إنستغرام (Instagram)</div>
+    <div class="card"><h3>7820 - IG Followers | Lifetime ♻️</h3><span class="price">$0.85 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 7820" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>1022 - IG Likes | Real Accounts ❤️</h3><span class="price">$0.15 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 1022" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>5560 - IG Reels Views | Viral 🎥</h3><span class="price">$0.02 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 5560" class="btn-order">اطلب الآن</a></div>
 
-    <div class="category-title">🎬 اشتراكات بريميوم</div>
-    <div class="card">
-        <h3>8607 - Netflix Premium | 1 Month | 4K UHD</h3>
-        <span class="price">$4.50</span>
-        <a href="https://wa.me/213000000000?text=أريد اشتراك نيتفليكس 8607" class="btn-order">اطلب عبر واتساب</a>
-    </div>
-    <div class="card">
-        <h3>944 - Canva Premium | 1-3 Years Package</h3>
-        <span class="price">$0.40</span>
-        <a href="https://wa.me/213000000000?text=أريد اشتراك كانفا 944" class="btn-order">اطلب عبر واتساب</a>
-    </div>
+    <div class="category-title">✈️ خدمات تليجرام (Telegram)</div>
+    <div class="card"><h3>9920 - Channel Members | No Drop ♻️</h3><span class="price">$1.10 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 9920" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>4410 - Telegram Post Views 👀</h3><span class="price">$0.02 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 4410" class="btn-order">اطلب الآن</a></div>
+
+    <div class="category-title">🛑 خدمات يوتيوب (YouTube)</div>
+    <div class="card"><h3>1102 - YouTube Subscribers | Stable 💎</h3><span class="price">$8.50 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 1102" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>5530 - Watch Time | 4000 Hours ⏳</h3><span class="price">$12.00</span><a href="https://wa.me/213000000000?text=طلب خدمة 5530" class="btn-order">اطلب الآن</a></div>
+
+    <div class="category-title">🎮 اشتراكات بريميوم وألعاب</div>
+    <div class="card"><h3>8607 - Netflix Premium | 4K UHD 🍿</h3><span class="price">$4.50 / Mo</span><a href="https://wa.me/213000000000?text=طلب نيتفليكس 8607" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>944 - Canva Pro | Lifetime 🎨</h3><span class="price">$0.40</span><a href="https://wa.me/213000000000?text=طلب كانفا 944" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>7721 - Spotify Premium | 3 Months 🎵</h3><span class="price">$2.99</span><a href="https://wa.me/213000000000?text=طلب سبوتيفاي" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>1190 - PUBG UC | 660 UC 🔫</h3><span class="price">$9.50</span><a href="https://wa.me/213000000000?text=طلب شدات ببجي" class="btn-order">اطلب الآن</a></div>
+    <div class="card"><h3>Free Fire - 1000 Diamonds 💎</h3><span class="price">$8.00</span><a href="https://wa.me/213000000000?text=طلب جواهر فري فاير" class="btn-order">اطلب الآن</a></div>
 
 </div>
 
-<footer>جميع الحقوق محفوظة © لوحة كريم لخدمات SMM 2026</footer>
+<footer>
+    <p>جميع الحقوق محفوظة © لوحة كريم SMM 2026</p>
+    <p>تواصل معنا لأي استفسار عبر واتساب</p>
+</footer>
 
 </body>
-</html>
+    </html>
+    
