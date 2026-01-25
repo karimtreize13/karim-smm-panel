@@ -12,6 +12,7 @@
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; text-align: right; }
         
         .header { background: var(--bg); padding: 30px 10px; text-align: center; border-bottom: 1px solid var(--primary); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        /* وضعنا صورتك الشخصية هنا مع الإطار الذهبي المضيء */
         .logo-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; box-shadow: 0 0 20px var(--primary); }
         .header h1 { margin: 0; color: var(--primary); font-size: 22px; font-weight: 900; }
 
@@ -43,7 +44,7 @@
 <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-palette"></i></button>
 
 <div class="header">
-    <img src="https://i.ibb.co/YBtYf9f/1000139898.jpg" alt="Logo" class="logo-img">
+    <img src="https://i.ibb.co/YBtYf9f/1000139898.jpg" alt="KARIMTREIZE" class="logo-img">
     <h1>KARIMTREIZE PANEL</h1>
 </div>
 
@@ -75,74 +76,74 @@
 
     const servicesData = [
         { cat: "Facebook Services 🔵", icon: "fab fa-facebook", items: [
-            {id: 2676, n: "FB Followers | Non Drop | Lifetime Refill♻️⚡", p: "0.446"},
-            {id: 1974, n: "FB Followers | Non Drop | 365 Days Refill♻️⚡", p: "0.412"},
-            {id: 3859, n: "FB Followers | Bots Quality | Lifetime Refill♻️⚡", p: "0.1248"},
-            {id: 3858, n: "FB Followers | Bots Quality | No Refill", p: "0.0883"},
-            {id: 3324, n: "FB Group Members | Low Drop | No Refill⚡", p: "0.5524"},
-            {id: 3330, n: "FB Group Members | Real | 365 Days Refill♻️🔥", p: "0.92"},
-            {id: 8395, n: "FB 60k Minutes | 10 Mins Video | Lifetime Refill♻️⚡", p: "0.954"},
-            {id: 815, n: "FB 100k Reels Views Package | 30 Days Refill🔥⚡♻️", p: "5.5988"},
-            {id: 3315, n: "FB Post Likes 👍| HQ Real Profiles | No Refill⚡", p: "0.74"},
-            {id: 8755, n: "FB Post Reaction | Like 👍 | No Refill", p: "0.3332"},
-            {id: 8756, n: "FB Post Reaction | Love❤️ | No Refill", p: "0.4332"},
-            {id: 7592, n: "FB Views | Video/Reel | Lifetime Refill⚡", p: "0.0150"},
-            {id: 8610, n: "FB Views | Video/Reel | Lifetime Refill♻️🔥", p: "0.0222"}
+            {id: 2676, n: "FB Followers | All Types | Non Drop | +50k/Day | Lifetime Refill♻️⚡", p: "0.446"},
+            {id: 1974, n: "FB Followers | All Types | Non Drop | +50k/Day | 365 Days Refill♻️⚡", p: "0.412"},
+            {id: 3859, n: "FB Followers | Bots Quality | Non Drop | +100K/Day | Lifetime Refill♻️⚡", p: "0.1248"},
+            {id: 3858, n: "FB Followers | Bots Quality | Non Drop | +10K/Day | No Refill", p: "0.0883"},
+            {id: 3324, n: "FB Group Members | Low Drop | +50K/Day | No Refill⚡", p: "0.5524"},
+            {id: 3330, n: "FB Group Members | Real | Non Drop | Instant | +50K/Day | 365 Days Refill♻️🔥", p: "0.92"},
+            {id: 8395, n: "FB 60k Minutes | 10 Mins Video | Non Drop | +100K/Day | Lifetime Refill♻️⚡", p: "0.954"},
+            {id: 815, n: "FB 100k Reels Views Package | Non Drop | +20k/Day | 30 Days Refill🔥⚡♻️", p: "5.5988"},
+            {id: 3315, n: "FB Post Likes 👍| HQ Real Profiles | Instant | +50K/Day | No Refill⚡", p: "0.74"},
+            {id: 8755, n: "FB Post Reaction | Like 👍| +50K/Day | No Refill", p: "0.3332"},
+            {id: 8756, n: "FB Post Reaction | Love❤️ | +50K/Day | No Refill", p: "0.4332"},
+            {id: 7592, n: "FB Views | Video/Reel | Non Drop | +50K/Day | Lifetime Refill⚡", p: "0.0150"},
+            {id: 8610, n: "FB Views | Video/Reel | Non Drop | +50K/Day | Lifetime Refill♻️🔥", p: "0.0222"}
         ]},
         { cat: "TikTok Services ⚫", icon: "fab fa-tiktok", items: [
-            {id: 8109, n: "TikTok Followers | Low Quality | No Refill⚡", p: "0.1188"},
-            {id: 3338, n: "TikTok Followers | HQ Real | Lifetime Refill♻️", p: "1.00"},
-            {id: 3340, n: "TikTok Followers | Perfect Quality | Lifetime Refill♻️", p: "0.984"},
-            {id: 1507, n: "TikTok Followers | Low Quality | No Refill⚡", p: "0.326"},
-            {id: 3350, n: "TikTok Followers | HQ Real Profiles | No Refill⚡", p: "0.6725"},
-            {id: 3810, n: "TikTok Followers | HQ Real | Lifetime Refill⭐⚡", p: "1.8424"},
-            {id: 3231, n: "Tiktok Followers | HQ Real | Lifetime Refill⭐⚡", p: "2.08"},
-            {id: 8120, n: "TikTok Likes | Low Quality | No Refill⚡", p: "0.888"},
-            {id: 3348, n: "TikTok Likes | Low Quality | Lifetime Refill⚡", p: "0.999"},
-            {id: 1972, n: "TikTok Likes | Non Drop | Lifetime Refill⚡", p: "0.999"},
-            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: "0.0090"},
-            {id: 6930, n: "TikTok Views | Superfast | No Refill⚡", p: "0.0100"},
-            {id: 8345, n: "Tiktok Live Likes | SuperInstant⭐", p: "0.0100"},
-            {id: 6915, n: "TikTok Live Stream Likes | 0-10 Mins ⭐", p: "0.0090"},
-            {id: 1521, n: "TikTok Monetizable Followers | Lifetime Refill♻️⚡", p: "3.24"},
-            {id: 3490, n: "TikTok Monetizable Views | Lifetime Refill⭐⚡", p: "0.0925"},
-            {id: 3506, n: "TikTok Monetizable Views | Lifetime Refill⭐⚡", p: "0.0855"}
+            {id: 8109, n: "TikTok Followers | Low Quality | Instant | +50K/Day | No Refill⚡", p: "0.1188"},
+            {id: 3338, n: "TikTok Followers | HQ Real | Non Drop | Instant | +1K/Day | Lifetime Refill♻️", p: "1.00"},
+            {id: 3340, n: "TikTok Followers | Perfect Quality | Non Drop | Instant | +1K/Day | Lifetime Refill♻️", p: "0.984"},
+            {id: 1507, n: "TikTok Followers | Low Quality | Instant | +10K/Day | No Refill⚡", p: "0.326"},
+            {id: 3350, n: "TikTok Followers | HQ Real Profiles | Non Drop | Instant | UltraFast | +200K/Day | No Refill⚡", p: "0.6725"},
+            {id: 3810, n: "TikTok Followers | HQ Real Profiles | Instant | UltraFast | +100K/Day | Lifetime Refill⭐⚡", p: "1.8424"},
+            {id: 3231, n: "Tiktok Followers | HQ Real Profiles | Non Drop | Instant | +50K/Day | Lifetime Refill⭐⚡", p: "2.08"},
+            {id: 8120, n: "TikTok Likes | Low Quality | Non Drop | Instant | +100K/Day | No Refill⚡", p: "0.888"},
+            {id: 3348, n: "TikTok Likes | Low Quality | Non Drop | SuperInstant | +20K/Day | Lifetime Refill⚡", p: "0.999"},
+            {id: 1972, n: "TikTok Likes | Non Drop | Instant | +100K/Day | Lifetime Refill⚡", p: "0.999"},
+            {id: 8387, n: "TikTok Views | SuperInstant | +200M/Day⚡", p: "0.0090"},
+            {id: 6930, n: "TikTok Views | Superfast | +200M/Day | No Refill⚡", p: "0.0100"},
+            {id: 8345, n: "Tiktok Live Likes | Max: 100K | SuperInstant | Speed: 100K/Day⭐", p: "0.0100"},
+            {id: 6915, n: "TikTok Live Stream Likes | +500K/Day | 0-10 Mins ⭐", p: "0.0090"},
+            {id: 1521, n: "TikTok Monetizable Followers | Real | Non Drop | Instant | +2K/Day | Lifetime Refill♻️⚡", p: "3.24"},
+            {id: 3490, n: "TikTok Monetizable Views | Non Drop | Min 100K | SuperFast | +100K/Day | Lifetime Refill⭐⚡", p: "0.0925"},
+            {id: 3506, n: "TikTok Monetizable Views | Non Drop | Min 50K | SuperFast | +100K/Day | Lifetime Refill⭐⚡", p: "0.0855"}
         ]},
         { cat: "Instagram Services 📸", icon: "fab fa-instagram", items: [
-            {id: 7820, n: "IG Followers | Real Old Accounts | Lifetime Refill♻️⚡", p: "1.00"},
-            {id: 1348, n: "IG Followers | Real Old Accounts | Lifetime Refill⭐⚡", p: "1.567"},
-            {id: 3779, n: "IG Followers | Real Old Accounts | Lifetime Refill⭐♻️⚡", p: "2.056"},
-            {id: 8801, n: "IG Likes | Real Old Accounts | No Refill⚡", p: "0.6331"},
-            {id: 7869, n: "IG Likes | Real Old Accounts | No Refill⭐⚡", p: "0.222"},
-            {id: 7790, n: "IG Likes | Real Old Accounts | Lifetime Refill⭐⚡", p: "1.156"},
-            {id: 6441, n: "IG Views | All Links | No Refill⚡", p: "0.0099"},
-            {id: 7788, n: "IG Views | All Links | No Refill⚡", p: "0.020"}
+            {id: 7820, n: "IG Followers | Real Old Accounts + Posts | Non Drop | SuperInstant | +100K/Day | Lifetime Refill♻️⚡", p: "1.00"},
+            {id: 1348, n: "IG Followers | Real Old Accounts + Posts | Non Drop | SuperFast | +100K/Day | Lifetime Refill⭐⚡", p: "1.567"},
+            {id: 3779, n: "IG Followers | Real Old Accounts + Posts | Non Drop | UltraFast | +200K/Day | Lifetime Refill⭐♻️⚡", p: "2.056"},
+            {id: 8801, n: "IG Likes | Real Old Accounts + Posts | Non Drop | +200K/Day | No Refill⚡", p: "0.6331"},
+            {id: 7869, n: "IG Likes | Real Old Accounts + Posts | Non Drop | Instant | +100K/Day | No Refill⭐⚡", p: "0.222"},
+            {id: 7790, n: "IG Likes | Real Old Accounts + Posts | Non Drop | Instant | +100K/Day | Lifetime Refill⭐⚡", p: "1.156"},
+            {id: 6441, n: "IG Views | All Links | Non Drop | Ultra Fast | +100M/Day | No Refill⚡", p: "0.0099"},
+            {id: 7788, n: "IG Views | All Links | Non Drop | Instant | +50M/Day | No Refill⚡", p: "0.020"}
         ]},
         { cat: "YouTube Services 🔴", icon: "fab fa-youtube", items: [
-            {id: 1539, n: "YT Subscribers | Speed +300/Day | Lifetime Refill♻️⚡", p: "21.62"},
-            {id: 1563, n: "YT Subscribers + Extra | Speed 1K/Day | Lifetime Refill♻️⚡", p: "26.92"},
-            {id: 1848, n: "YT Subscribers | 100% Real | Lifetime Refill⭐♻️⚡", p: "30.625"},
-            {id: 3274, n: "YT Shorts Subscribers | Lifetime Refill♻️⚡", p: "18.82"},
-            {id: 935, n: "YT Likes | Real | SuperFast | No Refill ⚡", p: "0.232"},
-            {id: 7614, n: "YT Likes | HQ Real Profiles | Lifetime Refill⭐♻️⚡", p: "0.888"},
-            {id: 8140, n: "YT Likes | Real Organic | Lifetime Refill ⭐♻️⚡", p: "0.998"},
-            {id: 3544, n: "YT Video/Shorts Views | Lifetime Refill⭐⚡", p: "1.00"},
-            {id: 8413, n: "YT Views + Extra | Lifetime Refill⭐⚡", p: "2.02"},
-            {id: 6275, n: "YT Earnings Views | Active | 30 Days Guarantee", p: "3.1613"}
+            {id: 1539, n: "YT Subscribers | Non Drop | Speed +300/Day | Lifetime Refill♻️⚡", p: "21.62"},
+            {id: 1563, n: "YT Subscribers + Extra | Non Drop | Speed 1K/Day | Lifetime Refill♻️⚡", p: "26.92"},
+            {id: 1848, n: "Youtube Subscribers + Extra | 100% Real | Non Drop | Speed 3K-5K/Day | Lifetime Refill⭐♻️⚡", p: "30.625"},
+            {id: 3274, n: "YouTube Shorts Subscribers | Non Drop | Speed +50/Day | Lifetime Refill♻️⚡", p: "18.82"},
+            {id: 935, n: "YouTube Likes | Real | SuperFast | +40k/Day | No Refill ⚡", p: "0.232"},
+            {id: 7614, n: "Youtube Likes | HQ Real Profiles | Non Drop | Instant | +100K/Day | Lifetime Refill⭐♻️⚡", p: "0.888"},
+            {id: 8140, n: "YouTube Likes | Real Organic | Non Drop | Instant | +1M/Day | Lifetime Refill ⭐♻️⚡", p: "0.998"},
+            {id: 3544, n: "YouTube Video / Shorts Views | External | 10-30 Secs Retention | Non Drop | Instant | +1K/Day | Lifetime Refill⭐⚡", p: "1.00"},
+            {id: 8413, n: "Youtube Views + Extra | External / Other Features | Non Drop | Instant | +10K/Day | Lifetime Refill⭐⚡", p: "2.02"},
+            {id: 6275, n: "Youtube Earnings views | Active | Get 0.1$ - 4$ Revenue | Speed +5K/day | 30 days Guarantee", p: "3.1613"}
         ]},
         { cat: "Telegram Services ✈️", icon: "fab fa-telegram", items: [
-            {id: 3428, n: "Telegram Members | HQ Real | Lifetime Refill⭐♻️⚡", p: "0.99"},
-            {id: 7102, n: "Telegram Reactions Positive | Lifetime Refill", p: "0.12"},
-            {id: 7103, n: "Telegram Reactions Negative | Lifetime Refill", p: "0.12"},
+            {id: 3428, n: "Telegram Members | HQ Real | Non Drop | Instant | +50K/Day | Lifetime Refill⭐♻️⚡", p: "0.99"},
+            {id: 7102, n: "Telegram Reactions Positive [👍❤️👏🔥🥰🤩🎉😁 ] | Non Drop", p: "0.12"},
+            {id: 7103, n: "Telegram Reactions Negative [👎😢🤯😱🤬🤮💩🤔 ] | Non Drop", p: "0.12"},
             {id: 6805, n: "Telegram Post Views [1 Post] [Superfast]⭐⚡", p: "0.010"},
-            {id: 7068, n: "Telegram View | Instant | No Refill⭐⚡", p: "0.028"}
+            {id: 7068, n: "Telegram View | Instant | +200K/Day | No Refill⭐⚡", p: "0.028"}
         ]},
         { cat: "Premium Accounts 💎", icon: "fas fa-gem", items: [
-            {id: 3407, n: "Gemini Pro | 2048GB Storage | 12 Month", p: "5.23"},
-            {id: 944, n: "Canva Premium | 1-3 Years Package", p: "0.40"},
-            {id: 3343, n: "Blackblox AI Premium | 3 Month", p: "10.00"},
-            {id: 3364, n: "CapCut Premium | Private | 1 Month", p: "5.00"},
-            {id: 8607, n: "Netflix Premium | 4K Ultra HD | 1 Month", p: "4.50"}
+            {id: 3407, n: "Gemini Pro | Google Storage 2048GB | 12 Month", p: "5.23"},
+            {id: 944, n: "Canva Premium Membership | 1-3 Years Package", p: "0.40"},
+            {id: 3343, n: "Blackblox AI Premium | ChatGPT, Gemini.. | 3 Month", p: "10.00"},
+            {id: 3364, n: "CapCut Premium | Private on your mail | 1 Month", p: "5.00"},
+            {id: 8607, n: "Netflix Premium Account | 4K Ultra HD | 1 Month", p: "4.50"}
         ]}
     ];
 
