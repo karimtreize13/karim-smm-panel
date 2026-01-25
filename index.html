@@ -3,123 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim Traz | كريم تراز</title>
+    <title>Karim Traz | لوحة الخدمات الشاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2563eb; --dark: #0f172a; --gold: #fbbf24; }
         body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; padding-bottom: 50px; text-align: right; }
-        
-        /* الهيدر */
-        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px; text-align: center; border-bottom: 4px solid var(--gold); }
-        .header h1 { margin: 0; color: var(--gold); font-size: 26px; letter-spacing: 1px; }
-
-        .container { padding: 15px; max-width: 450px; margin: auto; }
+        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 25px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .container { padding: 15px; max-width: 500px; margin: auto; }
 
         /* سجل الطلبات */
-        .order-log { background: #111827; border-radius: 12px; padding: 15px; margin-bottom: 25px; border: 1px solid #334155; }
-        .order-log h3 { color: var(--gold); font-size: 15px; margin: 0 0 10px; border-bottom: 1px solid #1e293b; padding-bottom: 5px; }
-        .log-item { display: flex; justify-content: space-between; font-size: 12px; padding: 8px 0; border-bottom: 1px solid #1e293b; }
-
-        /* كروت الخدمات */
-        .service-card { background: #1e293b; border-radius: 20px; padding: 30px; margin-bottom: 20px; border: 1px solid #334155; text-align: center; }
-        .icon-circle { width: 60px; height: 60px; background: #0f172a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 30px; border: 2px solid var(--gold); }
-        .s-name { display: block; font-size: 18px; font-weight: bold; margin-bottom: 10px; }
-        .s-price { color: #4ade80; font-weight: bold; font-size: 22px; display: block; margin-bottom: 20px; }
+        .order-log { background: #111827; border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 12px; border: 1px solid #334155; }
         
-        .order-btn { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; cursor: pointer; font-weight: bold; font-size: 16px; }
+        /* أقسام المنصات */
+        .category-btn { background: #1e293b; color: var(--gold); width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; text-align: right; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+        .services-container { display: none; padding-right: 10px; }
+
+        /* كرت الخدمة الاحترافي */
+        .service-card { background: #1e293b; border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334155; text-align: center; border-right: 5px solid var(--primary); }
+        .s-id { font-size: 10px; background: #0f172a; padding: 2px 6px; border-radius: 4px; color: var(--gold); }
+        .s-name { display: block; font-size: 14px; margin: 10px 0; color: #f1f5f9; line-height: 1.4; }
+        .s-price { color: #4ade80; font-weight: bold; font-size: 18px; display: block; margin-bottom: 15px; }
+        .order-btn { background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; }
 
         /* النافذة المنبثقة */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: #1e293b; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; border: 1px solid var(--gold); position: relative; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: #1e293b; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; border: 1px solid var(--gold); }
         input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
         .confirm-btn { background: #10b981; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .cancel-link { display: block; text-align: center; color: #ef4444; margin-top: 15px; text-decoration: none; font-size: 14px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <h1>KARIM TRAZ</h1>
+    <h1>KARIM TRAZ - كريم تراز</h1>
 </div>
 
 <div class="container">
-    <div class="order-log">
-        <h3><i class="fas fa-history"></i> سجل عملياتك</h3>
-        <div id="logItems" style="color:#64748b">لا توجد طلبات سابقة</div>
+    <div class="order-log" id="logSection">
+        <h3 style="color:var(--gold); margin:0 0 10px;">📊 آخر طلباتك</h3>
+        <div id="logItems">لا توجد طلبات</div>
     </div>
 
-    <div class="service-card">
-        <div class="icon-circle"><i class="fab fa-tiktok" style="color:#ff0050"></i></div>
-        <span class="s-name">متابعين تيك توك | سريع</span>
-        <span class="s-price">$1.00 <small style="font-size:12px">/1k</small></span>
-        <button class="order-btn" onclick="openOrder('تيك توك', 1.00)">اطلب الآن</button>
+    <button class="category-btn" onclick="toggleCat('fb')"><i class="fab fa-facebook" style="color:#1877f2"></i> خدمات فيسبوك</button>
+    <div id="fb" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#2676</span>
+            <span class="s-name">Facebook Followers | Lifetime Refill♻️⚡</span>
+            <span class="s-price">$0.446 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('2676 - FB Followers', 0.446)">اطلب الآن</button>
+        </div>
+        <div class="service-card">
+            <span class="s-id">#3330</span>
+            <span class="s-name">Facebook Group Members | Real | 365 Days♻️</span>
+            <span class="s-price">$0.92 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('3330 - FB Groups', 0.92)">اطلب الآن</button>
+        </div>
     </div>
 
-    <div class="service-card">
-        <div class="icon-circle"><i class="fab fa-facebook" style="color:#1877f2"></i></div>
-        <span class="s-name">متابعين فيسبوك | ضمان</span>
-        <span class="s-price">$0.45 <small style="font-size:12px">/1k</small></span>
-        <button class="order-btn" onclick="openOrder('فيسبوك', 0.45)">اطلب الآن</button>
+    <button class="category-btn" onclick="toggleCat('tk')"><i class="fab fa-tiktok" style="color:#ff0050"></i> خدمات تيك توك</button>
+    <div id="tk" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#3338</span>
+            <span class="s-name">TikTok Followers | HQ Real | Lifetime♻️</span>
+            <span class="s-price">$1.00 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('3338 - TikTok Followers', 1.00)">اطلب الآن</button>
+        </div>
+        <div class="service-card">
+            <span class="s-id">#8387</span>
+            <span class="s-name">TikTok Views | SuperInstant ⚡</span>
+            <span class="s-price">$0.009 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('8387 - TikTok Views', 0.009)">اطلب الآن</button>
+        </div>
     </div>
 
-    <p style="text-align: center; color: #475569; font-size: 12px;">كريم تراز © 2026</p>
+    <button class="category-btn" onclick="toggleCat('ig')"><i class="fab fa-instagram" style="color:#e4405f"></i> خدمات انستقرام</button>
+    <div id="ig" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#7820</span>
+            <span class="s-name">Instagram Followers | Real Old Accounts ♻️</span>
+            <span class="s-price">$1.00 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('7820 - Instagram Follow', 1.00)">اطلب الآن</button>
+        </div>
+    </div>
+
+    <button class="category-btn" onclick="toggleCat('yt')"><i class="fab fa-youtube" style="color:#ff0000"></i> خدمات يوتيوب</button>
+    <div id="yt" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#1539</span>
+            <span class="s-name">YouTube Subscribers | Non Drop | Lifetime♻️</span>
+            <span class="s-price">$21.62 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('1539 - YT Subs', 21.62)">اطلب الآن</button>
+        </div>
+    </div>
+
+    <button class="category-btn" onclick="toggleCat('tg')"><i class="fab fa-telegram" style="color:#229ED9"></i> خدمات تليجرام</button>
+    <div id="tg" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#3428</span>
+            <span class="s-name">Telegram Members | HQ Real | Lifetime♻️</span>
+            <span class="s-price">$0.99 <small>/1k</small></span>
+            <button class="order-btn" onclick="openOrder('3428 - TG Members', 0.99)">اطلب الآن</button>
+        </div>
+    </div>
+
+    <button class="category-btn" onclick="toggleCat('apps')"><i class="fas fa-gem" style="color:var(--gold)"></i> اشتراكات وبرامج</button>
+    <div id="apps" class="services-container">
+        <div class="service-card">
+            <span class="s-id">#8607</span>
+            <span class="s-name">Netflix Premium | 1 Month | 4K UHD</span>
+            <span class="s-price">$4.50</span>
+            <button class="order-btn" onclick="openOrder('8607 - Netflix', 4.50)">اطلب الآن</button>
+        </div>
+        <div class="service-card">
+            <span class="s-id">#944</span>
+            <span class="s-name">Canva Premium | 1-3 Years</span>
+            <span class="s-price">$0.40</span>
+            <button class="order-btn" onclick="openOrder('944 - Canva', 0.40)">اطلب الآن</button>
+        </div>
+    </div>
+
 </div>
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--gold); text-align:center; margin-top:0;">إتمام الطلب</h3>
-        <input type="url" id="userLink" placeholder="ضع رابط الحساب هنا">
-        <input type="number" id="userQty" placeholder="الكمية المطلوبة" value="1000">
-        <button class="confirm-btn" onclick="sendToWhatsapp()">تأكيد وإرسال للواتساب</button>
-        <span class="cancel-link" onclick="closeOrder()">إلغاء الطلب</span>
+        <h3 id="modalTitle" style="color:var(--gold); text-align:center;">إتمام الطلب</h3>
+        <input type="url" id="userLink" placeholder="ضع الرابط هنا">
+        <input type="number" id="userQty" placeholder="الكمية" value="1000">
+        <button class="confirm-btn" onclick="sendOrder()">تأكيد وإرسال للواتساب</button>
+        <button class="confirm-btn" style="background:#ef4444; margin-top:10px;" onclick="closeOrder()">إلغاء</button>
     </div>
 </div>
 
 <script>
-    let activeService = "";
-    let activePrice = 0;
-
-    function openOrder(name, price) {
-        activeService = name;
-        activePrice = price;
-        document.getElementById('modalTitle').innerText = "طلب " + name;
-        document.getElementById('orderModal').style.display = 'flex';
+    let activeS = ""; let activeP = 0;
+    
+    function toggleCat(id) {
+        let el = document.getElementById(id);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
     }
 
-    function closeOrder() {
-        document.getElementById('orderModal').style.display = 'none';
+    function openOrder(n, p) { 
+        activeS = n; activeP = p; 
+        document.getElementById('modalTitle').innerText = n;
+        document.getElementById('orderModal').style.display = 'flex'; 
     }
 
-    function sendToWhatsapp() {
+    function closeOrder() { document.getElementById('orderModal').style.display = 'none'; }
+
+    function sendOrder() {
         const link = document.getElementById('userLink').value;
         const qty = document.getElementById('userQty').value;
-        if(!link || !qty) { alert("يرجى إدخال البيانات"); return; }
+        if(!link || !qty) return alert("أكمل البيانات");
 
-        // حفظ السجل
-        let orders = JSON.parse(localStorage.getItem('kt_orders_v2')) || [];
-        orders.push({ name: activeService, qty: qty, time: new Date().toLocaleTimeString('ar-EG') });
-        localStorage.setItem('kt_orders_v2', JSON.stringify(orders));
-        renderLog();
-
-        // رسالة الواتساب
-        const msg = `🚀 طلب جديد من كريم تراز:%0A الخدمة: ${activeService}%0A الرابط: ${link}%0A الكمية: ${qty}%0A التكلفة: ${activePrice * (qty/1000)}$`;
+        let orders = JSON.parse(localStorage.getItem('kt_final')) || [];
+        orders.push({ n: activeS, q: qty, t: new Date().toLocaleTimeString('ar-EG') });
+        localStorage.setItem('kt_final', JSON.stringify(orders));
+        
+        const msg = `🚀 طلب كريم تراز:%0Aالخدمة: ${activeS}%0Aالرابط: ${link}%0Aالكمية: ${qty}%0Aالسعر: ${activeP * (qty/1000)}$`;
         window.open(`https://wa.me/213000000000?text=${msg}`, '_blank');
-        closeOrder();
+        closeOrder(); renderLog();
     }
 
     function renderLog() {
-        let orders = JSON.parse(localStorage.getItem('kt_orders_v2')) || [];
+        let orders = JSON.parse(localStorage.getItem('kt_final')) || [];
         if(orders.length > 0) {
             document.getElementById('logItems').innerHTML = orders.reverse().slice(0, 3).map(o => `
-                <div class="log-item">
-                    <span>${o.name} (${o.qty})</span>
-                    <span style="color:var(--gold)">${o.time}</span>
+                <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #222;">
+                    <span>${o.n}</span>
+                    <span style="color:var(--gold)">${o.t}</span>
                 </div>
             `).join('');
         }
     }
     renderLog();
 </script>
-
 </body>
 </html>
