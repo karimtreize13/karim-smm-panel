@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 | لوحة المدير</title>
+    <title>KARIMTREIZE13 | الشامل</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         :root { --primary: #2563eb; --dark: #0f172a; --gold: #fbbf24; --card-bg: #1e293b; }
-        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; user-select: none; }
-        
-        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px; text-align: center; border-bottom: 3px solid var(--gold); }
+        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; user-select: none; text-align: right; }
+        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 25px; text-align: center; border-bottom: 3px solid var(--gold); }
         .container { padding: 15px; max-width: 500px; margin: auto; }
 
-        /* سجل الطلبات للزبون */
-        .order-log { background: rgba(30, 41, 59, 0.7); border-radius: 15px; padding: 20px; margin-bottom: 25px; border: 1px solid #334155; }
-        .log-title { color: var(--gold); font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .log-item { display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding: 8px 0; }
+        /* سجل الطلبات */
+        .order-log { background: rgba(30, 41, 59, 0.7); border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 1px solid #334155; }
+        .log-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
-        /* بطاقات الخدمات */
-        .category-btn { background: var(--card-bg); color: #fff; width: 100%; padding: 18px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #334155; text-align: right; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        /* الأقسام */
+        .category-btn { background: var(--card-bg); color: #fff; width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: bold; }
         .services-container { display: none; margin-bottom: 20px; }
-        .service-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 10px; border-right: 4px solid var(--primary); border: 1px solid #334155; border-right-width: 4px; }
 
-        /* النافذة المنبثقة للطلب */
+        /* البطاقة */
+        .service-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 10px; border-right: 4px solid var(--primary); border: 1px solid #334155; border-right-width: 4px; }
+        .s-price { color: #4ade80; font-weight: bold; }
+        .order-btn { background: var(--primary); color: white; border: none; padding: 6px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+
+        /* نافذة الطلب */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-content { background: var(--card-bg); padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; border: 1px solid var(--gold); }
-        input, select { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
-        .confirm-btn { background: #10b981; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; text-align: center; }
+        .confirm-btn { background: #10b981; color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -38,23 +40,33 @@
 <div class="container">
     <div class="order-log">
         <div class="log-title"><i class="fas fa-history"></i> آخر طلباتي</div>
-        <div id="logItems" style="font-size: 12px;">لا توجد طلبات</div>
+        <div id="logItems" style="font-size: 12px; color: #cbd5e1;">لا توجد طلبات سابقة</div>
     </div>
 
-    <button class="category-btn" onclick="toggleCat('fb')"><i class="fas fa-chevron-down"></i><span>فيسبوك <i class="fab fa-facebook"></i></span></button>
+    <button class="category-btn" onclick="toggleCat('fb')"><i class="fas fa-chevron-down"></i><span>فيسبوك <i class="fab fa-facebook" style="color:#1877f2"></i></span></button>
     <div id="fb" class="services-container"></div>
 
     <button class="category-btn" onclick="toggleCat('tk')"><i class="fas fa-chevron-down"></i><span>تيك توك <i class="fab fa-tiktok"></i></span></button>
     <div id="tk" class="services-container"></div>
+
+    <button class="category-btn" onclick="toggleCat('ig')"><i class="fas fa-chevron-down"></i><span>انستقرام <i class="fab fa-instagram" style="color:#e4405f"></i></span></button>
+    <div id="ig" class="services-container"></div>
+
+    <button class="category-btn" onclick="toggleCat('yt')"><i class="fas fa-chevron-down"></i><span>يوتيوب <i class="fab fa-youtube" style="color:#ff0000"></i></span></button>
+    <div id="yt" class="services-container"></div>
+
+    <button class="category-btn" onclick="toggleCat('other')"><i class="fas fa-chevron-down"></i><span>الاشتراكات والبرامج <i class="fas fa-gem" style="color:var(--gold)"></i></span></button>
+    <div id="other" class="services-container"></div>
 </div>
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--gold); text-align:center;">تفاصيل الطلب</h3>
+        <h3 id="modalTitle" style="color:var(--gold); text-align:center; font-size: 16px;">تفاصيل الطلب</h3>
+        <input type="email" id="userEmail" placeholder="بريدك الإلكتروني">
         <input type="url" id="userLink" placeholder="ضع الرابط هنا">
-        <input type="number" id="userQty" placeholder="الكمية">
+        <input type="number" id="userQty" placeholder="الكمية" value="1000">
         
-        <label style="font-size: 12px; color: var(--gold); margin-bottom: 5px; display: block;">اختر طريقة الدفع:</label>
+        <label style="font-size: 11px; color: var(--gold); display: block; margin-bottom: 5px;">طريقة الدفع:</label>
         <select id="payMethod">
             <option value="BaridiMob">بريدي موب (BaridiMob)</option>
             <option value="CCP">البريد الجزائري (CCP)</option>
@@ -63,26 +75,30 @@
         </select>
 
         <button class="confirm-btn" onclick="sendToWA()">تأكيد وإرسال للمدير</button>
-        <button class="confirm-btn" style="background:#ef4444; margin-top:5px;" onclick="closeM()">إلغاء</button>
+        <button class="confirm-btn" style="background:#ef4444" onclick="closeM()">إلغاء</button>
     </div>
 </div>
 
 <script>
     let activeN = ""; let activeP = 0; let activeID = "";
-    const services = {
-        fb: [{id: 8610, name: "Views | Video/Reel", price: 0.0222}],
-        tk: [{id: 3338, name: "Followers | HQ Real", price: 1.00}]
+
+    const allData = {
+        fb: [{id: 8610, name: "Views | Video/Reel | Lifetime", price: 0.0222}, {id: 2676, name: "Followers | Non Drop", price: 0.446}],
+        tk: [{id: 3338, name: "Followers | HQ Real", price: 1.00}, {id: 8387, name: "Views | SuperInstant", price: 0.0090}],
+        ig: [{id: 7820, name: "Followers | Real Old", price: 1.00}, {id: 7790, name: "Likes | Real Old", price: 1.156}],
+        yt: [{id: 1539, name: "YouTube Subscribers | Refill", price: 21.62}, {id: 935, name: "YouTube Likes | Fast", price: 0.232}],
+        other: [{id: 3364, name: "CapCut Premium | 1 Month", price: 5.00}, {id: 8607, name: "Netflix Premium | 4K", price: 4.50}, {id: 944, name: "Canva Premium", price: 0.40}]
     };
 
     function render() {
-        for(let cat in services) {
-            document.getElementById(cat).innerHTML = services[cat].map(s => `
+        for(let key in allData) {
+            document.getElementById(key).innerHTML = allData[key].map(s => `
                 <div class="service-card">
-                    <span style="color:var(--gold); font-size:10px;">ID: ${s.id}</span>
-                    <p style="margin:5px 0;">${s.name}</p>
+                    <span style="font-size:10px; color:var(--gold);">ID: ${s.id}</span>
+                    <p style="font-size:13px; margin:8px 0;">${s.name}</p>
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="color:#4ade80;">$${s.price}</span>
-                        <button style="background:var(--primary); color:white; border:none; padding:5px 15px; border-radius:5px;" onclick="openM('${s.id}','${s.name}',${s.price})">اطلب</button>
+                        <span class="s-price">$${s.price}</span>
+                        <button class="order-btn" onclick="openM('${s.id}','${s.name}',${s.price})">اطلب</button>
                     </div>
                 </div>
             `).join('');
@@ -92,35 +108,27 @@
 
     function toggleCat(id) {
         let el = document.getElementById(id);
-        el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        let isVis = el.style.display === 'block';
+        document.querySelectorAll('.services-container').forEach(c => c.style.display = 'none');
+        el.style.display = isVis ? 'none' : 'block';
     }
 
     function openM(id,n,p) { activeID=id; activeN=n; activeP=p; document.getElementById('orderModal').style.display='flex'; }
     function closeM() { document.getElementById('orderModal').style.display='none'; }
 
     function sendToWA() {
+        const email = document.getElementById('userEmail').value;
         const link = document.getElementById('userLink').value;
         const qty = document.getElementById('userQty').value;
         const pay = document.getElementById('payMethod').value;
         const time = new Date().toLocaleTimeString('ar-EG');
 
-        if(!link || !qty) return alert("البيانات ناقصة");
+        if(!email || !link || !qty) return alert("يرجى ملء جميع الخانات (الإيميل، الرابط، الكمية)");
 
-        // رسالة الواتساب التي ستصلك (المدير)
-        const msg = `📥 *طلب جديد - KARIMTREIZE13*%0A` +
-                    `----------------------------%0A` +
-                    `📦 *الخدمة:* ${activeN}%0A` +
-                    `🆔 *المعرف:* ${activeID}%0A` +
-                    `🔗 *الرابط:* ${link}%0A` +
-                    `🔢 *الكمية:* ${qty}%0A` +
-                    `💰 *السعر:* ${activeP * (qty/1000)}$%0A` +
-                    `💳 *طريقة الدفع:* ${pay}%0A` +
-                    `⏰ *الوقت:* ${time}%0A` +
-                    `----------------------------`;
+        const msg = `📥 *طلب جديد - KARIMTREIZE13*%0A----------------------------%0A👤 *إيميل الزبون:* ${email}%0A📦 *الخدمة:* ${activeN}%0A🆔 *المعرف:* ${activeID}%0A🔗 *الرابط:* ${link}%0A🔢 *الكمية:* ${qty}%0A💰 *السعر:* ${activeP * (qty/1000)}$%0A💳 *طريقة الدفع:* ${pay}%0A⏰ *الوقت:* ${time}`;
 
         window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
         
-        // حفظ في سجل الزبون المحلي
         let logs = JSON.parse(localStorage.getItem('kt_logs')) || [];
         logs.push({n: activeN, t: time});
         localStorage.setItem('kt_logs', JSON.stringify(logs));
@@ -132,7 +140,9 @@
         let logs = JSON.parse(localStorage.getItem('kt_logs')) || [];
         if(logs.length > 0) {
             document.getElementById('logItems').innerHTML = logs.reverse().slice(0,3).map(l => `
-                <div class="log-item"><span>${l.n}</span><span>${l.t}</span></div>
+                <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #334155;">
+                    <span>${l.n.substring(0,20)}..</span><span>${l.t}</span>
+                </div>
             `).join('');
         }
     }
