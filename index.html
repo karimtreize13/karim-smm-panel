@@ -3,124 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim SMM | اللوحة الاحترافية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Karim SMM Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #2563eb; --accent: #f1c40f; --bg: #f8fafc; --dark: #1e293b; }
-        body { font-family: 'Cairo', sans-serif; background: var(--bg); margin: 0; color: var(--dark); }
-        
-        /* الهيدر الاحترافي */
-        .navbar { background: var(--dark); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 20px; font-weight: bold; color: var(--accent); }
-        .user-info { display: flex; gap: 10px; }
-        .badge-balance { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--accent); }
-
-        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
-
-        /* كروت الإحصائيات */
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; }
-        .stat-box { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; border-bottom: 3px solid var(--primary); }
-        .stat-box h4 { margin: 0; font-size: 12px; color: #64748b; }
-        .stat-box p { margin: 5px 0 0; font-size: 20px; font-weight: bold; }
-
-        /* عناوين الأقسام */
-        .cat-title { background: #fff; border-right: 5px solid var(--accent); padding: 12px 20px; margin: 30px 0 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-weight: bold; color: var(--dark); display: flex; align-items: center; gap: 10px; }
-
-        /* قائمة الخدمات */
-        .services-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
-        .service-item { background: white; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; transition: 0.3s; }
-        .service-item:hover { border-color: var(--primary); transform: translateX(-5px); }
-        .service-info { flex: 1; }
-        .service-id { background: #f1f5f9; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 8px; }
-        .service-name { font-size: 14px; font-weight: 600; display: block; margin-bottom: 5px; }
-        .service-price { color: #16a34a; font-weight: bold; font-size: 14px; }
-        
-        .btn-buy { background: var(--primary); color: white; text-decoration: none; padding: 8px 15px; border-radius: 6px; font-size: 12px; font-weight: bold; white-space: nowrap; }
-        
-        @media (max-width: 600px) {
-            .service-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .btn-buy { width: 100%; text-align: center; }
-        }
+        body { background: #0f172a; color: white; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
+        .nav { background: #1e293b; padding: 20px; border-bottom: 2px solid #3b82f6; font-size: 22px; font-weight: bold; color: #3b82f6; }
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+        .category { background: #1e293b; padding: 10px; margin: 20px 0 10px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #334155; }
+        .card { background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; text-align: right; }
+        .price { color: #10b981; font-weight: bold; float: left; }
+        .btn { display: block; background: #3b82f6; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 10px; font-weight: bold; text-align: center; }
+        .fa-facebook { color: #1877f2; } .fa-tiktok { color: #ff0050; } .fa-instagram { color: #e4405f; }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <div class="logo">KARIM SMM PANEL</div>
-    <div class="user-info">
-        <div class="badge-balance">الرصيد: 0.00$</div>
-    </div>
-</div>
+<div class="nav">💎 لوحة كريم SMM 💎</div>
 
 <div class="container">
-    <div class="stats">
-        <div class="stat-box"><h4>الطلبات الكلية</h4><p>1,254</p></div>
-        <div class="stat-box"><h4>حالة الخدمة</h4><p style="color: #16a34a;">متصل ✅</p></div>
+    <div class="category"><i class="fab fa-facebook"></i> خدمات فيسبوك</div>
+    <div class="card">
+        <span>متابعين فيسبوك ثابت</span>
+        <span class="price">$0.45</span>
+        <a href="https://wa.me/213000000000?text=طلب فيسبوك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
 
-    <div class="cat-title">⚫ خدمات تيك توك</div>
-    <div class="services-list">
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">3338</span> متابعين تيك توك | سرعة عالية</span>
-                <span class="service-price">$1.00 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 3338" class="btn-buy">طلب الآن</a>
-        </div>
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">8387</span> مشاهدات تيك توك [مليونية]</span>
-                <span class="service-price">$0.01 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 8387" class="btn-buy">طلب الآن</a>
-        </div>
+    <div class="category"><i class="fab fa-tiktok"></i> خدمات تيك توك</div>
+    <div class="card">
+        <span>متابعين تيك توك حقيقي</span>
+        <span class="price">$1.00</span>
+        <a href="https://wa.me/213000000000?text=طلب تيك توك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
 
-    <div class="cat-title">🔵 خدمات فيسبوك</div>
-    <div class="services-list">
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">2676</span> متابعين بروفايل | ضمان</span>
-                <span class="service-price">$0.45 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 2676" class="btn-buy">طلب الآن</a>
-        </div>
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">3330</span> أعضاء مجموعات</span>
-                <span class="service-price">$0.92 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 3330" class="btn-buy">طلب الآن</a>
-        </div>
+    <div class="category"><i class="fab fa-instagram"></i> خدمات انستقرام</div>
+    <div class="card">
+        <span>متابعين انستقرام ضمان</span>
+        <span class="price">$0.85</span>
+        <a href="https://wa.me/213000000000?text=طلب انستقرام" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
-
-    <div class="cat-title">🛑 خدمات يوتيوب</div>
-    <div class="services-list">
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">1102</span> مشتركين يوتيوب | حقيقي</span>
-                <span class="service-price">$8.50 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 1102" class="btn-buy">طلب الآن</a>
-        </div>
-    </div>
-
-    <div class="cat-title">✈️ خدمات تليجرام</div>
-    <div class="services-list">
-        <div class="service-item">
-            <div class="service-info">
-                <span class="service-name"><span class="service-id">9920</span> أعضاء قنوات تليجرام</span>
-                <span class="service-price">$1.10 / 1k</span>
-            </div>
-            <a href="https://wa.me/213000000000?text=طلب خدمة 9920" class="btn-buy">طلب الآن</a>
-        </div>
-    </div>
-
+    
+    <p style="font-size: 12px; color: #64748b; margin-top: 30px;">جميع الحقوق محفوظة © كريم 2026</p>
 </div>
-
-<footer style="text-align: center; padding: 40px; color: #94a3b8; font-size: 11px;">
-    لوحة كريم SMM © 2026 - نظام الإدارة الاحترافي
-</footer>
 
 </body>
 </html>
