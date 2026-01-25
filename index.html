@@ -3,41 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE PANEL</title>
+    <title>KARIMTREIZE PANEL | 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root { --bg: #000; --card: #0d0d0d; --text: #fff; --primary: #fbbf24; --border: #1a1a1a; }
-        [data-theme="blue"] { --bg: #010409; --card: #0d1117; --text: #f0f6fc; --primary: #58a6ff; --border: #30363d; }
-        
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; text-align: right; transition: 0.3s; }
-        
-        /* تصميم الهيدر واللوجو */
-        .header { background: var(--bg); padding: 30px 10px; text-align: center; border-bottom: 2px solid var(--primary); display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .logo-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; box-shadow: 0 0 20px var(--primary); background: #000; }
-        .header h1 { margin: 0; color: var(--primary); font-size: 22px; font-weight: 900; }
+        /* تعريف الألوان (المتغيرات) */
+        :root { 
+            --bg: #000; 
+            --card: #0d0d0d; 
+            --text: #fff; 
+            --primary: #fbbf24; 
+            --border: #1a1a1a; 
+            --gradient: linear-gradient(45deg, #fbbf24, #d97706);
+        }
 
-        /* أيقونة الألوان */
-        .theme-toggle { position: fixed; left: 20px; top: 30px; z-index: 1100; background: var(--primary); border: none; padding: 12px; border-radius: 50%; cursor: pointer; color: #000; box-shadow: 0 0 10px var(--primary); }
+        /* الثيم الأزرق */
+        [data-theme="blue"] { 
+            --bg: #010409; 
+            --card: #0d1117; 
+            --text: #f0f6fc; 
+            --primary: #58a6ff; 
+            --border: #30363d; 
+            --gradient: linear-gradient(45deg, #58a6ff, #1f6feb);
+        }
+
+        /* التصميم العام */
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding-bottom: 50px; 
+            transition: all 0.4s ease;
+        }
+
+        /* الهيدر واللوجو الجديد */
+        .header { 
+            background: var(--bg); 
+            padding: 40px 15px; 
+            text-align: center; 
+            border-bottom: 2px solid var(--primary); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .logo-container { 
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%; 
+            border: 4px solid var(--primary); 
+            padding: 3px; 
+            box-shadow: 0 0 25px var(--primary); 
+            background: #fff; 
+            overflow: hidden; 
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover { transform: scale(1.05); }
+
+        .logo-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 50%;
+        }
+
+        .header h1 { 
+            margin: 0; 
+            color: var(--primary); 
+            font-size: 26px; 
+            font-weight: 900; 
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* زر تبديل الألوان */
+        .theme-toggle { 
+            position: fixed; 
+            left: 20px; 
+            top: 30px; 
+            z-index: 1100; 
+            background: var(--gradient); 
+            border: none; 
+            padding: 15px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            color: #000; 
+            box-shadow: 0 0 15px var(--primary); 
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .theme-toggle:active { transform: scale(0.9); }
+
+        .container { padding: 20px; max-width: 600px; margin: auto; }
+
+        /* الأقسام */
+        .category-header { 
+            background: var(--card); 
+            padding: 22px; 
+            border-radius: 18px; 
+            margin-bottom: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            cursor: pointer; 
+            border: 1px solid var(--border); 
+            transition: 0.3s;
+        }
+
+        .category-header:hover { border-color: var(--primary); }
+
+        .category-header span { 
+            font-weight: bold; 
+            font-size: 18px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+
+        .category-content { display: none; padding-bottom: 15px; animation: fadeIn 0.4s ease; }
+
+        /* كروت الخدمات */
+        .service-card { 
+            background: var(--card); 
+            border-radius: 18px; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            border: 1px solid var(--border); 
+            border-right: 6px solid var(--primary); 
+            transition: 0.3s;
+        }
+
+        .service-card:hover { transform: translateY(-3px); }
+
+        .s-id { font-size: 12px; color: var(--primary); font-weight: bold; opacity: 0.8; }
+        .s-name { 
+            display: block; 
+            font-size: 14px; 
+            margin: 12px 0; 
+            color: #eef; 
+            line-height: 1.6; 
+            text-align: left; 
+            direction: ltr; 
+        }
+
+        .s-footer { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 15px; 
+            padding-top: 12px; 
+            border-top: 1px solid #1a1a1a; 
+        }
+
+        .s-price { color: var(--primary); font-weight: 900; font-size: 20px; }
         
-        .container { padding: 15px; max-width: 500px; margin: auto; }
-        .category-header { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid var(--border); }
-        .category-header span { font-weight: bold; font-size: 17px; display: flex; align-items: center; gap: 12px; }
-        .category-content { display: none; padding-bottom: 10px; }
+        .order-btn { 
+            background: var(--gradient); 
+            color: #000; 
+            border: none; 
+            padding: 10px 25px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: 0.3s;
+        }
 
-        .service-card { background: var(--card); border-radius: 15px; padding: 18px; margin-bottom: 12px; border: 1px solid var(--border); border-right: 5px solid var(--primary); }
-        .s-id { font-size: 11px; color: var(--primary); font-weight: bold; }
-        .s-name { display: block; font-size: 13px; margin: 10px 0; color: #eef; line-height: 1.5; text-align: left; direction: ltr; }
-        .s-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1a1a; }
-        .s-price { color: var(--primary); font-weight: 900; font-size: 18px; }
-        .order-btn { background: var(--primary); color: #000; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        /* نافذة الطلب */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 2000; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(8px); 
+        }
 
-        /* المودال (النافذة) */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        .modal-content { background: var(--card); padding: 25px; border-radius: 20px; width: 90%; max-width: 380px; border: 1px solid var(--primary); }
-        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid var(--border); background: #000; color: #fff; text-align: center; box-sizing: border-box; }
-        .payment-info { background: rgba(251, 191, 36, 0.05); padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px dashed var(--primary); display: none; text-align: center; }
-        .payment-info b { color: var(--primary); font-size: 17px; cursor: pointer; display: block; margin-top: 5px; }
-        .confirm-btn { background: #22c55e; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; margin-bottom: 8px; }
+        .modal-content { 
+            background: var(--card); 
+            padding: 30px; 
+            border-radius: 25px; 
+            width: 90%; 
+            max-width: 400px; 
+            border: 1px solid var(--primary); 
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        input, select { 
+            width: 100%; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            background: #000; 
+            color: #fff; 
+            text-align: center; 
+            box-sizing: border-box; 
+            font-size: 15px;
+        }
+
+        .payment-info { 
+            background: rgba(251, 191, 36, 0.05); 
+            padding: 15px; 
+            border-radius: 15px; 
+            margin-bottom: 15px; 
+            border: 1px dashed var(--primary); 
+            display: none; 
+            text-align: center; 
+        }
+
+        .confirm-btn { 
+            background: #22c55e; 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-bottom: 10px; 
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 <body>
@@ -45,7 +240,9 @@
 <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-palette"></i></button>
 
 <div class="header">
-    <img src="https://i.ibb.co/YBtYf9f/1000139898.jpg" alt="Logo" class="logo-img">
+    <div class="logo-container">
+        <img src="https://i.ibb.co/XfXGk6V/1000024177.png" alt="Logo" class="logo-img">
+    </div>
     <h1>KARIMTREIZE PANEL</h1>
 </div>
 
@@ -53,12 +250,13 @@
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--primary); text-align:center; font-size:15px; margin-top:0;"></h3>
+        <h3 id="modalTitle" style="color:var(--primary); text-align:center; margin-bottom:20px; font-size:18px;"></h3>
         
-        <input type="url" id="userLink" placeholder="أدخل الرابط هنا">
-        <input type="email" id="userEmail" placeholder="أدخل الإيميل الخاص بك" style="display:none;">
+        <input type="url" id="userLink" placeholder="ضع الرابط هنا (Link)">
         
-        <input type="number" id="userQty" value="1000">
+        <input type="email" id="userEmail" placeholder="أدخل الإيميل الخاص بك (Email)" style="display:none;">
+        
+        <input type="number" id="userQty" value="1000" placeholder="الكمية">
         
         <select id="payMethod" onchange="showPayDetails(this.value)">
             <option value="">اختر وسيلة الدفع</option>
@@ -68,98 +266,64 @@
         </select>
         
         <div id="payBox" class="payment-info">
-            <small style="color:#888">اضغط على الرقم لنسخه:</small>
-            <b id="payNumber" onclick="copyNum()"></b>
+            <small style="color:#888">اضغط على الرقم لنسخه:</small><br>
+            <b id="payNumber" style="color:var(--primary); cursor:pointer; font-size:18px;" onclick="copyNum()"></b>
         </div>
         
-        <button class="confirm-btn" onclick="sendToWA()">تأكيد وإرسال واتساب</button>
-        <button class="confirm-btn" style="background:#dc2626;" onclick="closeM()">إلغاء</button>
+        <button class="confirm-btn" onclick="sendToWA()"><i class="fab fa-whatsapp"></i> تأكيد وإرسال للواتساب</button>
+        <button class="confirm-btn" style="background:#dc2626;" onclick="closeM()">إلغاء الطلب</button>
     </div>
 </div>
 
 <script>
-    // وظيفة تبديل الألوان
+    // نظام تبديل الألوان
     function toggleTheme() { 
         const body = document.body;
         const current = body.getAttribute('data-theme');
         body.setAttribute('data-theme', current === 'blue' ? '' : 'blue');
     }
 
-    const accounts = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
+    // أرقام الحسابات
+    const accounts = { 
+        "BaridiMob": "00799999001465107315", 
+        "RedotPay": "1523336713", 
+        "Binance": "1194939141" 
+    };
 
+    // بيانات الخدمات الكاملة
     const servicesData = [
         { cat: "Facebook Services 🔵", icon: "fab fa-facebook", items: [
             {id: 2676, n: "FB Followers | Non Drop | Lifetime Refill♻️⚡", p: "0.446"},
-            {id: 1974, n: "FB Followers | Non Drop | 365 Days Refill♻️⚡", p: "0.412"},
-            {id: 3859, n: "FB Followers | Bots Quality | Lifetime Refill♻️⚡", p: "0.1248"},
-            {id: 3858, n: "FB Followers | Bots Quality | No Refill", p: "0.0883"},
-            {id: 3324, n: "FB Group Members | Low Drop | No Refill⚡", p: "0.5524"},
-            {id: 3330, n: "FB Group Members | Real | 365 Days Refill♻️🔥", p: "0.92"},
-            {id: 8395, n: "FB 60k Minutes | 10 Mins Video | Lifetime Refill♻️⚡", p: "0.954"},
-            {id: 815, n: "FB 100k Reels Views Package | 30 Days Refill🔥⚡♻️", p: "5.5988"},
-            {id: 3315, n: "FB Post Likes 👍| HQ Real Profiles | No Refill⚡", p: "0.74"},
-            {id: 8755, n: "FB Post Reaction | Like 👍 | No Refill", p: "0.3332"},
-            {id: 8756, n: "FB Post Reaction | Love❤️ | No Refill", p: "0.4332"},
-            {id: 7592, n: "FB Views | Video/Reel | Lifetime Refill⚡", p: "0.0150"},
-            {id: 8610, n: "FB Views | Video/Reel | Lifetime Refill♻️🔥", p: "0.0222"}
+            {id: 1974, n: "FB Followers | 365 Days Refill♻️⚡", p: "0.412"},
+            {id: 3859, n: "FB Followers | Bots | Lifetime Refill♻️⚡", p: "0.124"},
+            {id: 3315, n: "FB Post Likes 👍| HQ Real⚡", p: "0.74"},
+            {id: 8395, n: "FB 60k Minutes | 10 Mins Video♻️⚡", p: "0.954"},
+            {id: 815, n: "FB 100k Reels Views Package♻️", p: "5.59"}
         ]},
         { cat: "TikTok Services ⚫", icon: "fab fa-tiktok", items: [
-            {id: 8109, n: "TikTok Followers | Low Quality | No Refill⚡", p: "0.1188"},
-            {id: 3338, n: "TikTok Followers | HQ Real | Lifetime Refill♻️", p: "1.00"},
-            {id: 3340, n: "TikTok Followers | Perfect Quality | Lifetime Refill♻️", p: "0.984"},
-            {id: 1507, n: "TikTok Followers | Low Quality | No Refill⚡", p: "0.326"},
-            {id: 3350, n: "TikTok Followers | HQ Real Profiles | No Refill⚡", p: "0.6725"},
-            {id: 3810, n: "TikTok Followers | HQ Real | Lifetime Refill⭐⚡", p: "1.8424"},
-            {id: 3231, n: "Tiktok Followers | HQ Real | Lifetime Refill⭐⚡", p: "2.08"},
-            {id: 8120, n: "TikTok Likes | Low Quality | No Refill⚡", p: "0.888"},
-            {id: 3348, n: "TikTok Likes | Low Quality | Lifetime Refill⚡", p: "0.999"},
-            {id: 1972, n: "TikTok Likes | Non Drop | Lifetime Refill⚡", p: "0.999"},
-            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: "0.0090"},
-            {id: 6930, n: "TikTok Views | Superfast | No Refill⚡", p: "0.0100"},
-            {id: 8345, n: "Tiktok Live Likes | SuperInstant⭐", p: "0.0100"},
-            {id: 6915, n: "TikTok Live Stream Likes | 0-10 Mins ⭐", p: "0.0090"},
-            {id: 1521, n: "TikTok Monetizable Followers | Lifetime Refill♻️⚡", p: "3.24"},
-            {id: 3490, n: "TikTok Monetizable Views | Lifetime Refill⭐⚡", p: "0.0925"},
-            {id: 3506, n: "TikTok Monetizable Views | Lifetime Refill⭐⚡", p: "0.0855"}
+            {id: 3338, n: "TikTok Followers | HQ Real | Lifetime♻️", p: "1.00"},
+            {id: 8120, n: "TikTok Likes | Fast⚡", p: "0.888"},
+            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: "0.009"},
+            {id: 1521, n: "TikTok Monetizable Followers♻️⚡", p: "3.24"}
         ]},
         { cat: "Instagram Services 📸", icon: "fab fa-instagram", items: [
-            {id: 7820, n: "IG Followers | Real Old Accounts | Lifetime Refill♻️⚡", p: "1.00"},
-            {id: 1348, n: "IG Followers | Real Old Accounts | Lifetime Refill⭐⚡", p: "1.567"},
-            {id: 3779, n: "IG Followers | Real Old Accounts | Lifetime Refill⭐♻️⚡", p: "2.056"},
-            {id: 8801, n: "IG Likes | Real Old Accounts | No Refill⚡", p: "0.6331"},
-            {id: 7869, n: "IG Likes | Real Old Accounts | No Refill⭐⚡", p: "0.222"},
-            {id: 7790, n: "IG Likes | Real Old Accounts | Lifetime Refill⭐⚡", p: "1.156"},
-            {id: 6441, n: "IG Views | All Links | No Refill⚡", p: "0.0099"},
-            {id: 7788, n: "IG Views | All Links | No Refill⚡", p: "0.020"}
+            {id: 7820, n: "IG Followers | Real Old | Lifetime♻️", p: "1.00"},
+            {id: 8801, n: "IG Likes | Real Accounts⚡", p: "0.633"},
+            {id: 6441, n: "IG Views | All Links | Fast⚡", p: "0.009"}
         ]},
         { cat: "YouTube Services 🔴", icon: "fab fa-youtube", items: [
-            {id: 1539, n: "YT Subscribers | Speed +300/Day | Lifetime Refill♻️⚡", p: "21.62"},
-            {id: 1563, n: "YT Subscribers + Extra | Speed 1K/Day | Lifetime Refill♻️⚡", p: "26.92"},
-            {id: 1848, n: "YT Subscribers | 100% Real | Lifetime Refill⭐♻️⚡", p: "30.625"},
-            {id: 3274, n: "YT Shorts Subscribers | Lifetime Refill♻️⚡", p: "18.82"},
-            {id: 935, n: "YT Likes | Real | SuperFast | No Refill ⚡", p: "0.232"},
-            {id: 7614, n: "YT Likes | HQ Real Profiles | Lifetime Refill⭐♻️⚡", p: "0.888"},
-            {id: 8140, n: "YT Likes | Real Organic | Lifetime Refill ⭐♻️⚡", p: "0.998"},
-            {id: 3544, n: "YT Video/Shorts Views | Lifetime Refill⭐⚡", p: "1.00"},
-            {id: 8413, n: "YT Views + Extra | Lifetime Refill⭐⚡", p: "2.02"},
-            {id: 6275, n: "YT Earnings Views | Active | 30 Days Guarantee", p: "3.1613"}
-        ]},
-        { cat: "Telegram Services ✈️", icon: "fab fa-telegram", items: [
-            {id: 3428, n: "Telegram Members | HQ Real | Lifetime Refill⭐♻️⚡", p: "0.99"},
-            {id: 7102, n: "Telegram Reactions Positive | Lifetime Refill", p: "0.12"},
-            {id: 7103, n: "Telegram Reactions Negative | Lifetime Refill", p: "0.12"},
-            {id: 6805, n: "Telegram Post Views [1 Post] [Superfast]⭐⚡", p: "0.010"},
-            {id: 7068, n: "Telegram View | Instant | No Refill⭐⚡", p: "0.028"}
+            {id: 1539, n: "YT Subscribers | +300/Day | Lifetime♻️", p: "21.62"},
+            {id: 935, n: "YT Likes | SuperFast⚡", p: "0.232"},
+            {id: 3544, n: "YT Video Views | Lifetime⭐", p: "1.00"}
         ]},
         { cat: "Premium Accounts 💎", icon: "fas fa-gem", isPremium: true, items: [
-            {id: 3407, n: "Gemini Pro | 2048GB Storage | 12 Month", p: "5.23"},
+            {id: 3407, n: "Gemini Pro | 2TB Storage | 12 Month", p: "5.23"},
             {id: 944, n: "Canva Premium | 1-3 Years Package", p: "0.40"},
-            {id: 3343, n: "Blackblox AI Premium | 3 Month", p: "10.00"},
-            {id: 3364, n: "CapCut Premium | Private | 1 Month", p: "5.00"},
-            {id: 8607, n: "Netflix Premium | 4K Ultra HD | 1 Month", p: "4.50"}
+            {id: 8607, n: "Netflix Premium | 4K | 1 Month", p: "4.50"}
         ]}
     ];
 
+    // عرض البيانات
     function render() {
         document.getElementById('panel-list').innerHTML = servicesData.map((sec, i) => `
             <div class="category-header" onclick="toggleCat(${i})">
@@ -173,7 +337,7 @@
                         <span class="s-name">${s.n}</span>
                         <div class="s-footer">
                             <span class="s-price">$${s.p}</span>
-                            <button class="order-btn" onclick="openM('${s.id}','${s.n}','${s.p}', ${sec.isPremium || false})">طلب</button>
+                            <button class="order-btn" onclick="openM('${s.id}','${s.n}','${s.p}', ${sec.isPremium || false})">طلب الآن</button>
                         </div>
                     </div>
                 `).join('')}
@@ -184,16 +348,16 @@
 
     function toggleCat(i) {
         const c = document.getElementById(`cat-${i}`);
-        const open = c.style.display === "block";
+        const current = c.style.display === "block";
         document.querySelectorAll('.category-content').forEach(el => el.style.display = 'none');
-        if(!open) c.style.display = "block";
+        if(!current) c.style.display = "block";
     }
 
     let activeS = {};
     function openM(id, n, p, isPremium) {
         activeS = {id, n, p, isPremium};
         document.getElementById('modalTitle').innerText = n;
-        // إظهار حقل الإيميل فقط إذا كان القسم Premium
+        // إظهار حقل الإيميل فقط في خدمات بريميوم
         document.getElementById('userEmail').style.display = isPremium ? "block" : "none";
         document.getElementById('orderModal').style.display = 'flex';
     }
@@ -201,13 +365,18 @@
     function closeM() { document.getElementById('orderModal').style.display = 'none'; }
     
     function showPayDetails(v) {
-        document.getElementById('payBox').style.display = v ? "block" : "none";
-        document.getElementById('payNumber').innerText = accounts[v] || "";
+        const box = document.getElementById('payBox');
+        if(v) {
+            box.style.display = "block";
+            document.getElementById('payNumber').innerText = accounts[v];
+        } else {
+            box.style.display = "none";
+        }
     }
     
-    function copyNum() { 
-        navigator.clipboard.writeText(document.getElementById('payNumber').innerText); 
-        alert("تم نسخ الرقم بنجاح!"); 
+    function copyNum() {
+        navigator.clipboard.writeText(document.getElementById('payNumber').innerText);
+        alert("✅ تم نسخ رقم الحساب!");
     }
 
     function sendToWA() {
@@ -215,13 +384,13 @@
         const l = document.getElementById('userLink').value;
         const q = document.getElementById('userQty').value;
         const email = document.getElementById('userEmail').value;
+        
+        if(!p || !l) return alert("❌ يرجى ملء جميع الحقول!");
+        if(activeS.isPremium && !email) return alert("❌ هذا الطلب يتطلب إدخال الإيميل!");
 
-        if(!p || !l) return alert("يرجى إكمال البيانات!");
-        if(activeS.isPremium && !email) return alert("يرجى إدخال الإيميل للخدمات البريميوم!");
-
-        let msg = `🚀 *طلب جديد من البانل*%0A📦 *الخدمة:* ${activeS.n}%0A🆔 *المعرف:* ${activeS.id}%0A🔗 *الرابط:* ${l}`;
+        let msg = `🚀 *طلب جديد من البانل*%0A--------------------------%0A📦 *الخدمة:* ${activeS.n}%0A🆔 *المعرف:* ${activeS.id}%0A🔗 *الرابط:* ${l}`;
         if(activeS.isPremium) msg += `%0A📧 *الإيميل:* ${email}`;
-        msg += `%0A🔢 *الكمية:* ${q}%0A💰 *السعر:* $${activeS.p}%0A💳 *الدفع:* ${p}`;
+        msg += `%0A🔢 *الكمية:* ${q}%0A💰 *السعر:* $${activeS.p}%0A💳 *طريقة الدفع:* ${p}%0A--------------------------`;
         
         window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
     }
