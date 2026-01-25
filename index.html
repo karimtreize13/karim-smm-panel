@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim Traz | لوحة كريم تراز الدولية</title>
+    <title>Karim Traz | لوحة كريم تراز الشاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2563eb; --dark: #0f172a; --gold: #fbbf24; }
         body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; padding-bottom: 50px; text-align: right; }
         
-        /* الهيدر باسم كريم تراز */
-        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px 20px; text-align: center; border-bottom: 4px solid var(--gold); }
-        .header h1 { margin: 0; color: var(--gold); font-size: 26px; letter-spacing: 1px; }
-        .header p { color: #94a3b8; margin-top: 5px; font-size: 14px; }
+        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 30px 20px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .header h1 { margin: 0; color: var(--gold); font-size: 24px; text-transform: uppercase; }
 
-        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .container { padding: 15px; max-width: 500px; margin: auto; }
 
         /* سجل الطلبات */
         .order-log { background: #111827; border-radius: 12px; padding: 15px; margin-bottom: 25px; border: 1px solid #334155; }
-        .order-log h3 { color: var(--gold); font-size: 15px; margin-top: 0; display: flex; align-items: center; gap: 8px; }
+        .order-log h3 { color: var(--gold); font-size: 15px; margin: 0 0 10px; border-bottom: 1px solid #1e293b; padding-bottom: 5px; }
         #logList { font-size: 12px; list-style: none; padding: 0; margin: 0; }
         .log-item { border-bottom: 1px solid #1e293b; padding: 8px 0; display: flex; justify-content: space-between; }
 
-        /* الأقسام والخدمات */
-        .cat-box { background: var(--gold); color: black; padding: 10px 15px; border-radius: 8px; margin: 25px 0 15px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-        .service-card { background: #1e293b; border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334155; transition: 0.3s; }
-        .service-card:hover { border-color: var(--gold); }
-        .s-name { display: block; font-size: 14px; font-weight: 600; margin-bottom: 15px; color: #f1f5f9; }
-        .s-footer { display: flex; justify-content: space-between; align-items: center; }
-        .s-price { color: #4ade80; font-weight: bold; font-size: 18px; }
+        /* كروت الخدمات - التصميم الذي طلبته */
+        .service-card { background: #1e293b; border-radius: 15px; padding: 25px; margin-bottom: 20px; border: 1px solid #334155; text-align: center; transition: 0.3s; }
+        .service-card:hover { border-color: var(--gold); transform: scale(1.02); }
+        .icon-circle { width: 60px; height: 60px; background: #111827; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 30px; border: 2px solid var(--gold); }
+        .s-name { display: block; font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #f1f5f9; }
+        .s-price { color: #4ade80; font-weight: bold; font-size: 22px; display: block; margin-bottom: 15px; }
         
-        .order-btn { background: var(--primary); color: white; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 14px; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .order-btn { background: var(--primary); color: white; text-decoration: none; padding: 12px 30px; border-radius: 10px; font-weight: bold; font-size: 16px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center; transition: 0.3s; }
+        .order-btn:hover { background: #1d4ed8; }
         
         .footer-tag { text-align: center; margin-top: 40px; color: #475569; font-size: 11px; }
     </style>
@@ -39,61 +37,86 @@
 
 <div class="header">
     <h1>KARIM TRAZ - كريم تراز</h1>
-    <p>لوحة الخدمات الرقمية الأكثر احترافية</p>
 </div>
 
 <div class="container">
 
     <div class="order-log">
-        <h3><i class="fas fa-list-ul"></i> سجل طلباتك الأخير (Karim Traz)</h3>
-        <ul id="logList">
-            <li style="color:#475569">لا يوجد طلبات سابقة بعد...</li>
-        </ul>
+        <h3><i class="fas fa-history"></i> سجل طلباتك الأخير</h3>
+        <ul id="logList"><li style="color:#475569">لا يوجد طلبات حالية</li></ul>
     </div>
 
-    <div class="cat-box"><i class="fab fa-facebook"></i> خدمات فيسبوك - FB</div>
     <div class="service-card">
-        <span class="s-name">متابعين فيسبوك حقيقي | ضمان 365 يوم ♻️</span>
-        <div class="s-footer">
-            <span class="s-price">$0.45</span>
-            <button onclick="makeOrder('متابعين فيسبوك', '$0.45')" class="order-btn">اطلب الآن</button>
-        </div>
+        <div class="icon-circle"><i class="fab fa-tiktok" style="color:#ff0050"></i></div>
+        <span class="s-name">متابعين تيك توك | حقيقي 100% ⚡</span>
+        <span class="s-price">$1.00</span>
+        <button onclick="makeOrder('تيك توك', '$1.00')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
     </div>
 
-    <div class="cat-box"><i class="fab fa-tiktok"></i> خدمات تيك توك - TikTok</div>
     <div class="service-card">
-        <span class="s-name">متابعين تيك توك | جودة عالية (سريع) ⚡</span>
-        <div class="s-footer">
-            <span class="s-price">$1.00</span>
-            <button onclick="makeOrder('متابعين تيك توك', '$1.00')" class="order-btn">اطلب الآن</button>
-        </div>
+        <div class="icon-circle"><i class="fab fa-facebook" style="color:#1877f2"></i></div>
+        <span class="s-name">متابعين فيسبوك | ضمان ♻️</span>
+        <span class="s-price">$0.45</span>
+        <button onclick="makeOrder('فيسبوك', '$0.45')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
     </div>
 
-    <div class="footer-tag">تطوير وبرمجة كريم تراز © 2026</div>
+    <div class="service-card">
+        <div class="icon-circle"><i class="fab fa-instagram" style="color:#e4405f"></i></div>
+        <span class="s-name">متابعين انستقرام | جودة عالية 📸</span>
+        <span class="s-price">$0.85</span>
+        <button onclick="makeOrder('انستقرام', '$0.85')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon-circle"><i class="fab fa-telegram" style="color:#229ED9"></i></div>
+        <span class="s-name">أعضاء تليجرام | سرعة قصوى ✈️</span>
+        <span class="s-price">$1.10</span>
+        <button onclick="makeOrder('تليجرام', '$1.10')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon-circle"><i class="fab fa-youtube" style="color:#ff0000"></i></div>
+        <span class="s-name">مشتركين يوتيوب | حقيقي 🔴</span>
+        <span class="s-price">$9.00</span>
+        <button onclick="makeOrder('يوتيوب', '$9.00')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon-circle"><i class="fas fa-tv" style="color:#e50914"></i></div>
+        <span class="s-name">نيتفليكس شهر | بريميوم 🍿</span>
+        <span class="s-price">$4.50</span>
+        <button onclick="makeOrder('نيتفليكس', '$4.50')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
+    </div>
+
+    <div class="service-card">
+        <div class="icon-circle"><i class="fas fa-gamepad" style="color:#10b981"></i></div>
+        <span class="s-name">شدات ببجي | 660 UC 🔫</span>
+        <span class="s-price">$9.50</span>
+        <button onclick="makeOrder('ببجي', '$9.50')" class="order-btn"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</button>
+    </div>
+
+    <div class="footer-tag">جميع الحقوق محفوظة لوحة كريم تراز © 2026</div>
 </div>
 
 <script>
-    // نظام حفظ السجل في الموقع باسم كريم تراز
     function makeOrder(name, price) {
-        let history = JSON.parse(localStorage.getItem('kt_orders')) || [];
-        let time = new Date().toLocaleTimeString('ar-EG');
+        let history = JSON.parse(localStorage.getItem('kt_full_orders')) || [];
+        let time = new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'});
         history.push({ name: name, time: time });
-        localStorage.setItem('kt_orders', JSON.stringify(history));
+        localStorage.setItem('kt_full_orders', JSON.stringify(history));
         
         updateLog();
-        
-        // إرسال للواتساب
-        window.open(`https://wa.me/213000000000?text=طلب من كريم تراز: ${name}`, '_blank');
+        window.open(`https://wa.me/213000000000?text=طلب من كريم تراز: ${name} بسعر ${price}`, '_blank');
     }
 
     function updateLog() {
-        let history = JSON.parse(localStorage.getItem('kt_orders')) || [];
+        let history = JSON.parse(localStorage.getItem('kt_full_orders')) || [];
         if(history.length > 0) {
-            let html = history.reverse().slice(0, 5).map(o => `
+            let html = history.reverse().slice(0, 4).map(o => `
                 <li class="log-item">
                     <span>${o.name}</span>
                     <span style="color:var(--gold)">${o.time}</span>
-                    <span style="color:#4ade80">جاري..</span>
+                    <span style="color:#4ade80">نشط ✅</span>
                 </li>
             `).join('');
             document.getElementById('logList').innerHTML = html;
