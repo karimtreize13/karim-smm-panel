@@ -6,34 +6,41 @@
     <title>KARIMTREIZE PANEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root { --bg: #000000; --card: #111111; --text: #ffffff; --primary: #fbbf24; --border: #222; }
-        [data-theme="blue"] { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --primary: #38bdf8; --border: #334155; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; text-align: right; }
+        :root { --bg: #000; --card: #0d0d0d; --text: #fff; --primary: #fbbf24; --border: #1a1a1a; }
+        [data-theme="blue"] { --bg: #010409; --card: #0d1117; --text: #f0f6fc; --primary: #58a6ff; --border: #30363d; }
         
-        .header { background: var(--card); padding: 20px; text-align: center; border-bottom: 2px solid var(--primary); display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .logo-img { width: 85px; height: 85px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; background: #222; box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
-        .header h1 { margin: 0; color: var(--primary); font-size: 20px; letter-spacing: 1px; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; text-align: right; overflow-x: hidden; }
         
-        .theme-toggle { position: fixed; left: 15px; top: 25px; z-index: 1100; background: var(--primary); border: none; padding: 10px; border-radius: 50%; cursor: pointer; color: #000; }
+        /* الهيدر الاحترافي مع اللوجو المضيء */
+        .header { background: var(--bg); padding: 30px 10px; text-align: center; border-bottom: 1px solid var(--primary); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .logo-container { position: relative; width: 110px; height: 110px; }
+        .logo-img { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; box-shadow: 0 0 20px var(--primary); }
+        .header h1 { margin: 0; color: var(--primary); font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+
+        .theme-toggle { position: fixed; left: 20px; top: 30px; z-index: 1100; background: var(--primary); border: none; padding: 12px; border-radius: 50%; cursor: pointer; color: #000; font-size: 18px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
         .container { padding: 15px; max-width: 500px; margin: auto; }
 
-        .category-header { background: var(--card); padding: 18px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid var(--border); }
-        .category-header span { font-weight: bold; display: flex; align-items: center; gap: 12px; }
-        .category-content { display: none; padding-bottom: 10px; }
+        /* الأقسام المنسدلة */
+        .category-header { background: var(--card); padding: 20px; border-radius: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid var(--border); transition: 0.3s; }
+        .category-header:active { transform: scale(0.98); }
+        .category-header span { font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 15px; }
+        .category-content { display: none; padding: 5px 0 15px; }
 
-        .service-card { background: var(--card); border-radius: 15px; padding: 18px; margin-bottom: 12px; border: 1px solid var(--border); border-right: 5px solid var(--primary); }
-        .s-id { font-size: 10px; color: var(--primary); opacity: 0.7; }
-        .s-name { display: block; font-size: 13px; margin: 8px 0; line-height: 1.4; color: #eee; text-align: left; direction: ltr; }
-        .s-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 10px; }
-        .s-price { color: var(--primary); font-weight: 800; font-size: 17px; }
-        .order-btn { background: var(--primary); color: #000; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        /* بطاقات الخدمة */
+        .service-card { background: var(--card); border-radius: 15px; padding: 18px; margin-bottom: 12px; border: 1px solid var(--border); border-right: 5px solid var(--primary); position: relative; }
+        .s-id { font-size: 10px; color: var(--primary); opacity: 0.8; font-weight: bold; }
+        .s-name { display: block; font-size: 14px; margin: 8px 0; color: #eef; line-height: 1.5; text-align: left; direction: ltr; }
+        .s-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-top: 1px solid #1a1a1a; padding-top: 12px; }
+        .s-price { color: var(--primary); font-weight: 900; font-size: 19px; }
+        .order-btn { background: var(--primary); color: #000; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 14px; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal-content { background: var(--card); padding: 25px; border-radius: 20px; width: 90%; max-width: 380px; border: 1px solid var(--primary); }
-        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid var(--border); background: #000; color: #fff; text-align: center; box-sizing: border-box; }
-        .payment-info { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px dashed var(--primary); display: none; text-align: center; }
-        .payment-info b { color: var(--primary); font-size: 16px; cursor: pointer; display: block; margin-top: 5px; }
-        .confirm-btn { background: #22c55e; color: white; border: none; padding: 14px; width: 100%; border-radius: 10px; font-weight: bold; margin-bottom: 8px; cursor: pointer; }
+        /* نافذة الطلب */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .modal-content { background: var(--card); padding: 25px; border-radius: 25px; width: 90%; max-width: 380px; border: 1px solid var(--primary); box-shadow: 0 0 30px rgba(251, 191, 36, 0.2); }
+        input, select { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 12px; border: 1px solid var(--border); background: #000; color: #fff; text-align: center; box-sizing: border-box; font-size: 16px; }
+        .payment-info { background: rgba(251, 191, 36, 0.05); padding: 15px; border-radius: 15px; margin-bottom: 15px; border: 1px dashed var(--primary); display: none; text-align: center; }
+        .payment-info b { color: var(--primary); font-size: 18px; cursor: pointer; display: block; margin-top: 8px; letter-spacing: 1px; }
+        .confirm-btn { background: #22c55e; color: white; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 17px; cursor: pointer; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -41,7 +48,9 @@
 <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-palette"></i></button>
 
 <div class="header">
-    <img src="https://i.ibb.co/YBtYf9f/1000139898.jpg" alt="Logo" class="logo-img">
+    <div class="logo-container">
+        <img src="https://i.ibb.co/YBtYf9f/1000139898.jpg" alt="KARIMTREIZE" class="logo-img">
+    </div>
     <h1>KARIMTREIZE PANEL</h1>
 </div>
 
@@ -49,8 +58,8 @@
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--primary); text-align:center; font-size: 16px;"></h3>
-        <input type="email" id="userEmail" placeholder="البريد الإلكتروني (للاشتراكات)" style="display:none;">
+        <h3 id="modalTitle" style="color:var(--primary); text-align:center; margin-bottom:20px;"></h3>
+        <input type="email" id="userEmail" placeholder="البريد الإلكتروني (Gmail)" style="display:none;">
         <input type="url" id="userLink" placeholder="ضع الرابط هنا">
         <input type="number" id="userQty" value="1000">
         <select id="payMethod" onchange="showPayDetails(this.value)">
@@ -60,10 +69,10 @@
             <option value="Binance">بينانس</option>
         </select>
         <div id="payBox" class="payment-info">
-            <small style="color:#888">رقم الحساب (اضغط للنسخ):</small>
+            <small style="color:#888">اضغط على الرقم للنسخ:</small>
             <b id="payNumber" onclick="copyNum()"></b>
         </div>
-        <button class="confirm-btn" onclick="sendToWA()">تأكيد وإرسال للواتساب</button>
+        <button class="confirm-btn" onclick="sendToWA()">تأكيد الطلب عبر واتساب</button>
         <button class="confirm-btn" style="background:#dc2626;" onclick="closeM()">إلغاء</button>
     </div>
 </div>
@@ -72,36 +81,37 @@
     function toggleTheme() { document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') === 'blue' ? '' : 'blue'); }
     const accounts = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
 
-    const data = [
+    const services = [
         { cat: "تيك توك", icon: "fab fa-tiktok", items: [
             {id: 8109, n: "TikTok Followers | Low Quality | No Refill⚡", p: "0.118"},
             {id: 3338, n: "TikTok Followers | HQ Real | Lifetime ♻️", p: "1.00"},
-            {id: 3340, n: "TikTok Followers | Perfect Quality | Lifetime ♻️", p: "0.98"},
-            {id: 8120, n: "TikTok Likes | Low Quality | No Refill⚡", p: "0.88"},
-            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: "0.009"},
-            {id: 1521, n: "TikTok Monetizable Followers | Real♻️⚡", p: "3.24"}
+            {id: 8120, n: "TikTok Likes | Real & Fast⚡", p: "0.88"},
+            {id: 8387, n: "TikTok Views | Super Instant⚡", p: "0.009"}
         ]},
         { cat: "فيسبوك", icon: "fab fa-facebook", items: [
             {id: 2676, n: "FB Followers | Non Drop | Lifetime ♻️⚡", p: "0.44"},
-            {id: 1974, n: "FB Followers | 365 Days Refill ♻️⚡", p: "0.41"},
-            {id: 3324, n: "FB Group Members | +50K/Day | No Refill⚡", p: "0.55"},
-            {id: 8610, n: "FB Views | Video/Reel | Lifetime ♻️🔥", p: "0.02"}
+            {id: 1974, n: "FB Page Likes | Stable | 365 Days ♻️", p: "0.41"}
+        ]},
+        { cat: "انستقرام", icon: "fab fa-instagram", items: [
+            {id: 301, n: "IG Followers | High Quality | Lifetime ♻️", p: "0.25"},
+            {id: 305, n: "IG Likes | Real | Instant⚡", p: "0.06"}
         ]},
         { cat: "يوتيوب", icon: "fab fa-youtube", items: [
-            {id: 1539, n: "YT Subscribers | Speed 300/Day | Lifetime ♻️⚡", p: "21.62"},
-            {id: 1848, n: "YT Subscribers | 100% Real | Lifetime ⭐♻️⚡", p: "30.62"},
-            {id: 935, n: "YT Likes | Real | SuperFast⚡", p: "0.23"},
-            {id: 3544, n: "YT Video Views | Lifetime ⭐⚡", p: "1.00"}
+            {id: 1539, n: "YT Subscribers | No Drop | Lifetime ♻️⚡", p: "21.62"},
+            {id: 935, n: "YT Likes | Real | Fast⚡", p: "0.23"}
+        ]},
+        { cat: "تيليجرام", icon: "fab fa-telegram", items: [
+            {id: 501, n: "Telegram Members | Fast Speed⚡", p: "0.88"},
+            {id: 505, n: "Telegram Post Views | Non Drop ♻️", p: "0.02"}
         ]},
         { cat: "الاشتراكات", icon: "fas fa-gem", isSub: true, items: [
             {id: 601, n: "Netflix Premium | 4K | 1 Month", p: "4.50"},
-            {id: 602, n: "Canva Premium | 1-3 Years", p: "0.50"},
-            {id: 603, n: "Gemini Pro | 2TB Storage | 12 Month", p: "5.50"}
+            {id: 602, n: "Canva Premium | Private Account", p: "0.50"}
         ]}
     ];
 
     function render() {
-        document.getElementById('panel-list').innerHTML = data.map((sec, i) => `
+        document.getElementById('panel-list').innerHTML = services.map((sec, i) => `
             <div class="category-header" onclick="toggleCat(${i})">
                 <span><i class="${sec.icon}"></i> ${sec.cat}</span>
                 <i class="fas fa-chevron-down"></i>
@@ -109,11 +119,11 @@
             <div class="category-content" id="cat-${i}">
                 ${sec.items.map(s => `
                     <div class="service-card">
-                        <span class="s-id">ID: ${s.id}</span>
-                        <span class="s-name">${s.n}</span>
+                        <span class="s-id">SERVICE ID: ${s.id}</span>
+                        <span class="s-name">♻️ ${s.n}</span>
                         <div class="s-footer">
                             <span class="s-price">$${s.p}</span>
-                            <button class="order-btn" onclick="openM('${s.id}','${s.n}',${sec.isSub||false})">طلب</button>
+                            <button class="order-btn" onclick="openM('${s.id}','${s.n}',${sec.isSub||false})">طلب الخدمة</button>
                         </div>
                     </div>
                 `).join('')}
@@ -141,13 +151,12 @@
         document.getElementById('payBox').style.display = v ? "block" : "none";
         document.getElementById('payNumber').innerText = accounts[v] || "";
     }
-    function copyNum() { navigator.clipboard.writeText(document.getElementById('payNumber').innerText); alert("تم النسخ!"); }
-
+    function copyNum() { navigator.clipboard.writeText(document.getElementById('payNumber').innerText); alert("تم النسخ بنجاح!"); }
     function sendToWA() {
         const p = document.getElementById('payMethod').value;
         const l = document.getElementById('userLink').value;
-        if(!p || !l) return alert("أكمل البيانات!");
-        let msg = `🚀 *طلب جديد من البانل*%0A📦 *الخدمة:* ${activeS.n}%0A🆔 *المعرف:* ${activeS.id}%0A🔗 *الرابط:* ${l}%0A💳 *الدفع:* ${p}`;
+        if(!p || !l) return alert("يرجى إدخال الرابط واختيار وسيلة الدفع!");
+        let msg = `🚀 *طلب جديد*%0A📦 *الخدمة:* ${activeS.n}%0A🆔 *المعرف:* ${activeS.id}%0A🔗 *الرابط:* ${l}%0A💳 *طريقة الدفع:* ${p}`;
         window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
     }
 </script>
