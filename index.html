@@ -3,72 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة كريم الدولية - Karim SMM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Dashboard - Karim SMM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --dark: #0a0a0a; --gray: #1a1a1a; }
-        body { background-color: var(--dark); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        .header { background: linear-gradient(45deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 40px; text-align: center; }
-        .header h1 { color: var(--gold); margin: 0; font-size: 32px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
-        .container { max-width: 1100px; margin: 20px auto; padding: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .category-title { grid-column: 1 / -1; color: var(--gold); border-right: 5px solid var(--gold); padding: 12px 20px; margin-top: 30px; font-size: 24px; background: #111; border-radius: 5px; }
-        .card { background: var(--gray); border: 1px solid #333; border-radius: 12px; padding: 15px; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
-        .card h3 { margin: 0 0 10px 0; font-size: 15px; color: #eee; line-height: 1.4; height: 45px; overflow: hidden; }
-        .price { font-size: 17px; color: var(--gold); font-weight: bold; margin: 5px 0; }
-        .btn-order { background: var(--gold); color: #000; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 14px; }
-        .btn-order:hover { background: #fff; }
-        footer { text-align: center; padding: 50px; color: #555; font-size: 14px; border-top: 1px solid #222; margin-top: 50px; }
+        :root { --primary: #3498db; --accent: #f1c40f; --bg: #f4f7f6; --dark: #2c3e50; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); margin: 0; color: var(--dark); }
+        
+        /* Navbar */
+        .navbar { background: var(--dark); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .user-balance { background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 14px; border: 1px solid var(--accent); }
+
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+        /* Stats Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; border-bottom: 4px solid var(--primary); }
+        .stat-card h4 { margin: 0; color: #7f8c8d; font-size: 14px; }
+        .stat-card p { margin: 10px 0 0; font-size: 24px; font-weight: bold; color: var(--dark); }
+
+        /* Order Form */
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .main-content { grid-template-columns: 1fr; } }
+        
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .card h2 { margin-top: 0; font-size: 18px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; color: var(--primary); }
+
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        select, input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: 'Cairo'; }
+
+        .btn-order { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-order:hover { background: #2980b9; }
+
+        /* Order Table */
+        .order-history { margin-top: 30px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; text-align: right; }
+        th { background: #f8f9fa; padding: 15px; font-size: 14px; border-bottom: 2px solid #eee; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 13px; }
+        .status { padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .status-pending { background: #fff3cd; color: #856404; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>🌟 لوحة كريم الدولية SMM 🌟</h1>
-    <p style="color: #888;">أكبر قائمة خدمات في الوطن العربي - جودة وضمان</p>
+<div class="navbar">
+    <div class="logo"><b>KARIM SMM</b></div>
+    <div class="user-balance">الرصيد: 0.00$</div>
 </div>
 
 <div class="container">
-    
-    <div class="category-title">🔵 خدمات فيسبوك (Facebook)</div>
-    <div class="card"><h3>2676 - Facebook Followers | Non Drop ♻️</h3><span class="price">$0.45 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 2676" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>3330 - Group Members | Real 👥</h3><span class="price">$0.92 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 3330" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>5521 - Page Likes + Followers 🚩</h3><span class="price">$1.20 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 5521" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>1120 - Video Views | 60K Min 📺</h3><span class="price">$5.50</span><a href="https://wa.me/213000000000?text=طلب خدمة 1120" class="btn-order">اطلب الآن</a></div>
+    <div class="stats-grid">
+        <div class="stat-card"><h4>إجمالي الطلبات</h4><p id="total-orders">0</p></div>
+        <div class="stat-card"><h4>قيد التنفيذ</h4><p>0</p></div>
+        <div class="stat-card"><h4>حالة الحساب</h4><p style="color:green; font-size: 18px;">نشط</p></div>
+    </div>
 
-    <div class="category-title">⚫ خدمات تيك توك (TikTok)</div>
-    <div class="card"><h3>3338 - TikTok Followers | HQ Real ♻️</h3><span class="price">$1.00 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 3338" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>8387 - TikTok Views | SuperFast ⚡</h3><span class="price">$0.01 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 8387" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>4421 - TikTok Likes | No Drop ❤️</h3><span class="price">$0.35 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 4421" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>2290 - TikTok Shares | Viral 📈</h3><span class="price">$0.05 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 2290" class="btn-order">اطلب الآن</a></div>
+    <div class="main-content">
+        <div class="card">
+            <h2>🆕 طلب جديد</h2>
+            <form id="orderForm">
+                <label>اختر القسم:</label>
+                <select id="category">
+                    <option>فيسبوك - Facebook</option>
+                    <option>تيك توك - TikTok</option>
+                    <option>إنستغرام - Instagram</option>
+                </select>
 
-    <div class="category-title">📸 خدمات إنستغرام (Instagram)</div>
-    <div class="card"><h3>7820 - IG Followers | Lifetime ♻️</h3><span class="price">$0.85 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 7820" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>1022 - IG Likes | Real Accounts ❤️</h3><span class="price">$0.15 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 1022" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>5560 - IG Reels Views | Viral 🎥</h3><span class="price">$0.02 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 5560" class="btn-order">اطلب الآن</a></div>
+                <label>الخدمة:</label>
+                <select id="service">
+                    <option value="0.45">2676 - Facebook Followers [Non Drop] ($0.45)</option>
+                    <option value="1.00">3338 - TikTok Followers [HQ] ($1.00)</option>
+                    <option value="0.85">7820 - Instagram Followers [Stable] ($0.85)</option>
+                </select>
 
-    <div class="category-title">✈️ خدمات تليجرام (Telegram)</div>
-    <div class="card"><h3>9920 - Channel Members | No Drop ♻️</h3><span class="price">$1.10 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 9920" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>4410 - Telegram Post Views 👀</h3><span class="price">$0.02 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 4410" class="btn-order">اطلب الآن</a></div>
+                <label>الرابط:</label>
+                <input type="url" id="link" placeholder="https://..." required>
 
-    <div class="category-title">🛑 خدمات يوتيوب (YouTube)</div>
-    <div class="card"><h3>1102 - YouTube Subscribers | Stable 💎</h3><span class="price">$8.50 / 1k</span><a href="https://wa.me/213000000000?text=طلب خدمة 1102" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>5530 - Watch Time | 4000 Hours ⏳</h3><span class="price">$12.00</span><a href="https://wa.me/213000000000?text=طلب خدمة 5530" class="btn-order">اطلب الآن</a></div>
+                <label>الكمية:</label>
+                <input type="number" id="quantity" value="1000" min="100" required>
 
-    <div class="category-title">🎮 اشتراكات بريميوم وألعاب</div>
-    <div class="card"><h3>8607 - Netflix Premium | 4K UHD 🍿</h3><span class="price">$4.50 / Mo</span><a href="https://wa.me/213000000000?text=طلب نيتفليكس 8607" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>944 - Canva Pro | Lifetime 🎨</h3><span class="price">$0.40</span><a href="https://wa.me/213000000000?text=طلب كانفا 944" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>7721 - Spotify Premium | 3 Months 🎵</h3><span class="price">$2.99</span><a href="https://wa.me/213000000000?text=طلب سبوتيفاي" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>1190 - PUBG UC | 660 UC 🔫</h3><span class="price">$9.50</span><a href="https://wa.me/213000000000?text=طلب شدات ببجي" class="btn-order">اطلب الآن</a></div>
-    <div class="card"><h3>Free Fire - 1000 Diamonds 💎</h3><span class="price">$8.00</span><a href="https://wa.me/213000000000?text=طلب جواهر فري فاير" class="btn-order">اطلب الآن</a></div>
+                <button type="submit" class="btn-order">تأكيد الطلب</button>
+            </form>
+        </div>
 
+        <div class="card">
+            <h2>📜 آخر الحركات</h2>
+            <div id="logList" style="font-size: 12px; color: #666;">
+                لا توجد طلبات سابقة في هذه الجلسة.
+            </div>
+        </div>
+    </div>
+
+    <div class="order-history">
+        <h2 style="padding: 20px; margin: 0; font-size: 18px; border-bottom: 1px solid #eee;">سجل الطلبات</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>المعرف (ID)</th>
+                    <th>الخدمة</th>
+                    <th>الكمية</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+                </tbody>
+        </table>
+    </div>
 </div>
 
-<footer>
-    <p>جميع الحقوق محفوظة © لوحة كريم SMM 2026</p>
-    <p>تواصل معنا لأي استفسار عبر واتساب</p>
-</footer>
+<script>
+    const orderForm = document.getElementById('orderForm');
+    const orderTableBody = document.getElementById('orderTableBody');
+    const totalOrdersDisp = document.getElementById('total-orders');
+    let orderCount = 0;
+
+    orderForm.onsubmit = function(e) {
+        e.preventDefault();
+        orderCount++;
+        
+        const serviceName = document.getElementById('service').options[document.getElementById('service').selectedIndex].text;
+        const qty = document.getElementById('quantity').value;
+        const link = document.getElementById('link').value;
+        const id = Math.floor(Math.random() * 90000) + 10000;
+
+        // إضافة الطلب للجدول
+        const row = `<tr>
+            <td>#${id}</td>
+            <td>${serviceName}</td>
+            <td>${qty}</td>
+            <td><span class="status status-pending">قيد المعالجة</span></td>
+        </tr>`;
+        
+        orderTableBody.innerHTML = row + orderTableBody.innerHTML;
+        totalOrdersDisp.innerText = orderCount;
+
+        // إرسال للواتساب لإتمام البيع حقيقةً
+        const msg = `طلب جديد رقم: ${id}%0Aالخدمة: ${serviceName}%0Aالكمية: ${qty}%0Aالرابط: ${link}`;
+        window.open(`https://wa.me/213000000000?text=${msg}`, '_blank');
+        
+        alert("تم تسجيل الطلب في السجل! يرجى إتمام الدفع عبر الواتساب.");
+    };
+</script>
 
 </body>
-    </html>
-    
+</html>
