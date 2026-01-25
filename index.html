@@ -1,95 +1,102 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim SMM Panel | لوحة الخدمات الشاملة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --primary: #3b82f6; --dark: #0f172a; --card: #1e293b; --gold: #fbbf24; }
-        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; padding-bottom: 50px; }
-        .nav { background: #111827; padding: 25px; text-align: center; border-bottom: 3px solid var(--primary); font-size: 24px; font-weight: bold; color: var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .container { padding: 15px; max-width: 600px; margin: auto; }
-        .category { background: linear-gradient(90deg, #1e293b, #334155); padding: 12px; margin: 25px 0 12px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 12px; font-size: 18px; border-right: 5px solid var(--gold); }
-        .card { background: var(--card); padding: 18px; border-radius: 15px; margin-bottom: 12px; border: 1px solid #334155; position: relative; transition: 0.3s; }
-        .card:hover { border-color: var(--primary); transform: scale(1.02); }
-        .service-name { display: block; font-size: 14px; margin-bottom: 10px; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
-        .price { color: #10b981; font-weight: bold; font-size: 16px; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 5px; }
-        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 10px; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #2563eb; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
-        /* ألوان الأيقونات */
-        .fa-facebook { color: #1877f2; } .fa-tiktok { color: #ff0050; } .fa-instagram { color: #e4405f; }
-        .fa-telegram { color: #229ED9; } .fa-youtube { color: #ff0000; } .fa-gamepad { color: #10b981; }
-    </style>
-</head>
-<body>
+<?php
+/**
+ * نظام كريم تراز لإدارة خدمات السوشيال ميديا
+ * Karim Traz SMM API Client
+ */
 
-<div class="nav">💎 لوحة كريم الدولية SMM 💎</div>
+class KarimTrazApi
+{
+    /** رابط المزود الرسمي */
+    public $api_url = 'https://smmapro.com/api/v2';
 
-<div class="container">
+    /** مفتاح الـ API الخاص بك - ضعه بين الفاصلتين */
+    public $api_key = 'ضع_مفتاحك_هنا'; 
 
-    <div class="category"><i class="fab fa-facebook"></i> خدمات فيسبوك</div>
-    <div class="card">
-        <span class="service-name">متابعين بروفايل فيسبوك | ضمان مدى الحياة ♻️</span>
-        <span class="price">$0.45 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب فيسبوك 2676" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
-    <div class="card">
-        <span class="service-name">أعضاء مجموعات فيسبوك | جودة عالية</span>
-        <span class="price">$0.92 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب أعضاء فيسبوك 3330" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+    /** إضافة طلب جديد باسم كريم تراز */
+    public function order($data)
+    {
+        $post = array_merge(['key' => $this->api_key, 'action' => 'add'], $data);
+        return json_decode((string)$this->connect($post));
+    }
 
-    <div class="category"><i class="fab fa-tiktok"></i> خدمات تيك توك</div>
-    <div class="card">
-        <span class="service-name">متابعين تيك توك | حسابات حقيقية ⚡</span>
-        <span class="price">$1.00 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب تيك توك 3338" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
-    <div class="card">
-        <span class="service-name">مشاهدات تيك توك | سرعة صاروخية</span>
-        <span class="price">$0.01 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب مشاهدات تيك توك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+    /** فحص حالة الطلب عبر لوحة كريم */
+    public function status($order_id)
+    {
+        return json_decode(
+            $this->connect([
+                'key' => $this->api_key,
+                'action' => 'status',
+                'order' => $order_id
+            ])
+        );
+    }
 
-    <div class="category"><i class="fab fa-instagram"></i> خدمات انستقرام</div>
-    <div class="card">
-        <span class="service-name">متابعين انستقرام | ضمان وتعويض ♻️</span>
-        <span class="price">$0.85 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب انستقرام 7820" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+    /** فحص رصيدك الحالي في لوحة Karim Traz */
+    public function getMyBalance()
+    {
+        return json_decode(
+            $this->connect([
+                'key' => $this->api_key,
+                'action' => 'balance',
+            ])
+        );
+    }
 
-    <div class="category"><i class="fab fa-telegram"></i> خدمات تليجرام</div>
-    <div class="card">
-        <span class="service-name">أعضاء قنوات تليجرام | سرعة عالية</span>
-        <span class="price">$1.10 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب تليجرام 9920" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+    /** جلب قائمة خدمات كريم تراز */
+    public function services()
+    {
+        return json_decode(
+            $this->connect([
+                'key' => $this->api_key,
+                'action' => 'services',
+            ])
+        );
+    }
 
-    <div class="category"><i class="fab fa-youtube"></i> خدمات يوتيوب</div>
-    <div class="card">
-        <span class="service-name">مشتركين يوتيوب | حقيقي بدون نقص</span>
-        <span class="price">$9.00 / 1k</span>
-        <a href="https://wa.me/213000000000?text=طلب يوتيوب" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+    private function connect($post)
+    {
+        $_post = [];
+        if (is_array($post)) {
+            foreach ($post as $name => $value) {
+                $_post[] = $name . '=' . urlencode($value);
+            }
+        }
 
-    <div class="category"><i class="fas fa-tv"></i> اشتراكات نيتفليكس</div>
-    <div class="card">
-        <span class="service-name">Netflix Premium | 4K UHD | شهر كامل 🍿</span>
-        <span class="price">$4.50</span>
-        <a href="https://wa.me/213000000000?text=طلب نيتفليكس" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+        $ch = curl_init($this->api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-    <div class="category"><i class="fas fa-gamepad"></i> شحن ألعاب</div>
-    <div class="card">
-        <span class="service-name">شدات ببجي موبايل | 660 UC 🔫</span>
-        <span class="price">$9.50</span>
-        <a href="https://wa.me/213000000000?text=طلب شدات ببجي" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
-    </div>
+        if (is_array($post)) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, join('&', $_post));
+        }
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Karim Traz API Agent 1.0');
+        $result = curl_exec($ch);
+        if (curl_errno($ch) != 0 && empty($result)) {
+            $result = false;
+        }
+        curl_close($ch);
+        return $result;
+    }
+}
 
-    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 40px;">لوحة كريم الدولية © 2026</p>
-</div>
+// --- مثال على التشغيل بنظام كريم تراز ---
 
-</body>
-</html>
-٦
+$karimApi = new KarimTrazApi();
+
+// 1. جلب الرصيد
+$myBalance = $karimApi->getMyBalance();
+echo "رصيد لوحة كريم تراز الحالي هو: " . $myBalance->balance . " " . $myBalance->currency;
+
+// 2. إرسال طلب جديد تلقائياً
+/*
+$newOrder = $karimApi->order([
+    'service' => 1, // رقم الخدمة من الموقع المزود
+    'link' => 'https://facebook.com/karim.traz',
+    'quantity' => 100
+]);
+*/
+?>
