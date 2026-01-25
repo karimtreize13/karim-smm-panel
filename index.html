@@ -3,47 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karim SMM Panel</title>
+    <title>Karim SMM Panel | لوحة الخدمات الشاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #0f172a; color: white; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
-        .nav { background: #1e293b; padding: 20px; border-bottom: 2px solid #3b82f6; font-size: 22px; font-weight: bold; color: #3b82f6; }
-        .container { padding: 20px; max-width: 500px; margin: auto; }
-        .category { background: #1e293b; padding: 10px; margin: 20px 0 10px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #334155; }
-        .card { background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; text-align: right; }
-        .price { color: #10b981; font-weight: bold; float: left; }
-        .btn { display: block; background: #3b82f6; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 10px; font-weight: bold; text-align: center; }
+        :root { --primary: #3b82f6; --dark: #0f172a; --card: #1e293b; --gold: #fbbf24; }
+        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; padding-bottom: 50px; }
+        .nav { background: #111827; padding: 25px; text-align: center; border-bottom: 3px solid var(--primary); font-size: 24px; font-weight: bold; color: var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .category { background: linear-gradient(90deg, #1e293b, #334155); padding: 12px; margin: 25px 0 12px; border-radius: 10px; font-weight: bold; display: flex; align-items: center; gap: 12px; font-size: 18px; border-right: 5px solid var(--gold); }
+        .card { background: var(--card); padding: 18px; border-radius: 15px; margin-bottom: 12px; border: 1px solid #334155; position: relative; transition: 0.3s; }
+        .card:hover { border-color: var(--primary); transform: scale(1.02); }
+        .service-name { display: block; font-size: 14px; margin-bottom: 10px; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
+        .price { color: #10b981; font-weight: bold; font-size: 16px; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 5px; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 10px; margin-top: 15px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #2563eb; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        /* ألوان الأيقونات */
         .fa-facebook { color: #1877f2; } .fa-tiktok { color: #ff0050; } .fa-instagram { color: #e4405f; }
+        .fa-telegram { color: #229ED9; } .fa-youtube { color: #ff0000; } .fa-gamepad { color: #10b981; }
     </style>
 </head>
 <body>
 
-<div class="nav">💎 لوحة كريم SMM 💎</div>
+<div class="nav">💎 لوحة كريم الدولية SMM 💎</div>
 
 <div class="container">
+
     <div class="category"><i class="fab fa-facebook"></i> خدمات فيسبوك</div>
     <div class="card">
-        <span>متابعين فيسبوك ثابت</span>
-        <span class="price">$0.45</span>
-        <a href="https://wa.me/213000000000?text=طلب فيسبوك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+        <span class="service-name">متابعين بروفايل فيسبوك | ضمان مدى الحياة ♻️</span>
+        <span class="price">$0.45 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب فيسبوك 2676" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+    <div class="card">
+        <span class="service-name">أعضاء مجموعات فيسبوك | جودة عالية</span>
+        <span class="price">$0.92 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب أعضاء فيسبوك 3330" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
 
     <div class="category"><i class="fab fa-tiktok"></i> خدمات تيك توك</div>
     <div class="card">
-        <span>متابعين تيك توك حقيقي</span>
-        <span class="price">$1.00</span>
-        <a href="https://wa.me/213000000000?text=طلب تيك توك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+        <span class="service-name">متابعين تيك توك | حسابات حقيقية ⚡</span>
+        <span class="price">$1.00 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب تيك توك 3338" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+    <div class="card">
+        <span class="service-name">مشاهدات تيك توك | سرعة صاروخية</span>
+        <span class="price">$0.01 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب مشاهدات تيك توك" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
 
     <div class="category"><i class="fab fa-instagram"></i> خدمات انستقرام</div>
     <div class="card">
-        <span>متابعين انستقرام ضمان</span>
-        <span class="price">$0.85</span>
-        <a href="https://wa.me/213000000000?text=طلب انستقرام" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+        <span class="service-name">متابعين انستقرام | ضمان وتعويض ♻️</span>
+        <span class="price">$0.85 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب انستقرام 7820" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
     </div>
-    
-    <p style="font-size: 12px; color: #64748b; margin-top: 30px;">جميع الحقوق محفوظة © كريم 2026</p>
+
+    <div class="category"><i class="fab fa-telegram"></i> خدمات تليجرام</div>
+    <div class="card">
+        <span class="service-name">أعضاء قنوات تليجرام | سرعة عالية</span>
+        <span class="price">$1.10 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب تليجرام 9920" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+
+    <div class="category"><i class="fab fa-youtube"></i> خدمات يوتيوب</div>
+    <div class="card">
+        <span class="service-name">مشتركين يوتيوب | حقيقي بدون نقص</span>
+        <span class="price">$9.00 / 1k</span>
+        <a href="https://wa.me/213000000000?text=طلب يوتيوب" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+
+    <div class="category"><i class="fas fa-tv"></i> اشتراكات نيتفليكس</div>
+    <div class="card">
+        <span class="service-name">Netflix Premium | 4K UHD | شهر كامل 🍿</span>
+        <span class="price">$4.50</span>
+        <a href="https://wa.me/213000000000?text=طلب نيتفليكس" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+
+    <div class="category"><i class="fas fa-gamepad"></i> شحن ألعاب</div>
+    <div class="card">
+        <span class="service-name">شدات ببجي موبايل | 660 UC 🔫</span>
+        <span class="price">$9.50</span>
+        <a href="https://wa.me/213000000000?text=طلب شدات ببجي" class="btn"><i class="fab fa-whatsapp"></i> اطلب الآن</a>
+    </div>
+
+    <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 40px;">لوحة كريم الدولية © 2026</p>
 </div>
 
 </body>
 </html>
+٦
