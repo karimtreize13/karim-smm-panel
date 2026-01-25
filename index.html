@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 | المتجر المنظم</title>
+    <title>KARIMTREIZE13 | المتجر المتكامل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         :root { --primary: #2563eb; --dark: #0f172a; --gold: #fbbf24; --card-bg: #1e293b; }
@@ -11,15 +11,24 @@
         .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 25px; text-align: center; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .container { padding: 15px; max-width: 550px; margin: auto; }
 
-        /* تصميم الأقسام المنسدلة */
+        /* تنسيق الأقسام المنسدلة */
         .category-header { 
-            background: #1e293b; color: white; padding: 18px; border-radius: 12px; 
-            margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;
+            background: #1e293b; color: white; padding: 20px; border-radius: 12px; 
+            margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; border: 1px solid #334155; transition: 0.3s;
         }
-        .category-header:hover { border-color: var(--gold); }
-        .category-header i.fa-chevron-down { font-size: 14px; transition: 0.3s; color: var(--gold); }
-        .category-content { display: none; padding: 5px 0 15px; } /* الخدمات تكون مخفية في البداية */
+        .category-header:active { transform: scale(0.98); }
+        .category-header i.main-icon { font-size: 22px; margin-left: 15px; }
+        .category-header i.arrow { font-size: 14px; transition: 0.3s; color: var(--gold); }
+        .category-content { display: none; padding: 5px 0 15px; }
+
+        /* ألوان الأيقونات */
+        .fb-color { color: #1877f2; }
+        .tk-color { color: #ffffff; }
+        .ig-color { color: #e4405f; }
+        .yt-color { color: #ff0000; }
+        .tg-color { color: #0088cc; }
+        .other-color { color: var(--gold); }
 
         .service-card { background: rgba(255,255,255,0.03); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid #334155; border-right: 4px solid var(--primary); }
         .s-id { font-size: 10px; color: var(--gold); background: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
@@ -28,12 +37,12 @@
         .s-price { color: #4ade80; font-weight: bold; font-size: 15px; }
         .order-btn { background: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        .footer-text { text-align: center; margin-top: 50px; color: #64748b; font-size: 14px; }
+        .footer-text { text-align: center; margin-top: 50px; color: #64748b; font-size: 14px; padding: 20px; border-top: 1px solid #334155; }
 
         /* نافذة الطلب */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
         .modal-content { background: var(--card-bg); padding: 25px; border-radius: 20px; width: 85%; max-width: 360px; border: 1px solid var(--gold); }
-        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: white; text-align: center; box-sizing: border-box; }
+        input, select { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: white; text-align: center; box-sizing: border-box; font-size: 15px; }
         .confirm-btn { background: #10b981; color: white; border: none; padding: 14px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
@@ -48,43 +57,91 @@
 
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="modalTitle" style="color:var(--gold); text-align:center;">تفاصيل الطلب</h3>
-        <input type="email" id="userEmail" placeholder="البريد الإلكتروني (Gmail)" style="display:none;">
-        <input type="url" id="userLink" placeholder="الرابط هنا">
-        <input type="number" id="userQty" value="1000">
+        <h3 id="modalTitle" style="color:var(--gold); text-align:center; margin-top:0;">تفاصيل الطلب</h3>
+        <input type="email" id="userEmail" placeholder="البريد الإلكتروني (مطلوب للاشتراكات)" style="display:none;">
+        <input type="url" id="userLink" placeholder="ضع الرابط هنا">
+        <input type="number" id="userQty" placeholder="الكمية المطلوبة" value="1000">
         <select id="payMethod">
             <option value="BaridiMob">بريدي موب (BaridiMob)</option>
-            <option value="Binance">بينانس (USDT)</option>
-            <option value="Flexy">فليكسي (Flexy)</option>
+            <option value="RedotPay">ريدوت باي (RedotPay)</option>
+            <option value="Binance">بينانس (Binance Pay)</option>
+            <option value="Flexy">فليكسي (Flexy) - مؤقتاً حالياً</option>
         </select>
-        <button class="confirm-btn" onclick="sendToWA()">تأكيد الطلب</button>
-        <button class="confirm-btn" style="background:#ef4444; margin-top:8px;" onclick="closeM()">إلغاء</button>
+        <button class="confirm-btn" onclick="sendToWA()">إرسال الطلب للواتساب</button>
+        <button class="confirm-btn" style="background:#ef4444; margin-top:10px;" onclick="closeM()">إلغاء</button>
     </div>
 </div>
 
 <script>
     const data = [
-        { cat: "فيسبوك", icon: "fab fa-facebook", items: [
-            {id: 2676, n: "Facebook Followers | Non Drop | Lifetime ♻️", p: 0.446},
-            {id: 1974, n: "Facebook Followers | 365 Days Refill ♻️", p: 0.412},
-            {id: 3324, n: "Facebook Group Members | +50K/Day⚡", p: 0.5524}
-        ]},
-        { cat: "تيك توك", icon: "fab fa-tiktok", items: [
-            {id: 8109, n: "TikTok Followers | No Refill⚡", p: 0.1188},
+        { cat: "تيك توك", icon: "fab fa-tiktok", cls: "tk-color", items: [
+            {id: 8109, n: "TikTok Followers | Low Quality | No Refill⚡", p: 0.1188},
             {id: 3338, n: "TikTok Followers | HQ Real | Lifetime ♻️", p: 1.0},
-            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: 0.0090}
+            {id: 3340, n: "TikTok Followers | Perfect Quality | Lifetime ♻️", p: 0.984},
+            {id: 1507, n: "TikTok Followers | Low Quality | Instant⚡", p: 0.326},
+            {id: 3350, n: "TikTok Followers | UltraFast | No Refill⚡", p: 0.6725},
+            {id: 3810, n: "TikTok Followers | HQ Real | Lifetime⭐", p: 1.8424},
+            {id: 3231, n: "TikTok Followers | HQ Real | Lifetime⭐⚡", p: 2.08},
+            {id: 8120, n: "TikTok Likes | Low Quality | No Refill⚡", p: 0.888},
+            {id: 3348, n: "TikTok Likes | SuperInstant | Lifetime⚡", p: 0.999},
+            {id: 1972, n: "TikTok Likes | Instant | Lifetime⚡", p: 0.999},
+            {id: 8387, n: "TikTok Views | SuperInstant⚡", p: 0.0090},
+            {id: 6930, n: "TikTok Views | Superfast | No Refill⚡", p: 0.0100},
+            {id: 8345, n: "TikTok Live Likes | SuperInstant⭐", p: 0.0100},
+            {id: 6915, n: "TikTok Live Stream Likes | 0-10 Mins⭐", p: 0.0090},
+            {id: 1521, n: "TikTok Monetizable Followers | Real♻️⚡", p: 3.24},
+            {id: 3490, n: "TikTok Monetizable Views | Min 100K | Lifetime⭐", p: 0.0925},
+            {id: 3506, n: "TikTok Monetizable Views | Min 50K | Lifetime⭐", p: 0.0855}
         ]},
-        { cat: "انستقرام", icon: "fab fa-instagram", items: [
-            {id: 7820, n: "Instagram Followers | Lifetime ♻️", p: 1.0},
-            {id: 7790, n: "Instagram Likes | Real Old ⭐⚡", p: 1.156}
+        { cat: "فيسبوك", icon: "fab fa-facebook", cls: "fb-color", items: [
+            {id: 2676, n: "FB Followers | Non Drop | Lifetime ♻️⚡", p: 0.446},
+            {id: 1974, n: "FB Followers | 365 Days Refill ♻️⚡", p: 0.412},
+            {id: 3859, n: "FB Followers | Bots Quality | Lifetime ♻️⚡", p: 0.1248},
+            {id: 3858, n: "FB Followers | Bots | No Refill", p: 0.0883},
+            {id: 3324, n: "FB Group Members | +50K/Day | No Refill⚡", p: 0.5524},
+            {id: 3330, n: "FB Group Members | Real | 365 Days ♻️🔥", p: 0.92},
+            {id: 8395, n: "FB 60k Minutes | 10 Mins Video | Lifetime ♻️⚡", p: 0.954},
+            {id: 815, n: "FB 100k Reels Views Package🔥⚡♻️", p: 5.5988},
+            {id: 3315, n: "FB Post Likes 👍| HQ Real⚡", p: 0.74},
+            {id: 8755, n: "FB Post Reaction | Like 👍", p: 0.3332},
+            {id: 8756, n: "FB Post Reaction | Love❤️", p: 0.4332},
+            {id: 7592, n: "FB Views | Video/Reel | Lifetime⚡", p: 0.0150},
+            {id: 8610, n: "FB Views | Video/Reel | Lifetime ♻️🔥", p: 0.0222}
         ]},
-        { cat: "تيليجرام", icon: "fab fa-telegram", items: [
-            {id: 3428, n: "Telegram Members | HQ Real | Lifetime ♻️", p: 0.99},
-            {id: 7102, n: "Positive Reactions [👍❤️🔥]⚡", p: 0.12}
+        { cat: "انستقرام", icon: "fab fa-instagram", cls: "ig-color", items: [
+            {id: 7820, n: "IG Followers | Real Old | Lifetime ♻️⚡", p: 1.0},
+            {id: 1348, n: "IG Followers | Real Old | Lifetime ⭐⚡", p: 1.567},
+            {id: 3779, n: "IG Followers | Real Old | UltraFast ⭐♻️⚡", p: 2.056},
+            {id: 8801, n: "IG Likes | Real Old | No Refill⚡", p: 0.6331},
+            {id: 7869, n: "IG Likes | Real Old | Instant ⭐⚡", p: 0.222},
+            {id: 7790, n: "IG Likes | Real Old | Lifetime ⭐⚡", p: 1.156},
+            {id: 6441, n: "IG Views | All Links | Ultra Fast ⚡", p: 0.0099},
+            {id: 7788, n: "IG Views | All Links | Instant ⚡", p: 0.020}
         ]},
-        { cat: "يوتيوب واشتراكات", icon: "fas fa-gem", isSub: true, items: [
-            {id: 1539, n: "YouTube Subscribers | Lifetime ♻️", p: 21.62},
+        { cat: "يوتيوب", icon: "fab fa-youtube", cls: "yt-color", items: [
+            {id: 1539, n: "YT Subscribers | Speed 300/Day | Lifetime ♻️⚡", p: 21.62},
+            {id: 1563, n: "YT Subscribers | Speed 1K/Day | Lifetime ♻️⚡", p: 26.92},
+            {id: 1848, n: "YT Subscribers | 100% Real | Lifetime ⭐♻️⚡", p: 30.625},
+            {id: 3274, n: "YT Shorts Subscribers | Lifetime ♻️⚡", p: 18.82},
+            {id: 935, n: "YT Likes | Real | SuperFast⚡", p: 0.232},
+            {id: 7614, n: "YT Likes | HQ Real | Lifetime ⭐♻️⚡", p: 0.888},
+            {id: 8140, n: "YT Likes | Real Organic | Lifetime ⭐♻️⚡", p: 0.998},
+            {id: 3544, n: "YT Video / Shorts Views | Lifetime ⭐⚡", p: 1.0},
+            {id: 8413, n: "YT Views | External | Lifetime ⭐⚡", p: 2.02},
+            {id: 6275, n: "YT Earnings views | 0.1$ - 4$ Revenue", p: 3.1613}
+        ]},
+        { cat: "تليجرام", icon: "fab fa-telegram", cls: "tg-color", items: [
+            {id: 3428, n: "TG Members | HQ Real | Lifetime ⭐♻️⚡", p: 0.99},
+            {id: 7102, n: "TG Reactions Positive [👍❤️🔥🥰]", p: 0.12},
+            {id: 7103, n: "TG Reactions Negative [👎😢🤯🤬]", p: 0.12},
+            {id: 6805, n: "TG Post Views [1 Post]⭐⚡", p: 0.010},
+            {id: 7068, n: "TG View | Instant | No Refill ⭐⚡", p: 0.028}
+        ]},
+        { cat: "الاشتراكات والبرامج", icon: "fas fa-gem", cls: "other-color", isSub: true, items: [
             {id: 3407, n: "Gemini Pro | 2TB Storage | 12 Month", p: 5.23},
+            {id: 944, n: "Canva Premium | 1-3 Years", p: 0.40},
+            {id: 3343, n: "Blackblox AI Premium | 3 Month", p: 10.0},
+            {id: 3364, n: "CapCut Premium | Private | 1 Month", p: 5.0},
             {id: 8607, n: "Netflix Premium | 4K | 1 Month", p: 4.50}
         ]}
     ];
@@ -92,8 +149,8 @@
     function render() {
         document.getElementById('main-list').innerHTML = data.map((sec, index) => `
             <div class="category-header" onclick="toggleCat(${index})">
-                <span><i class="${sec.icon}" style="margin-left:10px;"></i> ${sec.cat}</span>
-                <i class="fas fa-chevron-down" id="icon-${index}"></i>
+                <span><i class="${sec.icon} main-icon ${sec.cls}"></i> ${sec.cat}</span>
+                <i class="fas fa-chevron-down arrow" id="icon-${index}"></i>
             </div>
             <div class="category-content" id="cat-${index}">
                 ${sec.items.map(s => `
@@ -102,7 +159,7 @@
                         <span class="s-name">${s.n}</span>
                         <div class="s-footer">
                             <span class="s-price">$${s.p}</span>
-                            <button class="order-btn" onclick="openM('${s.id}','${s.n}',${sec.isSub || false})">اطلب</button>
+                            <button class="order-btn" onclick="openM('${s.id}','${s.n}', ${sec.isSub || false})">اطلب</button>
                         </div>
                     </div>
                 `).join('')}
@@ -113,22 +170,20 @@
 
     function toggleCat(i) {
         const content = document.getElementById(`cat-${i}`);
-        const icon = document.getElementById(`icon-${i}`);
+        const arrow = document.getElementById(`icon-${i}`);
         const isVisible = content.style.display === "block";
-        
-        // إغلاق كل الأقسام الأخرى (اختياري)
         document.querySelectorAll('.category-content').forEach(c => c.style.display = "none");
-        document.querySelectorAll('.fa-chevron-down').forEach(ic => ic.style.transform = "rotate(0deg)");
-
+        document.querySelectorAll('.arrow').forEach(a => a.style.transform = "rotate(0deg)");
         if(!isVisible) {
             content.style.display = "block";
-            icon.style.transform = "rotate(180deg)";
+            arrow.style.transform = "rotate(180deg)";
         }
     }
 
     let aID="", aN="", aSub=false;
     function openM(id, n, sub) {
         aID=id; aN=n; aSub=sub;
+        document.getElementById('modalTitle').innerText = n;
         document.getElementById('userEmail').style.display = sub ? "block" : "none";
         document.getElementById('orderModal').style.display = 'flex';
     }
@@ -139,9 +194,12 @@
         const link = document.getElementById('userLink').value;
         const qty = document.getElementById('userQty').value;
         const pay = document.getElementById('payMethod').value;
-        if(!link || !qty) return alert("أكمل البيانات!");
-        let msg = `🚀 *طلب جديد*%0A📦 *الخدمة:* ${aN}%0A🆔 *المعرف:* ${aID}%0A🔗 *الرابط:* ${link}%0A🔢 *الكمية:* ${qty}%0A💳 *الدفع:* ${pay}`;
+        if(!link || !qty) return alert("يرجى إدخال الرابط والكمية!");
+        if(aSub && !email) return alert("يرجى إدخال البريد الإلكتروني لهذا الطلب!");
+
+        let msg = `🚀 *طلب جديد KARIMTREIZE13*%0A📦 *الخدمة:* ${aN}%0A🆔 *المعرف:* ${aID}%0A🔗 *الرابط:* ${link}%0A🔢 *الكمية:* ${qty}%0A💳 *الدفع:* ${pay}`;
         if(aSub) msg += `%0A📧 *البريد:* ${email}`;
+        
         window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
         closeM();
     }
