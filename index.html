@@ -1,281 +1,280 @@
-‎<!DOCTYPE html>
-‎<html lang="ar" dir="rtl">
-‎<head>
-‎    <meta charset="UTF-8">
-‎    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎    <title>KARIMTREIZE13 PANEL</title>
-‎    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-‎    <style>
-‎        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
-‎        body.theme-blue { --primary: #2563eb; }
-‎        body.theme-yellow { --primary: #fbbf24; }
-‎        body.theme-white { --primary: #ffffff; }
-‎        body.theme-green { --primary: #00ff88; }
-‎        
-‎        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 50px; }
-‎        
-‎        .top-bar { position: sticky; top: 0; z-index: 1000; background: #000; border-bottom: 1px solid #222; }
-‎        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #111; }
-‎        .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
-‎        .l-btn { background: none; border: 1px solid #333; color: #fff; padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
-‎
-‎        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; }
-‎        .logo { font-weight: 900; font-size: 22px; }
-‎        .logo span { color: var(--primary); }
-‎
-‎        .search-container { padding: 15px; }
-‎        .search-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #111; color: white; box-sizing: border-box; outline: none; }
-‎
-‎        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
-‎        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
-‎        .tab i { color: var(--icon-blue); } /* الأيقونات زرقاء */
-‎        .tab.active { background: var(--primary); color: #000; font-weight: bold; }
-‎        .tab.active i { color: #000; }
-‎
-‎        .services-grid { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
-‎        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); }
-‎        .srv-name { display: block; font-size: 13px; line-height: 1.6; text-align: left; direction: ltr; margin-bottom: 10px; }
-‎        .srv-footer { display: flex; justify-content: flex-end; }
-‎        .btn-order { background: var(--primary); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
-‎
-‎        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
-‎        .modal-box { background: #0a0a0a; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); }
-‎        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
-‎        .price-box { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
-‎        .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
-‎        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
-‎    </style>
-‎</head>
-‎<body class="theme-yellow">
-‎
-‎<div class="top-bar">
-‎    <div class="theme-bar">
-‎        <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
-‎        <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
-‎        <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
-‎        <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
-‎    </div>
-‎    <div class="lang-bar">
-‎        <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
-‎        <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
-‎    </div>
-‎</div>
-‎
-‎<nav class="navbar">
-‎    <div class="logo">KARIM<span>TREIZE13</span></div>
-‎    <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
-‎</nav>
-‎
-‎<div class="search-container">
-‎    <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة... / Rechercher...">
-‎</div>
-‎
-‎<div class="tabs" id="tabsList">
-‎    <div class="tab active" data-cat="All" onclick="filterCat('All', this)"><i class="fas fa-globe"></i> <span class="t-text">الكل</span></div>
-‎    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)"><i class="fab fa-facebook"></i> Facebook</div>
-‎    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
-‎    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)"><i class="fab fa-instagram"></i> Instagram</div>
-‎    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)"><i class="fab fa-youtube"></i> YouTube</div>
-‎    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)"><i class="fab fa-telegram"></i> Telegram</div>
-‎    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)"><i class="fas fa-star"></i> <span class="p-text">المميز</span></div>
-‎</div>
-‎
-‎<div class="services-grid" id="container"></div>
-‎
-‎<div id="modal" class="modal">
-‎    <div class="modal-box">
-‎        <h3 id="mTitle" style="font-size: 14px; text-align: center; color: var(--primary);"></h3>
-‎        <input type="url" id="mLink" placeholder="Link">
-‎        <div id="emailBox" style="display:none;"><input type="email" id="mEmail" placeholder="Email"></div>
-‎        <div id="qtyBox">
-‎            <label id="lblQty" style="font-size: 11px; color: #888;">الكمية:</label>
-‎            <input type="number" id="mQty" value="1000" oninput="doCalc()">
-‎        </div>
-‎        <div class="price-box"><span id="lblTotal">الإجمالي:</span> <br><span class="total-val" id="totalDisplay">$0.00</span></div>
-‎        <select id="mPay" onchange="showPayDetails(this.value)">
-‎            <option value="" id="optPay">-- الدفع --</option>
-‎            <option value="BaridiMob">BaridiMob</option>
-‎            <option value="RedotPay">RedotPay</option>
-‎            <option value="Binance">Binance</option>
-‎        </select>
-‎        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:#001a33; border-radius:10px; margin:10px 0;">
-‎            <span id="lblPayNum" style="font-size:11px; color:#aaa;">رقم الحساب:</span><br>
-‎            <strong id="payNumber" style="color:var(--primary);"></strong>
-‎        </div>
-‎        <button class="btn-send" id="btnSend" onclick="sendWA()">تأكيد الطلب</button>
-‎        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
-‎    </div>
-‎</div>
-‎
-‎<script>
-‎    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
-‎    let currentLang = 'ar';
-‎    let activeCat = 'All';
-‎
-‎    const TRANSLATIONS = {
-‎        ar: { all: "الكل", premium: "المميز", order: "طلب", qty: "الكمية:", total: "الإجمالي:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)" },
-‎        fr: { all: "Tout", premium: "Premium", order: "Commander", qty: "Quantité:", total: "Total:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)" }
-‎    };
-‎
-‎    const SERVICES = [
-‎        // الخدمة المحدثة بناءً على طلبك
-‎        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | Instant | UltraFast | +100K/Day | Lifetime Refill⭐⚡", p: 1.8424},
-‎        // باقي الخدمات (يمكنك لصق بقية الـ 72 خدمة هنا بنفس الصيغة)
-‎        {id: 2676, cat: "Facebook", n: "FB Facebook Followers | Non Drop | Lifetime ♻️", p: 0.44},
-‎        {id: 1974, cat: "Facebook", n: "FB Facebook Followers | 365 Days Refill ♻️", p: 0.41},
-‎        {id: 3859, cat: "Facebook", n: "FB Facebook Followers | Bots | Lifetime ♻️", p: 0.12},
-‎        {id: 3858, cat: "Facebook", n: "FB Facebook Followers | Bots | No Refill", p: 0.08},
-‎        {id: 3324, cat: "Facebook", n: "FB Facebook FB Members | Low Drop", p: 0.55},
-‎        {id: 3330, cat: "Facebook", n: "FB Facebook Group Members | Real | 365 Days ♻️", p: 0.92},
-‎        {id: 8395, cat: "Facebook", n: "FB Facebook n60k Minutes | 10 Mins Video ♻️", p: 0.95},
-‎        {id: 815, cat: "Facebook", n: "FB Facebook100k Reels Views | 30 Days ♻️", p: 5.59},
-‎        {id: 3315, cat: "Facebook", n: "FB FacebookPost Likes | HQ Real Profiles ⚡", p: 0.74},
-‎        {id: 8755, cat: "Facebook", n: "FBFacebookPost Reaction | Like 👍", p: 0.33},
-‎        {id: 8756, cat: "Facebook", n: "FB FacebookPost Reaction | Love❤️", p: 0.43},
-‎        {id: 7592, cat: "Facebook", n: "FBFacebook Watch video | Lifetime ♻️", p: 0.99},
-‎        {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality", p: 0.11},
-‎        {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime ♻️", p: 1.00},
-‎        {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect | Lifetime ♻️", p: 0.98},
-‎        {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery", p: 0.32},
-‎        {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast", p: 0.67},
-‎        {id: 3231, cat: "TikTok", n: "Tiktok Followers | Non Drop | Lifetime ♻️", p: 2.08},
-‎        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", p: 0.88},
-‎        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", p: 0.99},
-‎        {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime ♻️", p: 0.99},
-‎        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day", p: 0.009},
-‎        {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast", p: 0.09},
-‎        {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant ⭐", p: 0.10},
-‎        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", p: 0.009},
-‎        {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️", p: 3.24},
-‎        {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views | Non Drop | Lifetime ♻️", p: 1.0325},
-‎        {id: 7820, cat: "Instagram", n: "IG Followers | Real Old | Lifetime ♻️", p: 1.00},
-‎        {id: 1348, cat: "Instagram", n: "IG Followers | Real Old | SuperFast ⭐", p: 1.56},
-‎        {id: 3779, cat: "Instagram", n: "IG Followers | UltraFast | Lifetime ♻️", p: 2.05},
-‎        {id: 8801, cat: "Instagram", n: "IG Likes | Real Old | No Refill", p: 0.63},
-‎        {id: 7869, cat: "Instagram", n: "IG Likes | Instant Delivery", p: 0.22},
-‎        {id: 7790, cat: "Instagram", n: "IG Likes | Real Old | Lifetime ♻️", p: 1.15},
-‎        {id: 6441, cat: "Instagram", n: "IG Views | Ultra Fast | No Refill", p: 0.009},
-‎        {id: 7788, cat: "Instagram", n: "IG Views | Instant | No Refill", p: 0.02},
-‎        {id: 5501, cat: "Instagram", n: "IG Story Views | HQ Fast ⚡", p: 0.15},
-‎        {id: 5502, cat: "Instagram", n: "IG Comments | Arab Mix Profiles 🌍", p: 4.80},
-‎        {id: 5503, cat: "Instagram", n: "IG Save + Share | Engagement 🚀", p: 0.22},
-‎        {id: 5504, cat: "Instagram", n: "IG Profile Visits | Real Accounts", p: 0.55},
-‎        {id: 1539, cat: "YouTube", n: "YT Subscribers | Non Drop | Lifetime ♻️", p: 21.62},
-‎        {id: 1563, cat: "YouTube", n: "YT Subscribers + Extra | 1K/Day ♻️", p: 26.92},
-‎        {id: 1848, cat: "YouTube", n: "YT Subscribers | Real | Lifetime ♻️", p: 30.62},
-‎        {id: 3274, cat: "YouTube", n: "YT Shorts Subscribers | Non Drop ♻️", p: 18.82},
-‎        {id: 935, cat: "YouTube", n: "YT Likes | Real | SuperFast", p: 0.23},
-‎        {id: 7614, cat: "YouTube", n: "YT Likes | HQ Real | Lifetime ♻️", p: 0.88},
-‎        {id: 8140, cat: "YouTube", n: "YT Likes | Organic | Lifetime ♻️", p: 0.99},
-‎        {id: 3544, cat: "YouTube", n: "YT Video/Shorts Views | Lifetime ♻️", p: 1.00},
-‎        {id: 8413, cat: "YouTube", n: "YT Views + Extra | External | Lifetime", p: 2.02},
-‎        {id: 6275, cat: "YouTube", n: "YT Earnings views | Revenue Speed", p: 3.16},
-‎        {id: 4401, cat: "YouTube", n: "YT WatchTime 4000 Hours | Guaranteed", p: 36.50},
-‎        {id: 4402, cat: "YouTube", n: "YT WatchTime 1000 Hours | Guaranteed", p: 10.20},
-‎        {id: 1874, cat: "YouTube", n: "YTSubscribers + Extra | Real | Lifetime ♻️", p: 33.084},
-‎        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime ♻️", p: 1.09},
-‎        {id: 7102, cat: "Telegram", n: "Telegram Reactions Positive [👍❤️🔥]", p: 0.90},
-‎        {id: 7103, cat: "Telegram", n: "Telegram Reactions Negative [👎😢🤯]", p: 0.80},
-‎        {id: 6805, cat: "Telegram", n: "Telegram Post Views | Superfast ⭐", p: 0.99},
-‎        {id: 7068, cat: "Telegram", n: "Telegram View | Instant | +200K/Day", p: 0.99},
-‎        {id: 2201, cat: "Telegram", n: "Telegram Arab Members | Real Mix 🌍", p: 5.50},
-‎        {id: 2202, cat: "Telegram", n: "Telegram Group Scraper Members", p: 3.10},
-‎        {id: 2203, cat: "Telegram", n: "Telegram Poll Votes | Fast ✅", p: 0.45},
-‎        {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts", p: 1.10},
-‎        {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop", p: 13.90},
-‎        {id: 2206, cat: "Telegram", n: "Telegram Comments | High Quality", p: 3.90},
-‎        {id: 3407, cat: "Premium", n: " Gemini Pro | Google Storage 2048GB | 12 Month ", p: 6.23},
-‎        {id: 944, cat: "Premium", n: "Canva Pro | 1-3 Years Package", p: 0.99},
-‎        {id: 3343, cat: "Premium", n: "Blackblox AI | 3 Month Access", p: 15.00},
-‎        {id: 3364, cat: "Premium", n: "CapCut Pro | 1 Month Account", p: 5.00},
-‎        {id: 8607, cat: "Premium", n: "Netflix Premium | 1 Month 4K", p: 4.50},
-‎        {id: 1101, cat: "Premium", n: "Spotify Premium | 3 Month", p: 6.00},
-‎        {id: 1102, cat: "Premium", n: "Windows 11 Pro Key", p: 3.20},
-‎        {id: 1103, cat: "Premium", n: "Office 2021 Pro Key", p: 4.10},
-‎        {id: 1104, cat: "Premium", n: "IPTV Gold | 12 Month", p: 16.00},
-‎        {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private", p: 5.00}
-‎    ];
-‎
-‎    function render(data) {
-‎        document.getElementById('container').innerHTML = data.map(s => `
-‎            <div class="service-card">
-‎                <span class="srv-name">${s.id} - ${s.n} - $${s.p} per 1000</span>
-‎                <div class="srv-footer">
-‎                    <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
-‎                </div>
-‎            </div>
-‎        `).join('');
-‎    }
-‎
-‎    function searchSrv() {
-‎        const term = document.getElementById('srvSearch').value.toLowerCase();
-‎        let filtered = SERVICES;
-‎        if(activeCat !== 'All') filtered = filtered.filter(s => s.cat === activeCat);
-‎        render(filtered.filter(s => s.n.toLowerCase().includes(term) || s.id.toString().includes(term)));
-‎    }
-‎
-‎    function changeLang(lang) {
-‎        currentLang = lang;
-‎        document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
-‎        const t = TRANSLATIONS[lang];
-‎        document.querySelector('.t-text').innerText = t.all;
-‎        document.querySelector('.p-text').innerText = t.premium;
-‎        document.getElementById('srvSearch').placeholder = t.search;
-‎        document.getElementById('lblQty').innerText = t.qty;
-‎        document.getElementById('lblTotal').innerText = t.total;
-‎        document.getElementById('optPay').innerText = t.payOpt;
-‎        document.getElementById('btnSend').innerText = t.confirm;
-‎        document.getElementById('btnCancel').innerText = t.cancel;
-‎        document.getElementById('mLink').placeholder = t.link;
-‎        render(activeCat === 'All' ? SERVICES : SERVICES.filter(s => s.cat === activeCat));
-‎    }
-‎
-‎    function filterCat(c, b) {
-‎        activeCat = c;
-‎        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-‎        b.classList.add('active');
-‎        searchSrv();
-‎    }
-‎
-‎    function openM(id) {
-‎        current = SERVICES.find(s => s.id === id);
-‎        document.getElementById('mTitle').innerText = `${current.id} - ${current.n}`;
-‎        const isP = current.cat === "Premium";
-‎        document.getElementById('emailBox').style.display = isP ? 'block' : 'none';
-‎        document.getElementById('qtyBox').style.display = isP ? 'none' : 'block';
-‎        document.getElementById('mQty').value = isP ? 1 : 1000;
-‎        document.getElementById('mPay').value = "";
-‎        document.getElementById('paymentInfo').style.display = "none";
-‎        doCalc();
-‎        document.getElementById('modal').style.display = 'flex';
-‎    }
-‎
-‎    function doCalc() {
-‎        const q = document.getElementById('mQty').value || 0;
-‎        let total = (current.cat === "Premium") ? (current.p * q) : (current.p / 1000 * q);
-‎        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(4);
-‎    }
-‎
-‎    function showPayDetails(val) {
-‎        const info = document.getElementById('paymentInfo');
-‎        const num = document.getElementById('payNumber');
-‎        if(val && WALLETS[val]) { info.style.display = "block"; num.innerText = WALLETS[val]; }
-‎        else { info.style.display = "none"; }
-‎    }
-‎
-‎    function sendWA() {
-‎        const link = document.getElementById('mLink').value;
-‎        const pay = document.getElementById('mPay').value;
-‎        if(!link || !pay) return alert("Error!");
-‎        const msg = `🚀 *طلب جديد*%0A*ID:* ${current.id}%0A*الخدمة:* ${current.n}%0A*الرابط:* ${link}%0A*الإجمالي:* ${document.getElementById('totalDisplay').innerText}%0A*الدفع:* ${pay}`;
-‎        window.open(`https://wa.me/213656251947?text=${msg}`);
-‎    }
-‎
-‎    function setTheme(t) { document.body.className = 'theme-' + t; }
-‎    function closeM() { document.getElementById('modal').style.display = 'none'; }
-‎
-‎    render(SERVICES);
-‎</script>
-‎</body>
-‎</html>
-‎
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARIMTREIZE13 PANEL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
+        body.theme-blue { --primary: #2563eb; }
+        body.theme-yellow { --primary: #fbbf24; }
+        body.theme-white { --primary: #ffffff; }
+        body.theme-green { --primary: #00ff88; }
+        
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 50px; }
+        
+        .top-bar { position: sticky; top: 0; z-index: 1000; background: #000; border-bottom: 1px solid #222; }
+        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #111; }
+        .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
+        .l-btn { background: none; border: 1px solid #333; color: #fff; padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+
+        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; }
+        .logo { font-weight: 900; font-size: 22px; }
+        .logo span { color: var(--primary); }
+
+        .search-container { padding: 15px; }
+        .search-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #111; color: white; box-sizing: border-box; outline: none; }
+
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
+        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .tab i { color: var(--icon-blue); } /* الأيقونات زرقاء */
+        .tab.active { background: var(--primary); color: #000; font-weight: bold; }
+        .tab.active i { color: #000; }
+
+        .services-grid { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); }
+        .srv-name { display: block; font-size: 13px; line-height: 1.6; text-align: left; direction: ltr; margin-bottom: 10px; }
+        .srv-footer { display: flex; justify-content: flex-end; }
+        .btn-order { background: var(--primary); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
+
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
+        .modal-box { background: #0a0a0a; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
+        .price-box { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
+        .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
+        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body class="theme-yellow">
+
+<div class="top-bar">
+    <div class="theme-bar">
+        <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
+        <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
+        <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
+        <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
+    </div>
+    <div class="lang-bar">
+        <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
+        <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="logo">KARIM<span>TREIZE13</span></div>
+    <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
+</nav>
+
+<div class="search-container">
+    <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة... / Rechercher...">
+</div>
+
+<div class="tabs" id="tabsList">
+    <div class="tab active" data-cat="All" onclick="filterCat('All', this)"><i class="fas fa-globe"></i> <span class="t-text">الكل</span></div>
+    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)"><i class="fab fa-facebook"></i> Facebook</div>
+    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
+    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)"><i class="fab fa-instagram"></i> Instagram</div>
+    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)"><i class="fab fa-youtube"></i> YouTube</div>
+    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)"><i class="fab fa-telegram"></i> Telegram</div>
+    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)"><i class="fas fa-star"></i> <span class="p-text">المميز</span></div>
+</div>
+
+<div class="services-grid" id="container"></div>
+
+<div id="modal" class="modal">
+    <div class="modal-box">
+        <h3 id="mTitle" style="font-size: 14px; text-align: center; color: var(--primary);"></h3>
+        <input type="url" id="mLink" placeholder="Link">
+        <div id="emailBox" style="display:none;"><input type="email" id="mEmail" placeholder="Email"></div>
+        <div id="qtyBox">
+            <label id="lblQty" style="font-size: 11px; color: #888;">الكمية:</label>
+            <input type="number" id="mQty" value="1000" oninput="doCalc()">
+        </div>
+        <div class="price-box"><span id="lblTotal">الإجمالي:</span> <br><span class="total-val" id="totalDisplay">$0.00</span></div>
+        <select id="mPay" onchange="showPayDetails(this.value)">
+            <option value="" id="optPay">-- الدفع --</option>
+            <option value="BaridiMob">BaridiMob</option>
+            <option value="RedotPay">RedotPay</option>
+            <option value="Binance">Binance</option>
+        </select>
+        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:#001a33; border-radius:10px; margin:10px 0;">
+            <span id="lblPayNum" style="font-size:11px; color:#aaa;">رقم الحساب:</span><br>
+            <strong id="payNumber" style="color:var(--primary);"></strong>
+        </div>
+        <button class="btn-send" id="btnSend" onclick="sendWA()">تأكيد الطلب</button>
+        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
+    </div>
+</div>
+
+<script>
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
+    let currentLang = 'ar';
+    let activeCat = 'All';
+
+    const TRANSLATIONS = {
+        ar: { all: "الكل", premium: "المميز", order: "طلب", qty: "الكمية:", total: "الإجمالي:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)" },
+        fr: { all: "Tout", premium: "Premium", order: "Commander", qty: "Quantité:", total: "Total:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)" }
+    };
+
+    const SERVICES = [
+        // الخدمة المحدثة بناءً على طلبك
+        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | Instant | UltraFast | +100K/Day | Lifetime Refill⭐⚡", p: 1.8424},
+        // باقي الخدمات (يمكنك لصق بقية الـ 72 خدمة هنا بنفس الصيغة)
+        {id: 2676, cat: "Facebook", n: "FB Facebook Followers | Non Drop | Lifetime ♻️", p: 0.44},
+        {id: 1974, cat: "Facebook", n: "FB Facebook Followers | 365 Days Refill ♻️", p: 0.41},
+        {id: 3859, cat: "Facebook", n: "FB Facebook Followers | Bots | Lifetime ♻️", p: 0.12},
+        {id: 3858, cat: "Facebook", n: "FB Facebook Followers | Bots | No Refill", p: 0.08},
+        {id: 3324, cat: "Facebook", n: "FB Facebook FB Members | Low Drop", p: 0.55},
+        {id: 3330, cat: "Facebook", n: "FB Facebook Group Members | Real | 365 Days ♻️", p: 0.92},
+        {id: 8395, cat: "Facebook", n: "FB Facebook n60k Minutes | 10 Mins Video ♻️", p: 0.95},
+        {id: 815, cat: "Facebook", n: "FB Facebook100k Reels Views | 30 Days ♻️", p: 5.59},
+        {id: 3315, cat: "Facebook", n: "FB FacebookPost Likes | HQ Real Profiles ⚡", p: 0.74},
+        {id: 8755, cat: "Facebook", n: "FBFacebookPost Reaction | Like 👍", p: 0.33},
+        {id: 8756, cat: "Facebook", n: "FB FacebookPost Reaction | Love❤️", p: 0.43},
+        {id: 7592, cat: "Facebook", n: "FBFacebook Watch video | Lifetime ♻️", p: 0.99},
+        {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality", p: 0.11},
+        {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime ♻️", p: 1.00},
+        {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect | Lifetime ♻️", p: 0.98},
+        {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery", p: 0.32},
+        {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast", p: 0.67},
+        {id: 3231, cat: "TikTok", n: "Tiktok Followers | Non Drop | Lifetime ♻️", p: 2.08},
+        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", p: 0.88},
+        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", p: 0.99},
+        {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime ♻️", p: 0.99},
+        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day", p: 0.009},
+        {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast", p: 0.09},
+        {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant ⭐", p: 0.10},
+        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", p: 0.009},
+        {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️", p: 3.24},
+        {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views | Non Drop | Lifetime ♻️", p: 1.0325},
+        {id: 7820, cat: "Instagram", n: "IG Followers | Real Old | Lifetime ♻️", p: 1.00},
+        {id: 1348, cat: "Instagram", n: "IG Followers | Real Old | SuperFast ⭐", p: 1.56},
+        {id: 3779, cat: "Instagram", n: "IG Followers | UltraFast | Lifetime ♻️", p: 2.05},
+        {id: 8801, cat: "Instagram", n: "IG Likes | Real Old | No Refill", p: 0.63},
+        {id: 7869, cat: "Instagram", n: "IG Likes | Instant Delivery", p: 0.22},
+        {id: 7790, cat: "Instagram", n: "IG Likes | Real Old | Lifetime ♻️", p: 1.15},
+        {id: 6441, cat: "Instagram", n: "IG Views | Ultra Fast | No Refill", p: 0.009},
+        {id: 7788, cat: "Instagram", n: "IG Views | Instant | No Refill", p: 0.02},
+        {id: 5501, cat: "Instagram", n: "IG Story Views | HQ Fast ⚡", p: 0.15},
+        {id: 5502, cat: "Instagram", n: "IG Comments | Arab Mix Profiles 🌍", p: 4.80},
+        {id: 5503, cat: "Instagram", n: "IG Save + Share | Engagement 🚀", p: 0.22},
+        {id: 5504, cat: "Instagram", n: "IG Profile Visits | Real Accounts", p: 0.55},
+        {id: 1539, cat: "YouTube", n: "YT Subscribers | Non Drop | Lifetime ♻️", p: 21.62},
+        {id: 1563, cat: "YouTube", n: "YT Subscribers + Extra | 1K/Day ♻️", p: 26.92},
+        {id: 1848, cat: "YouTube", n: "YT Subscribers | Real | Lifetime ♻️", p: 30.62},
+        {id: 3274, cat: "YouTube", n: "YT Shorts Subscribers | Non Drop ♻️", p: 18.82},
+        {id: 935, cat: "YouTube", n: "YT Likes | Real | SuperFast", p: 0.23},
+        {id: 7614, cat: "YouTube", n: "YT Likes | HQ Real | Lifetime ♻️", p: 0.88},
+        {id: 8140, cat: "YouTube", n: "YT Likes | Organic | Lifetime ♻️", p: 0.99},
+        {id: 3544, cat: "YouTube", n: "YT Video/Shorts Views | Lifetime ♻️", p: 1.00},
+        {id: 8413, cat: "YouTube", n: "YT Views + Extra | External | Lifetime", p: 2.02},
+        {id: 6275, cat: "YouTube", n: "YT Earnings views | Revenue Speed", p: 3.16},
+        {id: 4401, cat: "YouTube", n: "YT WatchTime 4000 Hours | Guaranteed", p: 36.50},
+        {id: 4402, cat: "YouTube", n: "YT WatchTime 1000 Hours | Guaranteed", p: 10.20},
+        {id: 1874, cat: "YouTube", n: "YTSubscribers + Extra | Real | Lifetime ♻️", p: 33.084},
+        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime ♻️", p: 1.09},
+        {id: 7102, cat: "Telegram", n: "Telegram Reactions Positive [👍❤️🔥]", p: 0.90},
+        {id: 7103, cat: "Telegram", n: "Telegram Reactions Negative [👎😢🤯]", p: 0.80},
+        {id: 6805, cat: "Telegram", n: "Telegram Post Views | Superfast ⭐", p: 0.99},
+        {id: 7068, cat: "Telegram", n: "Telegram View | Instant | +200K/Day", p: 0.99},
+        {id: 2201, cat: "Telegram", n: "Telegram Arab Members | Real Mix 🌍", p: 5.50},
+        {id: 2202, cat: "Telegram", n: "Telegram Group Scraper Members", p: 3.10},
+        {id: 2203, cat: "Telegram", n: "Telegram Poll Votes | Fast ✅", p: 0.45},
+        {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts", p: 1.10},
+        {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop", p: 13.90},
+        {id: 2206, cat: "Telegram", n: "Telegram Comments | High Quality", p: 3.90},
+        {id: 3407, cat: "Premium", n: " Gemini Pro | Google Storage 2048GB | 12 Month ", p: 6.23},
+        {id: 944, cat: "Premium", n: "Canva Pro | 1-3 Years Package", p: 0.99},
+        {id: 3343, cat: "Premium", n: "Blackblox AI | 3 Month Access", p: 15.00},
+        {id: 3364, cat: "Premium", n: "CapCut Pro | 1 Month Account", p: 5.00},
+        {id: 8607, cat: "Premium", n: "Netflix Premium | 1 Month 4K", p: 4.50},
+        {id: 1101, cat: "Premium", n: "Spotify Premium | 3 Month", p: 6.00},
+        {id: 1102, cat: "Premium", n: "Windows 11 Pro Key", p: 3.20},
+        {id: 1103, cat: "Premium", n: "Office 2021 Pro Key", p: 4.10},
+        {id: 1104, cat: "Premium", n: "IPTV Gold | 12 Month", p: 16.00},
+        {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private", p: 5.00}
+    ];
+
+    function render(data) {
+        document.getElementById('container').innerHTML = data.map(s => `
+            <div class="service-card">
+                <span class="srv-name">${s.id} - ${s.n} - $${s.p} per 1000</span>
+                <div class="srv-footer">
+                    <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function searchSrv() {
+        const term = document.getElementById('srvSearch').value.toLowerCase();
+        let filtered = SERVICES;
+        if(activeCat !== 'All') filtered = filtered.filter(s => s.cat === activeCat);
+        render(filtered.filter(s => s.n.toLowerCase().includes(term) || s.id.toString().includes(term)));
+    }
+
+    function changeLang(lang) {
+        currentLang = lang;
+        document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+        const t = TRANSLATIONS[lang];
+        document.querySelector('.t-text').innerText = t.all;
+        document.querySelector('.p-text').innerText = t.premium;
+        document.getElementById('srvSearch').placeholder = t.search;
+        document.getElementById('lblQty').innerText = t.qty;
+        document.getElementById('lblTotal').innerText = t.total;
+        document.getElementById('optPay').innerText = t.payOpt;
+        document.getElementById('btnSend').innerText = t.confirm;
+        document.getElementById('btnCancel').innerText = t.cancel;
+        document.getElementById('mLink').placeholder = t.link;
+        render(activeCat === 'All' ? SERVICES : SERVICES.filter(s => s.cat === activeCat));
+    }
+
+    function filterCat(c, b) {
+        activeCat = c;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        b.classList.add('active');
+        searchSrv();
+    }
+
+    function openM(id) {
+        current = SERVICES.find(s => s.id === id);
+        document.getElementById('mTitle').innerText = `${current.id} - ${current.n}`;
+        const isP = current.cat === "Premium";
+        document.getElementById('emailBox').style.display = isP ? 'block' : 'none';
+        document.getElementById('qtyBox').style.display = isP ? 'none' : 'block';
+        document.getElementById('mQty').value = isP ? 1 : 1000;
+        document.getElementById('mPay').value = "";
+        document.getElementById('paymentInfo').style.display = "none";
+        doCalc();
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function doCalc() {
+        const q = document.getElementById('mQty').value || 0;
+        let total = (current.cat === "Premium") ? (current.p * q) : (current.p / 1000 * q);
+        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(4);
+    }
+
+    function showPayDetails(val) {
+        const info = document.getElementById('paymentInfo');
+        const num = document.getElementById('payNumber');
+        if(val && WALLETS[val]) { info.style.display = "block"; num.innerText = WALLETS[val]; }
+        else { info.style.display = "none"; }
+    }
+
+    function sendWA() {
+        const link = document.getElementById('mLink').value;
+        const pay = document.getElementById('mPay').value;
+        if(!link || !pay) return alert("Error!");
+        const msg = `🚀 *طلب جديد*%0A*ID:* ${current.id}%0A*الخدمة:* ${current.n}%0A*الرابط:* ${link}%0A*الإجمالي:* ${document.getElementById('totalDisplay').innerText}%0A*الدفع:* ${pay}`;
+        window.open(`https://wa.me/213656251947?text=${msg}`);
+    }
+
+    function setTheme(t) { document.body.className = 'theme-' + t; }
+    function closeM() { document.getElementById('modal').style.display = 'none'; }
+
+    render(SERVICES);
+</script>
+</body>
+</html>
