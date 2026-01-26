@@ -3,350 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE PANEL | LUXURY EDITION</title>
+    <title>KARIMTREIZE PANEL | VERSION 2026</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        /* Global Root Variables */
+        /* CSS Variables - Advanced Color Mapping */
         :root { 
-            --bg-color: #000000; 
-            --card-bg: #0a0a0a; 
-            --text-main: #ffffff; 
-            --accent: #fbbf24; 
-            --border-style: #1a1a1a; 
-            --grad: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            --transition-speed: 0.4s;
+            --bg-primary: #000000; 
+            --bg-card: #0a0a0a; 
+            --text-white: #ffffff; 
+            --primary-gold: #fbbf24; 
+            --border-line: #1a1a1a; 
+            --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            --shadow-glow: 0 0 15px rgba(251, 191, 36, 0.2);
+            --transition-main: 0.5s ease;
         }
 
-        /* Blue Theme Override */
         [data-theme="blue"] { 
-            --bg-color: #010409; 
-            --card-bg: #0d1117; 
-            --text-main: #f0f6fc; 
-            --accent: #58a6ff; 
-            --border-style: #30363d; 
-            --grad: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+            --bg-primary: #010409; 
+            --bg-card: #0d1117; 
+            --text-white: #f0f6fc; 
+            --primary-gold: #58a6ff; 
+            --border-line: #30363d; 
+            --gold-gradient: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+            --shadow-glow: 0 0 15px rgba(88, 166, 255, 0.2);
         }
 
-        /* Base Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        /* Essential Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        
         body { 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            transition: all var(--transition-speed);
-            padding-bottom: 100px;
+            background-color: var(--bg-primary); 
+            color: var(--text-white); 
+            line-height: 1.8; 
+            transition: background var(--transition-main);
+            padding-bottom: 120px;
+            overflow-x: hidden;
         }
 
-        /* Header & Brand Identity */
-        .header-section { 
-            padding: 60px 20px; 
+        /* Branding & Header Section */
+        .brand-header { 
+            padding: 80px 20px; 
             text-align: center; 
-            background: var(--bg-color);
-            border-bottom: 2px solid var(--accent);
-            margin-bottom: 30px;
-        }
-
-        .brand-logo-container {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            padding: 5px;
-            background: #fff;
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
-            overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .brand-logo-container:hover { transform: rotate(10deg) scale(1.1); }
-        .brand-logo-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-
-        .header-section h1 { 
-            font-size: 32px; 
-            font-weight: 900; 
-            color: var(--accent); 
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .header-section p { font-size: 14px; color: #666; margin-top: 10px; }
-
-        /* Floating Theme Switcher */
-        .theme-switcher {
-            position: fixed;
-            left: 30px;
-            top: 50px;
-            z-index: 1000;
-            width: 60px;
-            height: 60px;
-            background: var(--grad);
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #000;
-            transition: 0.3s;
-        }
-
-        .theme-switcher:hover { transform: scale(1.1) rotate(180deg); }
-
-        /* Content Container */
-        .content-wrapper { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-
-        /* Category System */
-        .category-wrapper { 
-            background: var(--card-bg); 
-            border-radius: 25px; 
-            border: 1px solid var(--border-style);
-            margin-bottom: 15px; 
-            overflow: hidden; 
-            transition: 0.3s;
-        }
-
-        .category-trigger {
-            width: 100%;
-            padding: 25px;
-            background: none;
-            border: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-
-        .category-trigger .cat-title { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
-        .category-trigger i.fa-chevron-down { font-size: 14px; transition: 0.4s; }
-
-        .category-items-list { display: none; padding: 10px 20px 25px; background: rgba(255,255,255,0.01); }
-
-        /* Service Cards */
-        .service-card-luxury {
-            background: var(--bg-color);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-style);
-            border-right: 6px solid var(--accent);
-            transition: transform 0.3s;
-        }
-
-        .service-card-luxury:hover { transform: translateX(-5px); }
-        .service-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
-        .service-id { font-size: 11px; font-weight: bold; color: var(--accent); opacity: 0.7; }
-        .service-name { display: block; font-size: 16px; font-weight: 600; text-align: left; direction: ltr; margin-bottom: 20px; }
-
-        .service-footer { display: flex; justify-content: space-between; align-items: center; }
-        .price-tag { font-size: 24px; font-weight: 900; color: var(--accent); }
-
-        .btn-order-premium {
-            background: var(--grad);
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 12px;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        /* Order Modal Styling */
-        .order-modal-backdrop {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 2000; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(12px);
-        }
-
-        .order-modal-box {
-            background: var(--card-bg);
-            width: 95%; max-width: 480px;
-            padding: 40px; border-radius: 35px;
-            border: 1px solid var(--accent);
+            border-bottom: 3px solid var(--primary-gold);
+            background: var(--bg-primary);
             position: relative;
         }
 
-        .modal-title { font-size: 22px; color: var(--accent); text-align: center; margin-bottom: 30px; }
+        .main-logo-wrapper {
+            width: 150px; height: 150px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-gold);
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 0 40px var(--shadow-glow);
+            overflow: hidden;
+            animation: pulseGlow 2s infinite alternate;
+        }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 13px; color: #888; margin-bottom: 10px; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 18px; border-radius: 18px; border: 1px solid var(--border-style);
+        .main-logo-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        .brand-header h1 { font-size: 34px; font-weight: 900; color: var(--primary-gold); letter-spacing: 2px; }
+        .brand-header p { font-size: 14px; opacity: 0.7; margin-top: 5px; }
+
+        /* Floating Controls */
+        .theme-control {
+            position: fixed; left: 30px; top: 40px; z-index: 9999;
+            width: 60px; height: 60px; border-radius: 50%; border: none;
+            background: var(--gold-gradient); color: #000; font-size: 24px;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Container & Categories Layout */
+        .content-container { max-width: 750px; margin: 30px auto; padding: 0 15px; }
+
+        .service-category-block {
+            background: var(--bg-card);
+            border-radius: 25px;
+            border: 1px solid var(--border-line);
+            margin-bottom: 20px;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .category-header-btn {
+            width: 100%; padding: 25px; background: none; border: none;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; color: var(--text-white);
+        }
+
+        .category-header-btn span { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
+        .category-header-btn i.fa-chevron-down { transition: 0.4s; font-size: 14px; }
+
+        .services-wrapper { display: none; padding: 10px 20px 25px; }
+
+        /* Modern Service Item Card */
+        .luxury-service-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-line);
+            border-left: 6px solid var(--primary-gold);
+            transition: 0.3s;
+        }
+
+        .luxury-service-card:hover { transform: scale(1.02); }
+        .srv-meta { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .srv-id { font-size: 12px; font-weight: 900; color: var(--primary-gold); background: #111; padding: 4px 10px; border-radius: 5px; }
+        .srv-title { display: block; font-size: 16px; font-weight: 600; text-align: left; direction: ltr; margin-bottom: 20px; line-height: 1.5; }
+
+        .srv-bottom { display: flex; justify-content: space-between; align-items: center; }
+        .srv-price { font-size: 26px; font-weight: 900; color: var(--primary-gold); }
+
+        .order-action-btn {
+            background: var(--gold-gradient); color: #000;
+            padding: 12px 30px; border-radius: 12px; font-weight: 800;
+            border: none; cursor: pointer; text-transform: uppercase;
+        }
+
+        /* Order Modal Configuration */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 10000; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(15px);
+        }
+
+        .modal-content-card {
+            background: var(--bg-card); width: 90%; max-width: 480px;
+            padding: 40px; border-radius: 35px; border: 1px solid var(--primary-gold);
+        }
+
+        .modal-label { display: block; font-size: 13px; color: #888; margin-bottom: 8px; margin-top: 15px; }
+        .modal-input, .modal-select {
+            width: 100%; padding: 18px; border-radius: 15px; border: 1px solid var(--border-line);
             background: #000; color: #fff; font-size: 16px; outline: none;
         }
 
-        .payment-alert-box {
-            background: rgba(251, 191, 36, 0.05); border: 2px dashed var(--accent);
-            padding: 20px; border-radius: 20px; text-align: center; margin-bottom: 25px; display: none;
+        .payment-display-box {
+            background: rgba(251, 191, 36, 0.05); border: 2px dashed var(--primary-gold);
+            padding: 20px; border-radius: 20px; text-align: center; margin-top: 20px; display: none;
         }
 
-        .btn-confirm-final {
+        .btn-wa-confirm {
             width: 100%; padding: 20px; border-radius: 18px; border: none;
-            background: #22c55e; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer;
+            background: #22c55e; color: #fff; font-size: 18px; font-weight: 800; cursor: pointer; margin-top: 25px;
         }
 
         /* Animations */
-        @keyframes fadeInCat { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-cat { animation: fadeInCat 0.5s forwards; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); } to { box-shadow: 0 0 40px rgba(251, 191, 36, 0.5); } }
 
     </style>
 </head>
 <body>
 
-    <button class="theme-switcher" onclick="switchTheme()">
-        <i class="fas fa-palette"></i>
-    </button>
+    <button class="theme-control" onclick="changeTheme()"><i class="fas fa-palette"></i></button>
 
-    <header class="header-section">
-        <div class="brand-logo-container animate__animated animate__zoomIn">
-            <img src="https://i.ibb.co/XfXGk6V/1000024177.png" alt="Karim Treize Logo">
+    <header class="brand-header">
+        <div class="main-logo-wrapper animate__animated animate__zoomIn">
+            <img src="https://i.ibb.co/XfXGk6V/1000024177.png" alt="Logo">
         </div>
-        <h1 class="animate__animated animate__fadeInUp">KARIMTREIZE PANEL</h1>
-        <p class="animate__animated animate__fadeInUp">الوكيل المعتمد لخدمات السوشيال ميديا في الجزائر 🇩🇿</p>
+        <h1 class="animate__animated animate__fadeInDown">KARIMTREIZE PANEL</h1>
+        <p class="animate__animated animate__fadeInUp">إدارة خدمات السوشيال ميديا باحترافية تامة 2026</p>
     </header>
 
-    <main class="content-wrapper" id="app-container"></main>
+    <main class="content-container" id="app-root"></main>
 
-    <div id="luxuryModal" class="order-modal-backdrop">
-        <div class="order-modal-box">
-            <h2 id="targetServiceName" class="modal-title">تجهيز الطلب</h2>
+    <div id="mainOrderModal" class="modal-overlay">
+        <div class="modal-content-card animate__animated animate__bounceInUp">
+            <h2 id="modalSrvName" style="color:var(--primary-gold); text-align:center; margin-bottom:20px; font-size:18px;"></h2>
             
-            <div class="form-group">
-                <label><i class="fas fa-link"></i> رابط الحساب أو المنشور:</label>
-                <input type="url" id="fieldLink" placeholder="https://www.example.com/..." required>
+            <label class="modal-label">الرابط المباشر (Account/Post Link):</label>
+            <input type="url" id="inpLink" class="modal-input" placeholder="https://www.example.com/..." required>
+
+            <div id="emailSection" style="display:none;">
+                <label class="modal-label">بريدك الإلكتروني (لتلقي بيانات الحساب):</label>
+                <input type="email" id="inpEmail" class="modal-input" placeholder="mail@example.com">
             </div>
 
-            <div class="form-group" id="groupEmail" style="display:none;">
-                <label><i class="fas fa-envelope"></i> البريد الإلكتروني الخاص بك:</label>
-                <input type="email" id="fieldEmail" placeholder="karim@gmail.com">
+            <label class="modal-label">الكمية المطلوبة (Quantity):</label>
+            <input type="number" id="inpQty" class="modal-input" value="1000">
+
+            <label class="modal-label">وسيلة الدفع المتوفرة:</label>
+            <select id="inpPay" class="modal-select" onchange="togglePaymentAcc(this.value)">
+                <option value="">-- اختر وسيلة الدفع --</option>
+                <option value="BaridiMob">بريدي موب (الجزائر)</option>
+                <option value="RedotPay">RedotPay (بطاقة)</option>
+                <option value="Binance">بينانس (USDT)</option>
+            </select>
+
+            <div id="paymentBox" class="payment-display-box">
+                <small>رقم الحساب للتحويل:</small><br>
+                <strong id="payVal" style="color:var(--primary-gold); font-size:22px; cursor:pointer;" onclick="copyAccNumber()"></strong>
+                <p style="font-size: 10px; color: #666; margin-top: 5px;">(اضغط على الرقم لنسخه تلقائياً)</p>
             </div>
 
-            <div class="form-group">
-                <label><i class="fas fa-sort-numeric-up"></i> الكمية المطلوبة:</label>
-                <input type="number" id="fieldQty" value="1000">
-            </div>
-
-            <div class="form-group">
-                <label><i class="fas fa-wallet"></i> اختر وسيلة الدفع:</label>
-                <select id="fieldPay" onchange="handlePaymentChange(this.value)">
-                    <option value="">-- اضغط للاختيار --</option>
-                    <option value="BaridiMob">بريدي موب (BaridiMob)</option>
-                    <option value="RedotPay">ريدوت باي (RedotPay)</option>
-                    <option value="Binance">بينانس (Binance Pay)</option>
-                </select>
-            </div>
-
-            <div id="paymentDisplay" class="payment-alert-box">
-                <small>رقم الحساب لتحويل الأموال:</small><br>
-                <strong id="accValue" style="color:var(--accent); font-size:20px; cursor:pointer;" onclick="copyAcc()"></strong>
-                <p style="font-size: 10px; color: #666; margin-top: 5px;">(اضغط على الرقم للنسخ التلقائي)</p>
-            </div>
-
-            <button class="btn-confirm-final" onclick="sendOrderWhatsApp()">
-                <i class="fab fa-whatsapp"></i> إرسال الطلب للواتساب
+            <button class="btn-wa-confirm" onclick="triggerWhatsAppOrder()">
+                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر الواتساب
             </button>
-            
-            <button style="width:100%; margin-top:15px; background:none; border:none; color:#666; cursor:pointer;" onclick="closeLuxuryModal()">إلغاء وإغلاق</button>
+            <button style="width:100%; margin-top:15px; background:none; border:none; color:#888; cursor:pointer;" onclick="closeModal()">إلغاء الطلب</button>
         </div>
     </div>
 
     <script>
         /**
-         * System Configuration
+         * Global State & Config
          */
-        const PAYMENT_GATEWAYS = {
-            "BaridiMob": "00799999001465107315",
-            "RedotPay": "1523336713",
-            "Binance": "1194939141"
+        const PAYMENT_DATA = { 
+            "BaridiMob": "00799999001465107315", 
+            "RedotPay": "1523336713", 
+            "Binance": "1194939141" 
         };
 
-        const SERVICE_DATABASE = [
+        // الـ 6 أقسام الرئيسية
+        const CATEGORY_DB = [
             {
-                title: "YouTube Services 🔴",
-                icon: "fab fa-youtube",
-                services: [
-                    {id: 4000, name: "YT 4000 Hours WatchTime | Non Drop | Safe ♻️", price: "35.50"},
-                    {id: 1539, name: "YT Subscribers | Real Profiles | Lifetime ♻️", price: "21.62"},
-                    {id: 935, name: "YT Video Likes | Fast Delivery | Super⚡", price: "0.23"}
+                title: "YouTube Services 🔴", icon: "fab fa-youtube",
+                items: [
+                    {id: 4000, n: "YT 4000 Hours WatchTime | High Retention ♻️", p: "35.50"},
+                    {id: 1539, n: "YT Subscribers | Non-Drop | Real ♻️", p: "21.62"},
+                    {id: 935, n: "YT Video Likes | Instant Fast ⚡", p: "0.23"}
                 ]
             },
             {
-                title: "Facebook Services 🔵",
-                icon: "fab fa-facebook",
-                services: [
-                    {id: 2676, name: "FB Followers | Profile & Page | Non Drop ♻️", price: "0.44"},
-                    {id: 3315, name: "FB Post Likes 👍| Real & High Quality", price: "0.74"},
-                    {id: 8395, name: "FB 60k Minutes | 100% Monetizable ⚡", price: "0.95"}
+                title: "Facebook Services 🔵", icon: "fab fa-facebook",
+                items: [
+                    {id: 2676, n: "FB Followers | Profile & Page | Lifetime ♻️", p: "0.44"},
+                    {id: 3315, n: "FB Post Likes 👍| HQ Profiles Real", p: "0.74"},
+                    {id: 8395, n: "FB 60k Minutes | Fast Approval ⚡", p: "0.95"}
                 ]
             },
             {
-                title: "Instagram Services 📸",
-                icon: "fab fa-instagram",
-                services: [
-                    {id: 7820, name: "IG Followers | Real Old Accounts | Refill ♻️", price: "1.00"},
-                    {id: 8801, name: "IG Likes | Instant & Real Profiles ⚡", price: "0.63"},
-                    {id: 6441, name: "IG Video Views | All Links Supported ⚡", price: "0.01"}
+                title: "TikTok Services ⚫", icon: "fab fa-tiktok",
+                items: [
+                    {id: 3338, n: "TikTok Followers | HQ Real | Refill ♻️", p: "1.00"},
+                    {id: 8120, n: "TikTok Likes | Immediate Start ⚡", p: "0.88"},
+                    {id: 8387, n: "TikTok Views | Viral Boosting ⚡", p: "0.01"}
                 ]
             },
             {
-                title: "TikTok Services ⚫",
-                icon: "fab fa-tiktok",
-                services: [
-                    {id: 3338, name: "TikTok Followers | Global Real | Non Drop ♻️", price: "1.00"},
-                    {id: 8120, name: "TikTok Video Likes | Super Fast ⚡", price: "0.88"},
-                    {id: 8387, name: "TikTok Views | Guaranteed ⚡", price: "0.01"}
+                title: "Instagram Services 📸", icon: "fab fa-instagram",
+                items: [
+                    {id: 7820, n: "IG Followers | Real Old Accounts ♻️", p: "1.00"},
+                    {id: 8801, n: "IG Likes | Super Fast Delivery ⚡", p: "0.63"},
+                    {id: 6441, n: "IG Reels Views | Explore Boosting ⚡", p: "0.01"}
                 ]
             },
             {
-                title: "Telegram Services ✈️",
-                icon: "fab fa-telegram",
-                services: [
-                    {id: 3428, name: "Telegram Channel Members | HQ Real ♻️", price: "0.99"},
-                    {id: 2210, name: "Telegram Post Views | Last 10 Posts ⚡", price: "0.05"}
+                title: "Telegram Services ✈️", icon: "fab fa-telegram",
+                items: [
+                    {id: 3428, n: "Telegram Members | HQ Channel/Group ♻️", p: "0.99"},
+                    {id: 2210, n: "Telegram Post Views | Last 10 Posts ⚡", p: "0.05"}
                 ]
             },
             {
-                title: "Premium Accounts 💎",
-                icon: "fas fa-gem",
-                isPremium: true,
-                services: [
-                    {id: 3407, name: "Gemini Pro AI | 2TB Storage | 12 Month Full", price: "5.23"},
-                    {id: 944, name: "Canva Premium | Private Invite | 3 Years", price: "0.40"},
-                    {id: 3364, name: "CapCut Pro Premium | Lifetime License 🎬", price: "4.50"},
-                    {id: 8607, name: "Netflix Premium | 4K HDR | 1 Month Full", price: "4.50"}
+                title: "Premium Accounts 💎", icon: "fas fa-gem", isPremium: true,
+                items: [
+                    {id: 3364, n: "CapCut Pro Premium | Lifetime License 🎬", p: "4.50"},
+                    {id: 944, n: "Canva Premium | 3 Years Private ⚡", p: "0.40"},
+                    {id: 3407, n: "Gemini Pro | 2TB Storage | 12 Month", p: "5.23"},
+                    {id: 8607, n: "Netflix UHD | 4K Screens | 1 Month", p: "4.50"}
                 ]
             }
         ];
 
         /**
-         * Initialize App Components
+         * Rendering Logic
          */
-        function initApp() {
-            const container = document.getElementById('app-container');
-            container.innerHTML = SERVICE_DATABASE.map((category, index) => `
-                <div class="category-wrapper animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.1}s">
-                    <button class="category-trigger" onclick="toggleCategoryDisplay(${index})">
-                        <span class="cat-title"><i class="${category.icon}"></i> ${category.title}</span>
-                        <i class="fas fa-chevron-down" id="chevron-${index}"></i>
+        function renderPanel() {
+            const root = document.getElementById('app-root');
+            root.innerHTML = CATEGORY_DB.map((cat, idx) => `
+                <div class="service-category-block animate__animated animate__fadeInUp" style="animation-delay: ${idx * 0.1}s">
+                    <button class="category-header-btn" onclick="toggleCategory(${idx})">
+                        <span><i class="${cat.icon}"></i> ${cat.title}</span>
+                        <i class="fas fa-chevron-down" id="chevron-${idx}"></i>
                     </button>
-                    <div class="category-items-list" id="content-${index}">
-                        ${category.services.map(srv => `
-                            <div class="service-card-luxury">
-                                <div class="service-header">
-                                    <span class="service-id">SERVICE ID #${srv.id}</span>
-                                    <i class="fas fa-shield-alt" style="color:var(--accent); font-size:12px;"></i>
+                    <div class="services-wrapper" id="wrap-${idx}">
+                        ${cat.items.map(srv => `
+                            <div class="luxury-service-card">
+                                <div class="srv-meta">
+                                    <span class="srv-id">ID: #${srv.id}</span>
+                                    <i class="fas fa-bolt" style="color:var(--primary-gold); font-size:12px;"></i>
                                 </div>
-                                <span class="service-name">${srv.name}</span>
-                                <div class="service-footer">
-                                    <span class="price-tag">$${srv.price}</span>
-                                    <button class="btn-order-premium" onclick="openLuxuryOrder('${srv.id}', '${srv.name}', '${srv.price}', ${category.isPremium || false})">طلب الآن</button>
+                                <span class="srv-title">${srv.n}</span>
+                                <div class="srv-bottom">
+                                    <span class="srv-price">$${srv.p}</span>
+                                    <button class="order-action-btn" onclick="openOrderModal('${srv.id}', '${srv.n}', '${srv.p}', ${cat.isPremium || false})">طلب الآن</button>
                                 </div>
                             </div>
                         `).join('')}
@@ -356,79 +302,74 @@
         }
 
         /**
-         * Interactive UI Functions
+         * Interactivity Functions
          */
-        function switchTheme() {
-            const body = document.body;
-            const isBlue = body.getAttribute('data-theme') === 'blue';
-            body.setAttribute('data-theme', isBlue ? '' : 'blue');
+        function changeTheme() {
+            const b = document.body;
+            b.setAttribute('data-theme', b.getAttribute('data-theme') === 'blue' ? '' : 'blue');
         }
 
-        function toggleCategoryDisplay(idx) {
-            const content = document.getElementById(`content-${idx}`);
-            const chevron = document.getElementById(`chevron-${idx}`);
-            const isShown = content.style.display === "block";
-            
-            // Close all others
-            document.querySelectorAll('.category-items-list').forEach(c => c.style.display = 'none');
-            document.querySelectorAll('.category-trigger i').forEach(i => i.style.transform = 'rotate(0deg)');
-
-            if(!isShown) {
-                content.style.display = "block";
-                chevron.style.transform = "rotate(180deg)";
+        function toggleCategory(idx) {
+            const wrap = document.getElementById(`wrap-${idx}`);
+            const isVisible = wrap.style.display === "block";
+            document.querySelectorAll('.services-wrapper').forEach(w => w.style.display = 'none');
+            document.querySelectorAll('.category-header-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
+            if(!isVisible) {
+                wrap.style.display = "block";
+                document.getElementById(`chevron-${idx}`).style.transform = "rotate(180deg)";
             }
         }
 
-        let selectedService = {};
+        let currentActiveOrder = {};
 
-        function openLuxuryOrder(id, name, price, isP) {
-            selectedService = {id, name, price, isP};
-            document.getElementById('targetServiceName').innerText = name;
-            document.getElementById('groupEmail').style.display = isP ? 'block' : 'none';
-            document.getElementById('luxuryModal').style.display = 'flex';
+        function openOrderModal(id, name, price, isP) {
+            currentActiveOrder = {id, name, price, isP};
+            document.getElementById('modalSrvName').innerText = name;
+            document.getElementById('emailSection').style.display = isP ? 'block' : 'none';
+            document.getElementById('mainOrderModal').style.display = 'flex';
         }
 
-        function closeLuxuryModal() { 
-            document.getElementById('luxuryModal').style.display = 'none'; 
-        }
+        function closeModal() { document.getElementById('mainOrderModal').style.display = 'none'; }
 
-        function handlePaymentChange(val) {
-            const display = document.getElementById('paymentDisplay');
+        function togglePaymentAcc(val) {
+            const box = document.getElementById('paymentBox');
             if(val) {
-                display.style.display = 'block';
-                document.getElementById('accValue').innerText = PAYMENT_GATEWAYS[val];
+                box.style.display = 'block';
+                document.getElementById('payVal').innerText = PAYMENT_DATA[val];
             } else {
-                display.style.display = 'none';
+                box.style.display = 'none';
             }
         }
 
-        function copyAcc() {
-            const val = document.getElementById('accValue').innerText;
+        function copyAccNumber() {
+            const val = document.getElementById('payVal').innerText;
             navigator.clipboard.writeText(val);
             alert("✅ تم نسخ رقم الحساب بنجاح!");
         }
 
-        function sendOrderWhatsApp() {
-            const link = document.getElementById('fieldLink').value;
-            const qty = document.getElementById('fieldQty').value;
-            const pay = document.getElementById('fieldPay').value;
-            const email = document.getElementById('fieldEmail').value;
+        function triggerWhatsAppOrder() {
+            const link = document.getElementById('inpLink').value;
+            const qty = document.getElementById('inpQty').value;
+            const pay = document.getElementById('inpPay').value;
+            const email = document.getElementById('inpEmail').value;
 
-            if(!link || !pay) return alert("❌ من فضلك أكمل الرابط واختر طريقة الدفع!");
-            if(selectedService.isP && !email) return alert("❌ خدمات بريميوم تتطلب البريد الإلكتروني!");
+            if(!link || !pay) return alert("❌ يرجى تعبئة الرابط واختيار وسيلة الدفع!");
+            if(currentActiveOrder.isP && !email) return alert("❌ هذا الطلب يتطلب بريداً إلكترونياً!");
 
-            let message = `🚀 *طلب جديد من متجر كريم*%0A%0A📦 *الخدمة:* ${selectedService.name}%0A🆔 *المعرف:* ${selectedService.id}%0A🔗 *الرابط:* ${link}%0A🔢 *الكمية:* ${qty}%0A💰 *السعر:* $${selectedService.price}%0A💳 *الدفع:* ${pay}`;
-            
-            if(selectedService.isP) message += `%0A📧 *الإيميل:* ${email}`;
-            
-            message += `%0A%0A⚠️ *يرجى إرسال لقطة شاشة (Screenshot) لعملية التحويل.*`;
+            // التنسيق الذي طلبته تماماً (احترافي جداً للواتساب)
+            let msg = `💠 *طلب من لوحة KARIMTREIZE13:*%0A`;
+            msg += `*الخدمة:* ${currentActiveOrder.name} - ${currentActiveOrder.id}%0A`;
+            msg += `*الرابط:* ${link}%0A`;
+            if(currentActiveOrder.isP) msg += `*الإيميل:* ${email}%0A`;
+            msg += `*الكمية:* ${qty}%0A`;
+            msg += `*طريقة الدفع:* ${pay}%0A`;
+            msg += `*السعر الإجمالي:* $${currentActiveOrder.price}%0A%0A`;
+            msg += `✅ _يرجى إرسال صورة التحويل لتأكيد الطلب._`;
 
-            window.open(`https://wa.me/213656251947?text=${message}`, '_blank');
+            window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
         }
 
-        // Run On Load
-        initApp();
+        renderPanel();
     </script>
 </body>
-    </html>
-                        
+</html>
