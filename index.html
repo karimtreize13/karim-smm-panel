@@ -32,18 +32,60 @@
         .tab.active { background: var(--primary); color: #000; font-weight: bold; }
         .tab.active i { color: #000; }
 
-        .services-grid { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); }
-        .srv-name { display: block; font-size: 13px; line-height: 1.6; text-align: left; direction: ltr; margin-bottom: 10px; }
-        .srv-footer { display: flex; justify-content: flex-end; }
-        .btn-order { background: var(--primary); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        // مصفوفة الخدمات مع الترجمة المزدوجة
+const SERVICES = [
+    {
+        id: 3810, 
+        cat: "TikTok", 
+        n_ar: "متابعو تيك توك | حسابات حقيقية | سرعة فائقة ⭐⚡", 
+        n_fr: "Abonnés TikTok | Profils Réels HQ | Ultra Rapide ⭐⚡", 
+        p: 1.8424
+    },
+    {
+        id: 7820, 
+        cat: "Instagram", 
+        n_ar: "متابعو إنستغرام | حسابات حقيقية قديمة | ضمان مدى الحياة ♻️", 
+        n_fr: "Abonnés Instagram | Comptes Réels Anciens | Garantie à Vie ♻️", 
+        p: 1.00
+    },
+    {
+        id: 2676, 
+        cat: "Facebook", 
+        n_ar: "متابعو فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", 
+        n_fr: "Abonnés Facebook | Sans Perte | Garantie à Vie ♻️", 
+        p: 0.44
+    }
+];
 
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
-        .modal-box { background: #0a0a0a; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); }
-        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
-        .price-box { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
-        .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
-        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+// دالة العرض المحدثة التي تختار الاسم بناءً على اللغة
+function render(data) {
+    const container = document.getElementById('container');
+    container.innerHTML = data.map(s => {
+        // اختيار الاسم بناءً على المتغير currentLang
+        const displayName = (currentLang === 'ar') ? s.n_ar : s.n_fr;
+        
+        return `
+            <div class="service-card">
+                <span class="srv-name">${s.id} - ${displayName}</span>
+                <div style="margin-top: 5px; color: var(--primary); font-size: 15px; font-weight: 800; text-align: left; direction: ltr;">
+                    $${s.p} <small style="color:#777; font-size: 10px;">per 1000</small>
+                </div>
+                <div class="srv-footer">
+                    <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// أضف استدعاء لدالة render داخل دالة changeLang لضمان تحديث الأسماء فوراً
+function changeLang(lang) {
+    currentLang = lang;
+    document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+    // تحديث الواجهة...
+    render(activeCat === 'All' ? SERVICES : SERVICES.filter(s => s.cat === activeCat));
+}
+        
     </style>
 </head>
 <body class="theme-yellow">
