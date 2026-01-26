@@ -1,515 +1,259 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <meta name="theme-color" content="#2563eb">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="SMM Panel">
     <title>KARIMTREIZE SMM Panel</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: #050505; color: #fff; direction: rtl; }
         
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f7fa;
-            color: #333;
-            direction: rtl;
-        }
-        
-        .app-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .content {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding-bottom: 70px;
-            padding-top: env(safe-area-inset-top);
-        }
-        
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 0 0 30px 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header-title { font-size: 14px; opacity: 0.9; }
-        .header-icon { font-size: 24px; }
-        .header-main { font-size: 28px; font-weight: bold; margin-bottom: 20px; position: relative; z-index: 1; }
-        
-        /* Search */
-        .search-container { padding: 20px; }
-        .search-input {
-            width: 100%;
-            background: #f0f4f8;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            font-size: 14px;
-            text-align: right;
-            color: #666;
-        }
-        
-        /* Tabs */
-        .tabs-container {
-            background: white;
-            padding: 10px 20px;
-            border-bottom: 1px solid #e0e0e0;
-            overflow-x: auto;
-            overflow-y: hidden;
-            display: flex;
-            gap: 10px;
-            scroll-behavior: smooth;
-        }
-        
-        .tabs-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .tab-btn {
-            background: #f0f4f8;
-            border: none;
-            border-radius: 25px;
-            padding: 8px 16px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .tab-btn.active {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-        }
-        
-        .tab-btn:active {
-            transform: scale(0.95);
-        }
-        
-        /* Services */
-        .service-item {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 0 20px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .service-item:active {
-            background: #f5f5f5;
-            border-color: #2563eb;
-        }
-        
+        .header { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); padding: 35px 20px; border-radius: 0 0 30px 30px; text-align: center; box-shadow: 0 4px 15px rgba(37,99,235,0.4); }
+        .header h1 { font-size: 22px; margin-bottom: 5px; }
+        .header p { font-size: 13px; opacity: 0.9; }
+
+        .tabs-container { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #111; position: sticky; top: 0; z-index: 100; scrollbar-width: none; }
+        .tab-btn { background: #222; border: 1px solid #333; color: #999; border-radius: 20px; padding: 10px 20px; font-size: 13px; white-space: nowrap; cursor: pointer; transition: 0.3s; }
+        .tab-btn.active { background: #2563eb; color: white; border-color: #fbbf24; font-weight: bold; }
+
+        .search-container { padding: 15px 20px; }
+        .search-input { width: 100%; padding: 12px 20px; border-radius: 15px; border: 1px solid #333; background: #161616; color: white; text-align: right; outline: none; }
+
+        .services-list { padding: 0 20px 100px; }
+        .service-item { background: #111; border-radius: 15px; padding: 18px; margin-bottom: 15px; border-right: 4px solid #2563eb; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
+        .service-item:active { transform: scale(0.98); background: #1a1a1a; }
         .service-info { flex: 1; }
-        .service-name { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 5px; }
-        .service-unit { font-size: 12px; color: #999; }
-        .service-price { font-size: 16px; font-weight: bold; color: #4caf50; }
-        
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding-bottom: env(safe-area-inset-bottom);
-            z-index: 1000;
-        }
-        
-        .nav-item {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #999;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-item.active { color: #2563eb; }
-        .nav-icon { font-size: 24px; margin-bottom: 5px; }
-        
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: flex-end;
-            animation: slideIn 0.3s ease;
-        }
-        
+        .service-name { font-size: 14px; color: #eee; margin-bottom: 5px; line-height: 1.4; text-align: left; direction: ltr; }
+        .service-price { font-size: 18px; font-weight: 900; color: #fbbf24; margin-right: 15px; }
+
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: flex-end; }
         .modal.active { display: flex; }
+        .modal-content { background: #111; width: 100%; border-radius: 30px 30px 0 0; padding: 30px 20px; border-top: 2px solid #2563eb; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
-        @keyframes slideIn {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; text-align: right; }
+        .total-box { background: #1a1a1a; padding: 20px; border-radius: 15px; text-align: center; margin: 15px 0; border: 1px dashed #fbbf24; }
+        .total-price { font-size: 26px; font-weight: 900; color: #fbbf24; display: block; }
         
-        .modal-content {
-            background: white;
-            width: 100%;
-            border-radius: 30px 30px 0 0;
-            padding: 30px 20px;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #333;
-        }
-        
-        .input-group { margin-bottom: 15px; }
-        .input-label { font-size: 12px; color: #666; margin-bottom: 8px; display: block; }
-        
-        .input-field {
-            width: 100%;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 14px;
-            text-align: right;
-        }
-        
-        .input-field:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        
-        .price-display {
-            background: #f0f4f8;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-        
-        .btn-primary {
-            width: 100%;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 10px;
-        }
-        
-        .btn-primary:active { transform: scale(0.98); }
-        
-        .btn-secondary {
-            width: 100%;
-            background: #f0f4f8;
-            color: #333;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
-        .btn-secondary:active { background: #e0e7ff; }
-        
-        /* Orders */
-        .order-item {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 0 20px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .order-info { flex: 1; }
-        .order-id { font-size: 12px; color: #2563eb; font-weight: bold; margin-bottom: 5px; }
-        .order-service { font-size: 13px; color: #333; margin-bottom: 5px; }
-        .order-time { font-size: 11px; color: #999; }
-        
-        .order-status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-        
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-processing { background: #cfe2ff; color: #084298; }
-        .status-completed { background: #d1e7dd; color: #0f5132; }
-        
-        .section { display: none; }
-        .section.active { display: block; }
-        
-        .admin-service-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 0 20px 12px;
-        }
-        
-        .admin-actions {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 10px;
-        }
-        
-        .admin-service-id { font-size: 11px; color: #2563eb; font-weight: bold; }
-        .edit-btn, .delete-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .edit-btn { background: #2563eb; color: white; }
-        .delete-btn { background: #ef4444; color: white; }
-        
-        .admin-service-name { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
-        .admin-service-price { font-size: 12px; color: #666; }
-        
-        .status-select {
-            padding: 6px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 20px 20px 10px;
-            color: #333;
-        }
+        .btn-wa { width: 100%; background: #22c55e; color: white; border: none; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="header">
-            <div class="header-top">
-                <div class="header-icon">⚙️</div>
-                <div class="header-title">KARIMTREIZE</div>
-            </div>
-            <div class="header-main">خدمات التسويق الرقمي</div>
-        </div>
-        
-        <div class="content">
-            <!-- Home Section -->
-            <div id="homeSection" class="section active">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن خدمة..." oninput="filterServices()">
-                </div>
-                
-                <div class="tabs-container" id="tabsContainer"></div>
-                
-                <div id="servicesContainer"></div>
-            </div>
-            
-            <!-- Orders Section -->
-            <div id="ordersSection" class="section">
-                <div class="section-title">طلباتي</div>
-                <div id="ordersContainer"></div>
-            </div>
-            
-            <!-- Admin Section -->
-            <div id="adminSection" class="section">
-                <div class="section-title">لوحة التحكم</div>
-                <button class="btn-secondary" onclick="logout()" style="margin: 20px;">تسجيل الخروج</button>
-                <div id="adminOrdersContainer"></div>
-            </div>
-        </div>
-        
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <button class="nav-item active" onclick="showSection('home')">
-                <div class="nav-icon">🏠</div>
-                <div>الرئيسية</div>
-            </button>
-            <button class="nav-item" onclick="showSection('orders')">
-                <div class="nav-icon">📋</div>
-                <div>طلباتي</div>
-            </button>
-            <button class="nav-item" onclick="showSection('admin')">
-                <div class="nav-icon">👨‍💼</div>
-                <div>الإدمن</div>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Order Modal -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">إنشاء طلب جديد</div>
-            <div class="input-group">
-                <label class="input-label">الخدمة</label>
-                <input type="text" class="input-field" id="orderServiceName" readonly>
-            </div>
-            <div class="input-group">
-                <label class="input-label">السعر</label>
-                <input type="text" class="input-field" id="orderServicePrice" readonly>
-            </div>
-            <div class="input-group">
-                <label class="input-label">الكمية</label>
-                <input type="number" class="input-field" id="orderQty" value="1000" oninput="updatePrice()">
-            </div>
-            <div class="input-group">
-                <label class="input-label">الرابط</label>
-                <input type="text" class="input-field" id="orderLink" placeholder="أدخل الرابط">
-            </div>
-            <div class="price-display">
-                <div>السعر الإجمالي: <span id="totalPrice">$0.00</span></div>
-            </div>
-            <button class="btn-primary" onclick="submitOrder()">تأكيد الطلب</button>
-            <button class="btn-secondary" onclick="closeOrderModal()">إلغاء</button>
-        </div>
-    </div>
-    
-    <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">لوحة التحكم</div>
-            <div class="input-group">
-                <label class="input-label">كلمة المرور</label>
-                <input type="password" class="input-field" id="adminPassword" placeholder="أدخل كلمة المرور">
-            </div>
-            <button class="btn-primary" onclick="loginAdmin()">دخول</button>
-            <button class="btn-secondary" onclick="closeAdminLogin()">إلغاء</button>
-        </div>
-    </div>
-    
-    <!-- Edit Service Modal -->
-    <div id="editServiceModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">تعديل الخدمة</div>
-            <div class="input-group">
-                <label class="input-label">اسم الخدمة</label>
-                <input type="text" class="input-field" id="editServiceName">
-            </div>
-            <div class="input-group">
-                <label class="input-label">السعر</label>
-                <input type="number" class="input-field" id="editServicePrice" step="0.001">
-            </div>
-            <button class="btn-primary" onclick="saveEditService()">حفظ</button>
-            <button class="btn-secondary" onclick="closeEditService()">إلغاء</button>
-        </div>
-    </div>
 
-    <script>
-        let services = [
-            // Facebook - 13 services
-            { id: 2676, name: "Facebook Followers | Non Drop | +50k/Day | Lifetime Refill", price: 0.446, unit: "/1k", cat: "facebook" },
-            { id: 1974, name: "Facebook Followers | 365 Days Refill", price: 0.412, unit: "/1k", cat: "facebook" },
-            { id: 3859, name: "Facebook Followers | Bots Quality | +100K/Day | Lifetime Refill", price: 0.1248, unit: "/1k", cat: "facebook" },
-            { id: 3858, name: "Facebook Followers | Bots Quality | +10K/Day", price: 0.0883, unit: "/1k", cat: "facebook" },
-            { id: 3324, name: "Facebook Group Members | Low Drop | +50K/Day", price: 0.5524, unit: "/1k", cat: "facebook" },
-            { id: 3330, name: "Facebook Group Members | Real | Non Drop | +50K/Day | 365 Days Refill", price: 0.92, unit: "/1k", cat: "facebook" },
-            { id: 8395, name: "Facebook 60k Minutes | 10 Mins Video | Non Drop | +100K/Day | Lifetime Refill", price: 0.954, unit: "/1k", cat: "facebook" },
-            { id: 815, name: "Facebook 100k Reels Views | Non Drop | +20k/Day | 30 Days Refill", price: 5.5988, unit: "/1k", cat: "facebook" },
-            { id: 3315, name: "Facebook Post Likes | HQ Real Profiles | +50K/Day", price: 0.74, unit: "/1k", cat: "facebook" },
-            { id: 8755, name: "Facebook Post Reaction | Like | +50K/Day", price: 0.3332, unit: "/1k", cat: "facebook" },
-            { id: 8756, name: "Facebook Post Reaction | Love | +50K/Day", price: 0.4332, unit: "/1k", cat: "facebook" },
-            { id: 7592, name: "Facebook Views | Video/Reel | Non Drop | +50K/Day | Lifetime Refill", price: 0.0150, unit: "/1k", cat: "facebook" },
-            { id: 8610, name: "Facebook Views | Video/Reel | Non Drop | +50K/Day | Lifetime Refill", price: 0.0222, unit: "/1k", cat: "facebook" },
-            
-            // TikTok - 17 services
-            { id: 8109, name: "TikTok Followers | Low Quality | +50K/Day", price: 0.1188, unit: "/1k", cat: "tiktok" },
-            { id: 3338, name: "TikTok Followers | HQ Real | Non Drop | +1K/Day | Lifetime Refill", price: 1.0, unit: "/1k", cat: "tiktok" },
-            { id: 3340, name: "TikTok Followers | Perfect Quality | Non Drop | +1K/Day | Lifetime Refill", price: 0.984, unit: "/1k", cat: "tiktok" },
-            { id: 1507, name: "TikTok Followers | Low Quality | +10K/Day", price: 0.326, unit: "/1k", cat: "tiktok" },
-            { id: 3350, name: "TikTok Followers | HQ Real Profiles | UltraFast | +200K/Day", price: 0.6725, unit: "/1k", cat: "tiktok" },
-            { id: 3810, name: "TikTok Followers | HQ Real Profiles | UltraFast | +100K/Day | Lifetime Refill", price: 1.8424, unit: "/1k", cat: "tiktok" },
-            { id: 3231, name: "Tiktok Followers | HQ Real Profiles | Non Drop | +50K/Day | Lifetime Refill", price: 2.08, unit: "/1k", cat: "tiktok" },
-            { id: 8120, name: "TikTok Likes | Low Quality | Non Drop | +100K/Day", price: 0.888, unit: "/1k", cat: "tiktok" },
-            { id: 3348, name: "TikTok Likes | Low Quality | SuperInstant | +20K/Day | Lifetime Refill", price: 0.999, unit: "/1k", cat: "tiktok" },
-            { id: 1972, name: "TikTok Likes | Non Drop | +100K/Day | Lifetime Refill", price: 0.999, unit: "/1k", cat: "tiktok" },
-            { id: 8387, name: "TikTok Views | SuperInstant | +200M/Day", price: 0.0090, unit: "/1k", cat: "tiktok" },
-            { id: 6930, name: "TikTok Views | Superfast | +200M/Day", price: 0.0100, unit: "/1k", cat: "tiktok" },
-            { id: 8345, name: "Tiktok Live Likes | Max: 100K | SuperInstant", price: 0.0100, unit: "/1k", cat: "tiktok" },
-            { id: 6915, name: "TikTok Live Stream Likes | +500K/Day", price: 0.0090, unit: "/1k", cat: "tiktok" },
-            { id: 1521, name: "TikTok Monetizable Followers | Real | Non Drop | +2K/Day | Lifetime Refill", price: 3.24, unit: "/1k", cat: "tiktok" },
-            { id: 3490, name: "TikTok Monetizable Views | Non Drop | Min 100K | +100K/Day | Lifetime Refill", price: 0.0925, unit: "/1k", cat: "tiktok" },
-            { id: 3506, name: "TikTok Monetizable Views | Non Drop | Min 50K | +100K/Day | Lifetime Refill", price: 0.0855, unit: "/1k", cat: "tiktok" },
-            
-            // Instagram - 8 services
-            { id: 7820, name: "Instagram Followers | Real Old Accounts | Non Drop | SuperInstant | +100K/Day | Lifetime Refill", price: 1.0, unit: "/1k", cat: "instagram" },
-            { id: 1348, name: "Instagram Followers | Real Old Accounts | Non Drop | SuperFast | +100K/Day | Lifetime Refill", price: 1.567, unit: "/1k", cat: "instagram" },
-            { id: 3779, name: "Instagram Followers | Real Old Accounts | Non Drop | UltraFast | +200K/Day | Lifetime Refill", price: 2.05
+<div class="header">
+    <h1>KARIMTREIZE SMM</h1>
+    <p>زيادة تفاعل على جميع منصات التواصل الاجتماعي</p>
+</div>
+
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن خدمة (مثلاً: followers)..." oninput="filterServices()">
+</div>
+
+<div class="tabs-container" id="tabsContainer">
+    <button class="tab-btn active" onclick="switchCategory('facebook')">Facebook</button>
+    <button class="tab-btn" onclick="switchCategory('tiktok')">TikTok</button>
+    <button class="tab-btn" onclick="switchCategory('instagram')">Instagram</button>
+    <button class="tab-btn" onclick="switchCategory('youtube')">YouTube</button>
+    <button class="tab-btn" onclick="switchCategory('telegram')">Telegram</button>
+    <button class="tab-btn" onclick="switchCategory('subscriptions')">الاشتراكات ⭐</button>
+</div>
+
+<div id="servicesContainer" class="services-list"></div>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <h3 id="mServiceName" style="text-align: center; color: #fbbf24; font-size: 16px; margin-bottom: 10px;"></h3>
+        
+        <input type="url" id="orderLink" placeholder="ضع الرابط هنا (Link)">
+        
+        <div id="emailSection" style="display: none;">
+            <input type="email" id="orderEmail" placeholder="البريد الإلكتروني (Email)">
+        </div>
+
+        <div id="qtySection">
+            <label style="font-size: 12px; color: #999; margin-right: 5px;">الكمية المطلوبة:</label>
+            <input type="number" id="orderQty" value="1000" oninput="calculateTotal()">
+        </div>
+        
+        <div class="total-box">
+            <span style="font-size: 14px; color: #999;">السعر الإجمالي</span>
+            <span class="total-price" id="totalPrice">$0.00</span>
+        </div>
+        
+        <button class="btn-wa" onclick="confirmOrder()">تأكيد الطلب (WhatsApp) ✅</button>
+        <button onclick="closeModal()" style="width: 100%; background: none; border: none; color: #666; margin-top: 15px; cursor: pointer;">إلغاء الطلب</button>
+    </div>
+</div>
+
+<script>
+    const services = [
+        // Facebook (12)
+        { id: 2676, cat: "facebook", name: "FB Followers | Non Drop | Lifetime ♻️", price: 0.44 },
+        { id: 1974, cat: "facebook", name: "FB Followers | 365 Days Refill ♻️", price: 0.41 },
+        { id: 3859, cat: "facebook", name: "FB Followers | Bots | Lifetime ♻️", price: 0.12 },
+        { id: 3858, cat: "facebook", name: "FB Followers | Bots | No Refill", price: 0.08 },
+        { id: 3324, cat: "facebook", name: "FB Group Members | Low Drop", price: 0.55 },
+        { id: 3330, cat: "facebook", name: "FB Group Members | Real | 365 Days ♻️", price: 0.92 },
+        { id: 8395, cat: "facebook", name: "FB 60k Minutes | 10 Mins Video ♻️", price: 0.95 },
+        { id: 815, cat: "facebook", name: "FB 100k Reels Views | 30 Days ♻️", price: 5.59 },
+        { id: 3315, cat: "facebook", name: "FB Post Likes | HQ Real Profiles", price: 0.74 },
+        { id: 8755, cat: "facebook", name: "FB Post Reaction | Like 👍", price: 0.33 },
+        { id: 8756, cat: "facebook", name: "FB Post Reaction | Love ❤️", price: 0.43 },
+        { id: 7592, cat: "facebook", name: "FB Views Video/Reel | Lifetime ♻️", price: 0.015 },
+
+        // TikTok (15)
+        { id: 8109, cat: "tiktok", name: "TikTok Followers | Low Quality", price: 0.11 },
+        { id: 3338, cat: "tiktok", name: "TikTok Followers | HQ Real | Lifetime ♻️", price: 1.00 },
+        { id: 3340, cat: "tiktok", name: "TikTok Followers | Perfect | Lifetime ♻️", price: 0.98 },
+        { id: 1507, cat: "tiktok", name: "TikTok Followers | +10K/Day", price: 0.32 },
+        { id: 3350, cat: "tiktok", name: "TikTok Followers | HQ Real | UltraFast", price: 0.67 },
+        { id: 3810, cat: "tiktok", name: "TikTok Followers | HQ | Lifetime ♻️⭐", price: 1.84 },
+        { id: 3231, cat: "tiktok", name: "Tiktok Followers | Non Drop | Lifetime ♻️", price: 2.08 },
+        { id: 8120, cat: "tiktok", name: "TikTok Likes | Low Quality", price: 0.88 },
+        { id: 3348, cat: "tiktok", name: "TikTok Likes | SuperInstant | Lifetime ♻️", price: 0.99 },
+        { id: 1972, cat: "tiktok", name: "TikTok Likes | Non Drop | Lifetime ♻️", price: 0.99 },
+        { id: 8387, cat: "tiktok", name: "TikTok Views | SuperInstant | +200M/Day", price: 0.009 },
+        { id: 6930, cat: "tiktok", name: "TikTok Views | Superfast", price: 0.010 },
+        { id: 8345, cat: "tiktok", name: "Tiktok Live Likes | SuperInstant", price: 0.10 },
+        { id: 6915, cat: "tiktok", name: "TikTok Live Stream Likes", price: 0.009 },
+        { id: 1521, cat: "tiktok", name: "TikTok Monetizable Followers | Real ♻️", price: 3.24 },
+
+        // Instagram (12)
+        { id: 7820, cat: "instagram", name: "IG Followers | Real Old | Lifetime ♻️", price: 1.00 },
+        { id: 1348, cat: "instagram", name: "IG Followers | Real Old | SuperFast ♻️", price: 1.56 },
+        { id: 3779, cat: "instagram", name: "IG Followers | UltraFast | Lifetime ♻️", price: 2.05 },
+        { id: 8801, cat: "instagram", name: "IG Likes | Real Old | +200K/Day", price: 0.63 },
+        { id: 7869, cat: "instagram", name: "IG Likes | Instant | +100K/Day", price: 0.22 },
+        { id: 7790, cat: "instagram", name: "IG Likes | Real Old | Lifetime ♻️", price: 1.15 },
+        { id: 6441, cat: "instagram", name: "IG Views | Ultra Fast | +100M/Day", price: 0.009 },
+        { id: 7788, cat: "instagram", name: "IG Views | All Links | +50M/Day", price: 0.020 },
+        { id: 5501, cat: "instagram", name: "IG Story Views | HQ Fast Delivery", price: 0.15 },
+        { id: 5502, cat: "instagram", name: "IG Comments | Arab Mix Profiles", price: 4.80 },
+        { id: 5503, cat: "instagram", name: "IG Save + Share | Engagement", price: 0.22 },
+        { id: 5504, cat: "instagram", name: "IG Profile Visits | Real Accounts", price: 0.55 },
+
+        // YouTube (12)
+        { id: 1539, cat: "youtube", name: "YT Subscribers | Non Drop | Lifetime ♻️", price: 21.62 },
+        { id: 1563, cat: "youtube", name: "YT Subscribers + Extra | 1K/Day ♻️", price: 26.92 },
+        { id: 1848, cat: "youtube", name: "YT Subscribers | 100% Real | Lifetime ♻️", price: 30.62 },
+        { id: 3274, cat: "youtube", name: "YT Shorts Subscribers | Non Drop ♻️", price: 18.82 },
+        { id: 935, cat: "youtube", name: "YT Likes | Real | SuperFast", price: 0.23 },
+        { id: 7614, cat: "youtube", name: "YT Likes | HQ Real | Lifetime ♻️", price: 0.88 },
+        { id: 8140, cat: "youtube", name: "YT Likes | Organic | Lifetime ♻️", price: 0.99 },
+        { id: 3544, cat: "youtube", name: "YT Video Views | 10-30s | Lifetime ♻️", price: 1.00 },
+        { id: 8413, cat: "youtube", name: "YT Views + Extra | External | Lifetime ♻️", price: 2.02 },
+        { id: 6275, cat: "youtube", name: "YT Earnings views | 30 Days Guarantee", price: 3.16 },
+        { id: 4401, cat: "youtube", name: "YT WatchTime 4000 Hours | Guaranteed", price: 36.50 },
+        { id: 4402, cat: "youtube", name: "YT WatchTime 1000 Hours | Guaranteed", price: 10.20 },
+
+        // Telegram (11)
+        { id: 3428, cat: "telegram", name: "Telegram Members | HQ Real | Lifetime ♻️", price: 0.99 },
+        { id: 7102, cat: "telegram", name: "Telegram Reactions Positive [👍❤️🔥]", price: 0.90 },
+        { id: 7103, cat: "telegram", name: "Telegram Reactions Negative [👎😢🤯]", price: 0.80 },
+        { id: 6805, cat: "telegram", name: "Telegram Post Views | Superfast", price: 0.99 },
+        { id: 7068, cat: "telegram", name: "Telegram View | +200K/Day", price: 0.99 },
+        { id: 2201, cat: "telegram", name: "Telegram Arab Members | Real Mix", price: 5.50 },
+        { id: 2202, cat: "telegram", name: "Telegram Poll Votes | Fast", price: 0.45 },
+        { id: 2203, cat: "telegram", name: "Telegram Auto Views | Last 10 Posts", price: 1.10 },
+        { id: 2204, cat: "telegram", name: "Telegram Premium Members | Non Drop", price: 13.90 },
+        { id: 2205, cat: "telegram", name: "Telegram Group Scraper Members", price: 3.10 },
+        { id: 2206, cat: "telegram", name: "Telegram Comments | High Quality", price: 3.90 },
+
+        // Subscriptions (10)
+        { id: 3407, cat: "subscriptions", name: "Gemini Pro AI | Storage 2048GB | 1 Year", price: 6.23 },
+        { id: 944, cat: "subscriptions", name: "Canva Pro | Premium 1-3 Years", price: 0.99 },
+        { id: 3343, cat: "subscriptions", name: "Blackblox AI Premium | 3 Month", price: 15.00 },
+        { id: 3364, cat: "subscriptions", name: "CapCut Pro | Private | 1 Month", price: 5.00 },
+        { id: 8607, cat: "subscriptions", name: "Netflix Premium | 4K UHD | 1 Month", price: 4.50 },
+        { id: 1101, cat: "subscriptions", name: "Spotify Premium | 3 Month Personal", price: 6.00 },
+        { id: 1102, cat: "subscriptions", name: "Windows 11 Pro Key | Lifetime 🔑", price: 3.20 },
+        { id: 1103, cat: "subscriptions", name: "Office 2021 Pro Key | Lifetime 🔑", price: 4.10 },
+        { id: 1104, cat: "subscriptions", name: "IPTV Gold | 12 Month | All Channels", price: 16.00 },
+        { id: 1105, cat: "subscriptions", name: "ChatGPT Plus | 1 Month Private", price: 5.00 }
+    ];
+
+    let currentSrv = null;
+
+    function switchCategory(cat) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        const filtered = services.filter(s => s.cat === cat);
+        renderServices(filtered);
+    }
+
+    function renderServices(list) {
+        const container = document.getElementById('servicesContainer');
+        container.innerHTML = list.map(s => `
+            <div class="service-item" onclick="openModal(${s.id})">
+                <div class="service-info">
+                    <div class="service-name">${s.name}</div>
+                    <div style="font-size: 11px; color: #2563eb;">ID: #${s.id}</div>
+                </div>
+                <div class="service-price">$${s.price.toFixed(2)}</div>
+            </div>
+        `).join('');
+    }
+
+    function openModal(id) {
+        currentSrv = services.find(s => s.id === id);
+        document.getElementById('mServiceName').innerText = currentSrv.name;
+        
+        // إظهار خانة الإيميل فقط في قسم الاشتراكات
+        const emailSection = document.getElementById('emailSection');
+        const qtySection = document.getElementById('qtySection');
+        
+        if(currentSrv.cat === 'subscriptions') {
+            emailSection.style.display = 'block';
+            qtySection.style.display = 'none'; // لا حاجة للكمية في الاشتراكات
+        } else {
+            emailSection.style.display = 'none';
+            qtySection.style.display = 'block';
+            document.getElementById('orderQty').value = 1000;
+        }
+
+        document.getElementById('orderModal').classList.add('active');
+        calculateTotal();
+    }
+
+    function closeModal() { document.getElementById('orderModal').classList.remove('active'); }
+
+    function calculateTotal() {
+        const qty = document.getElementById('orderQty').value || 1000;
+        let total = (currentSrv.price / 1000) * qty;
+        
+        if(currentSrv.cat === 'subscriptions') {
+            total = currentSrv.price;
+        }
+        
+        document.getElementById('totalPrice').innerText = "$" + total.toFixed(2);
+    }
+
+    function confirmOrder() {
+        const link = document.getElementById('orderLink').value;
+        const email = document.getElementById('orderEmail').value;
+        const qty = document.getElementById('orderQty').value;
+        const total = document.getElementById('totalPrice').innerText;
+
+        if(!link) return alert("يرجى إدخال الرابط");
+        if(currentSrv.cat === 'subscriptions' && !email) return alert("يرجى إدخال الإيميل");
+
+        const msg = `🚀 *طلب جديد من KARIMTREIZE*%0A%0A` +
+                    `*الخدمة:* ${currentSrv.name}%0A` +
+                    `*الرابط:* ${link}%0A` +
+                    (email ? `*الإيميل:* ${email}%0A` : `*الكمية:* ${qty}%0A`) +
+                    `*السعر الإجمالي:* ${total}`;
+
+        window.open(`https://wa.me/213656251947?text=${msg}`);
+    }
+
+    function filterServices() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        renderServices(services.filter(s => s.name.toLowerCase().includes(q) || s.id.toString().includes(q)));
+    }
+
+    // عرض قسم فيسبوك عند التحميل
+    renderServices(services.filter(s => s.cat === 'facebook'));
+</script>
+
+</body>
+</html>
