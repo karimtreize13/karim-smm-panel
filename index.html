@@ -1,292 +1,299 @@
-!DOCTYPE html>
-‎<html lang="ar" dir="rtl" id="mainHtml">
-‎<head>
-‎    <meta charset="UTF-8">
-‎    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎    <title>KARIMTREIZE13 SMS PANEL</title>
-‎    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-‎    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-‎    <style>
-‎        :root {
-‎            --primary: #fbbf24; /* أصفر ذهبي */
-‎            --secondary: #2563eb; /* أزرق ملكي */
-‎            --bg: #050505; 
-‎            --card: #111; 
-‎            --white: #ffffff;
-‎            --border: #222; 
-‎        }
-‎        body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; overflow-x: hidden; }
-‎        
-‎        /* Lang Bar */
-‎        .lang-bar { background: #000; padding: 10px 5%; display: flex; justify-content: flex-end; gap: 10px; border-bottom: 1px solid var(--border); }
-‎        .lang-btn { background: none; border: 1px solid var(--secondary); color: #fff; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.3s; }
-‎        .lang-btn.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
-‎
-‎        /* Navbar */
-‎        .navbar { background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--secondary); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-‎        .logo-container { display: flex; align-items: center; gap: 15px; }
-‎        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 10px var(--secondary); }
-‎        .logo-text { font-size: 18px; font-weight: 900; }
-‎        .logo-text span { color: var(--primary); }
-‎
-‎        /* Hero */
-‎        .hero { padding: 40px 5%; text-align: center; background: radial-gradient(circle at top, #001a33 0%, #050505 100%); }
-‎        .hero h1 { font-size: 24px; margin-bottom: 10px; }
-‎        .hero p { color: var(--primary); font-size: 14px; font-weight: bold; margin-bottom: 20px; }
-‎        
-‎        .search-box { max-width: 500px; margin: 0 auto; position: relative; }
-‎        #searchBar { width: 100%; padding: 15px 45px; border-radius: 50px; border: 2px solid var(--border); background: var(--card); color: #fff; outline: none; box-sizing: border-box; }
-‎        #searchBar:focus { border-color: var(--secondary); box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
-‎        .search-box i { position: absolute; right: 20px; top: 16px; color: var(--primary); }
-‎        [dir="ltr"] .search-box i { right: auto; left: 20px; }
-‎
-‎        /* Tabs */
-‎        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
-‎        .tab { padding: 10px 22px; background: var(--card); border: 1px solid var(--secondary); border-radius: 50px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-size: 13px; color: #fff; }
-‎        .tab.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
-‎
-‎        /* Services */
-‎        .services-grid { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
-‎        .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; border-right: 5px solid var(--secondary); transition: 0.3s; }
-‎        [dir="ltr"] .service-card { border-right: none; border-left: 5px solid var(--secondary); }
-‎        .service-card:hover { border-color: var(--primary); transform: translateY(-5px); background: #1a1a1a; }
-‎        
-‎        .srv-id { font-size: 10px; color: var(--primary); background: rgba(37, 99, 235, 0.1); padding: 3px 8px; border-radius: 5px; }
-‎        .srv-name { display: block; font-size: 13px; margin: 15px 0; color: #eee; text-align: left; direction: ltr; min-height: 40px; }
-‎        .srv-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 15px; }
-‎        .srv-price { font-size: 22px; font-weight: 900; color: var(--primary); }
-‎        .btn-order { background: var(--secondary); color: white; border: none; padding: 10px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
-‎
-‎        /* Modal */
-‎        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-‎        .modal-box { background: #0a0a0a; width: 90%; max-width: 420px; padding: 25px; border-radius: 25px; border: 2px solid var(--secondary); }
-‎        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; outline: none; }
-‎        
-‎        .price-calc { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; margin: 10px 0; text-align: center; }
-‎        .total-price { color: var(--primary); font-size: 24px; font-weight: 900; }
-‎        
-‎        .pay-info-box { background: #001a33; border: 1px dashed var(--primary); padding: 12px; border-radius: 12px; margin-top: 10px; display: none; text-align: center; }
-‎        .btn-wa { width: 100%; padding: 16px; background: #22c55e; color: #fff; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-‎    </style>
-‎</head>
-‎<body>
-‎
-‎<div class="lang-bar">
-‎    <button class="lang-btn active" id="btnAr" onclick="setLang('ar')">العربية</button>
-‎    <button class="lang-btn" id="btnFr" onclick="setLang('fr')">Français</button>
-‎</div>
-‎
-‎<nav class="navbar">
-‎    <div class="logo-container">
-‎        <img src="https://i.ibb.co/XfXGk6V/1000024177.png" class="logo-img" alt="Logo">
-‎        <div class="logo-text">KARIM<span>TREIZE13</span> SMS PANEL</div>
-‎    </div>
-‎</nav>
-‎
-‎<section class="hero">
-‎    <h1 id="heroTitle">لوحة خدمات كريم تريز</h1>
-‎    <p id="heroSub">زيادة تفاعل على أي منصة (Social Media Booster)</p>
-‎    <div class="search-box">
-‎        <i class="fas fa-search"></i>
-‎        <input type="text" id="searchBar" placeholder="ابحث عن خدمة..." onkeyup="search()">
-‎    </div>
-‎</section>
-‎
-‎<div class="tabs" id="tabsList">
-‎    <div class="tab active" data-cat="All" onclick="filterCat('All', this)">الكل 🌐</div>
-‎    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)">Facebook</div>
-‎    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)">TikTok</div>
-‎    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)">Instagram</div>
-‎    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)">YouTube</div>
-‎    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)">Telegram</div>
-‎    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)">Premium ⭐</div>
-‎</div>
-‎
-‎<div class="services-grid" id="container"></div>
-‎
-‎<div id="modal" class="modal">
-‎    <div class="modal-box animate__animated animate__zoomIn">
-‎        <h3 id="mTitle" style="font-size: 14px; color: var(--white); text-align: center; margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px;"></h3>
-‎        <input type="url" id="mLink" placeholder="الرابط المستهدف (Link)">
-‎        <div id="emailGroup" style="display: none;">
-‎            <input type="email" id="mEmail" placeholder="البريد الإلكتروني (Email)">
-‎        </div>
-‎        <label style="font-size: 11px; color: #888;" id="lblQty">الكمية:</label>
-‎        <input type="number" id="mQty" value="1000" oninput="calculateTotal()">
-‎        <div class="price-calc">
-‎            <span style="font-size: 12px;" id="lblTotal">السعر الإجمالي:</span><br>
-‎            <span class="total-price" id="displayTotalPrice">$0.00</span>
-‎        </div>
-‎        <select id="mPay" onchange="updatePaymentInfo(this.value)">
-‎            <option value="" id="optPay">-- اختر وسيلة الدفع --</option>
-‎            <option value="BaridiMob">بريدي موب (CCP)</option>
-‎            <option value="RedotPay">RedotPay</option>
-‎            <option value="Binance">Binance (USDT)</option>
-‎        </select>
-‎        <div id="payDetails" class="pay-info-box">
-‎            <span id="txtAcc" style="font-size: 11px;">رقم الحساب:</span>
-‎            <b id="payNumber" style="color: var(--primary); display: block; font-size: 18px; margin-top: 5px;"></b>
-‎        </div>
-‎        <button class="btn-wa" id="btnWa" onclick="sendToWA()">تأكيد عبر واتساب</button>
-‎        <button onclick="closeModal()" id="btnClose" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
-‎    </div>
-‎</div>
-‎
-‎<script>
-‎    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
-‎    
-‎    const langData = {
-‎        ar: { title: "لوحة خدمات كريم تريز", sub: "زيادة تفاعل على أي منصة (Social Media Booster)", search: "ابحث عن خدمة...", order: "طلب", all: "الكل 🌐", optPay: "-- اختر وسيلة الدفع --", lblQty: "الكمية:", lblTotal: "السعر الإجمالي:", btnWa: "تأكيد الطلب عبر واتساب", btnClose: "إلغاء" },
-‎        fr: { title: "Panel de Karim Treize", sub: "Boost d'interaction multi-plateforme", search: "Rechercher...", order: "Commander", all: "Tout 🌐", optPay: "-- Choisir le paiement --", lblQty: "Quantité:", lblTotal: "Prix Total:", btnWa: "Confirmer via WhatsApp", btnClose: "Annuler" }
-‎    };
-‎
-‎    // القائمة الكاملة (72 خدمة)
-‎    const SERVICES = [
-‎        // Facebook (12 services)
-‎        {id: 2676, cat: "Facebook", n: "FB Followers | All Types | Non Drop | Lifetime ♻️⚡", p: 0.44},
-‎        {id: 1974, cat: "Facebook", n: "FB Followers | Non Drop | 365 Days Refill ♻️⚡", p: 0.41},
-‎        {id: 3859, cat: "Facebook", n: "FB Followers | Bots Quality | Lifetime Refill ♻️⚡", p: 0.12},
-‎        {id: 3858, cat: "Facebook", n: "FB Followers | Bots Quality | No Refill ⚡", p: 0.08},
-‎        {id: 3324, cat: "Facebook", n: "FB Group Members | Low Drop | No Refill⚡", p: 0.55},
-‎        {id: 3330, cat: "Facebook", n: "FB Group Members | Real | 365 Days Refill ♻️🔥", p: 0.92},
-‎        {id: 8395, cat: "Facebook", n: "FB 60k Minutes | 10 Mins Video | Lifetime ♻️⚡", p: 0.95},
-‎        {id: 815, cat: "Facebook", n: "FB 100k Reels Views Package | 30 Days Refill 🔥", p: 5.59},
-‎        {id: 3315, cat: "Facebook", n: "FB Post Likes 👍 | HQ Real Profiles | Instant ⚡", p: 0.74},
-‎        {id: 8755, cat: "Facebook", n: "FB Post Reaction | Like 👍 | No Refill", p: 0.33},
-‎        {id: 8756, cat: "Facebook", n: "FB Post Reaction | Love❤️ | No Refill", p: 0.43},
-‎        {id: 7592, cat: "Facebook", n: "FB Views | Video/Reel | Lifetime Refill ⚡", p: 0.99},
-‎        // TikTok (15 services)
-‎        {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality | No Refill⚡", p: 0.11},
-‎        {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime Refill♻️", p: 1.00},
-‎        {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect Quality | Lifetime ♻️", p: 0.98},
-‎        {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery | No Refill⚡", p: 0.32},
-‎        {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast | No Refill", p: 0.67},
-‎        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime Refill⭐", p: 1.84},
-‎        {id: 3231, cat: "TikTok", n: "Tiktok Followers | HQ Real | Lifetime Refill⭐⚡", p: 2.08},
-‎        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality | No Refill⚡", p: 0.88},
-‎        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime Refill⚡", p: 0.99},
-‎        {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime Refill⚡", p: 0.99},
-‎        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day⚡", p: 0.009},
-‎        {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast | No Refill⚡", p: 0.09},
-‎        {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant Speed ⭐", p: 0.10},
-‎        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | 0-10 Mins ⭐", p: 0.009},
-‎        {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️⚡", p: 3.24},
-‎        // Instagram (12 services)
-‎        {id: 7820, cat: "Instagram", n: "IG Followers | Real Old Accounts | Lifetime ♻️", p: 1.00},
-‎        {id: 1348, cat: "Instagram", n: "IG Followers | Real Old Accounts | SuperFast ⭐", p: 1.56},
-‎        {id: 3779, cat: "Instagram", n: "IG Followers | UltraFast | Lifetime Refill⭐", p: 2.05},
-‎        {id: 8801, cat: "Instagram", n: "IG Likes | Real Old | No Refill⚡", p: 0.63},
-‎        {id: 7869, cat: "Instagram", n: "IG Likes | Instant Delivery | No Refill⭐", p: 0.22},
-‎        {id: 7790, cat: "Instagram", n: "IG Likes | Real Old | Lifetime Refill⭐", p: 1.15},
-‎        {id: 6441, cat: "Instagram", n: "IG Views | Ultra Fast | No Refill⚡", p: 0.009},
-‎        {id: 7788, cat: "Instagram", n: "IG Views | Instant | No Refill⚡", p: 0.02},
-‎        {id: 5501, cat: "Instagram", n: "IG Story Views | HQ Fast Delivery ⚡", p: 0.15},
-‎        {id: 5502, cat: "Instagram", n: "IG Comments | Arab Mix Profiles 🌍", p: 4.80},
-‎        {id: 5503, cat: "Instagram", n: "IG Save + Share | Engagement 🚀", p: 0.22},
-‎        {id: 5504, cat: "Instagram", n: "IG Profile Visits | Real Accounts 👤", p: 0.55},
-‎        // YouTube (12 services)
-‎        {id: 1539, cat: "YouTube", n: "YT Subscribers | Non Drop | Lifetime Refill♻️⚡", p: 21.62},
-‎        {id: 1563, cat: "YouTube", n: "YT Subscribers + Extra | Speed 1K/Day ♻️⚡", p: 26.92},
-‎        {id: 1848, cat: "YouTube", n: "YT Subscribers | Real | Lifetime Refill⭐♻️", p: 30.62},
-‎        {id: 3274, cat: "YouTube", n: "YT Shorts Subscribers | Non Drop ♻️⚡", p: 18.82},
-‎        {id: 935, cat: "YouTube", n: "YT Likes | Real | SuperFast | No Refill ⚡", p: 0.23},
-‎        {id: 7614, cat: "YouTube", n: "YT Likes | HQ Real | Lifetime Refill⭐♻️", p: 0.88},
-‎        {id: 8140, cat: "YouTube", n: "YT Likes | Real Organic | Lifetime ⭐♻️⚡", p: 0.99},
-‎        {id: 3544, cat: "YouTube", n: "YT Video/Shorts Views | Lifetime Refill⭐⚡", p: 1.00},
-‎        {id: 8413, cat: "YouTube", n: "YT Views + Extra | External | Lifetime ⭐", p: 2.02},
-‎        {id: 6275, cat: "YouTube", n: "YT Earnings views | Revenue Speed +5K/day", p: 3.16},
-‎        {id: 4401, cat: "YouTube", n: "YT WatchTime 4000 Hours | High Retention ♻️", p: 36.50},
-‎        {id: 4402, cat: "YouTube", n: "YT WatchTime 1000 Hours | Guaranteed ♻️", p: 10.20},
-‎        // Telegram (11 services)
-‎        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime Refill⭐", p: 1.09},
-‎        {id: 7102, cat: "Telegram", n: "Telegram Reactions Positive [👍❤️🔥] | Non Drop", p: 0.90},
-‎        {id: 7103, cat: "Telegram", n: "Telegram Reactions Negative [👎😢🤯] | Non Drop", p: 0.80},
-‎        {id: 6805, cat: "Telegram", n: "Telegram Post Views [1 Post] [Superfast]⭐", p: 0.99},
-‎        {id: 7068, cat: "Telegram", n: "Telegram View | Instant | +200K/Day ⭐⚡", p: 0.99},
-‎        {id: 2201, cat: "Telegram", n: "Telegram Arab Members | Real Mix 🌍", p: 5.50},
-‎        {id: 2202, cat: "Telegram", n: "Telegram Group Scraper Members 👥", p: 3.10},
-‎        {id: 2203, cat: "Telegram", n: "Telegram Poll Votes | Fast ✅", p: 0.45},
-‎        {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts ⚡", p: 1.10},
-‎        {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop 💎", p: 13.90},
-‎        {id: 2206, cat: "Telegram", n: "Telegram Comments Service | High Quality 💬", p: 3.90},
-‎        // Premium (10 services)
-‎        {id: 3407, cat: "Premium", n: "Gemini Pro AI | Storage 2048GB | 12 Month", p: 6.23},
-‎        {id: 944, cat: "Premium", n: "Canva Pro | Paid Unlock | 1-3 Years Package", p: 0.99},
-‎        {id: 3343, cat: "Premium", n: "Blackblox AI | GPT, DeepSeek | 3 Month", p: 15.00},
-‎        {id: 3364, cat: "Premium", n: "CapCut Pro | Private Mail | 1 Month", p: 5.00},
-‎        {id: 8607, cat: "Premium", n: "Netflix Premium | 4K Ultra HD | 1 Month", p: 4.50},
-‎        {id: 1101, cat: "Premium", n: "Spotify Premium | 3 Month Personal 🎵", p: 6.00},
-‎        {id: 1102, cat: "Premium", n: "Windows 11 Pro Key | Lifetime Activation 🔑", p: 3.20},
-‎        {id: 1103, cat: "Premium", n: "Office 2021 Pro Key | Lifetime License ✅", p: 4.10},
-‎        {id: 1104, cat: "Premium", n: "IPTV Gold | 12 Month | All Channels ⚽", p: 16.00},
-‎        {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private Access 🤖", p: 5.00}
-‎    ];
-‎
-‎    let currentLang = 'ar';
-‎    let selectedPrice = 0;
-‎
-‎    function setLang(lang) {
-‎        currentLang = lang;
-‎        document.getElementById('mainHtml').dir = lang === 'ar' ? 'rtl' : 'ltr';
-‎        document.getElementById('heroTitle').innerText = langData[lang].title;
-‎        document.getElementById('heroSub').innerText = langData[lang].sub;
-‎        document.getElementById('searchBar').placeholder = langData[lang].search;
-‎        document.getElementById('optPay').innerText = langData[lang].optPay;
-‎        document.getElementById('lblQty').innerText = langData[lang].lblQty;
-‎        document.getElementById('lblTotal').innerText = langData[lang].lblTotal;
-‎        document.getElementById('btnWa').innerText = langData[lang].btnWa;
-‎        document.getElementById('btnClose').innerText = langData[lang].btnClose;
-‎        document.querySelector('[data-cat="All"]').innerText = langData[lang].all;
-‎        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-‎        document.getElementById(lang === 'ar' ? 'btnAr' : 'btnFr').classList.add('active');
-‎        render(SERVICES);
-‎    }
-‎
-‎    function render(list) {
-‎        document.getElementById('container').innerHTML = list.map(s => `
-‎            <div class="service-card">
-‎                <span class="srv-id">ID: #${s.id}</span>
-‎                <span class="srv-name">${s.n}</span>
-‎                <div class="srv-footer">
-‎                    <span class="srv-price">$${s.p}</span>
-‎                    <button class="btn-order" onclick="openOrder(${s.id})">${langData[currentLang].order}</button>
-‎                </div>
-‎            </div>
-‎        `).join('');
-‎    }
-‎
-‎    function openOrder(id) {
-‎        const srv = SERVICES.find(s => s.id === id);
-‎        window.currentSelected = srv;
-‎        selectedPrice = srv.p;
-‎        document.getElementById('mTitle').innerText = srv.n;
-‎        document.getElementById('emailGroup').style.display = srv.cat === "Premium" ? "block" : "none";
-‎        document.getElementById('mQty').value = 1000;
-‎        calculateTotal();
-‎        document.getElementById('modal').style.display = 'flex';
-‎    }
-‎
-‎    function calculateTotal() {
-‎        const qty = document.getElementById('mQty').value;
-‎        const total = (selectedPrice / 1000) * qty;
-‎        document.getElementById('displayTotalPrice').innerText = "$" + total.toFixed(3);
-‎    }
-‎
-‎    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-‎
-‎    function updatePaymentInfo(val) {
-‎        const box = document.getElementById('payDetails');
-‎        if(val && WALLETS[val]) {
-‎            box.style.display = "block";
-‎            document.getElementById('payNumber').innerText = WALLETS[val];
-‎        } else { box.style.display = "none"; }
-‎    }
-‎
-‎    function sendToWA() {
-‎        const srv = window.currentSelected;
-‎        const qty = document.getElementById('mQty').value;
-‎        const total = (selectedPrice / 1000) * qty;
-‎        const link = document.getElementById('mLink').value;
-‎        const email = document.getElementById('mEmail').value;
-‎        const pay = document.getElementById('mPay').value;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="mainHtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARIMTREIZE13 SMS PANEL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary: #fbbf24; /* أصفر ذهبي */
+            --secondary: #2563eb; /* أزرق ملكي */
+            --bg: #050505; 
+            --card: #111; 
+            --white: #ffffff;
+            --border: #222; 
+        }
+        body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Lang Bar */
+        .lang-bar { background: #000; padding: 10px 5%; display: flex; justify-content: flex-end; gap: 10px; border-bottom: 1px solid var(--border); }
+        .lang-btn { background: none; border: 1px solid var(--secondary); color: #fff; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.3s; }
+        .lang-btn.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
+
+        /* Navbar */
+        .navbar { background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--secondary); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 10px var(--secondary); }
+        .logo-text { font-size: 18px; font-weight: 900; }
+        .logo-text span { color: var(--primary); }
+
+        /* Hero */
+        .hero { padding: 40px 5%; text-align: center; background: radial-gradient(circle at top, #001a33 0%, #050505 100%); }
+        .hero h1 { font-size: 24px; margin-bottom: 10px; }
+        .hero p { color: var(--primary); font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        
+        .search-box { max-width: 500px; margin: 0 auto; position: relative; }
+        #searchBar { width: 100%; padding: 15px 45px; border-radius: 50px; border: 2px solid var(--border); background: var(--card); color: #fff; outline: none; box-sizing: border-box; }
+        #searchBar:focus { border-color: var(--secondary); box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
+        .search-box i { position: absolute; right: 20px; top: 16px; color: var(--primary); }
+        [dir="ltr"] .search-box i { right: auto; left: 20px; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
+        .tab { padding: 10px 22px; background: var(--card); border: 1px solid var(--secondary); border-radius: 50px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-size: 13px; color: #fff; }
+        .tab.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
+
+        /* Services */
+        .services-grid { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+        .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; border-right: 5px solid var(--secondary); transition: 0.3s; }
+        [dir="ltr"] .service-card { border-right: none; border-left: 5px solid var(--secondary); }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-5px); background: #1a1a1a; }
+        
+        .srv-id { font-size: 10px; color: var(--primary); background: rgba(37, 99, 235, 0.1); padding: 3px 8px; border-radius: 5px; }
+        .srv-name { display: block; font-size: 13px; margin: 15px 0; color: #eee; text-align: left; direction: ltr; min-height: 40px; }
+        .srv-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 15px; }
+        .srv-price { font-size: 22px; font-weight: 900; color: var(--primary); }
+        .btn-order { background: var(--secondary); color: white; border: none; padding: 10px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-box { background: #0a0a0a; width: 90%; max-width: 420px; padding: 25px; border-radius: 25px; border: 2px solid var(--secondary); }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; outline: none; }
+        
+        .price-calc { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; margin: 10px 0; text-align: center; }
+        .total-price { color: var(--primary); font-size: 24px; font-weight: 900; }
+        
+        .pay-info-box { background: #001a33; border: 1px dashed var(--primary); padding: 12px; border-radius: 12px; margin-top: 10px; display: none; text-align: center; }
+        .btn-wa { width: 100%; padding: 16px; background: #22c55e; color: #fff; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <button class="lang-btn active" id="btnAr" onclick="setLang('ar')">العربية</button>
+    <button class="lang-btn" id="btnFr" onclick="setLang('fr')">Français</button>
+</div>
+
+<nav class="navbar">
+    <div class="logo-container">
+        <img src="https://i.ibb.co/XfXGk6V/1000024177.png" class="logo-img" alt="Logo">
+        <div class="logo-text">KARIM<span>TREIZE13</span> SMS PANEL</div>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1 id="heroTitle">لوحة خدمات كريم تريز</h1>
+    <p id="heroSub">زيادة تفاعل على أي منصة (Social Media Booster)</p>
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchBar" placeholder="ابحث عن خدمة..." onkeyup="search()">
+    </div>
+</section>
+
+<div class="tabs" id="tabsList">
+    <div class="tab active" data-cat="All" onclick="filterCat('All', this)">الكل 🌐</div>
+    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)">Facebook</div>
+    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)">TikTok</div>
+    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)">Instagram</div>
+    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)">YouTube</div>
+    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)">Telegram</div>
+    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)">Premium ⭐</div>
+</div>
+
+<div class="services-grid" id="container"></div>
+
+<div id="modal" class="modal">
+    <div class="modal-box animate__animated animate__zoomIn">
+        <h3 id="mTitle" style="font-size: 14px; color: var(--white); text-align: center; margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px;"></h3>
+        <input type="url" id="mLink" placeholder="الرابط المستهدف (Link)">
+        <div id="emailGroup" style="display: none;">
+            <input type="email" id="mEmail" placeholder="البريد الإلكتروني (Email)">
+        </div>
+        <label style="font-size: 11px; color: #888;" id="lblQty">الكمية:</label>
+        <input type="number" id="mQty" value="1000" oninput="calculateTotal()">
+        <div class="price-calc">
+            <span style="font-size: 12px;" id="lblTotal">السعر الإجمالي:</span><br>
+            <span class="total-price" id="displayTotalPrice">$0.00</span>
+        </div>
+        <select id="mPay" onchange="updatePaymentInfo(this.value)">
+            <option value="" id="optPay">-- اختر وسيلة الدفع --</option>
+            <option value="BaridiMob">بريدي موب (CCP)</option>
+            <option value="RedotPay">RedotPay</option>
+            <option value="Binance">Binance (USDT)</option>
+        </select>
+        <div id="payDetails" class="pay-info-box">
+            <span id="txtAcc" style="font-size: 11px;">رقم الحساب:</span>
+            <b id="payNumber" style="color: var(--primary); display: block; font-size: 18px; margin-top: 5px;"></b>
+        </div>
+        <button class="btn-wa" id="btnWa" onclick="sendToWA()">تأكيد عبر واتساب</button>
+        <button onclick="closeModal()" id="btnClose" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
+    </div>
+</div>
+
+<script>
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     
+    const langData = {
+        ar: { title: "لوحة خدمات كريم تريز", sub: "زيادة تفاعل على أي منصة (Social Media Booster)", search: "ابحث عن خدمة...", order: "طلب", all: "الكل 🌐", optPay: "-- اختر وسيلة الدفع --", lblQty: "الكمية:", lblTotal: "السعر الإجمالي:", btnWa: "تأكيد الطلب عبر واتساب", btnClose: "إلغاء" },
+        fr: { title: "Panel de Karim Treize", sub: "Boost d'interaction multi-plateforme", search: "Rechercher...", order: "Commander", all: "Tout 🌐", optPay: "-- Choisir le paiement --", lblQty: "Quantité:", lblTotal: "Prix Total:", btnWa: "Confirmer via WhatsApp", btnClose: "Annuler" }
+    };
+
+    // القائمة الكاملة (72 خدمة)
+    const SERVICES = [
+        // Facebook (12 services)
+        {id: 2676, cat: "Facebook", n: "FB Followers | All Types | Non Drop | Lifetime ♻️⚡", p: 0.44},
+        {id: 1974, cat: "Facebook", n: "FB Followers | Non Drop | 365 Days Refill ♻️⚡", p: 0.41},
+        {id: 3859, cat: "Facebook", n: "FB Followers | Bots Quality | Lifetime Refill ♻️⚡", p: 0.12},
+        {id: 3858, cat: "Facebook", n: "FB Followers | Bots Quality | No Refill ⚡", p: 0.08},
+        {id: 3324, cat: "Facebook", n: "FB Group Members | Low Drop | No Refill⚡", p: 0.55},
+        {id: 3330, cat: "Facebook", n: "FB Group Members | Real | 365 Days Refill ♻️🔥", p: 0.92},
+        {id: 8395, cat: "Facebook", n: "FB 60k Minutes | 10 Mins Video | Lifetime ♻️⚡", p: 0.95},
+        {id: 815, cat: "Facebook", n: "FB 100k Reels Views Package | 30 Days Refill 🔥", p: 5.59},
+        {id: 3315, cat: "Facebook", n: "FB Post Likes 👍 | HQ Real Profiles | Instant ⚡", p: 0.74},
+        {id: 8755, cat: "Facebook", n: "FB Post Reaction | Like 👍 | No Refill", p: 0.33},
+        {id: 8756, cat: "Facebook", n: "FB Post Reaction | Love❤️ | No Refill", p: 0.43},
+        {id: 7592, cat: "Facebook", n: "FB Views | Video/Reel | Lifetime Refill ⚡", p: 0.99},
+        // TikTok (15 services)
+        {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality | No Refill⚡", p: 0.11},
+        {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime Refill♻️", p: 1.00},
+        {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect Quality | Lifetime ♻️", p: 0.98},
+        {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery | No Refill⚡", p: 0.32},
+        {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast | No Refill", p: 0.67},
+        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime Refill⭐", p: 1.84},
+        {id: 3231, cat: "TikTok", n: "Tiktok Followers | HQ Real | Lifetime Refill⭐⚡", p: 2.08},
+        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality | No Refill⚡", p: 0.88},
+        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime Refill⚡", p: 0.99},
+        {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime Refill⚡", p: 0.99},
+        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day⚡", p: 0.009},
+        {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast | No Refill⚡", p: 0.09},
+        {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant Speed ⭐", p: 0.10},
+        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | 0-10 Mins ⭐", p: 0.009},
+        {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️⚡", p: 3.24},
+        // Instagram (12 services)
+        {id: 7820, cat: "Instagram", n: "IG Followers | Real Old Accounts | Lifetime ♻️", p: 1.00},
+        {id: 1348, cat: "Instagram", n: "IG Followers | Real Old Accounts | SuperFast ⭐", p: 1.56},
+        {id: 3779, cat: "Instagram", n: "IG Followers | UltraFast | Lifetime Refill⭐", p: 2.05},
+        {id: 8801, cat: "Instagram", n: "IG Likes | Real Old | No Refill⚡", p: 0.63},
+        {id: 7869, cat: "Instagram", n: "IG Likes | Instant Delivery | No Refill⭐", p: 0.22},
+        {id: 7790, cat: "Instagram", n: "IG Likes | Real Old | Lifetime Refill⭐", p: 1.15},
+        {id: 6441, cat: "Instagram", n: "IG Views | Ultra Fast | No Refill⚡", p: 0.009},
+        {id: 7788, cat: "Instagram", n: "IG Views | Instant | No Refill⚡", p: 0.02},
+        {id: 5501, cat: "Instagram", n: "IG Story Views | HQ Fast Delivery ⚡", p: 0.15},
+        {id: 5502, cat: "Instagram", n: "IG Comments | Arab Mix Profiles 🌍", p: 4.80},
+        {id: 5503, cat: "Instagram", n: "IG Save + Share | Engagement 🚀", p: 0.22},
+        {id: 5504, cat: "Instagram", n: "IG Profile Visits | Real Accounts 👤", p: 0.55},
+        // YouTube (12 services)
+        {id: 1539, cat: "YouTube", n: "YT Subscribers | Non Drop | Lifetime Refill♻️⚡", p: 21.62},
+        {id: 1563, cat: "YouTube", n: "YT Subscribers + Extra | Speed 1K/Day ♻️⚡", p: 26.92},
+        {id: 1848, cat: "YouTube", n: "YT Subscribers | Real | Lifetime Refill⭐♻️", p: 30.62},
+        {id: 3274, cat: "YouTube", n: "YT Shorts Subscribers | Non Drop ♻️⚡", p: 18.82},
+        {id: 935, cat: "YouTube", n: "YT Likes | Real | SuperFast | No Refill ⚡", p: 0.23},
+        {id: 7614, cat: "YouTube", n: "YT Likes | HQ Real | Lifetime Refill⭐♻️", p: 0.88},
+        {id: 8140, cat: "YouTube", n: "YT Likes | Real Organic | Lifetime ⭐♻️⚡", p: 0.99},
+        {id: 3544, cat: "YouTube", n: "YT Video/Shorts Views | Lifetime Refill⭐⚡", p: 1.00},
+        {id: 8413, cat: "YouTube", n: "YT Views + Extra | External | Lifetime ⭐", p: 2.02},
+        {id: 6275, cat: "YouTube", n: "YT Earnings views | Revenue Speed +5K/day", p: 3.16},
+        {id: 4401, cat: "YouTube", n: "YT WatchTime 4000 Hours | High Retention ♻️", p: 36.50},
+        {id: 4402, cat: "YouTube", n: "YT WatchTime 1000 Hours | Guaranteed ♻️", p: 10.20},
+        // Telegram (11 services)
+        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime Refill⭐", p: 1.09},
+        {id: 7102, cat: "Telegram", n: "Telegram Reactions Positive [👍❤️🔥] | Non Drop", p: 0.90},
+        {id: 7103, cat: "Telegram", n: "Telegram Reactions Negative [👎😢🤯] | Non Drop", p: 0.80},
+        {id: 6805, cat: "Telegram", n: "Telegram Post Views [1 Post] [Superfast]⭐", p: 0.99},
+        {id: 7068, cat: "Telegram", n: "Telegram View | Instant | +200K/Day ⭐⚡", p: 0.99},
+        {id: 2201, cat: "Telegram", n: "Telegram Arab Members | Real Mix 🌍", p: 5.50},
+        {id: 2202, cat: "Telegram", n: "Telegram Group Scraper Members 👥", p: 3.10},
+        {id: 2203, cat: "Telegram", n: "Telegram Poll Votes | Fast ✅", p: 0.45},
+        {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts ⚡", p: 1.10},
+        {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop 💎", p: 13.90},
+        {id: 2206, cat: "Telegram", n: "Telegram Comments Service | High Quality 💬", p: 3.90},
+        // Premium (10 services)
+        {id: 3407, cat: "Premium", n: "Gemini Pro AI | Storage 2048GB | 12 Month", p: 6.23},
+        {id: 944, cat: "Premium", n: "Canva Pro | Paid Unlock | 1-3 Years Package", p: 0.99},
+        {id: 3343, cat: "Premium", n: "Blackblox AI | GPT, DeepSeek | 3 Month", p: 15.00},
+        {id: 3364, cat: "Premium", n: "CapCut Pro | Private Mail | 1 Month", p: 5.00},
+        {id: 8607, cat: "Premium", n: "Netflix Premium | 4K Ultra HD | 1 Month", p: 4.50},
+        {id: 1101, cat: "Premium", n: "Spotify Premium | 3 Month Personal 🎵", p: 6.00},
+        {id: 1102, cat: "Premium", n: "Windows 11 Pro Key | Lifetime Activation 🔑", p: 3.20},
+        {id: 1103, cat: "Premium", n: "Office 2021 Pro Key | Lifetime License ✅", p: 4.10},
+        {id: 1104, cat: "Premium", n: "IPTV Gold | 12 Month | All Channels ⚽", p: 16.00},
+        {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private Access 🤖", p: 5.00}
+    ];
+
+    let currentLang = 'ar';
+    let selectedPrice = 0;
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.getElementById('mainHtml').dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('heroTitle').innerText = langData[lang].title;
+        document.getElementById('heroSub').innerText = langData[lang].sub;
+        document.getElementById('searchBar').placeholder = langData[lang].search;
+        document.getElementById('optPay').innerText = langData[lang].optPay;
+        document.getElementById('lblQty').innerText = langData[lang].lblQty;
+        document.getElementById('lblTotal').innerText = langData[lang].lblTotal;
+        document.getElementById('btnWa').innerText = langData[lang].btnWa;
+        document.getElementById('btnClose').innerText = langData[lang].btnClose;
+        document.querySelector('[data-cat="All"]').innerText = langData[lang].all;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(lang === 'ar' ? 'btnAr' : 'btnFr').classList.add('active');
+        render(SERVICES);
+    }
+
+    function render(list) {
+        document.getElementById('container').innerHTML = list.map(s => `
+            <div class="service-card">
+                <span class="srv-id">ID: #${s.id}</span>
+                <span class="srv-name">${s.n}</span>
+                <div class="srv-footer">
+                    <span class="srv-price">$${s.p}</span>
+                    <button class="btn-order" onclick="openOrder(${s.id})">${langData[currentLang].order}</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openOrder(id) {
+        const srv = SERVICES.find(s => s.id === id);
+        window.currentSelected = srv;
+        selectedPrice = srv.p;
+        document.getElementById('mTitle').innerText = srv.n;
+        document.getElementById('emailGroup').style.display = srv.cat === "Premium" ? "block" : "none";
+        document.getElementById('mQty').value = 1000;
+        calculateTotal();
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function calculateTotal() {
+        const qty = document.getElementById('mQty').value;
+        const total = (selectedPrice / 1000) * qty;
+        document.getElementById('displayTotalPrice').innerText = "$" + total.toFixed(3);
+    }
+
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+    function updatePaymentInfo(val) {
+        const box = document.getElementById('payDetails');
+        if(val && WALLETS[val]) {
+            box.style.display = "block";
+            document.getElementById('payNumber').innerText = WALLETS[val];
+        } else { box.style.display = "none"; }
+    }
+
+    function sendToWA() {
+        const srv = window.currentSelected;
+        const qty = document.getElementById('mQty').value;
+        const total = (selectedPrice / 1000) * qty;
+        const link = document.getElementById('mLink').value;
+        const email = document.getElementById('mEmail').value;
+        const pay = document.getElementById('mPay').value;
+
+        if(!pay) return alert("اختر وسيلة الدفع");
+
+        let msg = `💠 *طلب جديد - KARIMTREIZE13*%0A%0A` +
+                  `*الخدمة:* ${srv.n}%0A*ID:* ${srv.id}%0A` +
+                  `*الرابط:* ${link}%0A` +
+                  (email ? `*الإيميل:* ${email}%0A` : "") +
+             
