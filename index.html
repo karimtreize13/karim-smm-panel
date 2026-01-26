@@ -45,26 +45,28 @@
         /* Payment Info Display */
         #paymentInfo { background: #001a33; padding: 15px; border-radius: 10px; border: 1px solid var(--primary); margin: 10px 0; display: none; text-align: center; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .btn-send { width: 100%; padding: 16px; background: #22c55e; color: #fff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-    </style>
-</head>
-<body class="theme-yellow">
-<nav class="navbar">
-    <div class="logo">
-        KARIM<span>TREIZE13</span>
-        <div style="font-size: 11px; color: var(--primary); font-weight: normal; margin-top: 5px; letter-spacing: 1px; display: block;">
-            SMS Paname PANEL
-        </div>
-    </div>
-</nav>
     
 <div class="theme-bar">
     <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
     <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
     <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
     <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
+</style>
+</head>
+<body class="theme-yellow">
 
+<nav class="navbar">
+    <div class="logo">
+        KARIM<span>TREIZE13</span>
+        <div style="font-size: 11px; color: var(--primary); font-weight: normal; margin-top: 5px; display: block;">
+            SMS Paname PANEL
+        </div>
+    </div>
+</nav>
+
+<div class="theme-bar">
+...
+    
 <div class="tabs" id="tabsList">
     <div class="tab active" onclick="filterCat('All', this)">الكل 🌐</div>
     <div class="tab" onclick="filterCat('Facebook', this)">Facebook</div>
