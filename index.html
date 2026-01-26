@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 PANEL | SMS Paname</title>
+    <title>KARIMTREIZE13 PANEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; }
+        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
         body.theme-blue { --primary: #2563eb; }
         body.theme-yellow { --primary: #fbbf24; }
         body.theme-white { --primary: #ffffff; }
@@ -14,94 +14,113 @@
         
         body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 50px; }
         
-        .theme-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; background: #000; border-bottom: 1px solid #222; }
-        .t-btn { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
+        .top-bar { position: sticky; top: 0; z-index: 1000; background: #000; border-bottom: 1px solid #222; }
+        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #111; }
+        .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
+        .l-btn { background: none; border: 1px solid #333; color: #fff; padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
 
-        .navbar { padding: 20px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; position: sticky; top: 0; z-index: 1000; }
+        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; }
         .logo { font-weight: 900; font-size: 22px; }
         .logo span { color: var(--primary); }
 
-        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 15px; scrollbar-width: none; }
-        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: #fff; }
-        .tab.active { background: var(--primary); color: #000; font-weight: bold; }
+        .search-container { padding: 15px; }
+        .search-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #111; color: white; box-sizing: border-box; outline: none; }
 
-        .services-grid { padding: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .service-card { background: var(--card); border-radius: 15px; padding: 20px; border-right: 4px solid var(--primary); position: relative; }
-        .srv-name { display: block; font-size: 14px; margin-bottom: 15px; text-align: left; direction: ltr; min-height: 35px; }
-        .srv-footer { display: flex; justify-content: space-between; align-items: center; }
-        .srv-price { font-size: 22px; font-weight: 900; color: var(--primary); }
-        .btn-order { background: var(--primary); color: #000; border: none; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
+        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .tab i { color: var(--icon-blue); } /* الأيقونات زرقاء */
+        .tab.active { background: var(--primary); color: #000; font-weight: bold; }
+        .tab.active i { color: #000; }
+
+        .services-grid { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); }
+        .srv-name { display: block; font-size: 13px; line-height: 1.6; text-align: left; direction: ltr; margin-bottom: 10px; }
+        .srv-footer { display: flex; justify-content: flex-end; }
+        .btn-order { background: var(--primary); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
 
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
         .modal-box { background: #0a0a0a; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); }
         input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
-        
         .price-box { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
         .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
-
-        #paymentInfo { background: #001a33; padding: 15px; border-radius: 10px; border: 1px solid var(--primary); margin: 10px 0; display: none; text-align: center; }
-        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body class="theme-yellow">
 
-<div class="theme-bar">
-    <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
-    <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
-    <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
-    <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
+<div class="top-bar">
+    <div class="theme-bar">
+        <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
+        <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
+        <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
+        <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
+    </div>
+    <div class="lang-bar">
+        <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
+        <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
+    </div>
 </div>
 
 <nav class="navbar">
-    <div class="logo">
-        KARIM<span>TREIZE13</span>
-        <div style="font-size: 11px; color: var(--primary); font-weight: normal; margin-top: 5px; display: block;">
-            SMS Paname PANEL
-        </div>
-    </div>
+    <div class="logo">KARIM<span>TREIZE13</span></div>
+    <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
 </nav>
 
+<div class="search-container">
+    <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة... / Rechercher...">
+</div>
+
 <div class="tabs" id="tabsList">
-    <div class="tab active" onclick="filterCat('All', this)">الكل 🌐</div>
-    <div class="tab" onclick="filterCat('Facebook', this)">Facebook</div>
-    <div class="tab" onclick="filterCat('TikTok', this)">TikTok</div>
-    <div class="tab" onclick="filterCat('Instagram', this)">Instagram</div>
-    <div class="tab" onclick="filterCat('YouTube', this)">YouTube</div>
-    <div class="tab" onclick="filterCat('Telegram', this)">Telegram</div>
-    <div class="tab" onclick="filterCat('Premium', this)">الاشتراكات ⭐</div>
+    <div class="tab active" data-cat="All" onclick="filterCat('All', this)"><i class="fas fa-globe"></i> <span class="t-text">الكل</span></div>
+    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)"><i class="fab fa-facebook"></i> Facebook</div>
+    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
+    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)"><i class="fab fa-instagram"></i> Instagram</div>
+    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)"><i class="fab fa-youtube"></i> YouTube</div>
+    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)"><i class="fab fa-telegram"></i> Telegram</div>
+    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)"><i class="fas fa-star"></i> <span class="p-text">المميز</span></div>
 </div>
 
 <div class="services-grid" id="container"></div>
 
 <div id="modal" class="modal">
     <div class="modal-box">
-        <h3 id="mTitle" style="font-size: 15px; text-align: center; margin-bottom: 15px; color: var(--primary);"></h3>
-        <input type="url" id="mLink" placeholder="الرابط المستهدف (Link)">
-        <div id="emailBox" style="display:none;"><input type="email" id="mEmail" placeholder="البريد الإلكتروني للإشتراك"></div>
+        <h3 id="mTitle" style="font-size: 14px; text-align: center; color: var(--primary);"></h3>
+        <input type="url" id="mLink" placeholder="Link">
+        <div id="emailBox" style="display:none;"><input type="email" id="mEmail" placeholder="Email"></div>
         <div id="qtyBox">
-            <label style="font-size: 11px; color: #888;">الكمية:</label>
+            <label id="lblQty" style="font-size: 11px; color: #888;">الكمية:</label>
             <input type="number" id="mQty" value="1000" oninput="doCalc()">
         </div>
-        <div class="price-box">السعر الإجمالي: <br><span class="total-val" id="totalDisplay">$0.00</span></div>
+        <div class="price-box"><span id="lblTotal">الإجمالي:</span> <br><span class="total-val" id="totalDisplay">$0.00</span></div>
         <select id="mPay" onchange="showPayDetails(this.value)">
-            <option value="">-- اختر وسيلة الدفع --</option>
-            <option value="BaridiMob">بريدي موب (BaridiMob)</option>
+            <option value="" id="optPay">-- الدفع --</option>
+            <option value="BaridiMob">BaridiMob</option>
             <option value="RedotPay">RedotPay</option>
-            <option value="Binance">Binance (بينانس)</option>
+            <option value="Binance">Binance</option>
         </select>
-        <div id="paymentInfo">
-            <span style="font-size: 12px; color: #aaa;">رقم الحساب للإرسال:</span><br>
-            <strong id="payNumber" style="font-size: 18px; color: var(--primary); letter-spacing: 1px;"></strong>
+        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:#001a33; border-radius:10px; margin:10px 0;">
+            <span id="lblPayNum" style="font-size:11px; color:#aaa;">رقم الحساب:</span><br>
+            <strong id="payNumber" style="color:var(--primary);"></strong>
         </div>
-        <button class="btn-send" onclick="sendWA()">تأكيد الطلب عبر واتساب</button>
-        <button onclick="closeM()" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
+        <button class="btn-send" id="btnSend" onclick="sendWA()">تأكيد الطلب</button>
+        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
     </div>
 </div>
 
 <script>
     const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
+    let currentLang = 'ar';
+    let activeCat = 'All';
+
+    const TRANSLATIONS = {
+        ar: { all: "الكل", premium: "المميز", order: "طلب", qty: "الكمية:", total: "الإجمالي:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)" },
+        fr: { all: "Tout", premium: "Premium", order: "Commander", qty: "Quantité:", total: "Total:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)" }
+    };
 
     const SERVICES = [
+        // الخدمة المحدثة بناءً على طلبك
+        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | Instant | UltraFast | +100K/Day | Lifetime Refill⭐⚡", p: 1.8424},
+        // باقي الخدمات (يمكنك لصق بقية الـ 72 خدمة هنا بنفس الصيغة)
         {id: 2676, cat: "Facebook", n: "FB Facebook Followers | Non Drop | Lifetime ♻️", p: 0.44},
         {id: 1974, cat: "Facebook", n: "FB Facebook Followers | 365 Days Refill ♻️", p: 0.41},
         {id: 3859, cat: "Facebook", n: "FB Facebook Followers | Bots | Lifetime ♻️", p: 0.12},
@@ -119,7 +138,6 @@
         {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect | Lifetime ♻️", p: 0.98},
         {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery", p: 0.32},
         {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast", p: 0.67},
-        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime ⭐", p: 1.84},
         {id: 3231, cat: "TikTok", n: "Tiktok Followers | Non Drop | Lifetime ♻️", p: 2.08},
         {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", p: 0.88},
         {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", p: 0.99},
@@ -178,24 +196,50 @@
         {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private", p: 5.00}
     ];
 
-    let current = null;
-
     function render(data) {
         document.getElementById('container').innerHTML = data.map(s => `
             <div class="service-card">
-                <span style="font-size:10px; color:var(--primary)">ID: #${s.id}</span>
-                <span class="srv-name">${s.n}</span>
+                <span class="srv-name">${s.id} - ${s.n} - $${s.p} per 1000</span>
                 <div class="srv-footer">
-                    <span class="srv-price">$${s.p}</span>
-                    <button class="btn-order" onclick="openM(${s.id})">طلب</button>
+                    <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
                 </div>
             </div>
         `).join('');
     }
 
+    function searchSrv() {
+        const term = document.getElementById('srvSearch').value.toLowerCase();
+        let filtered = SERVICES;
+        if(activeCat !== 'All') filtered = filtered.filter(s => s.cat === activeCat);
+        render(filtered.filter(s => s.n.toLowerCase().includes(term) || s.id.toString().includes(term)));
+    }
+
+    function changeLang(lang) {
+        currentLang = lang;
+        document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+        const t = TRANSLATIONS[lang];
+        document.querySelector('.t-text').innerText = t.all;
+        document.querySelector('.p-text').innerText = t.premium;
+        document.getElementById('srvSearch').placeholder = t.search;
+        document.getElementById('lblQty').innerText = t.qty;
+        document.getElementById('lblTotal').innerText = t.total;
+        document.getElementById('optPay').innerText = t.payOpt;
+        document.getElementById('btnSend').innerText = t.confirm;
+        document.getElementById('btnCancel').innerText = t.cancel;
+        document.getElementById('mLink').placeholder = t.link;
+        render(activeCat === 'All' ? SERVICES : SERVICES.filter(s => s.cat === activeCat));
+    }
+
+    function filterCat(c, b) {
+        activeCat = c;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        b.classList.add('active');
+        searchSrv();
+    }
+
     function openM(id) {
         current = SERVICES.find(s => s.id === id);
-        document.getElementById('mTitle').innerText = current.n;
+        document.getElementById('mTitle').innerText = `${current.id} - ${current.n}`;
         const isP = current.cat === "Premium";
         document.getElementById('emailBox').style.display = isP ? 'block' : 'none';
         document.getElementById('qtyBox').style.display = isP ? 'none' : 'block';
@@ -209,41 +253,26 @@
     function doCalc() {
         const q = document.getElementById('mQty').value || 0;
         let total = (current.cat === "Premium") ? (current.p * q) : (current.p / 1000 * q);
-        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(3);
+        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(4);
     }
 
     function showPayDetails(val) {
         const info = document.getElementById('paymentInfo');
         const num = document.getElementById('payNumber');
-        if(val && WALLETS[val]) {
-            info.style.display = "block";
-            num.innerText = WALLETS[val];
-        } else {
-            info.style.display = "none";
-        }
+        if(val && WALLETS[val]) { info.style.display = "block"; num.innerText = WALLETS[val]; }
+        else { info.style.display = "none"; }
     }
 
     function sendWA() {
         const link = document.getElementById('mLink').value;
         const pay = document.getElementById('mPay').value;
-        if(!link || !pay) return alert("أكمل الرابط وطريقة الدفع!");
-        const msg = `🚀 *طلب جديد*%0A*الخدمة:* ${current.n}%0A*ID:* ${current.id}%0A*الرابط:* ${link}%0A*الإجمالي:* ${document.getElementById('totalDisplay').innerText}%0A*الدفع:* ${pay}`;
+        if(!link || !pay) return alert("Error!");
+        const msg = `🚀 *طلب جديد*%0A*ID:* ${current.id}%0A*الخدمة:* ${current.n}%0A*الرابط:* ${link}%0A*الإجمالي:* ${document.getElementById('totalDisplay').innerText}%0A*الدفع:* ${pay}`;
         window.open(`https://wa.me/213656251947?text=${msg}`);
     }
 
-    function setTheme(t) { 
-        document.body.className = 'theme-' + t; 
-    }
-    
-    function closeM() { 
-        document.getElementById('modal').style.display = 'none'; 
-    }
-
-    function filterCat(c, b) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        b.classList.add('active');
-        render(c === 'All' ? SERVICES : SERVICES.filter(s => s.cat === c));
-    }
+    function setTheme(t) { document.body.className = 'theme-' + t; }
+    function closeM() { document.getElementById('modal').style.display = 'none'; }
 
     render(SERVICES);
 </script>
