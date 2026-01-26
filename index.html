@@ -18,52 +18,55 @@
         body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; overflow-x: hidden; }
         
         /* Lang Bar */
-        .lang-bar { background: #000; padding: 8px 5%; display: flex; justify-content: flex-end; gap: 10px; border-bottom: 1px solid var(--border); }
-        .lang-btn { background: none; border: 1px solid var(--secondary); color: #fff; padding: 4px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.3s; }
+        .lang-bar { background: #000; padding: 10px 5%; display: flex; justify-content: flex-end; gap: 10px; border-bottom: 1px solid var(--border); }
+        .lang-btn { background: none; border: 1px solid var(--secondary); color: #fff; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.3s; }
         .lang-btn.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
 
         /* Navbar */
-        .navbar { background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--secondary); box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2); }
+        .navbar { background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--secondary); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
         .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 15px var(--secondary); }
-        .logo-text { font-size: 18px; font-weight: 900; letter-spacing: 1px; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary); box-shadow: 0 0 10px var(--secondary); }
+        .logo-text { font-size: 18px; font-weight: 900; }
         .logo-text span { color: var(--primary); }
 
         /* Hero */
         .hero { padding: 40px 5%; text-align: center; background: radial-gradient(circle at top, #001a33 0%, #050505 100%); }
-        .hero h1 { font-size: 24px; margin-bottom: 20px; color: var(--white); }
+        .hero h1 { font-size: 24px; margin-bottom: 10px; }
+        .hero p { color: var(--primary); font-size: 14px; font-weight: bold; margin-bottom: 20px; }
         
         .search-box { max-width: 500px; margin: 0 auto; position: relative; }
-        #searchBar { width: 100%; padding: 16px 50px; border-radius: 50px; border: 2px solid var(--border); background: var(--card); color: #fff; outline: none; transition: 0.3s; box-sizing: border-box; }
+        #searchBar { width: 100%; padding: 15px 45px; border-radius: 50px; border: 2px solid var(--border); background: var(--card); color: #fff; outline: none; box-sizing: border-box; }
         #searchBar:focus { border-color: var(--secondary); box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
-        .search-box i { position: absolute; right: 20px; top: 18px; color: var(--primary); font-size: 18px; }
+        .search-box i { position: absolute; right: 20px; top: 16px; color: var(--primary); }
         [dir="ltr"] .search-box i { right: auto; left: 20px; }
 
         /* Tabs */
-        .tabs { display: flex; gap: 12px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
-        .tab { padding: 10px 24px; background: var(--card); border: 1px solid var(--secondary); border-radius: 50px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-size: 13px; color: var(--white); }
-        .tab.active { background: var(--secondary); border-color: var(--primary); box-shadow: 0 0 10px rgba(37, 99, 235, 0.4); font-weight: bold; }
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 20px 5%; scrollbar-width: none; }
+        .tab { padding: 10px 22px; background: var(--card); border: 1px solid var(--secondary); border-radius: 50px; cursor: pointer; white-space: nowrap; transition: 0.3s; font-size: 13px; color: #fff; }
+        .tab.active { background: var(--secondary); border-color: var(--primary); font-weight: bold; }
 
         /* Services */
-        .services-grid { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
-        .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 22px; border-right: 5px solid var(--secondary); transition: 0.3s; position: relative; }
+        .services-grid { padding: 0 5% 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+        .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; border-right: 5px solid var(--secondary); transition: 0.3s; }
         [dir="ltr"] .service-card { border-right: none; border-left: 5px solid var(--secondary); }
-        .service-card:hover { border-color: var(--primary); transform: translateY(-5px); background: #161616; }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-5px); background: #1a1a1a; }
         
-        .srv-id { font-size: 10px; background: rgba(37, 99, 235, 0.1); color: var(--primary); padding: 4px 10px; border-radius: 6px; font-weight: bold; }
-        .srv-name { display: block; font-size: 14px; margin: 15px 0; color: #f0f0f0; text-align: left; direction: ltr; min-height: 45px; line-height: 1.5; }
+        .srv-id { font-size: 10px; color: var(--primary); background: rgba(37, 99, 235, 0.1); padding: 3px 8px; border-radius: 5px; }
+        .srv-name { display: block; font-size: 13px; margin: 15px 0; color: #eee; text-align: left; direction: ltr; min-height: 40px; }
         .srv-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 15px; }
-        .srv-price { font-size: 24px; font-weight: 900; color: var(--primary); }
-        .btn-order { background: var(--secondary); color: white; border: none; padding: 12px 28px; border-radius: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-order:hover { background: var(--primary); color: #000; }
+        .srv-price { font-size: 22px; font-weight: 900; color: var(--primary); }
+        .btn-order { background: var(--secondary); color: white; border: none; padding: 10px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
         /* Modal */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        .modal-box { background: #0a0a0a; width: 90%; max-width: 450px; padding: 30px; border-radius: 30px; border: 2px solid var(--secondary); box-shadow: 0 0 30px rgba(37, 99, 235, 0.3); }
-        input, select { width: 100%; padding: 15px; margin: 10px 0; border-radius: 15px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; outline: none; }
-        input:focus { border-color: var(--primary); }
-        .pay-info-box { background: #001a33; border: 1px dashed var(--primary); padding: 15px; border-radius: 15px; margin-top: 10px; display: none; text-align: center; }
-        .btn-wa { width: 100%; padding: 18px; background: #22c55e; color: #fff; border: none; border-radius: 15px; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal-box { background: #0a0a0a; width: 90%; max-width: 420px; padding: 25px; border-radius: 25px; border: 2px solid var(--secondary); }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; outline: none; }
+        
+        .price-calc { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; margin: 10px 0; text-align: center; }
+        .total-price { color: var(--primary); font-size: 24px; font-weight: 900; }
+        
+        .pay-info-box { background: #001a33; border: 1px dashed var(--primary); padding: 12px; border-radius: 12px; margin-top: 10px; display: none; text-align: center; }
+        .btn-wa { width: 100%; padding: 16px; background: #22c55e; color: #fff; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
     </style>
 </head>
 <body>
@@ -81,7 +84,8 @@
 </nav>
 
 <section class="hero">
-    <h1 id="heroTitle">لوحة خدمات تزويد الحسابات</h1>
+    <h1 id="heroTitle">لوحة خدمات كريم تريز</h1>
+    <p id="heroSub">زيادة تفاعل على أي منصة (Social Media Booster)</p>
     <div class="search-box">
         <i class="fas fa-search"></i>
         <input type="text" id="searchBar" placeholder="ابحث عن خدمة..." onkeyup="search()">
@@ -102,12 +106,17 @@
 
 <div id="modal" class="modal">
     <div class="modal-box animate__animated animate__zoomIn">
-        <h3 id="mTitle" style="font-size: 15px; color: var(--white); text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px;"></h3>
+        <h3 id="mTitle" style="font-size: 14px; color: var(--white); text-align: center; margin-bottom: 15px; border-bottom: 1px solid var(--secondary); padding-bottom: 10px;"></h3>
         <input type="url" id="mLink" placeholder="الرابط المستهدف (Link)">
         <div id="emailGroup" style="display: none;">
             <input type="email" id="mEmail" placeholder="البريد الإلكتروني (Email)">
         </div>
-        <input type="number" id="mQty" value="1000">
+        <label style="font-size: 11px; color: #888;" id="lblQty">الكمية:</label>
+        <input type="number" id="mQty" value="1000" oninput="calculateTotal()">
+        <div class="price-calc">
+            <span style="font-size: 12px;" id="lblTotal">السعر الإجمالي:</span><br>
+            <span class="total-price" id="displayTotalPrice">$0.00</span>
+        </div>
         <select id="mPay" onchange="updatePaymentInfo(this.value)">
             <option value="" id="optPay">-- اختر وسيلة الدفع --</option>
             <option value="BaridiMob">بريدي موب (CCP)</option>
@@ -115,11 +124,11 @@
             <option value="Binance">Binance (USDT)</option>
         </select>
         <div id="payDetails" class="pay-info-box">
-            <span id="txtAcc" style="font-size: 12px;">قم بالتحويل للرقم التالي:</span>
-            <b id="payNumber" style="color: var(--primary); font-size: 20px; display: block; margin-top: 5px;"></b>
+            <span id="txtAcc" style="font-size: 11px;">رقم الحساب:</span>
+            <b id="payNumber" style="color: var(--primary); display: block; font-size: 18px; margin-top: 5px;"></b>
         </div>
-        <button class="btn-wa" id="btnWa" onclick="sendToWA()">تأكيد الطلب (WhatsApp) <i class="fab fa-whatsapp"></i></button>
-        <button onclick="closeModal()" id="btnClose" style="width:100%; background:none; border:none; color:#666; margin-top:15px; cursor:pointer; font-weight: bold;">إلغاء</button>
+        <button class="btn-wa" id="btnWa" onclick="sendToWA()">تأكيد عبر واتساب</button>
+        <button onclick="closeModal()" id="btnClose" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
     </div>
 </div>
 
@@ -127,13 +136,13 @@
     const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     
     const langData = {
-        ar: { title: "أفضل خدمات تزويد الحسابات", search: "ابحث عن خدمة بالاسم أو الـ ID...", order: "طلب", all: "الكل 🌐", optPay: "-- اختر وسيلة الدفع --", txtAcc: "قم بالتحويل للرقم التالي:", btnWa: "تأكيد الطلب عبر واتساب", btnClose: "تراجع عن الطلب" },
-        fr: { title: "Meilleurs Services de Panel", search: "Chercher par nom ou ID...", order: "Commander", all: "Tout 🌐", optPay: "-- Choisir le paiement --", txtAcc: "Transférer au numéro suivant:", btnWa: "Confirmer via WhatsApp", btnClose: "Annuler" }
+        ar: { title: "لوحة خدمات كريم تريز", sub: "زيادة تفاعل على أي منصة (Social Media Booster)", search: "ابحث عن خدمة...", order: "طلب", all: "الكل 🌐", optPay: "-- اختر وسيلة الدفع --", lblQty: "الكمية:", lblTotal: "السعر الإجمالي:", btnWa: "تأكيد الطلب عبر واتساب", btnClose: "إلغاء" },
+        fr: { title: "Panel de Karim Treize", sub: "Boost d'interaction multi-plateforme", search: "Rechercher...", order: "Commander", all: "Tout 🌐", optPay: "-- Choisir le paiement --", lblQty: "Quantité:", lblTotal: "Prix Total:", btnWa: "Confirmer via WhatsApp", btnClose: "Annuler" }
     };
 
     // القائمة الكاملة (72 خدمة)
     const SERVICES = [
-        // Facebook
+        // Facebook (12 services)
         {id: 2676, cat: "Facebook", n: "FB Followers | All Types | Non Drop | Lifetime ♻️⚡", p: 0.44},
         {id: 1974, cat: "Facebook", n: "FB Followers | Non Drop | 365 Days Refill ♻️⚡", p: 0.41},
         {id: 3859, cat: "Facebook", n: "FB Followers | Bots Quality | Lifetime Refill ♻️⚡", p: 0.12},
@@ -146,8 +155,7 @@
         {id: 8755, cat: "Facebook", n: "FB Post Reaction | Like 👍 | No Refill", p: 0.33},
         {id: 8756, cat: "Facebook", n: "FB Post Reaction | Love❤️ | No Refill", p: 0.43},
         {id: 7592, cat: "Facebook", n: "FB Views | Video/Reel | Lifetime Refill ⚡", p: 0.99},
-
-        // TikTok
+        // TikTok (15 services)
         {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality | No Refill⚡", p: 0.11},
         {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime Refill♻️", p: 1.00},
         {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect Quality | Lifetime ♻️", p: 0.98},
@@ -163,8 +171,7 @@
         {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant Speed ⭐", p: 0.10},
         {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | 0-10 Mins ⭐", p: 0.009},
         {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️⚡", p: 3.24},
-
-        // Instagram
+        // Instagram (12 services)
         {id: 7820, cat: "Instagram", n: "IG Followers | Real Old Accounts | Lifetime ♻️", p: 1.00},
         {id: 1348, cat: "Instagram", n: "IG Followers | Real Old Accounts | SuperFast ⭐", p: 1.56},
         {id: 3779, cat: "Instagram", n: "IG Followers | UltraFast | Lifetime Refill⭐", p: 2.05},
@@ -177,8 +184,7 @@
         {id: 5502, cat: "Instagram", n: "IG Comments | Arab Mix Profiles 🌍", p: 4.80},
         {id: 5503, cat: "Instagram", n: "IG Save + Share | Engagement 🚀", p: 0.22},
         {id: 5504, cat: "Instagram", n: "IG Profile Visits | Real Accounts 👤", p: 0.55},
-
-        // YouTube
+        // YouTube (12 services)
         {id: 1539, cat: "YouTube", n: "YT Subscribers | Non Drop | Lifetime Refill♻️⚡", p: 21.62},
         {id: 1563, cat: "YouTube", n: "YT Subscribers + Extra | Speed 1K/Day ♻️⚡", p: 26.92},
         {id: 1848, cat: "YouTube", n: "YT Subscribers | Real | Lifetime Refill⭐♻️", p: 30.62},
@@ -191,8 +197,7 @@
         {id: 6275, cat: "YouTube", n: "YT Earnings views | Revenue Speed +5K/day", p: 3.16},
         {id: 4401, cat: "YouTube", n: "YT WatchTime 4000 Hours | High Retention ♻️", p: 36.50},
         {id: 4402, cat: "YouTube", n: "YT WatchTime 1000 Hours | Guaranteed ♻️", p: 10.20},
-
-        // Telegram
+        // Telegram (11 services)
         {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime Refill⭐", p: 1.09},
         {id: 7102, cat: "Telegram", n: "Telegram Reactions Positive [👍❤️🔥] | Non Drop", p: 0.90},
         {id: 7103, cat: "Telegram", n: "Telegram Reactions Negative [👎😢🤯] | Non Drop", p: 0.80},
@@ -204,8 +209,7 @@
         {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts ⚡", p: 1.10},
         {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop 💎", p: 13.90},
         {id: 2206, cat: "Telegram", n: "Telegram Comments Service | High Quality 💬", p: 3.90},
-
-        // Premium
+        // Premium (10 services)
         {id: 3407, cat: "Premium", n: "Gemini Pro AI | Storage 2048GB | 12 Month", p: 6.23},
         {id: 944, cat: "Premium", n: "Canva Pro | Paid Unlock | 1-3 Years Package", p: 0.99},
         {id: 3343, cat: "Premium", n: "Blackblox AI | GPT, DeepSeek | 3 Month", p: 15.00},
@@ -219,21 +223,20 @@
     ];
 
     let currentLang = 'ar';
+    let selectedPrice = 0;
 
     function setLang(lang) {
         currentLang = lang;
-        const html = document.getElementById('mainHtml');
-        html.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        html.lang = lang;
-
+        document.getElementById('mainHtml').dir = lang === 'ar' ? 'rtl' : 'ltr';
         document.getElementById('heroTitle').innerText = langData[lang].title;
+        document.getElementById('heroSub').innerText = langData[lang].sub;
         document.getElementById('searchBar').placeholder = langData[lang].search;
         document.getElementById('optPay').innerText = langData[lang].optPay;
-        document.getElementById('txtAcc').innerText = langData[lang].txtAcc;
+        document.getElementById('lblQty').innerText = langData[lang].lblQty;
+        document.getElementById('lblTotal').innerText = langData[lang].lblTotal;
         document.getElementById('btnWa').innerText = langData[lang].btnWa;
         document.getElementById('btnClose').innerText = langData[lang].btnClose;
         document.querySelector('[data-cat="All"]').innerText = langData[lang].all;
-
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(lang === 'ar' ? 'btnAr' : 'btnFr').classList.add('active');
         render(SERVICES);
@@ -241,7 +244,7 @@
 
     function render(list) {
         document.getElementById('container').innerHTML = list.map(s => `
-            <div class="service-card animate__animated animate__fadeInUp">
+            <div class="service-card">
                 <span class="srv-id">ID: #${s.id}</span>
                 <span class="srv-name">${s.n}</span>
                 <div class="srv-footer">
@@ -255,9 +258,18 @@
     function openOrder(id) {
         const srv = SERVICES.find(s => s.id === id);
         window.currentSelected = srv;
+        selectedPrice = srv.p;
         document.getElementById('mTitle').innerText = srv.n;
         document.getElementById('emailGroup').style.display = srv.cat === "Premium" ? "block" : "none";
+        document.getElementById('mQty').value = 1000;
+        calculateTotal();
         document.getElementById('modal').style.display = 'flex';
+    }
+
+    function calculateTotal() {
+        const qty = document.getElementById('mQty').value;
+        const total = (selectedPrice / 1000) * qty;
+        document.getElementById('displayTotalPrice').innerText = "$" + total.toFixed(3);
     }
 
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
@@ -272,17 +284,19 @@
 
     function sendToWA() {
         const srv = window.currentSelected;
+        const qty = document.getElementById('mQty').value;
+        const total = (selectedPrice / 1000) * qty;
         const link = document.getElementById('mLink').value;
         const email = document.getElementById('mEmail').value;
         const pay = document.getElementById('mPay').value;
-        const qty = document.getElementById('mQty').value;
-        if(!pay) return alert(currentLang === 'ar' ? "يرجى اختيار وسيلة الدفع" : "Veuillez choisir le paiement");
 
-        let msg = `💠 *طلب جديد من KARIMTREIZE13 SMS PANEL*%0A%0A` +
-                  `*الخدمة:* ${srv.n}%0A*ID:* ${srv.id}%0A`;
-        if(link) msg += `*الرابط:* ${link}%0A`;
-        if(email) msg += `*الإيميل:* ${email}%0A`;
-        msg += `*الكمية:* ${qty}%0A*الدفع:* ${pay}%0A*السعر:* $${srv.p}`;
+        if(!pay) return alert("اختر وسيلة الدفع");
+
+        let msg = `💠 *طلب جديد - KARIMTREIZE13*%0A%0A` +
+                  `*الخدمة:* ${srv.n}%0A*ID:* ${srv.id}%0A` +
+                  `*الرابط:* ${link}%0A` +
+                  (email ? `*الإيميل:* ${email}%0A` : "") +
+                  `*الكمية:* ${qty}%0A*الإجمالي:* $${total.toFixed(3)}%0A*وسيلة الدفع:* ${pay}`;
         
         window.open(`https://wa.me/213656251947?text=${msg}`);
     }
@@ -301,5 +315,4 @@
     render(SERVICES);
 </script>
 </body>
-    </html>
-    
+</html>
