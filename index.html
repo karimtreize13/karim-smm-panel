@@ -3,373 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE PANEL | VERSION 2026</title>
+    <title>KARIMTREIZE PANEL | 72 SERVICES</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        /* CSS Variables - Advanced Color Mapping */
         :root { 
-            --bg-primary: #000000; 
-            --bg-card: #0a0a0a; 
-            --text-white: #ffffff; 
-            --primary-gold: #fbbf24; 
-            --border-line: #1a1a1a; 
-            --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            --shadow-glow: 0 0 15px rgba(251, 191, 36, 0.2);
-            --transition-main: 0.5s ease;
+            --bg: #000; --card: #0d0d0d; --text: #fff; --primary: #fbbf24; 
+            --border: #1a1a1a; --gradient: linear-gradient(135deg, #fbbf24, #d97706);
         }
-
         [data-theme="blue"] { 
-            --bg-primary: #010409; 
-            --bg-card: #0d1117; 
-            --text-white: #f0f6fc; 
-            --primary-gold: #58a6ff; 
-            --border-line: #30363d; 
-            --gold-gradient: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
-            --shadow-glow: 0 0 15px rgba(88, 166, 255, 0.2);
+            --bg: #010409; --card: #0d1117; --text: #f0f6fc; --primary: #58a6ff; 
+            --border: #30363d; --gradient: linear-gradient(135deg, #58a6ff, #1f6feb);
         }
 
-        /* Essential Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding-bottom: 120px; transition: 0.5s; }
         
-        body { 
-            background-color: var(--bg-primary); 
-            color: var(--text-white); 
-            line-height: 1.8; 
-            transition: background var(--transition-main);
-            padding-bottom: 120px;
-            overflow-x: hidden;
+        .header { padding: 80px 20px; text-align: center; border-bottom: 3px solid var(--primary); }
+        .logo-box { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--primary); margin: 0 auto 25px; background: #fff; overflow: hidden; box-shadow: 0 0 30px var(--primary); }
+        .logo-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .theme-btn { position: fixed; left: 25px; top: 45px; z-index: 999; background: var(--gradient); border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; color: #000; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+
+        .container { padding: 25px; max-width: 850px; margin: auto; }
+        .cat-card { background: var(--card); border-radius: 30px; margin-bottom: 20px; border: 1px solid var(--border); overflow: hidden; }
+        .cat-header { width: 100%; padding: 25px; border: none; background: none; color: var(--text); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .cat-header span { font-size: 20px; font-weight: bold; display: flex; align-items: center; gap: 15px; }
+        .cat-body { display: none; padding: 15px 25px 35px; border-top: 1px solid var(--border); }
+
+        .service-item { 
+            background: rgba(255,255,255,0.02); border-radius: 20px; padding: 25px; margin-bottom: 15px; 
+            border: 1px solid var(--border); border-right: 6px solid var(--primary); transition: 0.3s;
         }
+        .s-id { color: var(--primary); font-size: 11px; font-weight: 900; background: rgba(251,191,36,0.1); padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; display: inline-block; }
+        .s-name { display: block; font-size: 15px; text-align: left; direction: ltr; margin-bottom: 20px; line-height: 1.5; color: #f0f0f0; }
+        
+        .s-footer { display: flex; justify-content: space-between; align-items: center; }
+        .s-price { font-size: 24px; font-weight: 900; color: var(--primary); }
+        .btn-buy { background: var(--gradient); color: #000; border: none; padding: 12px 30px; border-radius: 12px; font-weight: 800; cursor: pointer; }
 
-        /* Branding & Header Section */
-        .brand-header { 
-            padding: 80px 20px; 
-            text-align: center; 
-            border-bottom: 3px solid var(--primary-gold);
-            background: var(--bg-primary);
-            position: relative;
-        }
-
-        .main-logo-wrapper {
-            width: 150px; height: 150px;
-            margin: 0 auto 25px;
-            border-radius: 50%;
-            border: 5px solid var(--primary-gold);
-            padding: 5px;
-            background: #fff;
-            box-shadow: 0 0 40px var(--shadow-glow);
-            overflow: hidden;
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        .main-logo-wrapper img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-
-        .brand-header h1 { font-size: 34px; font-weight: 900; color: var(--primary-gold); letter-spacing: 2px; }
-        .brand-header p { font-size: 14px; opacity: 0.7; margin-top: 5px; }
-
-        /* Floating Controls */
-        .theme-control {
-            position: fixed; left: 30px; top: 40px; z-index: 9999;
-            width: 60px; height: 60px; border-radius: 50%; border: none;
-            background: var(--gold-gradient); color: #000; font-size: 24px;
-            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* Container & Categories Layout */
-        .content-container { max-width: 750px; margin: 30px auto; padding: 0 15px; }
-
-        .service-category-block {
-            background: var(--bg-card);
-            border-radius: 25px;
-            border: 1px solid var(--border-line);
-            margin-bottom: 20px;
-            transition: 0.3s;
-            overflow: hidden;
-        }
-
-        .category-header-btn {
-            width: 100%; padding: 25px; background: none; border: none;
-            display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; color: var(--text-white);
-        }
-
-        .category-header-btn span { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 15px; }
-        .category-header-btn i.fa-chevron-down { transition: 0.4s; font-size: 14px; }
-
-        .services-wrapper { display: none; padding: 10px 20px 25px; }
-
-        /* Modern Service Item Card */
-        .luxury-service-card {
-            background: var(--bg-primary);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-line);
-            border-left: 6px solid var(--primary-gold);
-            transition: 0.3s;
-        }
-
-        .luxury-service-card:hover { transform: scale(1.02); }
-        .srv-meta { display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .srv-id { font-size: 12px; font-weight: 900; color: var(--primary-gold); background: #111; padding: 4px 10px; border-radius: 5px; }
-        .srv-title { display: block; font-size: 16px; font-weight: 600; text-align: left; direction: ltr; margin-bottom: 20px; line-height: 1.5; }
-
-        .srv-bottom { display: flex; justify-content: space-between; align-items: center; }
-        .srv-price { font-size: 26px; font-weight: 900; color: var(--primary-gold); }
-
-        .order-action-btn {
-            background: var(--gold-gradient); color: #000;
-            padding: 12px 30px; border-radius: 12px; font-weight: 800;
-            border: none; cursor: pointer; text-transform: uppercase;
-        }
-
-        /* Order Modal Configuration */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 10000; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(15px);
-        }
-
-        .modal-content-card {
-            background: var(--bg-card); width: 90%; max-width: 480px;
-            padding: 40px; border-radius: 35px; border: 1px solid var(--primary-gold);
-        }
-
-        .modal-label { display: block; font-size: 13px; color: #888; margin-bottom: 8px; margin-top: 15px; }
-        .modal-input, .modal-select {
-            width: 100%; padding: 18px; border-radius: 15px; border: 1px solid var(--border-line);
-            background: #000; color: #fff; font-size: 16px; outline: none;
-        }
-
-        .payment-display-box {
-            background: rgba(251, 191, 36, 0.05); border: 2px dashed var(--primary-gold);
-            padding: 20px; border-radius: 20px; text-align: center; margin-top: 20px; display: none;
-        }
-
-        .btn-wa-confirm {
-            width: 100%; padding: 20px; border-radius: 18px; border: none;
-            background: #22c55e; color: #fff; font-size: 18px; font-weight: 800; cursor: pointer; margin-top: 25px;
-        }
-
-        /* Animations */
-        @keyframes pulseGlow { from { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); } to { box-shadow: 0 0 40px rgba(251, 191, 36, 0.5); } }
-
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
+        .modal-content { background: var(--card); padding: 40px; border-radius: 35px; width: 92%; max-width: 500px; border: 1px solid var(--primary); }
+        
+        input, select { width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 15px; border: 1px solid var(--border); background: #000; color: #fff; font-size: 16px; }
+        .pay-box { background: rgba(251,191,36,0.05); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 2px dashed var(--primary); display: none; text-align: center; }
+        .btn-send { background: #22c55e; color: #fff; border: none; padding: 20px; width: 100%; border-radius: 18px; font-weight: bold; font-size: 18px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <button class="theme-control" onclick="changeTheme()"><i class="fas fa-palette"></i></button>
+<button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-magic"></i></button>
 
-    <header class="brand-header">
-        <div class="main-logo-wrapper animate__animated animate__zoomIn">
-            <img src="https://i.ibb.co/XfXGk6V/1000024177.png" alt="Logo">
-        </div>
-        <h1 class="animate__animated animate__fadeInDown">KARIMTREIZE PANEL</h1>
-        <p class="animate__animated animate__fadeInUp">إدارة خدمات السوشيال ميديا باحترافية تامة 2026</p>
-    </header>
-
-    <main class="content-container" id="app-root"></main>
-
-    <div id="mainOrderModal" class="modal-overlay">
-        <div class="modal-content-card animate__animated animate__bounceInUp">
-            <h2 id="modalSrvName" style="color:var(--primary-gold); text-align:center; margin-bottom:20px; font-size:18px;"></h2>
-            
-            <label class="modal-label">الرابط المباشر (Account/Post Link):</label>
-            <input type="url" id="inpLink" class="modal-input" placeholder="https://www.example.com/..." required>
-
-            <div id="emailSection" style="display:none;">
-                <label class="modal-label">بريدك الإلكتروني (لتلقي بيانات الحساب):</label>
-                <input type="email" id="inpEmail" class="modal-input" placeholder="mail@example.com">
-            </div>
-
-            <label class="modal-label">الكمية المطلوبة (Quantity):</label>
-            <input type="number" id="inpQty" class="modal-input" value="1000">
-
-            <label class="modal-label">وسيلة الدفع المتوفرة:</label>
-            <select id="inpPay" class="modal-select" onchange="togglePaymentAcc(this.value)">
-                <option value="">-- اختر وسيلة الدفع --</option>
-                <option value="BaridiMob">بريدي موب (الجزائر)</option>
-                <option value="RedotPay">RedotPay (بطاقة)</option>
-                <option value="Binance">بينانس (USDT)</option>
-            </select>
-
-            <div id="paymentBox" class="payment-display-box">
-                <small>رقم الحساب للتحويل:</small><br>
-                <strong id="payVal" style="color:var(--primary-gold); font-size:22px; cursor:pointer;" onclick="copyAccNumber()"></strong>
-                <p style="font-size: 10px; color: #666; margin-top: 5px;">(اضغط على الرقم لنسخه تلقائياً)</p>
-            </div>
-
-            <button class="btn-wa-confirm" onclick="triggerWhatsAppOrder()">
-                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر الواتساب
-            </button>
-            <button style="width:100%; margin-top:15px; background:none; border:none; color:#888; cursor:pointer;" onclick="closeModal()">إلغاء الطلب</button>
-        </div>
+<div class="header">
+    <div class="logo-box animate__animated animate__zoomIn">
+        <img src="https://i.ibb.co/XfXGk6V/1000024177.png" alt="Logo">
     </div>
+    <h1>KARIMTREIZE PANEL</h1>
+    <p>النظام المتكامل لخدمات السوشيال ميديا - 72 خدمة حصرية</p>
+</div>
 
-    <script>
-        /**
-         * Global State & Config
-         */
-        const PAYMENT_DATA = { 
-            "BaridiMob": "00799999001465107315", 
-            "RedotPay": "1523336713", 
-            "Binance": "1194939141" 
-        };
+<div class="container" id="main-panel"></div>
 
-        // الـ 6 أقسام الرئيسية
-        const CATEGORY_DB = [
-            {
-                title: "YouTube Services 🔴", icon: "fab fa-youtube",
-                items: [
-                    {id: 4000, n: "YT 4000 Hours WatchTime | High Retention ♻️", p: "35.50"},
-                    {id: 1539, n: "YT Subscribers | Non-Drop | Real ♻️", p: "21.62"},
-                    {id: 935, n: "YT Video Likes | Instant Fast ⚡", p: "0.23"}
-                ]
-            },
-            {
-                title: "Facebook Services 🔵", icon: "fab fa-facebook",
-                items: [
-                    {id: 2676, n: "FB Followers | Profile & Page | Lifetime ♻️", p: "0.44"},
-                    {id: 3315, n: "FB Post Likes 👍| HQ Profiles Real", p: "0.74"},
-                    {id: 8395, n: "FB 60k Minutes | Fast Approval ⚡", p: "0.95"}
-                ]
-            },
-            {
-                title: "TikTok Services ⚫", icon: "fab fa-tiktok",
-                items: [
-                    {id: 3338, n: "TikTok Followers | HQ Real | Refill ♻️", p: "1.00"},
-                    {id: 8120, n: "TikTok Likes | Immediate Start ⚡", p: "0.88"},
-                    {id: 8387, n: "TikTok Views | Viral Boosting ⚡", p: "0.01"}
-                ]
-            },
-            {
-                title: "Instagram Services 📸", icon: "fab fa-instagram",
-                items: [
-                    {id: 7820, n: "IG Followers | Real Old Accounts ♻️", p: "1.00"},
-                    {id: 8801, n: "IG Likes | Super Fast Delivery ⚡", p: "0.63"},
-                    {id: 6441, n: "IG Reels Views | Explore Boosting ⚡", p: "0.01"}
-                ]
-            },
-            {
-                title: "Telegram Services ✈️", icon: "fab fa-telegram",
-                items: [
-                    {id: 3428, n: "Telegram Members | HQ Channel/Group ♻️", p: "0.99"},
-                    {id: 2210, n: "Telegram Post Views | Last 10 Posts ⚡", p: "0.05"}
-                ]
-            },
-            {
-                title: "Premium Accounts 💎", icon: "fas fa-gem", isPremium: true,
-                items: [
-                    {id: 3364, n: "CapCut Pro Premium | Lifetime License 🎬", p: "4.50"},
-                    {id: 944, n: "Canva Premium | 3 Years Private ⚡", p: "0.40"},
-                    {id: 3407, n: "Gemini Pro | 2TB Storage | 12 Month", p: "5.23"},
-                    {id: 8607, n: "Netflix UHD | 4K Screens | 1 Month", p: "4.50"}
-                ]
-            }
-        ];
+<div id="orderModal" class="modal">
+    <div class="modal-content animate__animated animate__zoomIn">
+        <h3 id="modalSrvName" style="color:var(--primary); text-align:center; margin-bottom:25px; line-height:1.4;"></h3>
+        <input type="url" id="userLink" placeholder="ضع الرابط هنا (Link)" required>
+        <input type="number" id="userQty" value="1000" placeholder="الكمية">
+        <select id="userPay" onchange="showPayDetails(this.value)">
+            <option value="">-- اختر وسيلة الدفع --</option>
+            <option value="BaridiMob">بريدي موب (BaridiMob)</option>
+            <option value="RedotPay">RedotPay</option>
+            <option value="Binance">Binance (USDT)</option>
+        </select>
+        <div id="payDetails" class="pay-box">
+            <small>رقم الحساب:</small><br>
+            <b id="accNumber" style="color:var(--primary); font-size:20px; cursor:pointer;" onclick="copyAcc()"></b>
+        </div>
+        <button class="btn-send" onclick="sendToWhatsApp()"><i class="fab fa-whatsapp"></i> إرسال الطلب للواتساب</button>
+        <button style="width:100%; background:none; color:#666; border:none; margin-top:15px; cursor:pointer;" onclick="closeM()">إغلاق</button>
+    </div>
+</div>
 
-        /**
-         * Rendering Logic
-         */
-        function renderPanel() {
-            const root = document.getElementById('app-root');
-            root.innerHTML = CATEGORY_DB.map((cat, idx) => `
-                <div class="service-category-block animate__animated animate__fadeInUp" style="animation-delay: ${idx * 0.1}s">
-                    <button class="category-header-btn" onclick="toggleCategory(${idx})">
-                        <span><i class="${cat.icon}"></i> ${cat.title}</span>
-                        <i class="fas fa-chevron-down" id="chevron-${idx}"></i>
-                    </button>
-                    <div class="services-wrapper" id="wrap-${idx}">
-                        ${cat.items.map(srv => `
-                            <div class="luxury-service-card">
-                                <div class="srv-meta">
-                                    <span class="srv-id">ID: #${srv.id}</span>
-                                    <i class="fas fa-bolt" style="color:var(--primary-gold); font-size:12px;"></i>
-                                </div>
-                                <span class="srv-title">${srv.n}</span>
-                                <div class="srv-bottom">
-                                    <span class="srv-price">$${srv.p}</span>
-                                    <button class="order-action-btn" onclick="openOrderModal('${srv.id}', '${srv.n}', '${srv.p}', ${cat.isPremium || false})">طلب الآن</button>
-                                </div>
+<script>
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
+
+    const CATEGORIES = [
+        {
+            name: "Facebook Services 🔵", icon: "fab fa-facebook", items: [
+                {id: 2676, n: "FB Followers | All Types | Non Drop | +50k/Day | Lifetime Refill ♻️⚡", p: "0.446"},
+                {id: 1974, n: "FB Followers | All Types | Non Drop | +50k/Day | 365 Days Refill ♻️⚡", p: "0.412"},
+                {id: 3859, n: "FB Followers | Bots Quality | Non Drop | +100K/Day | Lifetime Refill ♻️⚡", p: "0.124"},
+                {id: 3858, n: "FB Followers | Bots Quality | Non Drop | +10K/Day | No Refill", p: "0.088"},
+                {id: 3324, n: "FB Group Members | Low Drop | +50K/Day | No Refill⚡", p: "0.552"},
+                {id: 3330, n: "FB Group Members | Real | Non Drop | 365 Days Refill ♻️🔥", p: "0.92"},
+                {id: 8395, n: "FB 60k Minutes | 10 Mins Video | Non Drop | Lifetime Refill ♻️⚡", p: "0.954"},
+                {id: 815, n: "FB 100k Reels Views Package | 30 Days Refill 🔥⚡♻️", p: "5.59"},
+                {id: 3315, n: "FB Post Likes 👍| HQ Real Profiles | Instant | No Refill ⚡", p: "0.74"},
+                {id: 8755, n: "FB Post Reaction | Like 👍| +50K/Day | No Refill", p: "0.333"},
+                {id: 8756, n: "FB Post Reaction | Love ❤️ | +50K/Day | No Refill", p: "0.433"},
+                {id: 7592, n: "FB Views | Video/Reel | Non Drop | Lifetime Refill ⚡", p: "0.015"}
+            ]
+        },
+        {
+            name: "TikTok Services ⚫", icon: "fab fa-tiktok", items: [
+                {id: 8109, n: "TikTok Followers | Low Quality | No Refill ⚡", p: "0.118"},
+                {id: 3338, n: "TikTok Followers | HQ Real | Lifetime Refill ♻️", p: "1.00"},
+                {id: 3340, n: "TikTok Followers | Perfect Quality | Lifetime Refill ♻️", p: "0.984"},
+                {id: 1507, n: "TikTok Followers | Instant | No Refill ⚡", p: "0.326"},
+                {id: 3350, n: "TikTok Followers | UltraFast | No Refill ⚡", p: "0.672"},
+                {id: 3810, n: "TikTok Followers | HQ Real | Lifetime Refill ⭐⚡", p: "1.842"},
+                {id: 3231, n: "Tiktok Followers | HQ Real | Lifetime Refill ⭐⚡", p: "2.08"},
+                {id: 8120, n: "TikTok Likes | Non Drop | No Refill ⚡", p: "0.888"},
+                {id: 3348, n: "TikTok Likes | Lifetime Refill ⚡", p: "0.999"},
+                {id: 1972, n: "TikTok Likes | Non Drop | Lifetime Refill ⚡", p: "0.999"},
+                {id: 8387, n: "TikTok Views | SuperInstant | +200M/Day ⚡", p: "0.009"},
+                {id: 6930, n: "TikTok Views | Superfast | No Refill ⚡", p: "0.010"}
+            ]
+        },
+        {
+            name: "Instagram Services 📸", icon: "fab fa-instagram", items: [
+                {id: 7820, n: "IG Followers | Real Old Accounts | Lifetime Refill ♻️⚡", p: "1.00"},
+                {id: 1348, n: "IG Followers | Real Old Accounts | Lifetime Refill ⭐⚡", p: "1.567"},
+                {id: 3779, n: "IG Followers | UltraFast | Lifetime Refill ⭐♻️⚡", p: "2.056"},
+                {id: 8801, n: "IG Likes | Real Old Accounts | No Refill ⚡", p: "0.633"},
+                {id: 7869, n: "IG Likes | Real Old Accounts | No Refill ⭐⚡", p: "0.222"},
+                {id: 7790, n: "IG Likes | Real Old Accounts | Lifetime Refill ⭐⚡", p: "1.156"},
+                {id: 6441, n: "IG Views | All Links | Ultra Fast | No Refill ⚡", p: "0.009"},
+                {id: 7788, n: "IG Views | Instant | No Refill ⚡", p: "0.020"},
+                {id: 1100, n: "IG Story Views | Instant Delivery ⚡", p: "0.15"},
+                {id: 1101, n: "IG Comments | Arab Real 💬", p: "3.50"},
+                {id: 1102, n: "IG Saves | High Quality 📌", p: "0.10"},
+                {id: 1103, n: "IG Profile Visits | Fast ⚡", p: "0.40"}
+            ]
+        },
+        {
+            name: "YouTube Services 🔴", icon: "fab fa-youtube", items: [
+                {id: 1539, n: "YT Subscribers | Speed +300/Day | Lifetime Refill ♻️⚡", p: "21.62"},
+                {id: 1563, n: "YT Subscribers + Extra | Lifetime Refill ♻️⚡", p: "26.92"},
+                {id: 1848, n: "YT Subscribers | 100% Real | Lifetime Refill ⭐♻️⚡", p: "30.62"},
+                {id: 3274, n: "YT Shorts Subscribers | Non Drop | Lifetime Refill ♻️⚡", p: "18.82"},
+                {id: 935, n: "YT Likes | Real | SuperFast | No Refill ⚡", p: "0.232"},
+                {id: 7614, n: "YT Likes | HQ Real Profiles | Lifetime Refill ⭐♻️⚡", p: "0.888"},
+                {id: 8140, n: "YT Likes | Real Organic | Lifetime Refill ⭐♻️⚡", p: "0.998"},
+                {id: 3544, n: "YT Video / Shorts Views | Lifetime Refill ⭐⚡", p: "1.00"},
+                {id: 8413, n: "YT Views + Extra | Other Features | Lifetime Refill ⭐⚡", p: "2.02"},
+                {id: 6275, n: "YT Earnings views | Get 0.1$ - 4$ Revenue", p: "3.16"},
+                {id: 4000, n: "YT WatchTime 4000 Hours | Guaranteed ♻️", p: "38.00"},
+                {id: 4001, n: "YT Arab Views | High Retention 🌍", p: "4.50"}
+            ]
+        },
+        {
+            name: "Telegram Services ✈️", icon: "fab fa-telegram", items: [
+                {id: 3428, n: "Telegram Members | HQ Real | Lifetime Refill ⭐♻️⚡", p: "0.99"},
+                {id: 7102, n: "Telegram Reactions Positive [👍❤️👏🔥🥰🤩] | Non Drop", p: "0.12"},
+                {id: 7103, n: "Telegram Reactions Negative [👎😢🤯😱🤬🤮] | Non Drop", p: "0.12"},
+                {id: 6805, n: "Telegram Post Views [1 Post] [Superfast] ⭐⚡", p: "0.010"},
+                {id: 7068, n: "Telegram View | Instant | +200K/Day | No Refill ⭐⚡", p: "0.028"},
+                {id: 5001, n: "Telegram Arab Members | Real 🌍", p: "5.50"},
+                {id: 5002, n: "Telegram Group Scraper Members 👥", p: "3.20"},
+                {id: 5003, n: "Telegram Vote / Poll | Real ✅", p: "0.40"},
+                {id: 5004, n: "Telegram Auto Views | Next 10 Posts ⚡", p: "1.20"},
+                {id: 5005, n: "Telegram Premium Members | 💎", p: "12.00"},
+                {id: 5006, n: "Telegram Link Clicks | Real 🔗", p: "2.10"},
+                {id: 5007, n: "Telegram Channel Boost (Level 1-4) 🚀", p: "15.00"}
+            ]
+        },
+        {
+            name: "Premium Accounts 💎", icon: "fas fa-gem", items: [
+                {id: 3407, n: "Gemini Pro | Google Storage 2048GB | 12 Month Full", p: "5.23"},
+                {id: 944, n: "Canva Premium | Paid Unlock For 1-3 Years Package", p: "0.40"},
+                {id: 3343, n: "Blackblox AI Premium | ChatGPT, DeepSeek | 3 Month", p: "10.00"},
+                {id: 3364, n: "CapCut Premium | Private on your mail | 1 Month", p: "5.00"},
+                {id: 8607, n: "Netflix Premium | 4K Ultra HD | 1 Month", p: "4.50"},
+                {id: 9001, n: "Spotify Premium | 12 Month Personal Account", p: "14.00"},
+                {id: 9002, n: "YouTube Premium | 6 Month Invitation", p: "8.50"},
+                {id: 9003, n: "Windows 11 Pro Retail Key | Lifetime 🔑", p: "3.50"},
+                {id: 9004, n: "Office 2021 Professional Key | Lifetime", p: "4.20"},
+                {id: 9005, n: "Adobe Creative Cloud | 1 Month Full Pack", p: "18.00"},
+                {id: 9006, n: "ChatGPT Plus Private | 1 Month Subscription", p: "22.00"},
+                {id: 9007, n: "IPTV Gold Subscription | 12 Month Full ⚽", p: "15.00"}
+            ]
+        }
+    ];
+
+    function render() {
+        const root = document.getElementById('main-panel');
+        root.innerHTML = CATEGORIES.map((cat, i) => `
+            <div class="cat-card animate__animated animate__fadeInUp">
+                <button class="cat-header" onclick="toggleCat(${i})">
+                    <span><i class="${cat.icon}"></i> ${cat.name}</span>
+                    <i class="fas fa-chevron-down" id="chevron-${i}"></i>
+                </button>
+                <div class="cat-body" id="cat-${i}">
+                    ${cat.items.map(s => `
+                        <div class="service-item">
+                            <span class="s-id">SERVICE ID: #${s.id}</span>
+                            <span class="s-name">${s.n}</span>
+                            <div class="s-footer">
+                                <span class="s-price">$${s.p}</span>
+                                <button class="btn-buy" onclick="openM('${s.id}','${s.n}','${s.p}')">طلب الآن</button>
                             </div>
-                        `).join('')}
-                    </div>
+                        </div>
+                    `).join('')}
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        /**
-         * Interactivity Functions
-         */
-        function changeTheme() {
-            const b = document.body;
-            b.setAttribute('data-theme', b.getAttribute('data-theme') === 'blue' ? '' : 'blue');
-        }
+    let activeSrv = {};
+    function openM(id, n, p) { activeSrv = {id, n, p}; document.getElementById('modalSrvName').innerText = n; document.getElementById('orderModal').style.display = 'flex'; }
+    function closeM() { document.getElementById('orderModal').style.display = 'none'; }
+    function toggleCat(i) {
+        const b = document.getElementById(`cat-${i}`);
+        const c = document.getElementById(`chevron-${i}`);
+        const isV = b.style.display === "block";
+        document.querySelectorAll('.cat-body').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.cat-header i').forEach(el => el.style.transform = 'rotate(0deg)');
+        if(!isV) { b.style.display = "block"; c.style.transform = "rotate(180deg)"; }
+    }
+    function showPayDetails(v) {
+        const d = document.getElementById('payDetails');
+        if(v) { d.style.display='block'; document.getElementById('accNumber').innerText=WALLETS[v]; }
+        else d.style.display='none';
+    }
+    function copyAcc() { navigator.clipboard.writeText(document.getElementById('accNumber').innerText); alert("✅ تم النسخ!"); }
 
-        function toggleCategory(idx) {
-            const wrap = document.getElementById(`wrap-${idx}`);
-            const isVisible = wrap.style.display === "block";
-            document.querySelectorAll('.services-wrapper').forEach(w => w.style.display = 'none');
-            document.querySelectorAll('.category-header-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
-            if(!isVisible) {
-                wrap.style.display = "block";
-                document.getElementById(`chevron-${idx}`).style.transform = "rotate(180deg)";
-            }
-        }
+    function sendToWhatsApp() {
+        const link = document.getElementById('userLink').value;
+        const qty = document.getElementById('userQty').value;
+        const pay = document.getElementById('userPay').value;
+        if(!link || !pay) return alert("❌ يرجى إكمال البيانات!");
 
-        let currentActiveOrder = {};
+        let message = `💠 *طلب من لوحة KARIMTREIZE13:*%0A`;
+        message += `*الخدمة:* ${activeSrv.n} - ${activeSrv.id}%0A`;
+        message += `*الرابط:* ${link}%0A`;
+        message += `*الكمية:* ${qty}%0A`;
+        message += `*طريقة الدفع:* ${pay}%0A`;
+        message += `*السعر الإجمالي:* $${activeSrv.p}%0A%0A`;
+        message += `✅ _يرجى إرسال صورة التحويل لتأكيد الطلب._`;
 
-        function openOrderModal(id, name, price, isP) {
-            currentActiveOrder = {id, name, price, isP};
-            document.getElementById('modalSrvName').innerText = name;
-            document.getElementById('emailSection').style.display = isP ? 'block' : 'none';
-            document.getElementById('mainOrderModal').style.display = 'flex';
-        }
+        window.open(`https://wa.me/213656251947?text=${message}`, '_blank');
+    }
 
-        function closeModal() { document.getElementById('mainOrderModal').style.display = 'none'; }
+    function toggleTheme() {
+        document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') === 'blue' ? '' : 'blue');
+    }
 
-        function togglePaymentAcc(val) {
-            const box = document.getElementById('paymentBox');
-            if(val) {
-                box.style.display = 'block';
-                document.getElementById('payVal').innerText = PAYMENT_DATA[val];
-            } else {
-                box.style.display = 'none';
-            }
-        }
-
-        function copyAccNumber() {
-            const val = document.getElementById('payVal').innerText;
-            navigator.clipboard.writeText(val);
-            alert("✅ تم نسخ رقم الحساب بنجاح!");
-        }
-
-        function triggerWhatsAppOrder() {
-            const link = document.getElementById('inpLink').value;
-            const qty = document.getElementById('inpQty').value;
-            const pay = document.getElementById('inpPay').value;
-            const email = document.getElementById('inpEmail').value;
-
-            if(!link || !pay) return alert("❌ يرجى تعبئة الرابط واختيار وسيلة الدفع!");
-            if(currentActiveOrder.isP && !email) return alert("❌ هذا الطلب يتطلب بريداً إلكترونياً!");
-
-            // التنسيق الذي طلبته تماماً (احترافي جداً للواتساب)
-            let msg = `💠 *طلب من لوحة KARIMTREIZE13:*%0A`;
-            msg += `*الخدمة:* ${currentActiveOrder.name} - ${currentActiveOrder.id}%0A`;
-            msg += `*الرابط:* ${link}%0A`;
-            if(currentActiveOrder.isP) msg += `*الإيميل:* ${email}%0A`;
-            msg += `*الكمية:* ${qty}%0A`;
-            msg += `*طريقة الدفع:* ${pay}%0A`;
-            msg += `*السعر الإجمالي:* $${currentActiveOrder.price}%0A%0A`;
-            msg += `✅ _يرجى إرسال صورة التحويل لتأكيد الطلب._`;
-
-            window.open(`https://wa.me/213656251947?text=${msg}`, '_blank');
-        }
-
-        renderPanel();
-    </script>
+    render();
+</script>
 </body>
 </html>
