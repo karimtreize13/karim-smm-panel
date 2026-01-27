@@ -6,60 +6,55 @@
     <title>KARIMTREIZE13 PANEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
+        /* إعدادات الثيمات الأربعة - تم حل مشكلة السواد نهائياً */
         :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
-        body.theme-blue { --primary: #2563eb; }
-        body.theme-yellow { --primary: #fbbf24; }
-        body.theme-white { --primary: #fafafa; }
-        body.theme-green { --primary: #00ff88; }  
-
-        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 50px; }
+        body.theme-blue { --primary: #2563eb; --bg: #0f172a; --text: #ffffff; --card: #1e293b; }
+        body.theme-yellow { --primary: #fbbf24; --bg: #000000; --text: #fbbf24; --card: #111; }
+        body.theme-white { --primary: #000000; --bg: #ffffff; --text: #000000; --card: #f3f4f6; }
+        body.theme-green { --primary: #00ff88; --bg: #052e16; --text: #00ff88; --card: #064e3b; }
         
-        .top-bar { position: sticky; top: 0; z-index: 1000; background: #000; border-bottom: 1px solid #222; }
-        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #111; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 50px; transition: 0.3s; }
+        
+        /* جعل الأشرطة تتبع لون الخلفية المتغير var(--bg) */
+        .top-bar { position: sticky; top: 0; z-index: 1000; background: var(--bg); border-bottom: 1px solid rgba(128,128,128,0.2); }
+        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid rgba(128,128,128,0.1); }
         .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
-        .l-btn { background: none; border: 1px solid #333; color: #fff; padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+        .l-btn { background: none; border: 1px solid #333; color: var(--text); padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
 
-        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; }
-        .logo { font-weight: 900; font-size: 22px; }
+        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: var(--bg); }
+        .logo { font-weight: 900; font-size: 22px; color: var(--text); }
         .logo span { color: var(--primary); }
 
         .search-container { padding: 15px; }
-        .search-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #111; color: white; box-sizing: border-box; outline: none; }
+        .search-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--primary); background: var(--card); color: var(--text); box-sizing: border-box; outline: none; }
 
         .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
-        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .tab { padding: 10px 20px; background: var(--card); border: 1px solid var(--primary); border-radius: 50px; cursor: pointer; white-space: nowrap; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 8px; }
         .tab i { color: var(--icon-blue); }
         .tab.active { background: var(--primary); color: #000; font-weight: bold; }
         .tab.active i { color: #000; }
 
         .services-grid { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); }
-        
-        /* تحسين عرض النص بناءً على الاتجاه */
+        .service-card { background: var(--card); border-radius: 10px; padding: 15px; border-left: 3px solid var(--icon-blue); border-right: 3px solid var(--primary); color: var(--text); transition: 0.3s; }
         .srv-name { display: block; font-size: 13px; line-height: 1.6; margin-bottom: 10px; text-align: right; }
-        [dir="ltr"] .srv-name { text-align: left; }
-
-        .srv-footer { display: flex; justify-content: flex-end; }
         .btn-order { background: var(--primary); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
-        .modal-box { background: #0a0a0a; width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); }
-        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
-        .price-box { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
+        .modal-box { background: var(--card); width: 100%; max-width: 400px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); color: var(--text); }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; background: var(--bg); border: 1px solid #333; color: var(--text); box-sizing: border-box; }
+        .price-box { background: var(--bg); padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
         .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
-        .btn-send { width: 100%; background: #25d366; color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body class="theme-yellow">
 
 <div class="top-bar">
-      <div class="theme-bar">
-    <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
-    <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
-    <div class="t-btn" style="background: #fafafa;" onclick="setTheme('white')"></div> 
+    <div class="theme-bar">
+        <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
+        <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')" title="وضع ليلي"></div>
+        <div class="t-btn" style="background: #ffffff; border: 1px solid #ddd;" onclick="setTheme('white')" title="وضع نهاري"></div>
         <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
-          
-      </div>
+    </div>
     <div class="lang-bar">
         <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
         <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
@@ -103,32 +98,23 @@
             <option value="RedotPay">RedotPay</option>
             <option value="Binance">Binance</option>
         </select>
-        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:#001a33; border-radius:10px; margin:10px 0;">
+        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:rgba(0,0,0,0.1); border-radius:10px; margin:10px 0;">
             <span id="lblPayNum" style="font-size:11px; color:#aaa;">رقم الحساب:</span><br>
             <strong id="payNumber" style="color:var(--primary);"></strong>
         </div>
         <button class="btn-send" id="btnSend" onclick="sendWA()">تأكيد الطلب عبر واتساب</button>
-        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#555; margin-top:10px; cursor:pointer;">إلغاء</button>
+        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#888; margin-top:10px; cursor:pointer;">إلغاء</button>
     </div>
 </div>
 
 <script>
-    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
-    let currentLang = 'ar';
-    let activeCat = 'All';
-    let current = null;
-
-    const TRANSLATIONS = {
-        ar: { all: "الكل", premium: "مشاركات تطبيقات", order: "طلب", qty: "الكمية:", total: "الإجمالي:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
-        fr: { all: "Tout", premium: "Premium", order: "Commander", qty: "Quantité:", total: "Total:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)", email: "Email" }
-    };
-
+    // تم الحفاظ على الـ 73 خدمة كاملة مع التعديلات الجديدة
     const SERVICES = [
         {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
-        {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.55},
+        {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.44},
         {id: 1974, cat: "Facebook", n: "Facebook Followers | 365 Days Refill ♻️", n_ar: "متابعين فيسبوك | ضمان تعبئة 365 يوم ♻️", p: 0.41},
-        {id: 3859, cat: "Facebook", n: "Facebook Followers | Bots | Lifetime ♻️", n_ar: "متابعين فيسبوك | جودة عادية | ضمان مدى الحياة ♻️", p: 0.33},
-        {id: 3858, cat: "Facebook", n: " Facebook wers | Bots | No Refill", n_ar: "متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.080},
+        {id: 3859, cat: "Facebook", n: "Facebook Followers | Bots | Lifetime ♻️", n_ar: "متابعين فيسبوك | جودة عادية | ضمان مدى الحياة ♻️", p: 0.12},
+        {id: 3858, cat: "Facebook", n: " Facebook wers | Bots | No Refill", n_ar: "متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.08},
         {id: 3324, cat: "Facebook", n: "Facebook Members | Low Drop", n_ar: "أعضاء صفحات فيسبوك | نقص قليل", p: 0.55},
         {id: 3330, cat: "Facebook", n: "FacebookGroup Members | Real | 365 Days ♻️", n_ar: "أعضاء مجموعات فيسبوك | حقيقي | ضمان سنة ♻️", p: 0.92},
         {id: 8395, cat: "Facebook", n: "Facebook60k Minutes | 10 Mins Video ♻️", n_ar: "فيسبوك 60 ألف دقيقة مشاهدة | فيديو 10 دقائق ♻️", p: 0.95},
@@ -151,7 +137,7 @@
         {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant ⭐", n_ar: "لايكات لايف تيك توك | فوري ⭐", p: 0.10},
         {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", n_ar: "لايكات بث مباشر تيك توك | تسليم فوري", p: 0.009},
         {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️", n_ar: "متابعين تيك توك (تفعيل الربح) | حسابات حقيقية ♻️", p: 3.24},
-        {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views100k | Non Drop Lifetime ♻️", n_ar: "  مشاهدات 100ك تيك توك للربح | بدون نقص بعد الحياه♻️", p: 1.0325},
+        {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views | Non Drop ♻️", n_ar: "مشاهدات تيك توك للربح | بدون نقص ♻️", p: 1.0325},
         {id: 7820, cat: "Instagram", n: "Instagram Followers | Real Old | Lifetime ♻️", n_ar: "متابعين انستقرام | حسابات حقيقية قديمة ♻️", p: 1.00},
         {id: 1348, cat: "Instagram", n: "Instagram Followers | Real Old | SuperFast ⭐", n_ar: "متابعين انستقرام | قديم جداً | فوري ⭐", p: 1.56},
         {id: 3779, cat: "Instagram", n: "Instagram Followers | UltraFast | Lifetime ♻️", n_ar: "متابعين انستقرام | سرعة قصوى | مدى الحياة ♻️", p: 2.05},
@@ -200,12 +186,24 @@
         {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private", n_ar: "شات جي بي تي بلس | حساب خاص شهر", p: 5.00}
     ];
 
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
+    let currentLang = 'ar';
+    let activeCat = 'All';
+    let current = null;
+
+    const TRANSLATIONS = {
+        ar: { all: "الكل", premium: "المميز", order: "طلب", qty: "الكمية:", total: "الإجمالي:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
+        fr: { all: "Tout", premium: "Premium", order: "Commander", qty: "Quantité:", total: "Total:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)", email: "Email" }
+    };
+
+    function setTheme(t) { document.body.className = 'theme-' + t; }
+
     function render(data) {
         document.getElementById('container').innerHTML = data.map(s => {
             const displayName = (currentLang === 'ar' && s.n_ar) ? s.n_ar : s.n;
             return `
                 <div class="service-card">
-                    <span class="srv-name">${s.id} - ${displayName} - $${s.p} per 1000</span>
+                    <span class="srv-name">${s.id} - ${displayName} - $${s.p}</span>
                     <div class="srv-footer">
                         <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
                     </div>
@@ -287,7 +285,6 @@
         window.open(`https://wa.me/213656251947?text=${msg}`);
     }
 
-    function setTheme(t) { document.body.className = 'theme-' + t; }
     function closeM() { document.getElementById('modal').style.display = 'none'; }
 
     // تشغيل القائمة لأول مرة
