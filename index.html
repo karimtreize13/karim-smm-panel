@@ -53,20 +53,21 @@
         <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')" title="وضع ليلي"></div>
         <div class="t-btn" style="background: #ffffff; border: 1px solid #ddd;" onclick="setTheme('white')" title="وضع نهاري"></div>
         <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
+    <divclass="lang-bar" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
     <div class="lang-bar" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
     <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
-    <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>    
-    <a href="https://t.me/+213656251947" target="_blank" style="color: #0088cc; font-size: 24px; text-decoration: none; margin-left: 5px;">
-       <i class="fab fa-telegram"></i>
+    <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
+    
+    <a href="https://t.me/+213656251947" target="_blank" style="text-decoration: none; display: flex; align-items: center;">
+       <i class="fab fa-telegram" style="color: #0088cc; font-size: 24px !important; width: 24px; height: 24px;"></i>
     </a>
     </div>
-<div class="search-container">
-    <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
+        
 </div>
 <div class="tabs" id="tabsList">
     <div class="tab active" data-cat="All" onclick="filterCat('All', this)"><i class="fas fa-globe"></i> <span class="t-text">الكل</span></div>
     <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)"><i class="fab fa-facebook"></i> Facebook</div>
-    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
+    <div class="tab" data-catTikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
     <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)"><i class="fab fa-instagram"></i> Instagram</div>
     <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)"><i class="fab fa-youtube"></i> YouTube</div>
     <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)"><i class="fab fa-telegram"></i> Telegram</div>
