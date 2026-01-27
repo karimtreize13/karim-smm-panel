@@ -54,20 +54,13 @@
         <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')" title="وضع ليلي"></div>
         <div class="t-btn" style="background: #ffffff; border: 1px solid #ddd;" onclick="setTheme('white')" title="وضع نهاري"></div>
         <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
-    </div>
-    <div class="lang-bar">
-        <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
-        <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
-    </div   
-    <a href="https://t.me/+213656251947" target="_blank" style="color: #0088cc; font-size: 22px; margin-right: 10px; text-decoration: none;">
-       <i class="fab fa-telegram"></i> 
+    <div class="lang-bar" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+    <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
+    <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>    
+    <a href="https://t.me/+213656251947" target="_blank" style="color: #0088cc; font-size: 24px; text-decoration: none; margin-left: 5px;">
+       <i class="fab fa-telegram"></i>
     </a>
     </div>
-<nav class="navbar">
-    <div class="logo">KARIM<span>TREIZE13</span></div>
-    <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
-</nav>
-
 <div class="search-container">
     <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
 </div>
@@ -96,7 +89,7 @@
         <div class="price-box"><span id="lblTotal">الإجمالي:</span> <br><span class="total-val" id="totalDisplay">$0.00</span></div>
         <select id="mPay" onchange="showPayDetails(this.value)">
             <option value="" id="optPay">-- اختر وسيلة الدفع --</option>
-            <option value="BaridiMob">BaridiMob</option>
+            <option value="Ba ridiMob">BaridiMob</option>
             <option value="RedotPay">RedotPay</option>
             <option value="Binance">Binance</option>
         </select>
