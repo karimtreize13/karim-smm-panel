@@ -126,12 +126,12 @@
 
 <script>
     const SERVICES = [
-        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge Rapide (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 عملة)", p: 3000.00, type: "fixed"},
+        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge quand tu dis (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 الكميه)", p:12.00, type: "fixed"},
         {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
-        {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.44},
+        {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.54},
         {id: 1974, cat: "Facebook", n: "Facebook Followers | 365 Days Refill ♻️", n_ar: "متابعين فيسبوك | ضمان تعبئة 365 يوم ♻️", p: 0.41},
-        {id: 3859, cat: "Facebook", n: "Facebook Followers | Bots | Lifetime ♻️", n_ar: "متابعين فيسبوك | جودة عادية | ضمان مدى الحياة ♻️", p: 0.12},
-        {id: 3858, cat: "Facebook", n: " Facebook wers | Bots | No Refill", n_ar: "متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.08},
+        {id: 3859, cat: "Facebook", n: "Facebook Followers | Bots | Lifetime ♻️", n_ar: "متابعين فيسبوك | جودة عادية | ضمان مدى الحياة ♻️", p: 0.32},
+        {id: 3858, cat: "Facebook", n: " Facebook wers | Bots | No Refill", n_ar: "متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.28},
         {id: 3324, cat: "Facebook", n: "Facebook Members | Low Drop", n_ar: "أعضاء صفحات فيسبوك | نقص قليل", p: 0.55},
         {id: 3330, cat: "Facebook", n: "FacebookGroup Members | Real | 365 Days ♻️", n_ar: "أعضاء مجموعات فيسبوك | حقيقي | ضمان سنة ♻️", p: 0.92},
         {id: 8395, cat: "Facebook", n: "Facebook60k Minutes | 10 Mins Video ♻️", n_ar: "فيسبوك 60 ألف دقيقة مشاهدة | فيديو 10 دقائق ♻️", p: 0.95},
@@ -146,13 +146,13 @@
         {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery", n_ar: "متابعين تيك توك | تسليم فوري", p: 0.32},
         {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast", n_ar: "متابعين تيك توك | حقيقي | فوري جداً", p: 0.67},
         {id: 3231, cat: "TikTok", n: "Tiktok Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين تيك توك | بدون نقص نهائياً | ضمان مدى الحياة ♻️", p: 2.08},
-        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", n_ar: "لايكات تيك توك | جودة منخفضة", p: 0.88},
-        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", n_ar: "لايكات تيك توك | فوري جداً | ضمان مدى الحياة ♻️", p: 0.99},
+        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", n_ar: "لايكات تيك توك | جودة منخفضة", p: 0.48},
+        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", n_ar: "لايكات تيك توك | فوري جداً | ضمان مدى الحياة ♻️", p: 0.49},
         {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime ♻️", n_ar: "لايكات تيك توك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.99},
         {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day", n_ar: "مشاهدات تيك توك | فوري | سرعة 200 مليون يومياً", p: 0.009},
         {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast", n_ar: "مشاهدات تيك توك | سرعة كبيرة", p: 0.09},
         {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant ⭐", n_ar: "لايكات لايف تيك توك | فوري ⭐", p: 0.10},
-        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", n_ar: "لايكات بث مباشر تيك توك | تسليم فوري", p: 0.009},
+        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", n_ar: "لايكات بث مباشر تيك توك | تسليم فوري", p: 0.012},
         {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️", n_ar: "متابعين تيك توك (تفعيل الربح) | حسابات حقيقية ♻️", p: 3.24},
         {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views | Non Drop ♻️", n_ar: "مشاهدات تيك توك للربح | بدون نقص ♻️", p: 1.0325},
         {id: 7820, cat: "Instagram", n: "Instagram Followers | Real Old | Lifetime ♻️", n_ar: "متابعين انستقرام | حسابات حقيقية قديمة ♻️", p: 1.00},
@@ -162,12 +162,12 @@
         {id: 7869, cat: "Instagram", n: "Instagram Likes | Instant Delivery", n_ar: "لايكات انستقرام | تسليم فوري", p: 0.22},
         {id: 7790, cat: "Instagram", n: "Instagram Likes | Real Old | Lifetime ♻️", n_ar: "لايكات انستقرام | حقيقي قديم | ضمان مدى الحياة ♻️", p: 1.15},
         {id: 6441, cat: "Instagram", n: "Instagram Views | Ultra Fast | No Refill", n_ar: "مشاهدات انستقرام | سرعة كبيرة", p: 0.009},
-        {id: 7788, cat: "Instagram", n: "Instagram Instant | No Refill", n_ar: "مشاهدات انستقرام | فوري", p: 0.02},
+        {id: 7788, cat: "Instagram", n: "Instagram Instant | No Refill", n_ar: "مشاهدات انستقرام | فوري", p: 0.06},
         {id: 5501, cat: "Instagram" , n: "Instagram Story Views | HQ Fast ⚡", n_ar: "مشاهدات ستوري انستقرام | جودة عالية ⚡", p: 0.15},
         {id: 5502, cat: "Instagram" , n : "Instagram Comments | Arab Mix Profiles 🌍", n_ar: "تعليقات انستقرام | عرب مختلط 🌍", p: 4.80},
         {id: 5503, cat: "Instagram" , n :"Instagram Save + Share | Engagement 🚀", n_ar: "حفظ ومشاركة انستقرام | لزيادة التفاعل 🚀", p: 0.22},
         {id: 5504, cat: "Instagram" , n: "Instagram Profile Visits | Real Accounts", n_ar: "زيارات بروفايل انستقرام | حسابات حقيقية", p: 0.55},
-        {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Non Drop | Lifetime ♻️", n_ar: "مشتركين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️", p: 21.62},
+        {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Non Drop | Lifetime ♻️", n_ar: "مشتركين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️", p: 20.62},
         {id: 1563, cat: "YouTube", n: "YouTube Subscribers + Extra | 1K/Day ♻️", n_ar: "مشتركين يوتيوب | سرعة 1000 يومياً ♻️", p: 26.92},
         {id: 1848, cat: "YouTube", n: "YouTube Subscribers | Real | Lifetime ♻️", n_ar: "مشتركين يوتيوب | حقيقي 100% | مدى الحياة ♻️", p: 30.62},
         {id: 3274, cat: "YouTube", n: "YouTube Shorts Subscribers | Non Drop ♻️", n_ar: "مشتركين يوتيوب شورتس | بدون نقص ♻️", p: 18.82},
