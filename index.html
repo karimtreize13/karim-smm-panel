@@ -63,10 +63,9 @@
         .price-box { background: var(--bg); padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
         .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
     </style>
-
 </head>
 <body class="theme-yellow">
-</div>
+
 <div class="top-bar">
     <div class="theme-bar">
         <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
@@ -74,18 +73,17 @@
         <div class="t-btn" style="background: #ffffff; border: 1px solid #ddd;" onclick="setTheme('white')"></div>
         <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
     </div>
+    <div class="lang-bar">
         <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
         <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
-    <div class="lang-bar">
     </div>
 </div>
+
 <nav class="navbar">
     <div class="logo">KARIM<span>TREIZE13</span> 🍬</div>
     <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
-  <div style="font-size: 15px; font-weight: bold; color: var(--primary); margin-top: 5px;"> خدمات كريم تراز
-  </div>    
-</div>
-</nav>     
+</nav>
+
 <div class="search-container">
     <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
 </div>
@@ -127,7 +125,7 @@
 
 <script>
     const SERVICES = [
-        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge Rapide (1000 quantity)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 الكميه)", p: 12.00, type: "fixed"},
+        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge Rapide (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 عملة)", p: 3000.00, type: "fixed"},
         {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
         {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.44},
         {id: 1974, cat: "Facebook", n: "Facebook Followers | 365 Days Refill ♻️", n_ar: "متابعين فيسبوك | ضمان تعبئة 365 يوم ♻️", p: 0.41},
