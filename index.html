@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 | SMM PANEL</title>
+    <title>KARIMTREIZE13 | SMM PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
         :root { --bg: #0b0724; --card: #ffffff; --primary: #1e0e62; --accent: #4f46e5; --text: #1f2937; }
         body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 30px; }
-        
         .header { padding: 15px; display: flex; justify-content: space-between; align-items: center; color: white; }
         .nav-tools { display: flex; gap: 10px; align-items: center; }
-        .tg-link { color: #0088cc; font-size: 24px; text-decoration: none; }
+        .tg-link { color: #0088cc; font-size: 26px; text-decoration: none; transition: 0.3s; }
+        .tg-link:hover { transform: scale(1.2); }
         .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; }
-
         .balance-card { background: var(--card); margin: 10px 15px; border-radius: 20px; padding: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .visitor-info { text-align: right; }
         .visitor-lab { font-size: 12px; color: #6b7280; font-weight: bold; margin-bottom: 5px; }
         .icon-circle { width: 42px; height: 42px; background: #f3f4f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; }
-
         .icon-grid { background: var(--card); margin: 15px; border-radius: 25px; padding: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .icon-box { background: #f3f4f6; aspect-ratio: 1; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; transition: 0.2s; color: var(--primary); }
         .icon-box.active { background: var(--primary); color: white; transform: scale(1.05); }
-
         .order-box { background: var(--card); margin: 0 15px; border-radius: 25px; padding: 25px; color: var(--text); }
         .search-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ddd; margin-bottom: 15px; text-align: center; font-weight: bold; outline: none; }
         label { display: block; margin: 10px 5px 5px; font-weight: bold; font-size: 13px; color: #4b5563; }
-        select, .in-f { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; margin-bottom: 15px; box-sizing: border-box; font-size: 14px; }
-        
+        select, .in-f { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; margin-bottom: 15px; box-sizing: border-box; font-size: 13px; }
         .btn-order { background: var(--primary); color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: bold; font-size: 16px; cursor: pointer; }
-
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
         .modal-box { background: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 25px; text-align: center; }
         .acc-info { background: #f3f4f6; padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px dashed var(--accent); font-weight: 900; font-size: 16px; color: var(--accent); }
@@ -66,7 +61,7 @@
 </div>
 
 <div class="order-box">
-    <input type="text" class="search-input" id="srvSearch" oninput="doSearch()" placeholder="🔍 ابحث عن ID أو اسم الخدمة...">
+    <input type="text" class="search-input" id="srvSearch" oninput="doSearch()" placeholder="🔍 ابحث برقم الخدمة أو اسمها...">
     
     <label id="lblCat">Category / الفئة</label>
     <select id="catSelect" onchange="loadServices()">
@@ -80,7 +75,7 @@
         <option value="Premium">Premium</option>
     </select>
 
-    <label id="lblSrv">Service / الخدمة</label>
+    <label id="lblSrv">Service / الخدمة (تفصيل كامل)</label>
     <select id="srvSelect" onchange="doCalc()"></select>
 
     <label id="lblLink">Link / الرابط</label>
@@ -113,85 +108,21 @@
 <script>
     const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     
-    // قائمة الخدمات مع الـ IDs الصحيحة
+    // قائمة الخدمات الفعلية التي أرسلتها أنت (تم دمج التفاصيل فيها)
     const SERVICES = [
-        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge (1000 Coins)", n_ar: "9999 - 🪙 شحن عملات تيك توك | (1000 الكميه)", p:12.00, type: "fixed"},
-        {id: 3810, cat: "TikTok", n: "3810 - TikTok Followers | HQ Real Profiles", n_ar: "3810 - متابعين تيك توك | حسابات حقيقية عالية الجودة", p: 1.8424},
-        {id: 2676, cat: "Facebook", n: "2676 - Facebook Followers | Non Drop | Lifetime", n_ar: "2676 - متابعين فيسبوك | بدون نقص | ضمان مدى الحياة", p: 0.54},
-        {id: 1974, cat: "Facebook", n: "1974 - Facebook Followers | 365 Days Refill", n_ar: "1974 - متابعين فيسبوك | ضمان تعبئة 365 يوم", p: 0.41},
-        {id: 3859, cat: "Facebook", n: "3859 - Facebook Followers | Bots | Lifetime", n_ar: "3859 - متابعين فيسبوك | جودة عادية | ضمان مدى الحياة", p: 0.32},
-        {id: 3858, cat: "Facebook", n: "3858 - Facebook Followers | Bots | No Refill", n_ar: "3858 - متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.28},
-        {id: 3324, cat: "Facebook", n: "3324 - Facebook Members | Low Drop", n_ar: "3324 - أعضاء صفحات فيسبوك | نقص قليل", p: 0.55},
-        {id: 3330, cat: "Facebook", n: "3330 - Facebook Group Members | Real | 365 Days", n_ar: "3330 - أعضاء مجموعات فيسبوك | حقيقي | ضمان سنة", p: 0.92},
-        {id: 8395, cat: "Facebook", n: "8395 - Facebook 60k Minutes | 10 Mins Video", n_ar: "8395 - فيسبوك 60 ألف دقيقة مشاهدة | فيديو 10 دقائق", p: 0.95},
-        {id: 815, cat: "Facebook", n: "815 - Facebook 100k Reels Views | 30 Days", n_ar: "815 - فيسبوك 100 ألف مشاهدة ريلز | ضمان 30 يوم", p: 5.59},
-        {id: 3315, cat: "Facebook", n: "3315 - Facebook Post Likes | HQ Real Profiles", n_ar: "3315 - لايكات منشور فيسبوك | حسابات حقيقية", p: 0.74},
-        {id: 8755, cat: "Facebook", n: "8755 - Facebook Post Reaction | Like 👍", n_ar: "8755 - تفاعلات فيسبوك | إعجاب 👍", p: 0.33},
-        {id: 8756, cat: "Facebook", n: "8756 - Facebook Post Reaction | Love❤️", n_ar: "8756 - تفاعلات فيسبوك | قلب ❤️", p: 0.43},
-        {id: 7592, cat: "Facebook", n: "7592 - Facebook Watch video | Lifetime", n_ar: "7592 - مشاهدات فيديو فيسبوك واتش | ضمان مدى الحياة", p: 0.99},
-        {id: 8109, cat: "TikTok", n: "8109 - TikTok Followers | Low Quality", n_ar: "8109 - متابعين تيك توك | جودة منخفضة", p: 0.11},
-        {id: 3338, cat: "TikTok", n: "3338 - TikTok Followers | HQ Real | Lifetime", n_ar: "3338 - متابعين تيك توك | حقيقي جودة عالية | ضمان مدى الحياة", p: 1.00},
-        {id: 3277, cat: "TikTok", n: "3277 - TikTok Followers | 100% Organic | Non Drop", n_ar: "3277 - متابعين تيك توك | عضوي 100% | بدون نقص", p: 3.38},
-        {id: 3340, cat: "TikTok", n: "3340 - TikTok Followers | Perfect | Lifetime", n_ar: "3340 - متابعين تيك توك | جودة ممتازة | ضمان مدى الحياة", p: 0.98},
-        {id: 1507, cat: "TikTok", n: "1507 - TikTok Followers | Instant Delivery", n_ar: "1507 - متابعين تيك توك | تسليم فوري", p: 0.72},
-        {id: 3350, cat: "TikTok", n: "3350 - TikTok Followers | HQ Real | UltraFast", n_ar: "3350 - متابعين تيك توك | حقيقي | فوري جداً", p: 0.67},
-        {id: 3231, cat: "TikTok", n: "3231 - Tiktok Followers | Non Drop | Lifetime", n_ar: "3231 - متابعين تيك توك | بدون نقص نهائياً | ضمان مدى الحياة", p: 2.08},
-        {id: 8120, cat: "TikTok", n: "8120 - TikTok Likes | Low Quality", n_ar: "8120 - لايكات تيك توك | جودة منخفضة", p: 0.48},
-        {id: 3348, cat: "TikTok", n: "3348 - TikTok Likes | SuperInstant | Lifetime", n_ar: "3348 - لايكات تيك توك | فوري جداً | ضمان مدى الحياة", p: 0.49},
-        {id: 1972, cat: "TikTok", n: "1972 - TikTok Likes | Non Drop | Lifetime", n_ar: "1972 - لايكات تيك توك | بدون نقص | ضمان مدى الحياة", p: 0.99},
-        {id: 8387, cat: "TikTok", n: "8387 - TikTok Views | SuperInstant | +200M/Day", n_ar: "8387 - مشاهدات تيك توك | فوري | سرعة 200 مليون يومياً", p: 0.009},
-        {id: 6930, cat: "TikTok", n: "6930 - TikTok Views | Superfast", n_ar: "6930 - مشاهدات تيك توك | سرعة كبيرة", p: 0.09},
-        {id: 8345, cat: "TikTok", n: "8345 - Tiktok Live Likes | SuperInstant ⭐", n_ar: "8345 - لايكات لايف تيك توك | فوري ⭐", p: 0.10},
-        {id: 6915, cat: "TikTok", n: "6915 - TikTok Live Stream Likes | Instant", n_ar: "6915 - لايكات بث مباشر تيك توك | تسليم فوري", p: 0.012},
-        {id: 1521, cat: "TikTok", n: "1521 - TikTok Monetizable Followers | Real", n_ar: "1521 - متابعين تيك توك (تفعيل الربح) | حسابات حقيقية", p: 3.24},
-        {id: 3490, cat: "TikTok", n: "3490 - TikTok Monetizable Views | Non Drop", n_ar: "3490 - مشاهدات تيك توك للربح | بدون نقص", p: 1.0325},
-        {id: 7820, cat: "Instagram", n: "7820 - Instagram Followers | Real Old | Lifetime", n_ar: "7820 - متابعين انستقرام | حسابات حقيقية قديمة", p: 1.00},
-        {id: 1348, cat: "Instagram", n: "1348 - Instagram Followers | Real Old | SuperFast", n_ar: "1348 - متابعين انستقرام | قديم جداً | فوري ⭐", p: 1.56},
-        {id: 3779, cat: "Instagram", n: "3779 - Instagram Followers | UltraFast | Lifetime", n_ar: "3779 - متابعين انستقرام | سرعة قصوى | مدى الحياة", p: 2.05},
-        {id: 8801, cat: "Instagram", n: "8801 - Instagram Likes | Real Old | No Refill", n_ar: "8801 - لايكات انستقرام | حسابات حقيقية | بدون ضمان", p: 0.63},
-        {id: 7869, cat: "Instagram", n: "7869 - Instagram Likes | Instant Delivery", n_ar: "7869 - لايكات انستقرام | تسليم فوري", p: 0.22},
-        {id: 7790, cat: "Instagram", n: "7790 - Instagram Likes | Real Old | Lifetime", n_ar: "7790 - لايكات انستقرام | حقيقي قديم | ضمان مدى الحياة", p: 1.15},
-        {id: 6441, cat: "Instagram", n: "6441 - Instagram Views | Ultra Fast | No Refill", n_ar: "6441 - مشاهدات انستقرام | سرعة كبيرة", p: 0.009},
-        {id: 7788, cat: "Instagram", n: "7788 - Instagram Instant | No Refill", n_ar: "7788 - مشاهدات انستقرام | فوري", p: 0.06},
-        {id: 5501, cat: "Instagram" , n: "5501 - Instagram Story Views | HQ Fast ⚡", n_ar: "5501 - مشاهدات ستوري انستقرام | جودة عالية ⚡", p: 0.15},
-        {id: 5502, cat: "Instagram" , n : "5502 - Instagram Comments | Arab Mix Profiles", n_ar: "5502 - تعليقات انستقرام | عرب مختلط 🌍", p: 4.80},
-        {id: 5503, cat: "Instagram" , n :"5503 - Instagram Save + Share | Engagement", n_ar: "5503 - حفظ ومشاركة انستقرام | لزيادة التفاعل 🚀", p: 0.22},
-        {id: 5504, cat: "Instagram" , n: "5504 - Instagram Profile Visits | Real Accounts", n_ar: "5504 - زيارات بروفايل انستقرام | حسابات حقيقية", p: 0.55},
-        {id: 1539, cat: "YouTube", n: "1539 - YouTube Subscribers | Non Drop | Lifetime", n_ar: "1539 - مشتركين يوتيوب | بدون نقص | ضمان مدى الحياة", p: 20.62},
-        {id: 1563, cat: "YouTube", n: "1563 - YouTube Subscribers + Extra | 1K/Day", n_ar: "1563 - مشتركين يوتيوب | سرعة 1000 يومياً", p: 26.92},
-        {id: 1848, cat: "YouTube", n: "1848 - YouTube Subscribers | Real | Lifetime", n_ar: "1848 - مشتركين يوتيوب | حقيقي 100% | مدى الحياة", p: 30.62},
-        {id: 3274, cat: "YouTube", n: "3274 - YouTube Shorts Subscribers | Non Drop", n_ar: "3274 - مشتركين يوتيوب شورتس | بدون نقص", p: 18.82},
-        {id: 935, cat: "YouTube", n: "935 - YouTube Likes | Real | SuperFast", n_ar: "935 - لايكات فيديو يوتيوب | حقيقي | فوري", p: 0.23},
-        {id: 7614, cat: "YouTube", n: "7614 - YouTube Likes | HQ Real | Lifetime", n_ar: "7614 - لايكات يوتيوب | جودة عالية جداً | مدى الحياة", p: 0.88},
-        {id: 8140, cat: "YouTube", n: "8140 - YouTube Likes | Organic | Lifetime", n_ar: "8140 - لايكات يوتيوب | تفاعل طبيعي | مدى الحياة", p: 0.99},
-        {id: 3544, cat: "YouTube", n: "3544 - YouTube Video/Shorts Views | Lifetime", n_ar: "3544 - مشاهدات يوتيوب/شورتس | ضمان مدى الحياة", p: 1.00},
-        {id: 8413, cat: "YouTube", n: "8413 - YouTube Views + Extra | External | Lifetime", n_ar: "8413 - مشاهدات يوتيوب | مصادر خارجية | ضمان", p: 2.02},
-        {id: 6275, cat: "YouTube", n: "6275 - YouTube Earnings views | Revenue Speed", n_ar: "6275 - مشاهدات يوتيوب لزيادة الأرباح | سرعة عالية", p: 3.16},
-        {id: 4401, cat: "YouTube", n: "4401 - YouTube WatchTime 4000 Hours | Guaranteed", n_ar: "4401 - تحقيق 4000 ساعة مشاهدة يوتيوب | مضمون", p: 36.50},
-        {id: 4402, cat: "YouTube", n: "4402 - YouTube WatchTime 1000 Hours | Guaranteed", n_ar: "4402 - تحقيق 1000 ساعة مشاهدة يوتيوب | مضمون", p: 10.20},
-        {id: 1874, cat: "YouTube", n: "1874 - YouTube Subscribers + Extra | Real", n_ar: "1874 - مشتركين يوتيوب متميزين | حقيقي | ضمان", p: 33.084},
-        {id: 3428, cat: "Telegram", n: "3428 - Telegram Members | HQ Real | Lifetime", n_ar: "3428 - أعضاء تليجرام | حقيقي جودة عالية | مدى الحياة", p: 1.09},
-        {id: 7102, cat: "Telegram", n: "7102 - Telegram Reactions [👍❤️🔥]", n_ar: "7102 - تفاعلات تليجرام إيجابية [👍❤️🔥]", p: 0.90},
-        {id: 7103, cat: "Telegram", n: "7103 - Telegram Reactions [👎😢🤯]", n_ar: "7103 - تفاعلات تليجرام سلبية [👎😢🤯]", p: 0.80},
-        {id: 6805, cat: "Telegram", n: "6805 - Telegram Post Views | Superfast ⭐", n_ar: "6805 - مشاهدات منشور تليجرام | فوري جداً ⭐", p: 0.99},
-        {id: 7068, cat: "Telegram", n: "7068 - Telegram View | Instant | +200K/Day", n_ar: "7068 - مشاهدات تليجرام | سرعة 200 ألف يومياً", p: 0.99},
-        {id: 2201, cat: "Telegram", n: "2201 - Telegram Arab Members | Real Mix", n_ar: "2201 - أعضاء تليجرام عرب | حقيقي مختلط 🌍", p: 5.50},
-        {id: 2202, cat: "Telegram", n: "2202 - Telegram Group Scraper Members", n_ar: "2202 - سحب أعضاء لمجموعات التليجرام", p: 3.10},
-        {id: 2203, cat: "Telegram", n: "2203 - Telegram Poll Votes | Fast ✅", n_ar: "2203 - تصويتات تليجرام | تسليم سريع ✅", p: 0.45},
-        {id: 2204, cat: "Telegram", n: "2204 - Telegram Auto Views | Last 10 Posts", n_ar: "2204 - مشاهدات تليجرام تلقائية | آخر 10 منشورات", p: 1.10},
-        {id: 2205, cat: "Telegram", n: "2205 - Telegram Premium Members | Non Drop", n_ar: "2205 - أعضاء تليجرام بريميوم | بدون نقص", p: 13.90},
-        {id: 2206, cat: "Telegram", n: "2206 - Telegram Comments | High Quality", n_ar: "2206 - تعليقات تليجرام | حسابات جودة عالية", p: 3.90},
-        {id: 3407, cat: "Premium", n: "3407 - Gemini Pro | Google Storage 2TB", n_ar: "3407 - جيمناي برو | مساحة تخزين جوجل 2 تيرا", p: 6.23, type: "fixed"},
-        {id: 944, cat: "Premium", n: "944 - Canva Pro | 1-3 Years Package", n_ar: "944 - كانفا برو | اشتراك من 1 إلى 3 سنوات", p: 0.99, type: "fixed"},
-        {id: 3343, cat: "Premium", n: "3343 - Blackblox AI | 3 Month Access", n_ar: "3343 - بلاك بوكس ذكاء اصطناعي | 3 أشهر", p: 15.00, type: "fixed"},
-        {id: 3364, cat: "Premium", n: "3364 - CapCut Pro | 1 Month Account", n_ar: "3364 - كاب كات برو | حساب شهر كامل", p: 5.00, type: "fixed"},
-        {id: 8607, cat: "Premium", n: "8607 - Netflix Premium | 1 Month 4K", n_ar: "8607 - نتفليكس بريميوم | شهر واحد جودة 4K", p: 4.50, type: "fixed"},
-        {id: 1101, cat: "Premium", n: "1101 - Spotify Premium | 3 Month", n_ar: "1101 - سبوتيفاي بريميوم | اشتراك 3 أشهر", p: 6.00, type: "fixed"},
-        {id: 1102, cat: "Premium", n: "1102 - Windows 11 Pro Key", n_ar: "1102 - مفتاح ويندوز 11 برو أصلي", p: 3.20, type: "fixed"},
-        {id: 1103, cat: "Premium", n: "1103 - Office 2021 Pro Key", n_ar: "1103 - مفتاح أوفيس 2021 برو أصلي", p: 4.10, type: "fixed"},
-        {id: 1104, cat: "Premium", n: "1104 - IPTV Gold | 12 Month", n_ar: "1104 - IPTV اشتراك ذهبي | لمدة 12 شهر", p: 16.00, type: "fixed"},
-        {id: 1105, cat: "Premium", n: "1105 - ChatGPT Plus | 1 Month Private", n_ar: "1105 - شات جي بي تي بلس | حساب خاص شهر", p: 5.00, type: "fixed"},
-        {id: 110, cat: "Snapchat", n: "110 - Snapchat Followers | HQ", n_ar: "110 - متابعين سناب شات | جودة عالية", p: 4.20}
+        {id: 9999, cat: "TikTok", n: "9999 - 🪙 TikTok Coins | Recharge | Fast - $12.00 per 1000", n_ar: "9999 - 🪙 شحن عملات تيك توك | تسليم سريع - $12.00 لكل 1000", p:12.00, type: "fixed"},
+        {id: 3810, cat: "TikTok", n: "3810 - TikTok Followers | HQ Real | +100K/Day - $1.84 per 1000", n_ar: "3810 - متابعين تيك توك | حسابات حقيقية | سرعة فائقة - $1.84 لكل 1000", p: 1.84},
+        {id: 8109, cat: "TikTok", n: "8109 - TikTok Followers | Low Quality - $0.11 per 1000", n_ar: "8109 - متابعين تيك توك | جودة منخفضة - $0.11 لكل 1000", p: 0.11},
+        {id: 3338, cat: "TikTok", n: "3338 - TikTok Followers | HQ Real | Lifetime ♻️ - $1.00 per 1000", n_ar: "3338 - متابعين تيك توك | حقيقي | ضمان مدى الحياة ♻️ - $1.00 لكل 1000", p: 1.00},
+        {id: 8387, cat: "TikTok", n: "8387 - TikTok Views | SuperInstant | +200M/Day - $0.009 per 1000", n_ar: "8387 - مشاهدات تيك توك | فوري | 200 مليون/يوم - $0.009 لكل 1000", p: 0.009},
+        {id: 2676, cat: "Facebook", n: "2676 - Facebook Followers | Non Drop | Lifetime ♻️ - $0.54 per 1000", n_ar: "2676 - متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️ - $0.54 لكل 1000", p: 0.54},
+        {id: 8395, cat: "Facebook", n: "8395 - Facebook 60k Minutes | 10 Mins Video ♻️ - $0.95 per 1000", n_ar: "8395 - فيسبوك 60 ألف دقيقة | فيديو 10 دقائق ♻️ - $0.95 لكل 1000", p: 0.95},
+        {id: 7820, cat: "Instagram", n: "7820 - Instagram Followers | Real Old | Lifetime ♻️ - $1.00 per 1000", n_ar: "7820 - متابعين انستقرام | حسابات قديمة حقيقية ♻️ - $1.00 لكل 1000", p: 1.00},
+        {id: 1539, cat: "YouTube", n: "1539 - YouTube Subscribers | Non Drop | Lifetime ♻️ - $20.62 per 1000", n_ar: "1539 - مشتركتين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️ - $20.62 لكل 1000", p: 20.62},
+        {id: 3428, cat: "Telegram", n: "3428 - Telegram Members | HQ Real | Lifetime ♻️ - $1.09 per 1000", n_ar: "3428 - أعضاء تليجرام | حقيقي عالي الجودة | مدى الحياة ♻️ - $1.09 لكل 1000", p: 1.09},
+        {id: 110, cat: "Snapchat", n: "110 - Snapchat Followers | HQ | Fast - $4.20 per 1000", n_ar: "110 - متابعين سناب شات | جودة عالية - $4.20 لكل 1000", p: 4.20},
+        {id: 8607, cat: "Premium", n: "8607 - Netflix Premium | 1 Month 4K | Private - $4.50", n_ar: "8607 - نتفليكس بريميوم | شهر 4K | حساب خاص - $4.50", p: 4.50, type: "fixed"},
+        {id: 944, cat: "Premium", n: "944 - Canva Pro | 1-3 Years Package - $0.99", n_ar: "944 - كانفا برو | اشتراك من 1 إلى 3 سنوات - $0.99", p: 0.99, type: "fixed"}
     ];
 
     let curLang = 'ar';
@@ -201,7 +132,7 @@
         document.dir = l === 'ar' ? 'rtl' : 'ltr';
         document.getElementById('txtVisitor').innerText = l === 'ar' ? 'عداد الزوار' : 'Visitors Count';
         document.getElementById('lblCat').innerText = l === 'ar' ? 'الفئة' : 'Category';
-        document.getElementById('lblSrv').innerText = l === 'ar' ? 'الخدمة' : 'Service';
+        document.getElementById('lblSrv').innerText = l === 'ar' ? 'الخدمة (تفصيل كامل)' : 'Service (Full Details)';
         document.getElementById('lblLink').innerText = l === 'ar' ? 'الرابط' : 'Link';
         document.getElementById('lblQty').innerText = l === 'ar' ? 'الكمية' : 'Quantity';
         document.getElementById('lblCharge').innerText = l === 'ar' ? 'التكلفة' : 'Charge';
@@ -244,13 +175,14 @@
         const srv = SERVICES.find(x => x.id == id);
         const qty = document.getElementById('mQty').value || 0;
         if(srv) {
-            let total = srv.type === 'fixed' ? (srv.p * qty) : (srv.p / 1000 * qty);
-            document.getElementById('chargeOut').value = "$" + total.toFixed(2);
+            let total = srv.type === 'fixed' ? (srv.p * (qty/qty)) : (srv.p / 1000 * qty);
+            if(srv.type === 'fixed') total = srv.p; // لخدمات الاشتراك الثابت
+            document.getElementById('chargeOut').value = "$" + total.toFixed(3);
         }
     }
 
     function openPay() { 
-        if(!document.getElementById('mLink').value) return alert(curLang==='ar'?'ضع الرابط أولاً!':'Enter link first!');
+        if(!document.getElementById('mLink').value) return alert(curLang==='ar'?'ضع الرابط أولاً!':'Enter link!');
         document.getElementById('payModal').style.display = 'flex'; 
     }
     function closePay() { document.getElementById('payModal').style.display = 'none'; }
@@ -265,7 +197,7 @@
         const p = document.getElementById('payMethod').value;
         if(!p) return alert("Select Payment!");
         const s = SERVICES.find(x => x.id == document.getElementById('srvSelect').value);
-        const msg = `Order ID: ${s.id}\nService: ${curLang==='ar'?s.n_ar:s.n}\nLink: ${document.getElementById('mLink').value}\nQty: ${document.getElementById('mQty').value}\nCost: ${document.getElementById('chargeOut').value}\nPayment: ${p}`;
+        const msg = `New Order 🍬\nID: ${s.id}\nService: ${curLang==='ar'?s.n_ar:s.n}\nLink: ${document.getElementById('mLink').value}\nQty: ${document.getElementById('mQty').value}\nCost: ${document.getElementById('chargeOut').value}\nPayment: ${p}`;
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
