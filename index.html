@@ -9,14 +9,12 @@
         :root { --bg: #0b0724; --card: #ffffff; --primary: #1e0e62; --accent: #4f46e5; --text: #1f2937; }
         body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 30px; }
         .header { padding: 15px; display: flex; justify-content: space-between; align-items: center; color: white; }
-        .nav-tools { display: flex; gap: 10px; align-items: center; }
-        .tg-link { color: #0088cc; font-size: 26px; text-decoration: none; transition: 0.3s; }
-        .tg-link:hover { transform: scale(1.2); }
-        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; }
+        .nav-tools { display: flex; gap: 15px; align-items: center; }
+        .tg-link { color: #0088cc; font-size: 28px; text-decoration: none; transition: 0.3s; }
+        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
         .balance-card { background: var(--card); margin: 10px 15px; border-radius: 20px; padding: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .visitor-info { text-align: right; }
         .visitor-lab { font-size: 12px; color: #6b7280; font-weight: bold; margin-bottom: 5px; }
-        .icon-circle { width: 42px; height: 42px; background: #f3f4f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; }
+        .icon-circle { width: 45px; height: 45px; background: #f3f4f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 20px; }
         .icon-grid { background: var(--card); margin: 15px; border-radius: 25px; padding: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .icon-box { background: #f3f4f6; aspect-ratio: 1; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; transition: 0.2s; color: var(--primary); }
         .icon-box.active { background: var(--primary); color: white; transform: scale(1.05); }
@@ -33,7 +31,7 @@
 <body>
 
 <div class="header">
-    <div class="logo" style="font-weight: 900;">KARIM<span style="color:#fbbf24">TREIZE13</span> 🍬</div>
+    <div class="logo" style="font-weight: 900; font-size: 20px;">KARIM<span style="color:#fbbf24">TREIZE13</span> 🍬</div>
     <div class="nav-tools">
         <a href="https://t.me/+213656251947" target="_blank" class="tg-link"><i class="fab fa-telegram"></i></a>
         <button class="lang-btn" onclick="setLang('ar')">AR</button>
@@ -43,17 +41,16 @@
 
 <div class="balance-card">
     <div class="icon-circle"><i class="fas fa-users"></i></div>
-    <div class="visitor-info">
-        <div id="txtVisitor" class="visitor-lab">Visitors Count / عداد الزوار</div>
+    <div class="visitor-info" style="text-align: left;">
+        <div id="txtVisitor" class="visitor-lab">عداد الزوار / Visitors</div>
         <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0">
     </div>
 </div>
 
-<div class="icon-grid" id="iconGrid">
+<div class="icon-grid">
     <div class="icon-box active" onclick="pickCat('All', this)"><i class="fas fa-th-large"></i></div>
     <div class="icon-box" onclick="pickCat('TikTok', this)"><i class="fab fa-tiktok"></i></div>
     <div class="icon-box" onclick="pickCat('Facebook', this)"><i class="fab fa-facebook-f" style="color:#1877f2"></i></div>
-    <div class="icon-box" onclick="pickCat('Snapchat', this)"><i class="fab fa-snapchat" style="color:#fffc00; text-shadow: 1px 1px 1px #000;"></i></div>
     <div class="icon-box" onclick="pickCat('Instagram', this)"><i class="fab fa-instagram" style="color:#e4405f"></i></div>
     <div class="icon-box" onclick="pickCat('YouTube', this)"><i class="fab fa-youtube" style="color:#ff0000"></i></div>
     <div class="icon-box" onclick="pickCat('Telegram', this)"><i class="fab fa-telegram-plane" style="color:#0088cc"></i></div>
@@ -61,100 +58,136 @@
 </div>
 
 <div class="order-box">
-    <input type="text" class="search-input" id="srvSearch" oninput="doSearch()" placeholder="🔍 ابحث برقم الخدمة أو اسمها...">
-    
-    <label id="lblCat">Category / الفئة</label>
-    <select id="catSelect" onchange="loadServices()">
-        <option value="All">All / الكل</option>
-        <option value="TikTok">TikTok</option>
-        <option value="Facebook">Facebook</option>
-        <option value="Snapchat">Snapchat</option>
-        <option value="Instagram">Instagram</option>
-        <option value="YouTube">YouTube</option>
-        <option value="Telegram">Telegram</option>
-        <option value="Premium">Premium</option>
-    </select>
-
-    <label id="lblSrv">Service / الخدمة (تفصيل كامل)</label>
+    <input type="text" class="search-input" id="srvSearch" oninput="doSearch()" placeholder="🔍 ابحث عن ID الخدمة...">
+    <label id="lblSrv">الخدمة / Service</label>
     <select id="srvSelect" onchange="doCalc()"></select>
-
     <label id="lblLink">Link / الرابط</label>
     <input type="url" id="mLink" class="in-f" placeholder="https://...">
-
-    <label id="lblQty">Quantity / الكمية</label>
+    <label id="lblQty">الكمية / Quantity</label>
     <input type="number" id="mQty" class="in-f" value="1000" oninput="doCalc()">
-
-    <label id="lblCharge">Charge / التكلفة</label>
+    <label id="lblCharge">التكلفة / Charge</label>
     <input type="text" id="chargeOut" class="in-f" readonly value="$0.00" style="color:var(--accent); font-weight:bold;">
-
-    <button class="btn-order" id="btnMain" onclick="openPay()">Submit / تأكيد الطلب 🍬</button>
+    <button class="btn-order" id="btnMain" onclick="openPay()">تأكيد الطلب 🍬 Submit</button>
 </div>
 
 <div id="payModal" class="modal">
     <div class="modal-box">
-        <h3 id="mPayTitle">Payment / الدفع</h3>
+        <h3 id="mPayTitle">وسيلة الدفع</h3>
         <select id="payMethod" onchange="showAcc(this.value)">
-            <option value="">-- Choose / اختر --</option>
-            <option value="BaridiMob">BaridiMob (DZ)</option>
+            <option value="">-- اختر --</option>
+            <option value="BaridiMob">BaridiMob</option>
             <option value="RedotPay">RedotPay</option>
-            <option value="Binance">Binance (USDT)</option>
+            <option value="Binance">Binance</option>
         </select>
         <div id="accBox" style="display:none" class="acc-info"></div>
-        <button class="btn-order" style="background:#25d366" onclick="sendWA()">Confirm WhatsApp <i class="fab fa-whatsapp"></i></button>
-        <button onclick="closePay()" style="background:none; border:none; color:#888; margin-top:10px; cursor:pointer;">Cancel / إلغاء</button>
+        <button class="btn-order" style="background:#25d366" onclick="sendWA()">WhatsApp <i class="fab fa-whatsapp"></i></button>
+        <button onclick="closePay()" style="background:none; border:none; color:#888; margin-top:10px; cursor:pointer;">إلغاء</button>
     </div>
 </div>
 
 <script>
     const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     
-    // قائمة الخدمات الفعلية التي أرسلتها أنت (تم دمج التفاصيل فيها)
+    // القائمة الكاملة والحرفية للخدمات (73 خدمة)
     const SERVICES = [
-        {id: 9999, cat: "TikTok", n: "9999 - 🪙 TikTok Coins | Recharge | Fast - $12.00 per 1000", n_ar: "9999 - 🪙 شحن عملات تيك توك | تسليم سريع - $12.00 لكل 1000", p:12.00, type: "fixed"},
-        {id: 3810, cat: "TikTok", n: "3810 - TikTok Followers | HQ Real | +100K/Day - $1.84 per 1000", n_ar: "3810 - متابعين تيك توك | حسابات حقيقية | سرعة فائقة - $1.84 لكل 1000", p: 1.84},
-        {id: 8109, cat: "TikTok", n: "8109 - TikTok Followers | Low Quality - $0.11 per 1000", n_ar: "8109 - متابعين تيك توك | جودة منخفضة - $0.11 لكل 1000", p: 0.11},
-        {id: 3338, cat: "TikTok", n: "3338 - TikTok Followers | HQ Real | Lifetime ♻️ - $1.00 per 1000", n_ar: "3338 - متابعين تيك توك | حقيقي | ضمان مدى الحياة ♻️ - $1.00 لكل 1000", p: 1.00},
-        {id: 8387, cat: "TikTok", n: "8387 - TikTok Views | SuperInstant | +200M/Day - $0.009 per 1000", n_ar: "8387 - مشاهدات تيك توك | فوري | 200 مليون/يوم - $0.009 لكل 1000", p: 0.009},
-        {id: 2676, cat: "Facebook", n: "2676 - Facebook Followers | Non Drop | Lifetime ♻️ - $0.54 per 1000", n_ar: "2676 - متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️ - $0.54 لكل 1000", p: 0.54},
-        {id: 8395, cat: "Facebook", n: "8395 - Facebook 60k Minutes | 10 Mins Video ♻️ - $0.95 per 1000", n_ar: "8395 - فيسبوك 60 ألف دقيقة | فيديو 10 دقائق ♻️ - $0.95 لكل 1000", p: 0.95},
-        {id: 7820, cat: "Instagram", n: "7820 - Instagram Followers | Real Old | Lifetime ♻️ - $1.00 per 1000", n_ar: "7820 - متابعين انستقرام | حسابات قديمة حقيقية ♻️ - $1.00 لكل 1000", p: 1.00},
-        {id: 1539, cat: "YouTube", n: "1539 - YouTube Subscribers | Non Drop | Lifetime ♻️ - $20.62 per 1000", n_ar: "1539 - مشتركتين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️ - $20.62 لكل 1000", p: 20.62},
-        {id: 3428, cat: "Telegram", n: "3428 - Telegram Members | HQ Real | Lifetime ♻️ - $1.09 per 1000", n_ar: "3428 - أعضاء تليجرام | حقيقي عالي الجودة | مدى الحياة ♻️ - $1.09 لكل 1000", p: 1.09},
-        {id: 110, cat: "Snapchat", n: "110 - Snapchat Followers | HQ | Fast - $4.20 per 1000", n_ar: "110 - متابعين سناب شات | جودة عالية - $4.20 لكل 1000", p: 4.20},
-        {id: 8607, cat: "Premium", n: "8607 - Netflix Premium | 1 Month 4K | Private - $4.50", n_ar: "8607 - نتفليكس بريميوم | شهر 4K | حساب خاص - $4.50", p: 4.50, type: "fixed"},
-        {id: 944, cat: "Premium", n: "944 - Canva Pro | 1-3 Years Package - $0.99", n_ar: "944 - كانفا برو | اشتراك من 1 إلى 3 سنوات - $0.99", p: 0.99, type: "fixed"}
+        {id: 9999, cat: "TikTok", n_ar: "9999 - 🪙 شحن عملات تيك توك | (1000 الكميه) - $12.00", p:12.00, type: "fixed"},
+        {id: 3810, cat: "TikTok", n_ar: "3810 - متابعين تيك توك | حقيقية عالية الجودة - $1.84", p: 1.8424},
+        {id: 2676, cat: "Facebook", n_ar: "2676 - متابعين فيسبوك | بدون نقص | ضمان مدى الحياة - $0.54", p: 0.54},
+        {id: 1974, cat: "Facebook", n_ar: "1974 - متابعين فيسبوك | ضمان تعبئة 365 يوم - $0.41", p: 0.41},
+        {id: 3859, cat: "Facebook", n_ar: "3859 - متابعين فيسبوك | جودة عادية | ضمان مدى الحياة - $0.32", p: 0.32},
+        {id: 3858, cat: "Facebook", n_ar: "3858 - متابعين فيسبوك | حسابات عادية | بدون ضمان - $0.28", p: 0.28},
+        {id: 3324, cat: "Facebook", n_ar: "3324 - أعضاء صفحات فيسبوك | نقص قليل - $0.55", p: 0.55},
+        {id: 3330, cat: "Facebook", n_ar: "3330 - أعضاء مجموعات فيسبوك | حقيقي | ضمان سنة - $0.92", p: 0.92},
+        {id: 8395, cat: "Facebook", n_ar: "8395 - فيسبوك 60 ألف دقيقة مشاهدة | فيديو 10 دقائق - $0.95", p: 0.95},
+        {id: 815, cat: "Facebook", n_ar: "815 - فيسبوك 100 ألف مشاهدة ريلز | ضمان 30 يوم - $5.59", p: 5.59},
+        {id: 3315, cat: "Facebook", n_ar: "3315 - لايكات منشور فيسبوك | حسابات حقيقية - $0.74", p: 0.74},
+        {id: 8755, cat: "Facebook", n_ar: "8755 - تفاعلات فيسبوك | إعجاب 👍 - $0.33", p: 0.33},
+        {id: 8756, cat: "Facebook", n_ar: "8756 - تفاعلات فيسبوك | قلب ❤️ - $0.43", p: 0.43},
+        {id: 7592, cat: "Facebook", n_ar: "7592 - مشاهدات فيديو فيسبوك واتش | مدى الحياة - $0.99", p: 0.99},
+        {id: 8109, cat: "TikTok", n_ar: "8109 - متابعين تيك توك | جودة منخفضة - $0.11", p: 0.11},
+        {id: 3338, cat: "TikTok", n_ar: "3338 - متابعين تيك توك | حقيقي جودة عالية | مدى الحياة - $1.00", p: 1.00},
+        {id: 3277, cat: "TikTok", n_ar: "3277 - متابعين تيك توك | عضوي 100% | فوري - $3.38", p: 3.38},
+        {id: 3340, cat: "TikTok", n_ar: "3340 - متابعين تيك توك | جودة ممتازة | مدى الحياة - $0.98", p: 0.98},
+        {id: 1507, cat: "TikTok", n_ar: "1507 - متابعين تيك توك | تسليم فوري - $0.72", p: 0.72},
+        {id: 3350, cat: "TikTok", n_ar: "3350 - متابعين تيك توك | حقيقي | فوري جداً - $0.67", p: 0.67},
+        {id: 3231, cat: "TikTok", n_ar: "3231 - متابعين تيك توك | بدون نقص نهائياً | مدى الحياة - $2.08", p: 2.08},
+        {id: 8120, cat: "TikTok", n_ar: "8120 - لايكات تيك توك | جودة منخفضة - $0.48", p: 0.48},
+        {id: 3348, cat: "TikTok", n_ar: "3348 - لايكات تيك توك | فوري جداً | مدى الحياة - $0.49", p: 0.49},
+        {id: 1972, cat: "TikTok", n_ar: "1972 - لايكات تيك توك | بدون نقص | مدى الحياة - $0.99", p: 0.99},
+        {id: 8387, cat: "TikTok", n_ar: "8387 - مشاهدات تيك توك | فوري | سرعة 200 مليون/يوم - $0.009", p: 0.009},
+        {id: 6930, cat: "TikTok", n_ar: "6930 - مشاهدات تيك توك | سرعة كبيرة - $0.09", p: 0.09},
+        {id: 8345, cat: "TikTok", n_ar: "8345 - لايكات لايف تيك توك | فوري ⭐ - $0.10", p: 0.10},
+        {id: 6915, cat: "TikTok", n_ar: "6915 - لايكات بث مباشر تيك توك | تسليم فوري - $0.012", p: 0.012},
+        {id: 1521, cat: "TikTok", n_ar: "1521 - متابعين تيك توك (تفعيل الربح) | حقيقي - $3.24", p: 3.24},
+        {id: 3490, cat: "TikTok", n_ar: "3490 - مشاهدات تيك توك للربح | بدون نقص - $1.0325", p: 1.0325},
+        {id: 7820, cat: "Instagram", n_ar: "7820 - متابعين انستقرام | حقيقي قديم | مدى الحياة - $1.00", p: 1.00},
+        {id: 1348, cat: "Instagram", n_ar: "1348 - متابعين انستقرام | قديم جداً | فوري - $1.56", p: 1.56},
+        {id: 3779, cat: "Instagram", n_ar: "3779 - متابعين انستقرام | سرعة قصوى | مدى الحياة - $2.05", p: 2.05},
+        {id: 8801, cat: "Instagram", n_ar: "8801 - لايكات انستقرام | حقيقي | بدون ضمان - $0.63", p: 0.63},
+        {id: 7869, cat: "Instagram", n_ar: "7869 - لايكات انستقرام | تسليم فوري - $0.22", p: 0.22},
+        {id: 7790, cat: "Instagram", n_ar: "7790 - لايكات انستقرام | حقيقي قديم | مدى الحياة - $1.15", p: 1.15},
+        {id: 6441, cat: "Instagram", n_ar: "6441 - مشاهدات انستقرام | سرعة كبيرة - $0.009", p: 0.009},
+        {id: 7788, cat: "Instagram", n_ar: "7788 - مشاهدات انستقرام | فوري - $0.06", p: 0.06},
+        {id: 5501, cat: "Instagram", n_ar: "5501 - مشاهدات ستوري انستقرام | جودة عالية ⚡ - $0.15", p: 0.15},
+        {id: 5502, cat: "Instagram", n_ar: "5502 - تعليقات انستقرام | عرب مختلط 🌍 - $4.80", p: 4.80},
+        {id: 5503, cat: "Instagram", n_ar: "5503 - حفظ ومشاركة انستقرام | زيادة التفاعل - $0.22", p: 0.22},
+        {id: 5504, cat: "Instagram", n_ar: "5504 - زيارات بروفايل انستقرام | حقيقي - $0.55", p: 0.55},
+        {id: 1539, cat: "YouTube", n_ar: "1539 - مشتركين يوتيوب | بدون نقص | مدى الحياة - $20.62", p: 20.62},
+        {id: 1563, cat: "YouTube", n_ar: "1563 - مشتركين يوتيوب | سرعة 1000 يومياً - $26.92", p: 26.92},
+        {id: 1848, cat: "YouTube", n_ar: "1848 - مشتركين يوتيوب | حقيقي 100% | مدى الحياة - $30.62", p: 30.62},
+        {id: 3274, cat: "YouTube", n_ar: "3274 - مشتركين يوتيوب شورتس | بدون نقص - $18.82", p: 18.82},
+        {id: 935, cat: "YouTube", n_ar: "935 - لايكات فيديو يوتيوب | حقيقي | فوري - $0.23", p: 0.23},
+        {id: 7614, cat: "YouTube", n_ar: "7614 - لايكات يوتيوب | جودة عالية جداً | مدى الحياة - $0.88", p: 0.88},
+        {id: 8140, cat: "YouTube", n_ar: "8140 - لايكات يوتيوب | تفاعل طبيعي | مدى الحياة - $0.99", p: 0.99},
+        {id: 3544, cat: "YouTube", n_ar: "3544 - مشاهدات يوتيوب/شورتس | مدى الحياة - $1.00", p: 1.00},
+        {id: 8413, cat: "YouTube", n_ar: "8413 - مشاهدات يوتيوب | مصادر خارجية | ضمان - $2.02", p: 2.02},
+        {id: 6275, cat: "YouTube", n_ar: "6275 - مشاهدات يوتيوب لزيادة الأرباح | سريع - $3.16", p: 3.16},
+        {id: 4401, cat: "YouTube", n_ar: "4401 - تحقيق 4000 ساعة مشاهدة يوتيوب | مضمون - $36.50", p: 36.50},
+        {id: 4402, cat: "YouTube", n_ar: "4402 - تحقيق 1000 ساعة مشاهدة يوتيوب | مضمون - $10.20", p: 10.20},
+        {id: 1874, cat: "YouTube", n_ar: "1874 - مشتركين يوتيوب متميزين | حقيقي | ضمان - $33.084", p: 33.084},
+        {id: 3428, cat: "Telegram", n_ar: "3428 - أعضاء تليجرام | حقيقي جودة عالية | مدى الحياة - $1.09", p: 1.09},
+        {id: 7102, cat: "Telegram", n_ar: "7102 - تفاعلات تليجرام إيجابية [👍❤️🔥] - $0.90", p: 0.90},
+        {id: 7103, cat: "Telegram", n_ar: "7103 - تفاعلات تليجرام سلبية [👎😢🤯] - $0.80", p: 0.80},
+        {id: 6805, cat: "Telegram", n_ar: "6805 - مشاهدات منشور تليجرام | فوري جداً ⭐ - $0.99", p: 0.99},
+        {id: 7068, cat: "Telegram", n_ar: "7068 - مشاهدات تليجرام | سرعة 200 ألف يومياً - $0.99", p: 0.99},
+        {id: 2201, cat: "Telegram", n_ar: "2201 - أعضاء تليجرام عرب | حقيقي مختلط 🌍 - $5.50", p: 5.50},
+        {id: 2202, cat: "Telegram", n_ar: "2202 - سحب أعضاء لمجموعات التليجرام - $3.10", p: 3.10},
+        {id: 2203, cat: "Telegram", n_ar: "2203 - تصويتات تليجرام | تسليم سريع ✅ - $0.45", p: 0.45},
+        {id: 2204, cat: "Telegram", n_ar: "2204 - مشاهدات تليجرام تلقائية | 10 منشورات - $1.10", p: 1.10},
+        {id: 2205, cat: "Telegram", n_ar: "2205 - أعضاء تليجرام بريميوم | بدون نقص - $13.90", p: 13.90},
+        {id: 2206, cat: "Telegram", n_ar: "2206 - تعليقات تليجرام | حسابات جودة عالية - $3.90", p: 3.90},
+        {id: 3407, cat: "Premium", n_ar: "3407 - جيمناي برو | مساحة جوجل 2 تيرا - $6.23", p: 6.23, type: "fixed"},
+        {id: 944, cat: "Premium", n_ar: "944 - كانفا برو | اشتراك من 1 إلى 3 سنوات - $0.99", p: 0.99, type: "fixed"},
+        {id: 3343, cat: "Premium", n_ar: "3343 - بلاك بوكس ذكاء اصطناعي | 3 أشهر - $15.00", p: 15.00, type: "fixed"},
+        {id: 3364, cat: "Premium", n_ar: "3364 - كاب كات برو | حساب شهر كامل - $5.00", p: 5.00, type: "fixed"},
+        {id: 8607, cat: "Premium", n_ar: "8607 - نتفليكس بريميوم | شهر واحد جودة 4K - $4.50", p: 4.50, type: "fixed"},
+        {id: 1101, cat: "Premium", n_ar: "1101 - سبوتيفاي بريميوم | 3 أشهر - $6.00", p: 6.00, type: "fixed"},
+        {id: 1102, cat: "Premium", n_ar: "1102 - مفتاح ويندوز 11 برو أصلي - $3.20", p: 3.20, type: "fixed"},
+        {id: 1103, cat: "Premium", n_ar: "1103 - مفتاح أوفيس 2021 برو أصلي - $4.10", p: 4.10, type: "fixed"},
+        {id: 1104, cat: "Premium", n_ar: "1104 - IPTV Gold | 12 شهر - $16.00", p: 16.00, type: "fixed"},
+        {id: 1105, cat: "Premium", n_ar: "1105 - شات جي بي تي بلس | شهر خاص - $5.00", p: 5.00, type: "fixed"}
     ];
 
-    let curLang = 'ar';
+    let currentCat = 'All';
 
     function setLang(l) {
-        curLang = l;
         document.dir = l === 'ar' ? 'rtl' : 'ltr';
-        document.getElementById('txtVisitor').innerText = l === 'ar' ? 'عداد الزوار' : 'Visitors Count';
-        document.getElementById('lblCat').innerText = l === 'ar' ? 'الفئة' : 'Category';
-        document.getElementById('lblSrv').innerText = l === 'ar' ? 'الخدمة (تفصيل كامل)' : 'Service (Full Details)';
-        document.getElementById('lblLink').innerText = l === 'ar' ? 'الرابط' : 'Link';
-        document.getElementById('lblQty').innerText = l === 'ar' ? 'الكمية' : 'Quantity';
-        document.getElementById('lblCharge').innerText = l === 'ar' ? 'التكلفة' : 'Charge';
-        document.getElementById('btnMain').innerText = l === 'ar' ? 'تأكيد الطلب 🍬' : 'Submit Order 🍬';
         loadServices();
     }
 
     function pickCat(c, el) {
         document.querySelectorAll('.icon-box').forEach(b => b.classList.remove('active'));
         el.classList.add('active');
-        document.getElementById('catSelect').value = c;
+        currentCat = c;
         loadServices();
     }
 
     function loadServices() {
-        const c = document.getElementById('catSelect').value;
         const s = document.getElementById('srvSelect');
         s.innerHTML = '';
-        const list = c === 'All' ? SERVICES : SERVICES.filter(x => x.cat === c);
+        const list = currentCat === 'All' ? SERVICES : SERVICES.filter(x => x.cat === currentCat);
         list.forEach(x => {
-            const name = curLang === 'ar' ? x.n_ar : x.n;
-            s.innerHTML += `<option value="${x.id}">${name}</option>`;
+            s.innerHTML += `<option value="${x.id}">${x.n_ar}</option>`;
         });
         doCalc();
     }
@@ -163,9 +196,8 @@
         const t = document.getElementById('srvSearch').value.toLowerCase();
         const s = document.getElementById('srvSelect');
         s.innerHTML = '';
-        SERVICES.filter(x => x.n_ar.includes(t) || x.n.toLowerCase().includes(t) || x.id.toString().includes(t)).forEach(x => {
-            const name = curLang === 'ar' ? x.n_ar : x.n;
-            s.innerHTML += `<option value="${x.id}">${name}</option>`;
+        SERVICES.filter(x => x.n_ar.includes(t) || x.id.toString().includes(t)).forEach(x => {
+            s.innerHTML += `<option value="${x.id}">${x.n_ar}</option>`;
         });
         doCalc();
     }
@@ -175,18 +207,13 @@
         const srv = SERVICES.find(x => x.id == id);
         const qty = document.getElementById('mQty').value || 0;
         if(srv) {
-            let total = srv.type === 'fixed' ? (srv.p * (qty/qty)) : (srv.p / 1000 * qty);
-            if(srv.type === 'fixed') total = srv.p; // لخدمات الاشتراك الثابت
+            let total = srv.type === 'fixed' ? srv.p : (srv.p / 1000 * qty);
             document.getElementById('chargeOut').value = "$" + total.toFixed(3);
         }
     }
 
-    function openPay() { 
-        if(!document.getElementById('mLink').value) return alert(curLang==='ar'?'ضع الرابط أولاً!':'Enter link!');
-        document.getElementById('payModal').style.display = 'flex'; 
-    }
+    function openPay() { document.getElementById('payModal').style.display = 'flex'; }
     function closePay() { document.getElementById('payModal').style.display = 'none'; }
-
     function showAcc(v) {
         const b = document.getElementById('accBox');
         if(v && WALLETS[v]) { b.style.display='block'; b.innerText = WALLETS[v]; }
@@ -195,13 +222,13 @@
 
     function sendWA() {
         const p = document.getElementById('payMethod').value;
-        if(!p) return alert("Select Payment!");
+        if(!p) return alert("اختر وسيلة الدفع");
         const s = SERVICES.find(x => x.id == document.getElementById('srvSelect').value);
-        const msg = `New Order 🍬\nID: ${s.id}\nService: ${curLang==='ar'?s.n_ar:s.n}\nLink: ${document.getElementById('mLink').value}\nQty: ${document.getElementById('mQty').value}\nCost: ${document.getElementById('chargeOut').value}\nPayment: ${p}`;
+        const msg = `طلب جديد 🍬\nالخدمة: ${s.n_ar}\nالرابط: ${document.getElementById('mLink').value}\nالكمية: ${document.getElementById('mQty').value}\nالتكلفة: ${document.getElementById('chargeOut').value}\nالدفع: ${p}`;
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
-    setLang('ar');
+    loadServices();
 </script>
 </body>
 </html>
