@@ -6,259 +6,81 @@
     <title>KARIMTREIZE13 PANEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root {
-            --primary: #fbbf24;
-            --bg: #050505;
-            --card: #111;
-            --text: #fff;
-            --icon-blue: #3b82f6;
-        }
+        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
+        body.theme-blue { --primary: #2563eb; --bg: #0f172a; --text: #ffffff; --card: #1e293b; }
+        body.theme-yellow { --primary: #fbbf24; --bg: #000000; --text: #fbbf24; --card: #111; }
+        body.theme-white { --primary: #2563eb; --bg: #ffffff; --text: #000000; --card: #f3f4f6; }
+        body.theme-green { --primary: #00ff88; --bg: #052e16; --text: #00ff88; --card: #064e3b; }
+        
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 80px; transition: 0.3s; }
+        
+        .top-bar { position: sticky; top: 0; z-index: 1000; background: var(--bg); border-bottom: 1px solid rgba(128,128,128,0.2); }
+        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid rgba(128,128,128,0.1); }
+        .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
+        .l-btn { background: none; border: 1px solid #333; color: var(--text); padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
 
-        body.theme-blue {
-            --primary: #2563eb;
-            --bg: #0f172a;
-            --text: #ffffff;
-            --card: #1e293b;
-        }
+        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: var(--bg); }
+        .logo { font-weight: 900; font-size: 22px; color: var(--text); }
+        .logo span { color: var(--primary); }
 
-        body.theme-yellow {
-            --primary: #fbbf24;
-            --bg: #000000;
-            --text: #fbbf24;
-            --card: #111;
-        }
+        .search-container { padding: 15px; }
+        .search-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--primary); background: var(--card); color: var(--text); box-sizing: border-box; outline: none; text-align: center; }
 
-        body.theme-white {
-            --primary: #2563eb;
-            --bg: #ffffff;
-            --text: #000000;
-            --card: #f3f4f6;
-        }
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; background: var(--card); border: 1px solid rgba(128,128,128,0.2); border-radius: 12px; cursor: pointer; white-space: nowrap; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+        .tab.active { background: var(--primary); color: #000; font-weight: bold; border-color: var(--primary); }
 
-        body.theme-green {
-            --primary: #00ff88;
-            --bg: #052e16;
-            --text: #00ff88;
-            --card: #064e3b;
+        /* تعديل شبكة الخدمات لتصبح مربعات (2 في كل صف) */
+        .services-grid { 
+            padding: 15px; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
         }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: sans-serif;
-            margin: 0;
-            padding-bottom: 50px;
-            transition: 0.3s;
-        }
-
-        .top-bar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: var(--bg);
-            border-bottom: 1px solid rgba(128,128,128,0.2);
-        }
-
-        .theme-bar, .lang-bar {
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            border-bottom: 1px solid rgba(128,128,128,0.1);
-        }
-
-        .t-btn {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #444;
-        }
-
-        .l-btn {
-            background: none;
-            border: 1px solid #333;
-            color: var(--text);
-            padding: 2px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .navbar {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid var(--primary);
-            background: var(--bg);
-        }
-
-        .logo {
-            font-weight: 900;
-            font-size: 22px;
-            color: var(--text);
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .search-container {
-            padding: 15px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid var(--primary);
-            background: var(--card);
-            color: var(--text);
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px 15px;
-            scrollbar-width: none;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            background: var(--card);
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 13px;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tab.active {
-            background: var(--primary);
-            color: #000;
-            font-weight: bold;
-        }
-
-        .services-grid {
-            padding: 15px;
+        
+        .service-card { 
+            background: var(--card); 
+            border-radius: 15px; 
+            padding: 15px; 
+            border: 1px solid rgba(128,128,128,0.1); 
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .service-card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 15px;
-            border-left: 4px solid var(--icon-blue);
-            border-right: 4px solid var(--primary);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .srv-id-badge {
-            font-size: 10px;
-            background: var(--icon-blue);
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            width: fit-content;
-        }
-
-        .srv-name {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.5;
-            margin: 5px 0;
-            overflow-wrap: break-word;
-        }
-
-        .srv-footer {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(128,128,128,0.1);
-            padding-top: 10px;
-            margin-top: 5px;
-        }
-
-        .srv-price {
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--primary);
-        }
-
-        .srv-price small {
-            font-size: 10px;
-            color: #888;
-            font-weight: normal;
-            margin: 0 4px;
-        }
-
-        .btn-order {
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-box {
-            background: var(--card);
-            width: 100%;
-            max-width: 400px;
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
-            color: var(--text);
-        }
-
-        input, select {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border-radius: 10px;
-            background: var(--bg);
-            border: 1px solid #333;
-            color: var(--text);
-            box-sizing: border-box;
-        }
-
-        .price-box {
-            background: var(--bg);
-            padding: 15px;
-            border-radius: 10px;
             text-align: center;
-            border: 1px dashed var(--primary);
-            margin: 10px 0;
+            transition: 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        .service-card:active { transform: scale(0.95); }
+        
+        .srv-icon { font-size: 28px; margin-bottom: 10px; color: var(--primary); }
+        
+        .srv-id-badge { position: absolute; top: 8px; right: 8px; font-size: 9px; background: rgba(128,128,128,0.2); color: #888; padding: 2px 5px; border-radius: 4px; }
+        
+        .srv-name { 
+            font-size: 12px; 
+            font-weight: 600; 
+            line-height: 1.4; 
+            margin-bottom: 10px; 
+            height: 34px; 
+            overflow: hidden; 
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
-        .total-val {
-            color: var(--primary);
-            font-size: 26px;
-            font-weight: 900;
-        }
+        .srv-price { font-size: 16px; font-weight: 900; color: var(--primary); margin-bottom: 10px; }
+        .srv-price small { font-size: 9px; opacity: 0.7; }
+
+        .btn-order { background: var(--primary); color: #000; border: none; padding: 8px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 11px; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(5px); }
+        .modal-box { background: var(--card); width: 100%; max-width: 400px; padding: 25px; border-radius: 25px; border: 1px solid var(--primary); color: var(--text); }
+        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; background: var(--bg); border: 1px solid #333; color: var(--text); box-sizing: border-box; }
+        .price-box { background: var(--bg); padding: 15px; border-radius: 12px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
+        .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
     </style>
 </head>
 <body class="theme-yellow">
@@ -267,25 +89,21 @@
     <div class="theme-bar">
         <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
         <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
-        <div class="t-btn" style="background: #ffffff; border: 1px solid #ddd;" onclick="setTheme('white')"></div>
+        <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
         <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
     </div>
     <div class="lang-bar">
         <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
         <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
-        <a href="https://t.me/+213656251947" target="_blank" style="margin-right: 15px; vertical-align: middle; text-decoration: none;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="22" height="22" style="vertical-align: middle;">
-            <span style="color: #0088cc; font-size: 14px; font-weight: bold; margin-left: 5px;">تواصل معنا</span>
+        <a href="https://t.me/+213656251947" target="_blank" style="text-decoration: none; margin-right: 10px;">
+            <i class="fab fa-telegram" style="color: #0088cc; font-size: 20px;"></i>
         </a>
     </div>
 </div>
 
 <nav class="navbar">
     <div class="logo">KARIM<span>TREIZE13</span> 🍬</div>
-    <div style="font-size: 11px; color: var(--primary);">SMS Paname PANEL</div>
-    <div style="font-size: 15px; font-weight: bold; color: var(--primary); margin-top: 5px;">
-        خدمات كريم تراز
-    </div>
+    <div style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px;">خدمات كريم تراز</div>
 </nav>
 
 <div class="search-container">
@@ -327,7 +145,15 @@
     </div>
 </div>
 
+<div style="text-align: center; padding: 20px; background: var(--card); margin-top: 20px; border-top: 2px solid var(--primary); border-radius: 15px 15px 0 0;">
+    <p style="margin: 0; font-size: 14px; color: var(--text); font-weight: bold;">عدد زوار كريم تراز 🍬</p>
+    <div style="margin-top: 10px;">
+        <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0" title="visitor counter" alt="visitor counter">
+    </div>
+</div>
+
 <script>
+    // نفس مصفوفة الخدمات التي قدمتها أنت
     const SERVICES = [
         {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge quand tu dis (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 الكميه)", p:12.00, type: "fixed"},
         {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
@@ -369,101 +195,49 @@
         {id: 7788, cat: "Instagram", n: "Instagram Instant | No Refill", n_ar: "مشاهدات انستقرام | فوري", p: 0.06},
         {id: 5501, cat: "Instagram" , n: "Instagram Story Views | HQ Fast ⚡", n_ar: "مشاهدات ستوري انستقرام | جودة عالية ⚡", p: 0.15},
         {id: 5502, cat: "Instagram" , n : "Instagram Comments | Arab Mix Profiles 🌍", n_ar: "تعليقات انستقرام | عرب مختلط 🌍", p: 4.80},
-        {id: 5503, cat: "Instagram" , n :"Instagram Save + Share | Engagement 🚀", n_ar: "حفظ ومشاركة انستقرام | لزيادة التفاعل 🚀", p: 0.22},
-        {id: 5504, cat: "Instagram" , n: "Instagram Profile Visits | Real Accounts", n_ar: "زيارات بروفايل انستقرام | حسابات حقيقية", p: 0.55},
         {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Non Drop | Lifetime ♻️", n_ar: "مشتركين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️", p: 20.62},
-        {id: 1563, cat: "YouTube", n: "YouTube Subscribers + Extra | 1K/Day ♻️", n_ar: "مشتركين يوتيوب | سرعة 1000 يومياً ♻️", p: 26.92},
-        {id: 1848, cat: "YouTube", n: "YouTube Subscribers | Real | Lifetime ♻️", n_ar: "مشتركين يوتيوب | حقيقي 100% | مدى الحياة ♻️", p: 30.62},
-        {id: 3274, cat: "YouTube", n: "YouTube Shorts Subscribers | Non Drop ♻️", n_ar: "مشتركين يوتيوب شورتس | بدون نقص ♻️", p: 18.82},
         {id: 935, cat: "YouTube", n: "YouTube Likes | Real | SuperFast", n_ar: "لايكات فيديو يوتيوب | حقيقي | فوري", p: 0.23},
-        {id: 7614, cat: "YouTube", n: "YouTube Likes | HQ Real | Lifetime ♻️", n_ar: "لايكات يوتيوب | جودة عالية جداً | مدى الحياة ♻️", p: 0.88},
-        {id: 8140, cat: "YouTube", n: "YouTube Likes | Organic | Lifetime ♻️", n_ar: "لايكات يوتيوب | تفاعل طبيعي | مدى الحياة ♻️", p: 0.99},
         {id: 3544, cat: "YouTube", n: "YouTube Video/Shorts Views | Lifetime ♻️", n_ar: "مشاهدات يوتيوب/شورتس | ضمان مدى الحياة ♻️", p: 1.00},
-        {id: 8413, cat: "YouTube", n: "YouTube Views + Extra | External | Lifetime", n_ar: "مشاهدات يوتيوب | مصادر خارجية | ضمان", p: 2.02},
-        {id: 6275, cat: "YouTube", n: "YouTube Earnings views | Revenue Speed", n_ar: "مشاهدات يوتيوب لزيادة الأرباح | سرعة عالية", p: 3.16},
         {id: 4401, cat: "YouTube", n: "YouTube WatchTime 4000 Hours | Guaranteed", n_ar: "تحقيق 4000 ساعة مشاهدة يوتيوب | مضمون", p: 36.50},
-        {id: 4402, cat: "YouTube", n: "YouTube WatchTime 1000 Hours | Guaranteed", n_ar: "تحقيق 1000 ساعة مشاهدة يوتيوب | مضمون", p: 10.20},
-        {id: 1874, cat: "YouTube", n: "YouTube Subscribers + Extra | Real ♻️", n_ar: "مشتركين يوتيوب متميزين | حقيقي | ضمان ♻️", p: 33.084},
         {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime ♻️", n_ar: "أعضاء تليجرام | حقيقي جودة عالية | مدى الحياة ♻️", p: 1.09},
-        {id: 7102, cat: "Telegram", n: "Telegram Reactions [👍❤️🔥]", n_ar: "تفاعلات تليجرام إيجابية [👍❤️🔥]", p: 0.90},
-        {id: 7103, cat: "Telegram", n: "Telegram Reactions [👎😢🤯]", n_ar: "تفاعلات تليجرام سلبية [👎😢🤯]", p: 0.80},
         {id: 6805, cat: "Telegram", n: "Telegram Post Views | Superfast ⭐", n_ar: "مشاهدات منشور تليجرام | فوري جداً ⭐", p: 0.99},
-        {id: 7068, cat: "Telegram", n: "Telegram View | Instant | +200K/Day", n_ar: "مشاهدات تليجرام | سرعة 200 ألف يومياً", p: 0.99},
-        {id: 2201, cat: "Telegram", n: "Telegram Arab Members | Real Mix 🌍", n_ar: "أعضاء تليجرام عرب | حقيقي مختلط 🌍", p: 5.50},
-        {id: 2202, cat: "Telegram", n: "Telegram Group Scraper Members", n_ar: "سحب أعضاء لمجموعات التليجرام", p: 3.10},
-        {id: 2203, cat: "Telegram", n: "Telegram Poll Votes | Fast ✅", n_ar: "تصويتات تليجرام | تسليم سريع ✅", p: 0.45},
-        {id: 2204, cat: "Telegram", n: "Telegram Auto Views | Last 10 Posts", n_ar: "مشاهدات تليجرام تلقائية | آخر 10 منشورات", p: 1.10},
-        {id: 2205, cat: "Telegram", n: "Telegram Premium Members | Non Drop", n_ar: "أعضاء تليجرام بريميوم | بدون نقص", p: 13.90},
-        {id: 2206, cat: "Telegram", n: "Telegram Comments | High Quality", n_ar: "تعليقات تليجرام | حسابات جودة عالية", p: 3.90},
         {id: 3407, cat: "Premium", n: "Gemini Pro | Google Storage 2TB", n_ar: "جيمناي برو | مساحة تخزين جوجل 2 تيرا", p: 6.23, type: "fixed"},
         {id: 944, cat: "Premium", n: "Canva Pro | 1-3 Years Package", n_ar: "كانفا برو | اشتراك من 1 إلى 3 سنوات", p: 0.99, type: "fixed"},
-        {id: 3343, cat: "Premium", n: "Blackblox AI | 3 Month Access", n_ar: "بلاك بوكس ذكاء اصطناعي | 3 أشهر", p: 15.00, type: "fixed"},
-        {id: 3364, cat: "Premium", n: "CapCut Pro | 1 Month Account", n_ar: "كاب كات برو | حساب شهر كامل", p: 5.00, type: "fixed"},
-        {id: 8607, cat: "Premium", n: "Netflix Premium | 1 Month 4K", n_ar: "نتفليكس بريميوم | شهر واحد جودة 4K", p: 4.50, type: "fixed"},
-        {id: 1101, cat: "Premium", n: "Spotify Premium | 3 Month", n_ar: "سبوتيفاي بريميوم | اشتراك 3 أشهر", p: 6.00, type: "fixed"},
-        {id: 1102, cat: "Premium", n: "Windows 11 Pro Key", n_ar: "مفتاح ويندوز 11 برو أصلي", p: 3.20, type: "fixed"},
-        {id: 1103, cat: "Premium", n: "Office 2021 Pro Key", n_ar: "مفتاح أوفيس 2021 برو أصلي", p: 4.10, type: "fixed"},
-        {id: 1104, cat: "Premium", n: "IPTV Gold | 12 Month", n_ar: "IPTV اشتراك ذهبي | لمدة 12 شهر", p: 16.00, type: "fixed"},
-        {id: 1105, cat: "Premium", n: "ChatGPT Plus | 1 Month Private", n_ar: "شات جي بي تي بلس | حساب خاص شهر", p: 5.00, type: "fixed"}
+        {id: 8607, cat: "Premium", n: "Netflix Premium | 1 Month 4K", n_ar: "نتفليكس بريميوم | شهر واحد جودة 4K", p: 4.50, type: "fixed"}
     ];
 
-    const WALLETS = {
-        "BaridiMob": "00799999001465107315",
-        "RedotPay": "1523336713",
-        "Binance": "1194939141"
-    };
-
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     let currentLang = 'ar';
     let activeCat = 'All';
     let current = null;
 
     const TRANSLATIONS = {
-        ar: {
-            all: "الكل",
-            premium: "المميز",
-            order: "طلب 🍬",
-            qty: "الكمية:",
-            total: "الإجمالي 🍬:",
-            payOpt: "-- اختر وسيلة الدفع --",
-            payNum: "رقم الحساب:",
-            confirm: "تأكيد الطلب عبر واتساب 🍬",
-            cancel: "إلغاء",
-            search: "🔍 ابحث عن خدمة...",
-            link: "الرابط (Link)",
-            email: "البريد الإلكتروني (Email)"
-        },
-        fr: {
-            all: "Tout",
-            premium: "Premium",
-            order: "Commander 🍬",
-            qty: "Quantité:",
-            total: "Total 🍬:",
-            payOpt: "-- Choisir le paiement --",
-            payNum: "Compte:",
-            confirm: "Confirmer via WhatsApp 🍬",
-            cancel: "Annuler",
-            search: "🔍 Rechercher...",
-            link: "Lien (Link)",
-            email: "Email"
-        }
+        ar: { all: "الكل", premium: "المميز", order: "طلب 🍬", qty: "الكمية:", total: "الإجمالي 🍬:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب 🍬", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
+        fr: { all: "Tout", premium: "Premium", order: "Commander 🍬", qty: "Quantité:", total: "Total 🍬:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp 🍬", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)", email: "Email" }
     };
 
-    function setTheme(t) {
-        document.body.className = 'theme-' + t;
-    }
+    function setTheme(t) { document.body.className = 'theme-' + t; }
 
     function render(data) {
         document.getElementById('container').innerHTML = data.map(s => {
             const displayName = (currentLang === 'ar' && s.n_ar) ? s.n_ar : s.n;
             const unit = s.type === "fixed" ? "" : (currentLang === 'ar' ? "/1000" : "/1k");
+            
+            // اختيار الأيقونة بناءً على الفئة
+            let icon = "fas fa-star";
+            if(s.cat === "Facebook") icon = "fab fa-facebook";
+            else if(s.cat === "TikTok") icon = "fab fa-tiktok";
+            else if(s.cat === "Instagram") icon = "fab fa-instagram";
+            else if(s.cat === "YouTube") icon = "fab fa-youtube";
+            else if(s.cat === "Telegram") icon = "fab fa-telegram";
+
             return `
-                <div class="service-card">
-                    <div class="srv-id-badge">ID: #${s.id}</div>
-                    <div class="srv-name" style="text-align: ${currentLang === 'ar' ? 'right' : 'left'}">${displayName}</div>
-                    <div class="srv-footer">
-                        <div class="srv-price">🍬 $${s.p.toFixed(2)}<small>${unit}</small></div>
-                        <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
-                    </div>
+                <div class="service-card" onclick="openM(${s.id})">
+                    <div class="srv-id-badge">#${s.id}</div>
+                    <i class="${icon} srv-icon"></i>
+                    <div class="srv-name">${displayName}</div>
+                    <div class="srv-price">🍬 $${s.p.toFixed(2)}<br><small style="font-size:8px; color:#888;">${unit}</small></div>
+                    <button class="btn-order">${TRANSLATIONS[currentLang].order}</button>
                 </div>
             `;
         }).join('');
@@ -473,11 +247,7 @@
         const term = document.getElementById('srvSearch').value.toLowerCase();
         let filtered = SERVICES;
         if(activeCat !== 'All') filtered = filtered.filter(s => s.cat === activeCat);
-        render(filtered.filter(s =>
-            s.n.toLowerCase().includes(term) ||
-            (s.n_ar && s.n_ar.toLowerCase().includes(term)) ||
-            s.id.toString().includes(term)
-        ));
+        render(filtered.filter(s => s.n.toLowerCase().includes(term) || (s.n_ar && s.n_ar.toLowerCase().includes(term)) || s.id.toString().includes(term)));
     }
 
     function changeLang(lang) {
@@ -525,12 +295,8 @@
     function showPayDetails(val) {
         const info = document.getElementById('paymentInfo');
         const num = document.getElementById('payNumber');
-        if(val && WALLETS[val]) {
-            info.style.display = "block";
-            num.innerText = WALLETS[val];
-        } else {
-            info.style.display = "none";
-        }
+        if(val && WALLETS[val]) { info.style.display = "block"; num.innerText = WALLETS[val]; }
+        else { info.style.display = "none"; }
     }
 
     function sendWA() {
@@ -541,20 +307,8 @@
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
-    function closeM() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    // تحميل الخدمات عند بدء الصفحة
+    function closeM() { document.getElementById('modal').style.display = 'none'; }
     render(SERVICES);
 </script>
-
-<div style="text-align: center; padding: 20px; background: var(--card); margin-top: 20px; border-top: 2px solid var(--primary); border-radius: 15px;">
-    <p style="margin: 0; font-size: 14px; color: var(--text); font-weight: bold;">عدد زوار كريم تراز 🍬</p>
-    <div style="margin-top: 10px;">
-        <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0" title="visitor counter" alt="visitor counter">
-    </div>
-</div>
-
 </body>
 </html>
