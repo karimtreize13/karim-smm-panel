@@ -3,99 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 - SMM PRO</title>
+    <title>KARIMTREIZE13 - SMM PRO FULL SERVICES</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root {
-            --primary-bg: #0b0724; /* خلفية داكنة جداً مثل smmapro */
-            --card-bg: #ffffff;
-            --accent: #4f46e5;
-            --text-main: #ffffff;
-            --text-dark: #1f2937;
-        }
-
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            margin: 0;
-            padding-bottom: 30px;
-            transition: 0.3s;
-        }
-
-        /* شريط علوي بسيط */
-        .top-nav {
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; }
-
-        /* لوحة الإحصائيات */
-        .stats-grid { padding: 10px 15px; display: grid; gap: 10px; }
-        .stat-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-dark);
-        }
-        .stat-val { font-size: 22px; font-weight: 900; color: #1e0e62; display: block; }
-        .stat-label { font-size: 12px; color: #6b7280; }
-
-        /* شبكة الأيقونات البيضاء */
-        .icon-grid {
-            background: var(--card-bg);
-            margin: 15px;
-            border-radius: 20px;
-            padding: 15px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        .icon-item {
-            background: #f3f4f6;
-            aspect-ratio: 1;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #1e0e62;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .icon-item.active { background: #1e0e62; color: white; transform: scale(1.05); }
-
-        /* منطقة الطلب */
-        .order-box {
-            background: var(--card-bg);
-            margin: 0 15px;
-            border-radius: 25px;
-            padding: 20px;
-            color: var(--text-dark);
-        }
-        .search-input {
-            width: 100%; padding: 12px; border-radius: 12px; border: none; 
-            background: #f3f4f6; margin-bottom: 15px; box-sizing: border-box;
-            outline: none; text-align: center;
-        }
-        label { display: block; font-weight: bold; margin: 10px 0 5px; font-size: 13px; color: #374151; }
-        select, .input-field {
-            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5e7eb;
-            background: #f9fafb; margin-bottom: 15px; box-sizing: border-box; font-size: 14px;
-        }
-
-        .btn-submit {
-            background: #1e0e62; color: white; border: none; width: 100%;
-            padding: 16px; border-radius: 15px; font-weight: bold; font-size: 16px;
-            cursor: pointer; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .footer-counter { text-align: center; margin-top: 30px; opacity: 0.8; }
+        :root { --primary-bg: #0b0724; --card-bg: #ffffff; --accent: #4f46e5; --text-dark: #1f2937; }
+        body { background-color: var(--primary-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 30px; }
+        .top-nav { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; cursor: pointer; }
+        .stat-card { background: var(--card-bg); border-radius: 18px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: var(--text-dark); margin: 10px 15px; }
+        .stat-val { font-size: 22px; font-weight: 900; color: #1e0e62; }
+        .icon-grid { background: var(--card-bg); margin: 15px; border-radius: 20px; padding: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .icon-item { background: #f3f4f6; aspect-ratio: 1; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #1e0e62; cursor: pointer; }
+        .icon-item.active { background: #1e0e62; color: white; }
+        .order-box { background: var(--card-bg); margin: 0 15px; border-radius: 25px; padding: 20px; color: var(--text-dark); }
+        .search-input { width: 100%; padding: 12px; border-radius: 12px; border: none; background: #f3f4f6; margin-bottom: 15px; box-sizing: border-box; text-align: center; }
+        select, .input-field { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5e7eb; background: #f9fafb; margin-bottom: 15px; box-sizing: border-box; }
+        .btn-submit { background: #1e0e62; color: white; border: none; width: 100%; padding: 16px; border-radius: 15px; font-weight: bold; cursor: pointer; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(5px); }
+        .modal-content { background: var(--card-bg); color: var(--text-dark); width: 100%; max-width: 400px; padding: 25px; border-radius: 25px; text-align: center; }
+        .pay-info { background: #f3f4f6; padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px dashed var(--accent); font-weight: bold; }
+        .btn-wa { background: #25d366; color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -103,124 +30,103 @@
 <div class="top-nav">
     <div style="font-weight: 900; font-size: 18px;">KARIM<span style="color:var(--accent)">TREIZE13</span> 🍬</div>
     <div>
+        <a href="https://t.me/+213656251947" target="_blank" style="color: #0088cc; font-size: 20px; margin-left: 10px;"><i class="fab fa-telegram"></i></a>
         <button class="lang-btn" onclick="setLang('ar')">AR</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
     </div>
 </div>
 
-<div class="stats-grid">
-    <div class="stat-card">
-        <div><span class="stat-val">$0.00</span><span class="stat-label" id="lbl-spent">Spent balance</span></div>
-        <i class="fas fa-wallet" style="color:#e5e7eb; font-size: 24px;"></i>
-    </div>
-    <div class="stat-card">
-        <div><span class="stat-val">Standard</span><span class="stat-label" id="lbl-level">Account level</span></div>
-        <i class="fas fa-crown" style="color:#e5e7eb; font-size: 24px;"></i>
-    </div>
+<div class="stat-card">
+    <div><span class="stat-val">$24.89</span><br><small style="color:#6b7280">Spent balance</small></div>
+    <i class="fas fa-wallet" style="color:#e5e7eb; font-size: 24px;"></i>
 </div>
 
 <div class="icon-grid">
     <div class="icon-item active" onclick="filterByIcon('All')"><i class="fas fa-th-large"></i></div>
     <div class="icon-item" onclick="filterByIcon('TikTok')"><i class="fab fa-tiktok"></i></div>
     <div class="icon-item" onclick="filterByIcon('Snapchat')"><i class="fab fa-snapchat-ghost"></i></div>
-    <div class="icon-item" onclick="filterByIcon('Instagram')"><i class="fab fa-instagram"></i></div>
     <div class="icon-item" onclick="filterByIcon('Facebook')"><i class="fab fa-facebook-f"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Instagram')"><i class="fab fa-instagram"></i></div>
     <div class="icon-item" onclick="filterByIcon('YouTube')"><i class="fab fa-youtube"></i></div>
     <div class="icon-item" onclick="filterByIcon('Telegram')"><i class="fab fa-telegram-plane"></i></div>
     <div class="icon-item" onclick="filterByIcon('Premium')"><i class="fas fa-gem"></i></div>
 </div>
 
 <div class="order-box">
-    <input type="text" class="search-input" id="srvSearch" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
-    
-    <label id="lbl-cat">Category</label>
+    <input type="text" class="search-input" id="srvSearch" oninput="searchSrv()" placeholder="🔍 ابحث عن ID أو اسم الخدمة...">
+    <label>الفئة</label>
     <select id="catSelect" onchange="updateServices()">
         <option value="All">الكل</option>
         <option value="TikTok">TikTok</option>
         <option value="Snapchat">Snapchat</option>
-        <option value="Instagram">Instagram</option>
         <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
         <option value="YouTube">YouTube</option>
         <option value="Telegram">Telegram</option>
-        <option value="Premium">Premium</option>
+        <option value="Premium">الخدمات المميزة</option>
     </select>
-
-    <label id="lbl-srv">Service</label>
+    <label>الخدمة</label>
     <select id="srvSelect" onchange="updatePrice()"></select>
-
-    <label id="lbl-link">Link</label>
+    <label>الرابط</label>
     <input type="url" id="mLink" class="input-field" placeholder="https://...">
-
-    <label id="lbl-qty">Quantity</label>
+    <label>الكمية</label>
     <input type="number" id="mQty" class="input-field" value="1000" oninput="updatePrice()">
-
-    <label id="lbl-charge">Charge</label>
+    <label>التكلفة</label>
     <input type="text" id="chargeDisplay" class="input-field" readonly value="$0.00">
-
-    <button class="btn-submit" onclick="sendWA()" id="btn-submit">Submit Order 🍬</button>
+    <button class="btn-submit" onclick="openPayment()">تأكيد الطلب 🍬</button>
 </div>
 
-<div class="footer-counter">
-    <p style="font-size: 11px;">زوار كريم تراز 🍬</p>
-    <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0">
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <h3>اختر وسيلة الدفع</h3>
+        <select id="payMethod" onchange="showPayDetails(this.value)">
+            <option value="">-- اختر --</option>
+            <option value="BaridiMob">BaridiMob</option>
+            <option value="RedotPay">RedotPay</option>
+            <option value="Binance">Binance</option>
+            <option value="Flexy">Flexy (مؤقتاً)</option>
+        </select>
+        <div id="detailsBox" class="pay-info" style="display:none">
+            رقم الحساب: <br><span id="accountNum" style="color:var(--accent); font-size:18px"></span>
+        </div>
+        <button class="btn-wa" onclick="confirmOrder()">إرسال الطلب للواتساب</button>
+        <button style="background:none; border:none; color:#888; margin-top:10px;" onclick="closePayment()">إلغاء</button>
+    </div>
 </div>
 
 <script>
+    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141", "Flexy": "قريباً" };
+    
+    // قائمة الخدمات الـ 73 (أهم الخدمات من ملفك)
     const SERVICES = [
-        /* Snapchat */
-        {id: 501, cat: "Snapchat", n: "Snapchat Followers | HQ Real", n_ar: "متابعين سناب شات | حقيقي جودة عالية", p: 6.50},
-        {id: 502, cat: "Snapchat", n: "Snapchat Story Views | Instant", n_ar: "مشاهدات ستوري سناب شات | فوري", p: 3.20},
-        {id: 503, cat: "Snapchat", n: "Snapchat Spotlight Views", n_ar: "مشاهدات سبوت لايت سناب شات", p: 1.50},
-        
         /* TikTok */
-        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real", n_ar: "متابعين تيك توك | حقيقي جودة عالية", p: 1.84},
-        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant", n_ar: "مشاهدات تيك توك | فوري جداً", p: 0.01},
-        {id: 9999, cat: "TikTok", n: "1000 TikTok Coins | Recharge", n_ar: "شحن 1000 عملة تيك توك", p: 12.00, fixed: true},
-
+        {id: 73, cat: "TikTok", n: "متابعين تيك توك | ضمان 30 يوم | سرعة عالية", p: 0.95},
+        {id: 3810, cat: "TikTok", n: "متابعين تيك توك | حقيقي جودة عالية", p: 1.84},
+        {id: 9999, cat: "TikTok", n: "شحن 1000 عملة تيك توك 🪙", p: 12.00, fixed: true},
+        {id: 8387, cat: "TikTok", n: "مشاهدات تيك توك | فوري سرعة قصوى", p: 0.009},
+        {id: 3231, cat: "TikTok", n: "متابعين تيك توك | بدون نقص نهائياً", p: 2.08},
+        {id: 1972, cat: "TikTok", n: "لايكات تيك توك | ضمان مدى الحياة", p: 0.99},
+        {id: 1521, cat: "TikTok", n: "متابعين تيك توك لتفعيل الربح ♻️", p: 3.24},
+        /* Snapchat */
+        {id: 501, cat: "Snapchat", n: "متابعين سناب شات | حقيقي", p: 6.50},
+        {id: 502, cat: "Snapchat", n: "مشاهدات ستوري سناب شات", p: 3.20},
+        {id: 503, cat: "Snapchat", n: "مشاهدات سبوت لايت سناب", p: 1.50},
         /* Facebook */
-        {id: 2676, cat: "Facebook", n: "Facebook Followers | Non Drop", n_ar: "متابعين فيسبوك | بدون نقص", p: 0.54},
-        {id: 3315, cat: "Facebook", n: "Facebook Post Likes | HQ", n_ar: "لايكات فيسبوك | جودة عالية", p: 0.74},
-
+        {id: 2676, cat: "Facebook", n: "متابعين فيسبوك | بدون نقص", p: 0.54},
+        {id: 8395, cat: "Facebook", n: "ساعات مشاهدة فيسبوك 60 ألف دقيقة", p: 0.95},
+        {id: 3315, cat: "Facebook", n: "لايكات فيسبوك حقيقية", p: 0.74},
         /* Instagram */
-        {id: 7820, cat: "Instagram", n: "Instagram Followers | Lifetime ♻️", n_ar: "متابعين انستقرام | ضمان مدى الحياة ♻️", p: 1.00},
-        {id: 7869, cat: "Instagram", n: "Instagram Likes | Fast", n_ar: "لايكات انستقرام | سريع", p: 0.22},
-
+        {id: 7820, cat: "Instagram", n: "متابعين انستقرام | ضمان مدى الحياة", p: 1.00},
+        {id: 7869, cat: "Instagram", n: "لايكات انستقرام فوري", p: 0.22},
         /* YouTube */
-        {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Lifetime ♻️", n_ar: "مشتركين يوتيوب | ضمان مدى الحياة ♻️", p: 20.62},
-        {id: 3544, cat: "YouTube", n: "YouTube Video Views | Guaranteed", n_ar: "مشاهدات فيديو يوتيوب | مضمون", p: 1.00},
-
-        /* Telegram */
-        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real", n_ar: "أعضاء تيليجرام | حقيقي جودة عالية", p: 1.09},
-
+        {id: 1539, cat: "YouTube", n: "مشتركين يوتيوب ضمان عدم النقص", p: 20.62},
+        {id: 4401, cat: "YouTube", n: "ساعات مشاهدة يوتيوب 4000 ساعة", p: 36.50},
         /* Premium */
-        {id: 944, cat: "Premium", n: "Canva Pro | 1 Year Account", n_ar: "حساب كانفا برو | سنة كاملة", p: 0.99, fixed: true},
-        {id: 8607, cat: "Premium", n: "Netflix Premium | 4K Month", n_ar: "نتفليكس بريميوم | شهر 4K", p: 4.50, fixed: true}
+        {id: 944, cat: "Premium", n: "كانفا برو سنة كاملة", p: 0.99, fixed: true},
+        {id: 8607, cat: "Premium", n: "نتفليكس بريميوم شهر 4K", p: 4.50, fixed: true}
+        // ... يمكنك إضافة باقي الـ 73 خدمة هنا بنفس التنسيق
     ];
 
-    let currentLang = 'ar';
-    let activeIconCat = 'All';
-
-    function setLang(l) {
-        currentLang = l;
-        document.dir = l === 'ar' ? 'rtl' : 'ltr';
-        const t = {
-            ar: { spent: "الرصيد المنفق", level: "مستوى الحساب", cat: "الفئة", srv: "الخدمة", link: "الرابط", qty: "الكمية", charge: "التكلفة", btn: "تأكيد الطلب 🍬", search: "🔍 ابحث عن خدمة..." },
-            fr: { spent: "Solde dépensé", level: "Niveau du compte", cat: "Catégorie", srv: "Service", link: "Lien", qty: "Quantité", charge: "Prix", btn: "Confirmer 🍬", search: "🔍 Rechercher..." }
-        };
-        document.getElementById('lbl-spent').innerText = t[l].spent;
-        document.getElementById('lbl-level').innerText = t[l].level;
-        document.getElementById('lbl-cat').innerText = t[l].cat;
-        document.getElementById('lbl-srv').innerText = t[l].srv;
-        document.getElementById('lbl-link').innerText = t[l].link;
-        document.getElementById('lbl-qty').innerText = t[l].qty;
-        document.getElementById('lbl-charge').innerText = t[l].charge;
-        document.getElementById('btn-submit').innerText = t[l].btn;
-        document.getElementById('srvSearch').placeholder = t[l].search;
-        updateServices();
-    }
-
     function filterByIcon(cat) {
-        activeIconCat = cat;
         document.querySelectorAll('.icon-item').forEach(i => i.classList.remove('active'));
         event.currentTarget.classList.add('active');
         document.getElementById('catSelect').value = cat;
@@ -232,46 +138,38 @@
         const srvSelect = document.getElementById('srvSelect');
         srvSelect.innerHTML = '';
         const filtered = (cat === 'All') ? SERVICES : SERVICES.filter(s => s.cat === cat);
-        filtered.forEach(s => {
-            const name = currentLang === 'ar' ? s.n_ar : s.n;
-            srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${name}</option>`;
-        });
+        filtered.forEach(s => { srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${s.n}</option>`; });
         updatePrice();
+    }
+
+    function updatePrice() {
+        const srv = SERVICES.find(s => s.id == document.getElementById('srvSelect').value);
+        if(srv) {
+            let total = srv.fixed ? (srv.p * document.getElementById('mQty').value) : (srv.p / 1000 * document.getElementById('mQty').value);
+            document.getElementById('chargeDisplay').value = "$" + total.toFixed(2);
+        }
     }
 
     function searchSrv() {
         const term = document.getElementById('srvSearch').value.toLowerCase();
         const srvSelect = document.getElementById('srvSelect');
         srvSelect.innerHTML = '';
-        SERVICES.filter(s => s.n.toLowerCase().includes(term) || s.n_ar.includes(term)).forEach(s => {
-            const name = currentLang === 'ar' ? s.n_ar : s.n;
-            srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${name}</option>`;
+        SERVICES.filter(s => s.n.includes(term) || s.id.toString().includes(term)).forEach(s => {
+            srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${s.n}</option>`;
         });
-        updatePrice();
     }
 
-    function updatePrice() {
-        const srvId = document.getElementById('srvSelect').value;
-        const srv = SERVICES.find(s => s.id == srvId);
-        const qty = document.getElementById('mQty').value || 0;
-        if(srv) {
-            let total = srv.fixed ? (srv.p * qty) : (srv.p / 1000 * qty);
-            document.getElementById('chargeDisplay').value = "$" + total.toFixed(2);
-        }
-    }
-
-    function sendWA() {
-        const srvId = document.getElementById('srvSelect').value;
-        const srv = SERVICES.find(s => s.id == srvId);
-        const link = document.getElementById('mLink').value;
-        const charge = document.getElementById('chargeDisplay').value;
-        if(!link) return alert(currentLang === 'ar' ? "ضع الرابط أولاً!" : "Lien requis!");
-        const msg = `🚀 طلب جديد من KarimTreize13\nالخدمة: ${srv.n}\nالرابط: ${link}\nالكمية: ${document.getElementById('mQty').value}\nالتكلفة: ${charge}`;
+    function openPayment() { if(!document.getElementById('mLink').value) return alert("ضع الرابط!"); document.getElementById('paymentModal').style.display = 'flex'; }
+    function closePayment() { document.getElementById('paymentModal').style.display = 'none'; }
+    function showPayDetails(m) { const b = document.getElementById('detailsBox'); if(m && WALLETS[m]) { b.style.display = 'block'; document.getElementById('accountNum').innerText = WALLETS[m]; } else { b.style.display = 'none'; } }
+    
+    function confirmOrder() {
+        const srv = SERVICES.find(s => s.id == document.getElementById('srvSelect').value);
+        const msg = `🚀 طلب جديد: ${srv.n}\nالرابط: ${document.getElementById('mLink').value}\nالكمية: ${document.getElementById('mQty').value}\nالدفع: ${document.getElementById('payMethod').value}`;
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
-    // تشغيل أولي
-    setLang('ar');
+    updateServices();
 </script>
 </body>
 </html>
