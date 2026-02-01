@@ -3,312 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIMTREIZE13 PANEL</title>
+    <title>KARIMTREIZE13 - SMM PRO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        :root { --primary: #fbbf24; --bg: #050505; --card: #111; --text: #fff; --icon-blue: #3b82f6; }
-        body.theme-blue { --primary: #2563eb; --bg: #0f172a; --text: #ffffff; --card: #1e293b; }
-        body.theme-yellow { --primary: #fbbf24; --bg: #000000; --text: #fbbf24; --card: #111; }
-        body.theme-white { --primary: #2563eb; --bg: #ffffff; --text: #000000; --card: #f3f4f6; }
-        body.theme-green { --primary: #00ff88; --bg: #052e16; --text: #00ff88; --card: #064e3b; }
-        
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 80px; transition: 0.3s; }
-        
-        .top-bar { position: sticky; top: 0; z-index: 1000; background: var(--bg); border-bottom: 1px solid rgba(128,128,128,0.2); }
-        .theme-bar, .lang-bar { padding: 10px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid rgba(128,128,128,0.1); }
-        .t-btn { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; }
-        .l-btn { background: none; border: 1px solid #333; color: var(--text); padding: 2px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
-
-        .navbar { padding: 15px; text-align: center; border-bottom: 2px solid var(--primary); background: var(--bg); }
-        .logo { font-weight: 900; font-size: 22px; color: var(--text); }
-        .logo span { color: var(--primary); }
-
-        .search-container { padding: 15px; }
-        .search-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--primary); background: var(--card); color: var(--text); box-sizing: border-box; outline: none; text-align: center; }
-
-        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; }
-        .tabs::-webkit-scrollbar { display: none; }
-        .tab { padding: 10px 20px; background: var(--card); border: 1px solid rgba(128,128,128,0.2); border-radius: 12px; cursor: pointer; white-space: nowrap; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 8px; }
-        .tab.active { background: var(--primary); color: #000; font-weight: bold; border-color: var(--primary); }
-
-        /* تعديل شبكة الخدمات لتصبح مربعات (2 في كل صف) */
-        .services-grid { 
-            padding: 15px; 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
+        :root {
+            --primary-bg: #0b0724; /* خلفية داكنة جداً مثل smmapro */
+            --card-bg: #ffffff;
+            --accent: #4f46e5;
+            --text-main: #ffffff;
+            --text-dark: #1f2937;
         }
-        
-        .service-card { 
-            background: var(--card); 
-            border-radius: 15px; 
-            padding: 15px; 
-            border: 1px solid rgba(128,128,128,0.1); 
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            padding-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        /* شريط علوي بسيط */
+        .top-nav {
+            padding: 15px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            transition: 0.2s;
+        }
+        .lang-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; }
+
+        /* لوحة الإحصائيات */
+        .stats-grid { padding: 10px 15px; display: grid; gap: 10px; }
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dark);
+        }
+        .stat-val { font-size: 22px; font-weight: 900; color: #1e0e62; display: block; }
+        .stat-label { font-size: 12px; color: #6b7280; }
+
+        /* شبكة الأيقونات البيضاء */
+        .icon-grid {
+            background: var(--card-bg);
+            margin: 15px;
+            border-radius: 20px;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .icon-item {
+            background: #f3f4f6;
+            aspect-ratio: 1;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #1e0e62;
             cursor: pointer;
-            position: relative;
+            transition: 0.2s;
         }
-        .service-card:active { transform: scale(0.95); }
-        
-        .srv-icon { font-size: 28px; margin-bottom: 10px; color: var(--primary); }
-        
-        .srv-id-badge { position: absolute; top: 8px; right: 8px; font-size: 9px; background: rgba(128,128,128,0.2); color: #888; padding: 2px 5px; border-radius: 4px; }
-        
-        .srv-name { 
-            font-size: 12px; 
-            font-weight: 600; 
-            line-height: 1.4; 
-            margin-bottom: 10px; 
-            height: 34px; 
-            overflow: hidden; 
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        .icon-item.active { background: #1e0e62; color: white; transform: scale(1.05); }
+
+        /* منطقة الطلب */
+        .order-box {
+            background: var(--card-bg);
+            margin: 0 15px;
+            border-radius: 25px;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+        .search-input {
+            width: 100%; padding: 12px; border-radius: 12px; border: none; 
+            background: #f3f4f6; margin-bottom: 15px; box-sizing: border-box;
+            outline: none; text-align: center;
+        }
+        label { display: block; font-weight: bold; margin: 10px 0 5px; font-size: 13px; color: #374151; }
+        select, .input-field {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5e7eb;
+            background: #f9fafb; margin-bottom: 15px; box-sizing: border-box; font-size: 14px;
         }
 
-        .srv-price { font-size: 16px; font-weight: 900; color: var(--primary); margin-bottom: 10px; }
-        .srv-price small { font-size: 9px; opacity: 0.7; }
+        .btn-submit {
+            background: #1e0e62; color: white; border: none; width: 100%;
+            padding: 16px; border-radius: 15px; font-weight: bold; font-size: 16px;
+            cursor: pointer; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-        .btn-order { background: var(--primary); color: #000; border: none; padding: 8px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 11px; }
-
-        /* Modal Styles */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(5px); }
-        .modal-box { background: var(--card); width: 100%; max-width: 400px; padding: 25px; border-radius: 25px; border: 1px solid var(--primary); color: var(--text); }
-        input, select { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; background: var(--bg); border: 1px solid #333; color: var(--text); box-sizing: border-box; }
-        .price-box { background: var(--bg); padding: 15px; border-radius: 12px; text-align: center; border: 1px dashed var(--primary); margin: 10px 0; }
-        .total-val { color: var(--primary); font-size: 26px; font-weight: 900; }
+        .footer-counter { text-align: center; margin-top: 30px; opacity: 0.8; }
     </style>
 </head>
-<body class="theme-yellow">
+<body>
 
-<div class="top-bar">
-    <div class="theme-bar">
-        <div class="t-btn" style="background: #2563eb;" onclick="setTheme('blue')"></div>
-        <div class="t-btn" style="background: #fbbf24;" onclick="setTheme('yellow')"></div>
-        <div class="t-btn" style="background: #ffffff;" onclick="setTheme('white')"></div>
-        <div class="t-btn" style="background: #00ff88;" onclick="setTheme('green')"></div>
-    </div>
-    <div class="lang-bar">
-        <button class="l-btn" onclick="changeLang('ar')">العربية 🇩🇿</button>
-        <button class="l-btn" onclick="changeLang('fr')">Français 🇫🇷</button>
-        <a href="https://t.me/+213656251947" target="_blank" style="text-decoration: none; margin-right: 10px;">
-            <i class="fab fa-telegram" style="color: #0088cc; font-size: 20px;"></i>
-        </a>
+<div class="top-nav">
+    <div style="font-weight: 900; font-size: 18px;">KARIM<span style="color:var(--accent)">TREIZE13</span> 🍬</div>
+    <div>
+        <button class="lang-btn" onclick="setLang('ar')">AR</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
     </div>
 </div>
 
-<nav class="navbar">
-    <div class="logo">KARIM<span>TREIZE13</span> 🍬</div>
-    <div style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px;">خدمات كريم تراز</div>
-</nav>
-
-<div class="search-container">
-    <input type="text" id="srvSearch" class="search-input" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
-</div>
-
-<div class="tabs" id="tabsList">
-    <div class="tab active" data-cat="All" onclick="filterCat('All', this)"><i class="fas fa-globe"></i> <span class="t-text">الكل</span></div>
-    <div class="tab" data-cat="Facebook" onclick="filterCat('Facebook', this)"><i class="fab fa-facebook"></i> Facebook</div>
-    <div class="tab" data-cat="TikTok" onclick="filterCat('TikTok', this)"><i class="fab fa-tiktok"></i> TikTok</div>
-    <div class="tab" data-cat="Instagram" onclick="filterCat('Instagram', this)"><i class="fab fa-instagram"></i> Instagram</div>
-    <div class="tab" data-cat="YouTube" onclick="filterCat('YouTube', this)"><i class="fab fa-youtube"></i> YouTube</div>
-    <div class="tab" data-cat="Telegram" onclick="filterCat('Telegram', this)"><i class="fab fa-telegram"></i> Telegram</div>
-    <div class="tab" data-cat="Premium" onclick="filterCat('Premium', this)"><i class="fas fa-star"></i> <span class="p-text">المميز</span></div>
-</div>
-
-<div class="services-grid" id="container"></div>
-
-<div id="modal" class="modal">
-    <div class="modal-box">
-        <h3 id="mTitle" style="font-size: 14px; text-align: center; color: var(--primary);"></h3>
-        <input type="url" id="mLink" placeholder="الرابط (Link)">
-        <div id="emailBox" style="display:none;"><input type="email" id="mEmail" placeholder="Email"></div>
-        <div id="qtyBox">
-            <input type="number" id="mQty" value="1000" oninput="doCalc()">
-        </div>
-        <div class="price-box"><span id="lblTotal">الإجمالي 🍬:</span> <br><span class="total-val" id="totalDisplay">$0.00</span></div>
-        <select id="mPay" onchange="showPayDetails(this.value)">
-            <option value="" id="optPay">-- اختر وسيلة الدفع --</option>
-            <option value="BaridiMob">BaridiMob</option>
-            <option value="RedotPay">RedotPay</option>
-            <option value="Binance">Binance</option>
-        </select>
-        <div id="paymentInfo" style="display:none; text-align:center; padding:10px; background:rgba(0,0,0,0.1); border-radius:10px; margin:10px 0;">
-            <strong id="payNumber" style="color:var(--primary);"></strong>
-        </div>
-        <button class="btn-send" id="btnSend" style="width:100%; padding:15px; background:var(--primary); border:none; border-radius:10px; font-weight:bold; cursor:pointer;" onclick="sendWA()">تأكيد الطلب عبر واتساب 🍬</button>
-        <button onclick="closeM()" id="btnCancel" style="width:100%; background:none; border:none; color:#888; margin-top:10px; cursor:pointer;">إلغاء</button>
+<div class="stats-grid">
+    <div class="stat-card">
+        <div><span class="stat-val">$0.00</span><span class="stat-label" id="lbl-spent">Spent balance</span></div>
+        <i class="fas fa-wallet" style="color:#e5e7eb; font-size: 24px;"></i>
+    </div>
+    <div class="stat-card">
+        <div><span class="stat-val">Standard</span><span class="stat-label" id="lbl-level">Account level</span></div>
+        <i class="fas fa-crown" style="color:#e5e7eb; font-size: 24px;"></i>
     </div>
 </div>
 
-<div style="text-align: center; padding: 20px; background: var(--card); margin-top: 20px; border-top: 2px solid var(--primary); border-radius: 15px 15px 0 0;">
-    <p style="margin: 0; font-size: 14px; color: var(--text); font-weight: bold;">عدد زوار كريم تراز 🍬</p>
-    <div style="margin-top: 10px;">
-        <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0" title="visitor counter" alt="visitor counter">
-    </div>
+<div class="icon-grid">
+    <div class="icon-item active" onclick="filterByIcon('All')"><i class="fas fa-th-large"></i></div>
+    <div class="icon-item" onclick="filterByIcon('TikTok')"><i class="fab fa-tiktok"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Snapchat')"><i class="fab fa-snapchat-ghost"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Instagram')"><i class="fab fa-instagram"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Facebook')"><i class="fab fa-facebook-f"></i></div>
+    <div class="icon-item" onclick="filterByIcon('YouTube')"><i class="fab fa-youtube"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Telegram')"><i class="fab fa-telegram-plane"></i></div>
+    <div class="icon-item" onclick="filterByIcon('Premium')"><i class="fas fa-gem"></i></div>
+</div>
+
+<div class="order-box">
+    <input type="text" class="search-input" id="srvSearch" oninput="searchSrv()" placeholder="🔍 ابحث عن خدمة...">
+    
+    <label id="lbl-cat">Category</label>
+    <select id="catSelect" onchange="updateServices()">
+        <option value="All">الكل</option>
+        <option value="TikTok">TikTok</option>
+        <option value="Snapchat">Snapchat</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Facebook">Facebook</option>
+        <option value="YouTube">YouTube</option>
+        <option value="Telegram">Telegram</option>
+        <option value="Premium">Premium</option>
+    </select>
+
+    <label id="lbl-srv">Service</label>
+    <select id="srvSelect" onchange="updatePrice()"></select>
+
+    <label id="lbl-link">Link</label>
+    <input type="url" id="mLink" class="input-field" placeholder="https://...">
+
+    <label id="lbl-qty">Quantity</label>
+    <input type="number" id="mQty" class="input-field" value="1000" oninput="updatePrice()">
+
+    <label id="lbl-charge">Charge</label>
+    <input type="text" id="chargeDisplay" class="input-field" readonly value="$0.00">
+
+    <button class="btn-submit" onclick="sendWA()" id="btn-submit">Submit Order 🍬</button>
+</div>
+
+<div class="footer-counter">
+    <p style="font-size: 11px;">زوار كريم تراز 🍬</p>
+    <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8u4m4m1uclx6q9mny663ux8j7ny86lgu" border="0">
 </div>
 
 <script>
-    // نفس مصفوفة الخدمات التي قدمتها أنت
     const SERVICES = [
-        {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge quand tu dis (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 الكميه)", p:12.00, type: "fixed"},
-        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
-        {id: 2676, cat: "Facebook", n: " Facebook Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين فيسبوك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.54},
-        {id: 1974, cat: "Facebook", n: "Facebook Followers | 365 Days Refill ♻️", n_ar: "متابعين فيسبوك | ضمان تعبئة 365 يوم ♻️", p: 0.41},
-        {id: 3859, cat: "Facebook", n: "Facebook Followers | Bots | Lifetime ♻️", n_ar: "متابعين فيسبوك | جودة عادية | ضمان مدى الحياة ♻️", p: 0.32},
-        {id: 3858, cat: "Facebook", n: " Facebook wers | Bots | No Refill", n_ar: "متابعين فيسبوك | حسابات عادية | بدون ضمان", p: 0.28},
-        {id: 3324, cat: "Facebook", n: "Facebook Members | Low Drop", n_ar: "أعضاء صفحات فيسبوك | نقص قليل", p: 0.55},
-        {id: 3330, cat: "Facebook", n: "FacebookGroup Members | Real | 365 Days ♻️", n_ar: "أعضاء مجموعات فيسبوك | حقيقي | ضمان سنة ♻️", p: 0.92},
-        {id: 8395, cat: "Facebook", n: "Facebook60k Minutes | 10 Mins Video ♻️", n_ar: "فيسبوك 60 ألف دقيقة مشاهدة | فيديو 10 دقائق ♻️", p: 0.95},
-        {id: 815, cat: "Facebook", n: "Facebook100k Reels Views | 30 Days ♻️", n_ar: "فيسبوك 100 ألف مشاهدة ريلز | ضمان 30 يوم ♻️", p: 5.59},
-        {id: 3315, cat: "Facebook", n: "Facebook Post Likes | HQ Real Profiles ⚡", n_ar: "لايكات منشور فيسبوك | حسابات حقيقية ⚡", p: 0.74},
-        {id: 8755, cat: "Facebook", n: "Facebook Post Reaction | Like 👍", n_ar: "تفاعلات فيسبوك | إعجاب 👍", p: 0.33},
-        {id: 8756, cat: "Facebook", n: "Facebook Post Reaction | Love❤️", n_ar: "تفاعلات فيسبوك | قلب ❤️", p: 0.43},
-        {id: 7592, cat: "Facebook", n: "Facebook Watch video | Lifetime ♻️", n_ar: "مشاهدات فيديو فيسبوك واتش | ضمان مدى الحياة ♻️", p: 0.99},
-        {id: 8109, cat: "TikTok", n: "TikTok Followers | Low Quality", n_ar: "متابعين تيك توك | جودة منخفضة", p: 0.11},
-        {id: 3338, cat: "TikTok", n: "TikTok Followers | HQ Real | Lifetime ♻️", n_ar: "متابعين تيك توك | حقيقي جودة عالية | ضمان مدى الحياة ♻️", p: 1.00},
-        {id: 3277, cat: "TikTok", n: "TikTok Followers | 100% Organic | Non Drop | Instant", n_ar: "متابعين تيك توك | عضوي 100% | بدون نقص | فوري | ضمان مدى الحياة ⭐", p: 3.38},
-        {id: 3340, cat: "TikTok", n: "TikTok Followers | Perfect | Lifetime ♻️", n_ar: "متابعين تيك توك | جودة ممتازة | ضمان مدى الحياة ♻️", p: 0.98},
-        {id: 1507, cat: "TikTok", n: "TikTok Followers | Instant Delivery", n_ar: "متابعين تيك توك | تسليم فوري", p: 0.72},
-        {id: 3350, cat: "TikTok", n: "TikTok Followers | HQ Real | UltraFast", n_ar: "متابعين تيك توك | حقيقي | فوري جداً", p: 0.67},
-        {id: 3231, cat: "TikTok", n: "Tiktok Followers | Non Drop | Lifetime ♻️", n_ar: "متابعين تيك توك | بدون نقص نهائياً | ضمان مدى الحياة ♻️", p: 2.08},
-        {id: 8120, cat: "TikTok", n: "TikTok Likes | Low Quality", n_ar: "لايكات تيك توك | جودة منخفضة", p: 0.48},
-        {id: 3348, cat: "TikTok", n: "TikTok Likes | SuperInstant | Lifetime ♻️", n_ar: "لايكات تيك توك | فوري جداً | ضمان مدى الحياة ♻️", p: 0.49},
-        {id: 1972, cat: "TikTok", n: "TikTok Likes | Non Drop | Lifetime ♻️", n_ar: "لايكات تيك توك | بدون نقص | ضمان مدى الحياة ♻️", p: 0.99},
-        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant | +200M/Day", n_ar: "مشاهدات تيك توك | فوري | سرعة 200 مليون يومياً", p: 0.009},
-        {id: 6930, cat: "TikTok", n: "TikTok Views | Superfast", n_ar: "مشاهدات تيك توك | سرعة كبيرة", p: 0.09},
-        {id: 8345, cat: "TikTok", n: "Tiktok Live Likes | SuperInstant ⭐", n_ar: "لايكات لايف تيك توك | فوري ⭐", p: 0.10},
-        {id: 6915, cat: "TikTok", n: "TikTok Live Stream Likes | Instant", n_ar: "لايكات بث مباشر تيك توك | تسليم فوري", p: 0.012},
-        {id: 1521, cat: "TikTok", n: "TikTok Monetizable Followers | Real ♻️", n_ar: "متابعين تيك توك (تفعيل الربح) | حسابات حقيقية ♻️", p: 3.24},
-        {id: 3490, cat: "TikTok", n: "TikTok Monetizable Views | Non Drop ♻️", n_ar: "مشاهدات تيك توك للربح | بدون نقص ♻️", p: 1.0325},
-        {id: 7820, cat: "Instagram", n: "Instagram Followers | Real Old | Lifetime ♻️", n_ar: "متابعين انستقرام | حسابات حقيقية قديمة ♻️", p: 1.00},
-        {id: 1348, cat: "Instagram", n: "Instagram Followers | Real Old | SuperFast ⭐", n_ar: "متابعين انستقرام | قديم جداً | فوري ⭐", p: 1.56},
-        {id: 3779, cat: "Instagram", n: "Instagram Followers | UltraFast | Lifetime ♻️", n_ar: "متابعين انستقرام | سرعة قصوى | مدى الحياة ♻️", p: 2.05},
-        {id: 8801, cat: "Instagram", n: "Instagram Likes | Real Old | No Refill", n_ar: "لايكات انستقرام | حسابات حقيقية | بدون ضمان", p: 0.63},
-        {id: 7869, cat: "Instagram", n: "Instagram Likes | Instant Delivery", n_ar: "لايكات انستقرام | تسليم فوري", p: 0.22},
-        {id: 7790, cat: "Instagram", n: "Instagram Likes | Real Old | Lifetime ♻️", n_ar: "لايكات انستقرام | حقيقي قديم | ضمان مدى الحياة ♻️", p: 1.15},
-        {id: 6441, cat: "Instagram", n: "Instagram Views | Ultra Fast | No Refill", n_ar: "مشاهدات انستقرام | سرعة كبيرة", p: 0.009},
-        {id: 7788, cat: "Instagram", n: "Instagram Instant | No Refill", n_ar: "مشاهدات انستقرام | فوري", p: 0.06},
-        {id: 5501, cat: "Instagram" , n: "Instagram Story Views | HQ Fast ⚡", n_ar: "مشاهدات ستوري انستقرام | جودة عالية ⚡", p: 0.15},
-        {id: 5502, cat: "Instagram" , n : "Instagram Comments | Arab Mix Profiles 🌍", n_ar: "تعليقات انستقرام | عرب مختلط 🌍", p: 4.80},
-        {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Non Drop | Lifetime ♻️", n_ar: "مشتركين يوتيوب | بدون نقص | ضمان مدى الحياة ♻️", p: 20.62},
-        {id: 935, cat: "YouTube", n: "YouTube Likes | Real | SuperFast", n_ar: "لايكات فيديو يوتيوب | حقيقي | فوري", p: 0.23},
-        {id: 3544, cat: "YouTube", n: "YouTube Video/Shorts Views | Lifetime ♻️", n_ar: "مشاهدات يوتيوب/شورتس | ضمان مدى الحياة ♻️", p: 1.00},
-        {id: 4401, cat: "YouTube", n: "YouTube WatchTime 4000 Hours | Guaranteed", n_ar: "تحقيق 4000 ساعة مشاهدة يوتيوب | مضمون", p: 36.50},
-        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real | Lifetime ♻️", n_ar: "أعضاء تليجرام | حقيقي جودة عالية | مدى الحياة ♻️", p: 1.09},
-        {id: 6805, cat: "Telegram", n: "Telegram Post Views | Superfast ⭐", n_ar: "مشاهدات منشور تليجرام | فوري جداً ⭐", p: 0.99},
-        {id: 3407, cat: "Premium", n: "Gemini Pro | Google Storage 2TB", n_ar: "جيمناي برو | مساحة تخزين جوجل 2 تيرا", p: 6.23, type: "fixed"},
-        {id: 944, cat: "Premium", n: "Canva Pro | 1-3 Years Package", n_ar: "كانفا برو | اشتراك من 1 إلى 3 سنوات", p: 0.99, type: "fixed"},
-        {id: 8607, cat: "Premium", n: "Netflix Premium | 1 Month 4K", n_ar: "نتفليكس بريميوم | شهر واحد جودة 4K", p: 4.50, type: "fixed"}
+        /* Snapchat */
+        {id: 501, cat: "Snapchat", n: "Snapchat Followers | HQ Real", n_ar: "متابعين سناب شات | حقيقي جودة عالية", p: 6.50},
+        {id: 502, cat: "Snapchat", n: "Snapchat Story Views | Instant", n_ar: "مشاهدات ستوري سناب شات | فوري", p: 3.20},
+        {id: 503, cat: "Snapchat", n: "Snapchat Spotlight Views", n_ar: "مشاهدات سبوت لايت سناب شات", p: 1.50},
+        
+        /* TikTok */
+        {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real", n_ar: "متابعين تيك توك | حقيقي جودة عالية", p: 1.84},
+        {id: 8387, cat: "TikTok", n: "TikTok Views | SuperInstant", n_ar: "مشاهدات تيك توك | فوري جداً", p: 0.01},
+        {id: 9999, cat: "TikTok", n: "1000 TikTok Coins | Recharge", n_ar: "شحن 1000 عملة تيك توك", p: 12.00, fixed: true},
+
+        /* Facebook */
+        {id: 2676, cat: "Facebook", n: "Facebook Followers | Non Drop", n_ar: "متابعين فيسبوك | بدون نقص", p: 0.54},
+        {id: 3315, cat: "Facebook", n: "Facebook Post Likes | HQ", n_ar: "لايكات فيسبوك | جودة عالية", p: 0.74},
+
+        /* Instagram */
+        {id: 7820, cat: "Instagram", n: "Instagram Followers | Lifetime ♻️", n_ar: "متابعين انستقرام | ضمان مدى الحياة ♻️", p: 1.00},
+        {id: 7869, cat: "Instagram", n: "Instagram Likes | Fast", n_ar: "لايكات انستقرام | سريع", p: 0.22},
+
+        /* YouTube */
+        {id: 1539, cat: "YouTube", n: "YouTube Subscribers | Lifetime ♻️", n_ar: "مشتركين يوتيوب | ضمان مدى الحياة ♻️", p: 20.62},
+        {id: 3544, cat: "YouTube", n: "YouTube Video Views | Guaranteed", n_ar: "مشاهدات فيديو يوتيوب | مضمون", p: 1.00},
+
+        /* Telegram */
+        {id: 3428, cat: "Telegram", n: "Telegram Members | HQ Real", n_ar: "أعضاء تيليجرام | حقيقي جودة عالية", p: 1.09},
+
+        /* Premium */
+        {id: 944, cat: "Premium", n: "Canva Pro | 1 Year Account", n_ar: "حساب كانفا برو | سنة كاملة", p: 0.99, fixed: true},
+        {id: 8607, cat: "Premium", n: "Netflix Premium | 4K Month", n_ar: "نتفليكس بريميوم | شهر 4K", p: 4.50, fixed: true}
     ];
 
-    const WALLETS = { "BaridiMob": "00799999001465107315", "RedotPay": "1523336713", "Binance": "1194939141" };
     let currentLang = 'ar';
-    let activeCat = 'All';
-    let current = null;
+    let activeIconCat = 'All';
 
-    const TRANSLATIONS = {
-        ar: { all: "الكل", premium: "المميز", order: "طلب 🍬", qty: "الكمية:", total: "الإجمالي 🍬:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب 🍬", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
-        fr: { all: "Tout", premium: "Premium", order: "Commander 🍬", qty: "Quantité:", total: "Total 🍬:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp 🍬", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)", email: "Email" }
-    };
+    function setLang(l) {
+        currentLang = l;
+        document.dir = l === 'ar' ? 'rtl' : 'ltr';
+        const t = {
+            ar: { spent: "الرصيد المنفق", level: "مستوى الحساب", cat: "الفئة", srv: "الخدمة", link: "الرابط", qty: "الكمية", charge: "التكلفة", btn: "تأكيد الطلب 🍬", search: "🔍 ابحث عن خدمة..." },
+            fr: { spent: "Solde dépensé", level: "Niveau du compte", cat: "Catégorie", srv: "Service", link: "Lien", qty: "Quantité", charge: "Prix", btn: "Confirmer 🍬", search: "🔍 Rechercher..." }
+        };
+        document.getElementById('lbl-spent').innerText = t[l].spent;
+        document.getElementById('lbl-level').innerText = t[l].level;
+        document.getElementById('lbl-cat').innerText = t[l].cat;
+        document.getElementById('lbl-srv').innerText = t[l].srv;
+        document.getElementById('lbl-link').innerText = t[l].link;
+        document.getElementById('lbl-qty').innerText = t[l].qty;
+        document.getElementById('lbl-charge').innerText = t[l].charge;
+        document.getElementById('btn-submit').innerText = t[l].btn;
+        document.getElementById('srvSearch').placeholder = t[l].search;
+        updateServices();
+    }
 
-    function setTheme(t) { document.body.className = 'theme-' + t; }
+    function filterByIcon(cat) {
+        activeIconCat = cat;
+        document.querySelectorAll('.icon-item').forEach(i => i.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        document.getElementById('catSelect').value = cat;
+        updateServices();
+    }
 
-    function render(data) {
-        document.getElementById('container').innerHTML = data.map(s => {
-            const displayName = (currentLang === 'ar' && s.n_ar) ? s.n_ar : s.n;
-            const unit = s.type === "fixed" ? "" : (currentLang === 'ar' ? "/1000" : "/1k");
-            
-            // اختيار الأيقونة بناءً على الفئة
-            let icon = "fas fa-star";
-            if(s.cat === "Facebook") icon = "fab fa-facebook";
-            else if(s.cat === "TikTok") icon = "fab fa-tiktok";
-            else if(s.cat === "Instagram") icon = "fab fa-instagram";
-            else if(s.cat === "YouTube") icon = "fab fa-youtube";
-            else if(s.cat === "Telegram") icon = "fab fa-telegram";
-
-            return `
-                <div class="service-card" onclick="openM(${s.id})">
-                    <div class="srv-id-badge">#${s.id}</div>
-                    <i class="${icon} srv-icon"></i>
-                    <div class="srv-name">${displayName}</div>
-                    <div class="srv-price">🍬 $${s.p.toFixed(2)}<br><small style="font-size:8px; color:#888;">${unit}</small></div>
-                    <button class="btn-order">${TRANSLATIONS[currentLang].order}</button>
-                </div>
-            `;
-        }).join('');
+    function updateServices() {
+        const cat = document.getElementById('catSelect').value;
+        const srvSelect = document.getElementById('srvSelect');
+        srvSelect.innerHTML = '';
+        const filtered = (cat === 'All') ? SERVICES : SERVICES.filter(s => s.cat === cat);
+        filtered.forEach(s => {
+            const name = currentLang === 'ar' ? s.n_ar : s.n;
+            srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${name}</option>`;
+        });
+        updatePrice();
     }
 
     function searchSrv() {
         const term = document.getElementById('srvSearch').value.toLowerCase();
-        let filtered = SERVICES;
-        if(activeCat !== 'All') filtered = filtered.filter(s => s.cat === activeCat);
-        render(filtered.filter(s => s.n.toLowerCase().includes(term) || (s.n_ar && s.n_ar.toLowerCase().includes(term)) || s.id.toString().includes(term)));
+        const srvSelect = document.getElementById('srvSelect');
+        srvSelect.innerHTML = '';
+        SERVICES.filter(s => s.n.toLowerCase().includes(term) || s.n_ar.includes(term)).forEach(s => {
+            const name = currentLang === 'ar' ? s.n_ar : s.n;
+            srvSelect.innerHTML += `<option value="${s.id}">${s.id} - ${name}</option>`;
+        });
+        updatePrice();
     }
 
-    function changeLang(lang) {
-        currentLang = lang;
-        document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
-        const t = TRANSLATIONS[lang];
-        document.querySelector('.t-text').innerText = t.all;
-        document.querySelector('.p-text').innerText = t.premium;
-        document.getElementById('srvSearch').placeholder = t.search;
-        document.getElementById('lblTotal').innerText = t.total;
-        document.getElementById('optPay').innerText = t.payOpt;
-        document.getElementById('btnSend').innerText = t.confirm;
-        document.getElementById('btnCancel').innerText = t.cancel;
-        document.getElementById('mLink').placeholder = t.link;
-        render(activeCat === 'All' ? SERVICES : SERVICES.filter(s => s.cat === activeCat));
-    }
-
-    function filterCat(c, b) {
-        activeCat = c;
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        b.classList.add('active');
-        searchSrv();
-    }
-
-    function openM(id) {
-        current = SERVICES.find(s => s.id === id);
-        const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
-        document.getElementById('mTitle').innerText = `${current.id} - ${displayName}`;
-        document.getElementById('emailBox').style.display = current.cat === "Premium" ? 'block' : 'none';
-        document.getElementById('qtyBox').style.display = current.type === "fixed" ? 'none' : 'block';
-        document.getElementById('mQty').value = current.type === "fixed" ? 1 : 1000;
-        document.getElementById('mPay').value = "";
-        document.getElementById('paymentInfo').style.display = "none";
-        doCalc();
-        document.getElementById('modal').style.display = 'flex';
-    }
-
-    function doCalc() {
-        if(!current) return;
-        const q = document.getElementById('mQty').value || 0;
-        let total = (current.type === "fixed") ? (current.p * q) : (current.p / 1000 * q);
-        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(2);
-    }
-
-    function showPayDetails(val) {
-        const info = document.getElementById('paymentInfo');
-        const num = document.getElementById('payNumber');
-        if(val && WALLETS[val]) { info.style.display = "block"; num.innerText = WALLETS[val]; }
-        else { info.style.display = "none"; }
+    function updatePrice() {
+        const srvId = document.getElementById('srvSelect').value;
+        const srv = SERVICES.find(s => s.id == srvId);
+        const qty = document.getElementById('mQty').value || 0;
+        if(srv) {
+            let total = srv.fixed ? (srv.p * qty) : (srv.p / 1000 * qty);
+            document.getElementById('chargeDisplay').value = "$" + total.toFixed(2);
+        }
     }
 
     function sendWA() {
+        const srvId = document.getElementById('srvSelect').value;
+        const srv = SERVICES.find(s => s.id == srvId);
         const link = document.getElementById('mLink').value;
-        const pay = document.getElementById('mPay').value;
-        if(!link || !pay) return alert("يرجى ملء الرابط واختيار طريقة الدفع 🍬");
-        const msg = `🚀 *طلب جديد*%0AID: ${current.id}%0Aالخدمة: ${current.n}%0Aالرابط: ${link}%0Aالإجمالي: ${document.getElementById('totalDisplay').innerText}%0Aالدفع: ${pay}`;
+        const charge = document.getElementById('chargeDisplay').value;
+        if(!link) return alert(currentLang === 'ar' ? "ضع الرابط أولاً!" : "Lien requis!");
+        const msg = `🚀 طلب جديد من KarimTreize13\nالخدمة: ${srv.n}\nالرابط: ${link}\nالكمية: ${document.getElementById('mQty').value}\nالتكلفة: ${charge}`;
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
-    function closeM() { document.getElementById('modal').style.display = 'none'; }
-    render(SERVICES);
+    // تشغيل أولي
+    setLang('ar');
 </script>
 </body>
 </html>
