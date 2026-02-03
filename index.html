@@ -280,10 +280,21 @@
         document.getElementById('paymentInfo').style.display = "none";
         doCalc();
         document.getElementById('modal').style.display = 'flex';
-   function show(cat) {
-    let html = '';
+   function show(cat) { let html = '';
     const services = DATA[cat]; 
+   function doCalc() {
+    if(!current) return; //  
+    // 1. جلب الكمية التي كتبها العميل
+    const q = document.getElementById('mQty').value || 0; //
+    
+    // 2. العملية الحسابية (الكمية مقسومة على 1000 مضروبة في سعر الخدمة)
+    // نستخدم current.p المأخوذ من مصفوفة DATA
+    let total = (q / 1000) * current.p; 
 
+    // 3. عرض النتيجة النهائية في مكان السعر
+    document.getElementById('totalDisplay').innerText = "$" + total.toFixed(2); //
+   }
+                       
     if (services) {
         services.forEach(s => {
             // هذا الهيكل هو المعتمد في التصاميم الاحترافية للأقسام
