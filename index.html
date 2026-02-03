@@ -280,6 +280,29 @@
         document.getElementById('paymentInfo').style.display = "none";
         doCalc();
         document.getElementById('modal').style.display = 'flex';
+   function show(cat) {
+    let html = '';
+    const services = DATA[cat]; 
+
+    if (services) {
+        services.forEach(s => {
+            // هذا الهيكل هو المعتمد في التصاميم الاحترافية للأقسام
+            html += `
+            <div class="item" onclick="openM('${s.id}')">
+                <div class="info">
+                    <span class="name">${s.n}</span>
+                    <span class="price">${s.p}$</span>
+                </div>
+                <div class="icon-plus">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+            </div>`;
+        });
+    }
+
+    // تعبئة الحاوية بنفس الطريقة التي تبدأ بها الأقسام الأخرى
+    document.getElementById('container').innerHTML = html;
+            }    
     }
 
     function doCalc() {
