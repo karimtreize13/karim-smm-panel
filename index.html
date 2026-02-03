@@ -130,7 +130,64 @@
     </div>
 </div>
 
-<script>
+<script>// 1. قاعدة البيانات (تأكد أن الأسماء بين علامات اقتباس)const SERVICES = [
+    { id: 'sn1', cat: 'Snapchat', n: 'متابعين سناب شات', p: 5.0 },
+    { id: 'sn2', cat: 'Snapchat', n: 'مشاهدات ستوري', p: 1.2 }
+];
+
+let current = null; // تخزين الخدمة المختارة حالياً
+
+// 2. دالة عرض الخدمات في الحاوية (container)
+function show(cat) {
+    let container = document.getElementById('container');
+    if (!container) return; // حماية في حال عدم وجود الحاوية
+    
+    let html = '';
+    const filtered = SERVICES.filter(s => s.cat === cat);
+
+    filtered.forEach(s => {
+        html += `
+        <div class="service-item" onclick="openM('${s.id}')">
+            <div class="info">
+                <div class="name">${s.n}</div>
+                <div class="price">السعر: $${s.p}</div>
+            </div>
+            <div class="plus">+</div>
+        </div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// 3. دالة فتح النافذة (التي تستدعي السطر 281)
+function openM(id) {
+    current = SERVICES.find(s => s.id === id);
+    if (current) {
+        document.getElementById('mTitle').innerText = current.n;
+        document.getElementById('mQty').value = 1000;
+        
+        // السطر 281: تشغيل الحساب فوراً
+        doCalc(); 
+        
+        document.getElementById('modal').style.display = 'flex';
+    }
+}
+
+// 4. دالة الحساب (doCalc)
+function doCalc() {
+    if (!current) return;
+    const qty = document.getElementById('mQty').value || 0;
+    // المعادلة: (الكمية / 1000) * السعر
+    let total = (qty / 1000) * current.p;
+    document.getElementById('mTotal').innerText = total.toFixed(2) + "$";
+}
+
+// تشغيل قسم سناب شات تلقائياً عند فتح الموقع للتجربة
+window.onload = function() {
+    show('Snapchat');
+};
+</script>
+    
     const SERVICES = [ 
         {id: 9999, cat: "TikTok", n: "🪙 TikTok Coins | Recharge quand tu dis (1000 Coins)", n_ar: "🪙 شحن عملات تيك توك | تسليم سريع (1000 الكميه)", p:12.00, type: "fixed"},
         {id: 3810, cat: "TikTok", n: "TikTok Followers | HQ Real Profiles | +100K/Day", n_ar: "متابعين تيك توك | حسابات حقيقية عالية الجودة | سرعة فائقة", p: 1.8424},
