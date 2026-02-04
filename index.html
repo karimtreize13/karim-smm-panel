@@ -272,6 +272,13 @@
         searchSrv();
     }   
     function openM(id) {
+     function openM(id) {
+    current = SERVICES.find(s => s.id == id);
+    if (!current) return;
+    if (current.dl) { window.open(current.dl, '_blank'); return; }
+
+        const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
+         
         current = SERVICES.find(s => s.id === id);
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
         document.getElementById('mTitle').innerText = `${current.id} - ${displayName}`;
