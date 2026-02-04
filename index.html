@@ -272,7 +272,6 @@
         searchSrv();
     }   
     function openM(id) {        
-        if (id == 'GIFT') { window.open('https://www.mediafire.com/file/dx840mpbcp3td0r/Netflix_Premium_v9.49.1_-_androforever.com.apk/file', '_blank'); return; 
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;            
         document.getElementById('mTitle').innerText = `${current.id} - ${displayName}`;
         document.getElementById('emailBox').style.display = current.cat === "Premium" ? 'block' : 'none';
