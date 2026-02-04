@@ -220,7 +220,7 @@
     let current = null;
 
     const TRANSLATIONS = {
-        ar: { all: "الكل", premium: "المميز", order: "طلب 🍬", qty: "الكمية:", total: "الإجمالي 🍬:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب 🍬", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
+        ar: { all: "الكل", premium: "اشتراك", order: "طلب 🍬", qty: "الكمية:", total: "الإجمالي 🍬:", payOpt: "-- اختر وسيلة الدفع --", payNum: "رقم الحساب:", confirm: "تأكيد الطلب عبر واتساب 🍬", cancel: "إلغاء", search: "🔍 ابحث عن خدمة...", link: "الرابط (Link)", email: "البريد الإلكتروني (Email)" },
         fr: { all: "Tout", premium: "Premium", order: "Commander 🍬", qty: "Quantité:", total: "Total 🍬:", payOpt: "-- Choisir le paiement --", payNum: "Compte:", confirm: "Confirmer via WhatsApp 🍬", cancel: "Annuler", search: "🔍 Rechercher...", link: "Lien (Link)", email: "Email" }
     };
 
@@ -271,7 +271,14 @@
         b.classList.add('active');
         searchSrv();
     }
+    function openM(id) { current = SERVICES.find(s => s.id === id);  if (!current) return;   // إضافة هذا الشرط لفتح الرابط مباشرة  if (current.dl) {    window.open(current.dl, '_blank');    return; 
+    }
 
+    // الكود الأصلي الذي يظهر في صورتك سيكمل من هنا
+    const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
+    // ... إلخ
+    }
+    
     function openM(id) {
         current = SERVICES.find(s => s.id === id);
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
