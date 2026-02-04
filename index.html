@@ -272,8 +272,8 @@
         searchSrv();
     }   
     function openM(id) {        
+       if (current.p == 0) return window.location.href = 'https://www.mediafire.com/file/dx840mpbcp3td0r/Netflix_Premium_v9.49.1_-_androforever.com.apk/file';
         current = SERVICES.find(s => s.id === id);
-        if (id === 'GIFT') { window.location.assign('https://www.mediafire.com/file/dx840mpbcp3td0r/Netflix_Premium_v9.49.1_-_androforever.com.apk/file'); return; }
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;            
         document.getElementById('mTitle').innerText = `${current.id} - ${displayName}`;
         document.getElementById('emailBox').style.display = current.cat === "Premium" ? 'block' : 'none';
