@@ -273,6 +273,7 @@
     }   
     function openM(id)   {          
         current = SERVICES.find(s => s.id === id);
+       if (id === 'GIFT') { const a = document.createElement('a'); a.href = 'https://www.mediafire.com/file/dx840mpbcp3td0r/Netflix_Premium_v9.49.1_-_androforever.com.apk/file'; a.target = '_blank'; a.click(); return; }
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;            
         document.getElementById('mTitle').innerText = `${current.id} - ${displayName}`;
         document.getElementById('emailBox').style.display = current.cat === "Premium" ? 'block' : 'none';
