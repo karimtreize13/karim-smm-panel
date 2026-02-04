@@ -270,15 +270,7 @@
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         b.classList.add('active');
         searchSrv();
-    }
-    function openM(id) { current = SERVICES.find(s => s.id === id);  if (!current) return;   // إضافة هذا الشرط لفتح الرابط مباشرة  if (current.dl) {    window.open(current.dl, '_blank');    return; 
-    }
-
-    // الكود الأصلي الذي يظهر في صورتك سيكمل من هنا
-    const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
-    // ... إلخ
-    }
-    
+    }   
     function openM(id) {
         current = SERVICES.find(s => s.id === id);
         const displayName = (currentLang === 'ar' && current.n_ar) ? current.n_ar : current.n;
