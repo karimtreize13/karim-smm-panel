@@ -225,7 +225,7 @@
                     <div class="srv-id-badge">ID: #${s.id}</div>
                     <div class="srv-name" style="text-align: ${currentLang === 'ar' ? 'right' : 'left'}">${displayName}</div>
                     <div class="srv-footer">
-                        <div class="srv-price">🍬 $${s.p.toFixed(2)}<small>${s.type === "fixed" ? "" : "/1k"}</small></div>
+                        <div class="srv-price">🍬 $${s.p.toFixed(4)}<small>${s.type === "fixed" ? "" : "/1k"}</small></div>
                         <button class="btn-order" onclick="openM(${s.id})">${TRANSLATIONS[currentLang].order}</button>
                     </div>
                 </div>`;
