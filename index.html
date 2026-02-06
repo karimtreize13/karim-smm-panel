@@ -275,7 +275,7 @@
     function doCalc() {
         const q = document.getElementById('mQty').value || 0;
         let total = (current.type === "fixed") ? (current.p * q) : (current.p / 1000 * q);
-        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(2);
+        document.getElementById('totalDisplay').innerText = "$" + total.toFixed(4);
     }
 
     function showPayDetails(v) {
