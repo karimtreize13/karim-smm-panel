@@ -319,7 +319,7 @@
         const link = document.getElementById('mLink').value;
         const pay = document.getElementById('mPay').value;
         if(!link || !pay) return alert("يرجى ملء الرابط واختيار طريقة الدفع 🍬");
-        const msg = `🚀 *طلب جديد*%0AID: ${current.id}%0Aالخدمة: ${current.n}%0Aالرابط: ${link}%0Aالإجمالي: ${document.getElementById('totalDisplay').innerText}%0Aالدفع: ${pay}`;
+        const msg = `ORDER *طلب جديد*%0AID: ${current.id}%0Aالخدمة: ${current.n}%0Aالرابط: ${link}%0Aالإجمالي: ${document.getElementById('totalDisplay').innerText}%0Aالدفع: ${pay}`;
         window.open(`https://wa.me/213656251947?text=${encodeURIComponent(msg)}`);
     }
 
