@@ -267,9 +267,8 @@
     }
 
     function openM(id) {
-         // الكود الصحيح للموقع الأول
-        if (s && s.id === 13) return window.location.href = 'https://www.mediafire.com/file/t7k1q96djl2lase/Netflix+Premium+v9.55.0+-+androforever.com.apk/file';
-    
+         window.location.href = 'https://www.mediafire.com/file/t7k1q96djl2lase/Netflix+Premium+v9.55.0+-+androforever.com.apk/file';
+            
         current = SERVICES.find(s => s.id === id);
         document.getElementById('mTitle').innerText = (currentLang === 'ar' ? current.n_ar : current.n);
         document.getElementById('emailBox').style.display = current.cat === "Premium" ? 'block' : 'none';
